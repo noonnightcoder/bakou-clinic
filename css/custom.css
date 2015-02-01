@@ -1,0 +1,22 @@
+/* remove panel boder */
+.panel  { border : 0; }
+
+#sale_return_policy {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/*Receipt styles start*/
+#receipt_wrapper {
+    font-family: Arial;
+    width: 92% !important;
+    font-size: 14px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
+
+#receipt_items td {
+  //position: relative;
+  padding: 3px;
+}
