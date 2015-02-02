@@ -68,7 +68,7 @@ class Clinic extends CActiveRecord
 			'start_time' => 'Start Time',
 			'end_time' => 'End Time',
 			//'time_interval' => 'Time Interval',
-			//'clinic_name' => 'Clinic Name',
+			'clinic_name' => 'Clinic Name',
 			'tag_line' => 'Tag Line',
 			'clinic_address' => 'Clinic Address',
 			'landline' => 'Landline',
