@@ -23,7 +23,7 @@ $this->widget('bootstrap.widgets.TbNav', array(
                     'visible'=> Yii::app()->user->checkAccess('report.index')
             ),
             array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Clinc Info')) . '</span>', 'icon'=>'glyphicon glyphicon-tower','url'=>Yii::app()->urlManager->createUrl('client/admin'),
-                           'active'=>$this->id=='employee' || $this->id=='supplier' || $this->id=='client' || $this->id=='publisher',
+                           'active'=>$this->id=='employee' || $this->id=='clinic' || $this->id=='treatment' || $this->id=='item',
                            'visible'=> Yii::app()->user->checkAccess('store.update') || Yii::app()->user->checkAccess('clinic.index') || Yii::app()->user->checkAccess('client.index'),
                            'items'=>array(
                                array('label'=>Yii::t('menu', 'Clinic'), 'icon'=> TbHtml::ICON_HOME, 'url'=>Yii::app()->urlManager->createUrl('clinic/admin'), 'active'=>$this->id .'/'. $this->action->id=='clinic/admin',
