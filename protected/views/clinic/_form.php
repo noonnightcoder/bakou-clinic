@@ -19,7 +19,7 @@
 
     <?php echo $form->errorSummary($model); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'clinic_id',array('span'=>5)); ?>
+            <?php echo $form->textFieldControlGroup($model,'id',array('span'=>5)); ?>
 
             <?php echo $form->textFieldControlGroup($model,'start_time',array('span'=>5,'maxlength'=>10)); ?>
 

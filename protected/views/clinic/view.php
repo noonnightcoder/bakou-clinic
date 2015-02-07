@@ -6,19 +6,19 @@
 <?php
 $this->breadcrumbs=array(
 	'Clinics'=>array('index'),
-	$model->clinic_id,
+	$model->id,
 );
 
 $this->menu=array(
 	array('label'=>'List Clinic', 'url'=>array('index')),
 	array('label'=>'Create Clinic', 'url'=>array('create')),
-	array('label'=>'Update Clinic', 'url'=>array('update', 'id'=>$model->clinic_id)),
-	array('label'=>'Delete Clinic', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->clinic_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Update Clinic', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Delete Clinic', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Clinic', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View Clinic #<?php echo $model->clinic_id; ?></h1>
+<h1>View Clinic #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView',array(
     'htmlOptions' => array(
@@ -26,7 +26,7 @@ $this->menu=array(
     ),
     'data'=>$model,
     'attributes'=>array(
-		'clinic_id',
+		'id',
 		'start_time',
 		'end_time',
 		'time_interval',

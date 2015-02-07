@@ -5,8 +5,8 @@
 
 <div class="view">
 
-    	<b><?php echo CHtml::encode($data->getAttributeLabel('clinic_id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->clinic_id),array('view','id'=>$data->clinic_id)); ?>
+    	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->id),array('view','id'=>$data->id)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('start_time')); ?>:</b>

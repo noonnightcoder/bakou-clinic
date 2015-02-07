@@ -4,7 +4,7 @@
  * This is the model class for table "clinic".
  *
  * The followings are the available columns in table 'clinic':
- * @property integer $clinic_id
+ * @property integer $id
  * @property string $start_time
  * @property string $end_time
  * @property string $time_interval
@@ -34,8 +34,8 @@ class Clinic extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('clinic_id, start_time, end_time', 'required'),
-			array('clinic_id, next_followup_days', 'numerical', 'integerOnly'=>true),
+			array('id, start_time, end_time', 'required'),
+			array('id, next_followup_days', 'numerical', 'integerOnly'=>true),
 			array('start_time, end_time', 'length', 'max'=>10),
 			array('time_interval', 'length', 'max'=>11),
 			array('clinic_name, landline, mobile, email', 'length', 'max'=>50),
@@ -43,7 +43,7 @@ class Clinic extends CActiveRecord
 			array('clinic_address', 'length', 'max'=>500),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('clinic_id, start_time, end_time, time_interval, clinic_name, tag_line, clinic_address, landline, mobile, email, next_followup_days', 'safe', 'on'=>'search'),
+			array('id, start_time, end_time, time_interval, clinic_name, tag_line, clinic_address, landline, mobile, email, next_followup_days', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,17 +64,17 @@ class Clinic extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'clinic_id' => 'Clinic',
+			'id' => 'ID',
 			'start_time' => 'Start Time',
 			'end_time' => 'End Time',
-			//'time_interval' => 'Time Interval',
+			'time_interval' => 'Time Interval',
 			'clinic_name' => 'Clinic Name',
 			'tag_line' => 'Tag Line',
 			'clinic_address' => 'Clinic Address',
 			'landline' => 'Landline',
 			'mobile' => 'Mobile',
 			'email' => 'Email',
-			//'next_followup_days' => 'Next Followup Days',
+			'next_followup_days' => 'Next Followup Days',
 		);
 	}
 
@@ -96,7 +96,7 @@ class Clinic extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('clinic_id',$this->clinic_id);
+		$criteria->compare('id',$this->id);
 		$criteria->compare('start_time',$this->start_time,true);
 		$criteria->compare('end_time',$this->end_time,true);
 		$criteria->compare('time_interval',$this->time_interval,true);

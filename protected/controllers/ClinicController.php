@@ -70,7 +70,7 @@ class ClinicController extends Controller
 		if (isset($_POST['Clinic'])) {
 			$model->attributes=$_POST['Clinic'];
 			if ($model->save()) {
-				$this->redirect(array('view','id'=>$model->clinic_id));
+				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 
@@ -94,7 +94,7 @@ class ClinicController extends Controller
 		if (isset($_POST['Clinic'])) {
 			$model->attributes=$_POST['Clinic'];
 			if ($model->save()) {
-				$this->redirect(array('view','id'=>$model->clinic_id));
+				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 
