@@ -1,6 +1,7 @@
 <?php
 /* @var $this ContactController */
 /* @var $model Contact */
+//if (!empty($myid)) print_r($myid);
 ?>
 <?php $this->breadcrumbs=array(
         'Contact'=>array('admin'),

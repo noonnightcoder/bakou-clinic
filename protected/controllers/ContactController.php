@@ -63,6 +63,7 @@ class ContactController extends Controller
 	public function actionCreate()
 	{
 		$model=new Contact;
+                $patient = new Patient;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -71,7 +72,15 @@ class ContactController extends Controller
 			$model->attributes=$_POST['Contact'];
 			if ($model->save()) {
 				//$this->redirect(array('view','id'=>$model->id));
-                            $this->redirect(array('admin'));
+                            //$this->redirect(array('admin'));
+                            $patient_id=$model->create_display_patient_id($model->id, $model->last_name);
+                            $patient->display_id=$patient_id;
+                            $patient->contact_id=$model->id;
+                            $patient->patient_since=date("Y-m-d");
+                            $patient->followup_date=date("Y-m-d");
+                            $patient->reference_by='Lux'; //will add this field on interface
+                            $patient->save();
+                            $this->redirect(array('create'));
 			}
 		}
 

@@ -71,7 +71,31 @@ $('.search-form form').submit(function(){
 		'country',
 		*/
 		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
+                    'class'=>'bootstrap.widgets.TbButtonColumn',
+                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{view}{update}{delete}</div>',
+                    'htmlOptions'=>array('class'=>'nowrap'),
+                    'buttons' => array(
+                            'view' => array(
+                              //'url'=>'Yii::app()->createUrl("client/delete/",array("id"=>$data->id))',
+                              'options' => array(
+                                  'class'=>'btn btn-xs btn-success',
+                                ),   
+                            ),
+                            'update' => array(
+                              'icon' => 'ace-icon fa fa-edit',
+                              'options' => array(
+                                  'class'=>'btn btn-xs btn-info',
+                                ), 
+                            ),
+                            'delete' => array(
+                               'label'=>'Delete',
+                               //'url'=>'Yii::app()->createUrl("sale/Invoice/",array("client_id"=>$data->id))',
+                               'options' => array(
+                                  'class'=>'btn btn-xs btn-danger',
+                               ),
+                               'visible'=>'Yii::app()->user->checkAccess("contact.delete")', 
+                            ),
+                    )    
 		),
 	),
 )); ?>
