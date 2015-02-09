@@ -1,23 +1,19 @@
 <?php
-/* @var $this ContactController */
-/* @var $model Contact */
+$this->breadcrumbs=array(
+        'Contact'=>array('admin'),
+	'Update',
+);
 ?>
 
 <?php
-$this->breadcrumbs=array(
-	'Contacts'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
-
-$this->menu=array(
-	array('label'=>'List Contact', 'url'=>array('index')),
-	array('label'=>'Create Contact', 'url'=>array('create')),
-	array('label'=>'View Contact', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Contact', 'url'=>array('admin')),
-);
+    //$fullname = ucwords($model->first_name . ' ' . $model->last_name);
 ?>
 
-    <h1>Update Contact <?php echo $model->id; ?></h1>
+<?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
+              'title' => Yii::t('app','Update Contact'),
+              'headerIcon' => 'ace-icon fa fa-user',
+              'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
+              'content' => $this->renderPartial('_form', array('model'=>$model,), true),
+ )); ?>  
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->endWidget(); ?>

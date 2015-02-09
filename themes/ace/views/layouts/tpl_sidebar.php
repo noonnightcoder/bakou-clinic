@@ -38,12 +38,17 @@ $this->widget('bootstrap.widgets.TbNav', array(
                                array('label'=>Yii::t('menu', 'Item'), 'icon'=> TbHtml::ICON_SHOPPING_CART, 'url'=>Yii::app()->urlManager->createUrl('Item/admin'), 'active'=>$this->id .'/'. $this->action->id=='Item/admin',
                                    'visible'=> Yii::app()->user->checkAccess('item.index') || Yii::app()->user->checkAccess('item.create') || Yii::app()->user->checkAccess('item.update') || Yii::app()->user->checkAccess('item.delete')
                                ),
-            )),            
-            array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Patient')) . '</span>', 'icon'=>'menu-icon fa fa-group','url'=>Yii::app()->urlManager->createUrl('contact/admin'),
-                           'active'=>$this->id=='priceTier' || strtolower($this->id)=='default' || $this->id=='contact' || $this->id=='settings' || $this->id=='location',
-                           //'visible'=>Yii::app()->user->checkAccess('store.update'),
+            )),
+            array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Patients')) . '</span>', 'icon'=>'menu-icon fa fa-group','url'=>Yii::app()->urlManager->createUrl('patient/index'),
+                           'active'=>$this->id=='contact' || strtolower($this->id)=='default' || $this->id=='appointment' || $this->id=='settings' || $this->id=='location',
+                           'visible'=>Yii::app()->user->checkAccess('contact.index') || Yii::app()->user->checkAccess('appointment.index'),
                            'items'=>array(
-                               array('label'=>Yii::t('menu','Patient'),'icon'=> TbHtml::ICON_COG, 'url'=>Yii::app()->urlManager->createUrl('contact/index'), 'active'=>$this->id=='Patient','visible'=>Yii::app()->user->checkAccess('contact.index')),                               
+                               array('label'=>Yii::t('menu','Patient'),'icon'=> TbHtml::ICON_USER, 'url'=>Yii::app()->urlManager->createUrl('contact/admin'), 'active'=>$this->id=='contact',
+                                   'visible'=>Yii::app()->user->checkAccess('contact.index')
+                               ), 
+                               array('label'=>Yii::t('menu','Appointment'),'icon'=> TbHtml::ICON_BELL, 'url'=>Yii::app()->urlManager->createUrl('appointment/admin'), 'active'=>$this->id=='Appointment',
+                                   'visible'=>Yii::app()->user->checkAccess('appointment.index')
+                               ), 
             )),
             array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Settings')) . '</span>', 'icon'=>'menu-icon fa fa-cogs','url'=>Yii::app()->urlManager->createUrl('settings/index'),
                            'active'=>$this->id=='priceTier' || strtolower($this->id)=='default' || $this->id=='store' || $this->id=='settings' || $this->id=='location',
