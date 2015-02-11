@@ -63,6 +63,8 @@ class AppointmentController extends Controller
 	public function actionCreate()
 	{
 		$model=new Appointment;
+                $patient = new Patient;
+                $contact = new Contact;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -75,7 +77,7 @@ class AppointmentController extends Controller
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'model'=>$model,'patient'=>$patient,'contact'=>$contact
 		));
 	}
 
@@ -177,4 +179,9 @@ class AppointmentController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        public function get_patient()
+        {
+            
+        }
 }

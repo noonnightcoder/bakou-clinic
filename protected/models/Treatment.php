@@ -26,6 +26,7 @@ class Treatment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+                        array('treatment,price', 'required'),
 			array('price', 'numerical'),
 			array('treatment', 'length', 'max'=>80),
 			// The following rule is used by search().

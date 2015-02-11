@@ -8,8 +8,8 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>Yii::t('app','Bakou POS - Simply the Best'),
-        'sourceLanguage' => 'en',
-        'language' => 'kh',
+        //'sourceLanguage' => 'en',
+        'language' => 'en',
         'timeZone' => 'Asia/Phnom_Penh',
     
         'aliases' => array(

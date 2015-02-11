@@ -46,8 +46,8 @@ $this->widget('bootstrap.widgets.TbNav', array(
                                array('label'=>Yii::t('menu','Patient'),'icon'=> TbHtml::ICON_USER, 'url'=>Yii::app()->urlManager->createUrl('contact/admin'), 'active'=>$this->id=='contact',
                                    'visible'=>Yii::app()->user->checkAccess('contact.index')
                                ), 
-                               array('label'=>Yii::t('menu','Appointment'),'icon'=> TbHtml::ICON_BELL, 'url'=>Yii::app()->urlManager->createUrl('appointment/admin'), 'active'=>$this->id=='Appointment',
-                                   'visible'=>Yii::app()->user->checkAccess('appointment.index')
+                               array('label'=>Yii::t('menu','Appointment'),'icon'=> TbHtml::ICON_BELL, 'url'=>Yii::app()->urlManager->createUrl('appointment/create'), 'active'=>$this->id=='Appointment',
+                                   'visible'=>Yii::app()->user->checkAccess('appointment.create')
                                ), 
             )),
             array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Settings')) . '</span>', 'icon'=>'menu-icon fa fa-cogs','url'=>Yii::app()->urlManager->createUrl('settings/index'),
