@@ -122,4 +122,29 @@ class Appointment extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function m_get_patient($name = '')
+        {
+            $sql="SELECT id,fullname,display_id,phone_number,display_name 
+                    FROM v_search_patient 
+                    WHERE fullname LIKE :patient_name 
+                    or display_id LIKE :patient_name";
+            
+            $patient_name = '%' . $name . '%';
+            
+            return Yii::app()->db->createCommand($sql)->queryAll(true, array(':patient_name' => $patient_name,));
+        }
+        
+        public function RetreivePatient($patient_id)
+        {
+            $sql="SELECT phone_number,display_name 
+                    FROM v_search_patient
+                    where id=:patient_id";
+            
+            $cmd=Yii::app()->db->createCommand($sql);
+            $cmd->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
+            return $cmd->queryRow();
+            
+            //return Yii::app()->db->createCommand($sql)->queryAll(true, array(':patient_id' => $patient_id,));
+        }
 }

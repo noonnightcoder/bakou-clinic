@@ -37,7 +37,7 @@
                         'allowClear'=>true,
                         'minimumInputLength'=>1,
                         'ajax' => array(
-                            'url' => Yii::app()->createUrl('appointment/get_patient/'), 
+                            'url' => Yii::app()->createUrl('appointment/GetPatient/'), 
                             'dataType' => 'json',
                             'cache'=>true,
                             'data' => 'js:function(term,page) {
@@ -48,10 +48,18 @@
                                             apikey: "e5mnmyr86jzb9dhae3ksgd73" // Please create your own key!
                                         };
                                     }',
-                            'results' => 'js:function(data,page){
-                                var remote = $(this);
-                                arr=data.results;                        
-                                return { results: data.results };
+                            'results' => 'js:function(data){
+                                arr=data.results;
+                                var myResults = [];
+                                $.each(arr, function (index, item) {
+                                    myResults.push({
+                                        id: item.id,
+                                        text: item.fullname + " " + item.display_id
+                                    });
+                                });
+                                return {
+                                    results: myResults
+                                };
                              }',
                         ),
                         'initSelection' => 'js:function (element, callback) {
@@ -64,9 +72,9 @@
 
             <?php //echo $form->textFieldControlGroup($model,'end_date',array('span'=>5)); ?>
     
-            <?php echo $form->textFieldControlGroup($contact,'display_name',array('span'=>5,'maxlength'=>50)); ?>
+            <?php echo $form->textFieldControlGroup($contact,'display_name',array('disabled'=>true,'span'=>5,'maxlength'=>50)); ?>
     
-            <?php echo $form->textFieldControlGroup($contact,'phone_number',array('span'=>5,'maxlength'=>15)); ?>
+            <?php echo $form->textFieldControlGroup($contact,'phone_number',array('disabled'=>true,'span'=>5,'maxlength'=>15)); ?>
     
             <?php echo $form->textFieldControlGroup($model,'title',array('span'=>5,'maxlength'=>150)); ?>
 
@@ -112,3 +120,34 @@
     <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+<?php 
+Yii::app()->clientScript->registerScript( 'searchPatient', "
+    jQuery( function($){
+        $('#Patient_display_id').on('change', function(e) {
+            e.preventDefault();
+            var remote = $('#Patient_display_id');
+            var patient_id=remote.val();
+            var fullname= $('#Contact_display_name');
+            var msisdn = $('#Contact_phone_number');
+            $.ajax({url: 'RetreivePatient',
+                dataType : 'json',
+                data : {patient_id : patient_id},
+                type : 'post',
+                beforeSend: function() { $('.waiting').show(); },
+                complete: function() { $('.waiting').hide(); },
+                success : function(data) {
+                    if (data.status==='success')
+                    {
+                        fullname.html(data.div_fullname);
+                        msisdn.html(data.div_msisdn);
+                    }
+                    else 
+                    {
+                       console.log(data.message);
+                    }
+                }
+            });
+        });
+    });
+");
+?>

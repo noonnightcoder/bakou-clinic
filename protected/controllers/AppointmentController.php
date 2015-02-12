@@ -32,7 +32,7 @@ class AppointmentController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','admin'),
+				'actions'=>array('create','update','admin','GetPatient','RetreivePatient'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -180,8 +180,24 @@ class AppointmentController extends Controller
 		}
 	}
         
-        public function get_patient()
+        public function ActionGetPatient()
         {
-            
+            if (isset($_GET['term'])) {
+                $term = trim($_GET['term']);
+                $ret['results'] = Appointment::model()->m_get_patient($term); //PHP Example · ivaynberg/select2  http://bit.ly/10FNaXD got stuck serveral hoursss :|
+                echo CJSON::encode($ret);
+                Yii::app()->end();
+            }
+        }
+        
+        public function ActionRetreivePatient()
+        {
+            if (isset($_POST['patient_id'])) {
+                $patient_info=Appointment::model()->RetreivePatient($_POST['patient_id']);
+                $data['div_fullname']=$patient_info['display_name'];
+                $data['div_msisdn']=$patient_info['phone_number'];
+                $data['status']='success';
+                echo CJSON::encode($data);
+            }
         }
 }
