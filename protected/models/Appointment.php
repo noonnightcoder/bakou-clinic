@@ -147,4 +147,24 @@ class Appointment extends CActiveRecord
             
             //return Yii::app()->db->createCommand($sql)->queryAll(true, array(':patient_id' => $patient_id,));
         }
+        
+        public function get_combo_doctor()
+        {
+            $doctor = array();
+            $sql="SELECT t1.id,CONCAT(t2.last_name,' ',t2.first_name) fullname 
+                FROM rbac_user t1
+                INNER JOIN employee t2 ON t1.employee_id=t2.id
+                WHERE t1.group_id=2";
+            
+            $command=Yii::app()->db->createCommand($sql);
+            foreach($command->queryAll() as $row)
+            {
+                $doctor+=array($row['id']=>$row['fullname']);
+            }
+            
+            $rst=array(''=>'');
+            
+            $rst+=$doctor;
+            return $rst;
+        }
 }

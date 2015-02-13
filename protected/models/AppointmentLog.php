@@ -35,9 +35,10 @@ class AppointmentLog extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('appointment_id, change_date_time, start_time, from_time, to_time, old_status, status, name, user_id', 'required'),
+			array('appointment_id, status, user_id', 'required'),
 			array('appointment_id, user_id', 'numerical', 'integerOnly'=>true),
 			array('old_status, status, name', 'length', 'max'=>255),
+			array('change_date_time, start_time, from_time, to_time', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('appointment_id, change_date_time, start_time, from_time, to_time, old_status, status, name, user_id', 'safe', 'on'=>'search'),

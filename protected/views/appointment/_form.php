@@ -76,6 +76,8 @@
     
             <?php echo $form->textFieldControlGroup($contact,'phone_number',array('disabled'=>true,'span'=>5,'maxlength'=>15)); ?>
     
+            <?php echo $form->dropDownListControlGroup($user,'user_name',@$doctor, array('span' => 5)) ?>            
+    
             <?php echo $form->textFieldControlGroup($model,'title',array('span'=>5,'maxlength'=>150)); ?>
 
             <?php //echo $form->textFieldControlGroup($model,'start_time',array('span'=>5)); ?>
@@ -138,8 +140,8 @@ Yii::app()->clientScript->registerScript( 'searchPatient', "
                 success : function(data) {
                     if (data.status==='success')
                     {
-                        fullname.html(data.div_fullname);
-                        msisdn.html(data.div_msisdn);
+                        fullname.val(data.div_fullname);
+                        msisdn.val(data.div_msisdn);
                     }
                     else 
                     {
