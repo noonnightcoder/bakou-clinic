@@ -1,20 +1,13 @@
-<?php
-/* @var $this ClinicController */
-/* @var $model Clinic */
-?>
-
-<?php
-$this->breadcrumbs=array(
-	'Clinics'=>array('index'),
+<?php $this->breadcrumbs=array(
+        'Contact'=>array('admin'),
 	'Create',
 );
-
-$this->menu=array(
-	array('label'=>'List Clinic', 'url'=>array('index')),
-	array('label'=>'Manage Clinic', 'url'=>array('admin')),
-);
 ?>
+<?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
+              'title' => Yii::t('app','Clinic Info'),
+              'headerIcon' => 'ace-icon fa fa-user',
+              'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
+              'content' => $this->renderPartial('_form', array('model'=>$model,), true),
+ )); ?>  
 
-<h1>Create Clinic</h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->endWidget(); ?>

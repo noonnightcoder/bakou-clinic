@@ -30,29 +30,33 @@
 
             <?php echo $form->textFieldControlGroup($model,'first_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'middle_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            <?php //echo $form->textFieldControlGroup($model,'middle_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
             <?php echo $form->textFieldControlGroup($model,'last_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'display_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            <?php //echo $form->textFieldControlGroup($model,'display_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
             <?php echo $form->textFieldControlGroup($model,'phone_number',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'email',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            <?php //echo $form->textFieldControlGroup($model,'email',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'type',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            <?php //echo $form->textFieldControlGroup($model,'type',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
+            <?php echo $form->dropDownListControlGroup($model,'type',array('Home'=>'Home','Office'=>'Office'), array('class'=>'span7')) ?>     
+                
             <?php echo $form->textFieldControlGroup($model,'address_line_1',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'address_line_2',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            <?php //echo $form->textFieldControlGroup($model,'address_line_2',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'city',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            <?php //echo $form->textFieldControlGroup($model,'city',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'state',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            <?php //echo $form->textFieldControlGroup($model,'state',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'postal_code',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            <?php //echo $form->textFieldControlGroup($model,'postal_code',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'country',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            <?php //echo $form->textFieldControlGroup($model,'country',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+                
+            <?php echo $form->dropDownListControlGroup($model,'country',array('Cambodia'=>'Cambodia','Thailland'=>'Thailland'), array('class'=>'span7')) ?> 
     </div>
     <div class="col-sm-6">
                 <h4 class="header blue bolder smaller"><i class="ace-icon fa fa-key blue"></i><?php echo Yii::t('app','Patient Image') ?></h4>

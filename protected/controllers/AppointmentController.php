@@ -105,8 +105,7 @@ class AppointmentController extends Controller
                         $transaction->rollback();
                         echo $e->getMessage();
                     }
-		}
-                
+		}                
                 
 		$this->render('create',array(
 			'model'=>$model,'patient'=>$patient,'contact'=>$contact,'user'=>$user,'doctor'=>$doctor

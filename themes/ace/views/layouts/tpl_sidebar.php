@@ -54,7 +54,7 @@ $this->widget('bootstrap.widgets.TbNav', array(
                            'active'=>$this->id=='employee' || $this->id=='clinic' || $this->id=='treatment' || $this->id=='item',
                            'visible'=>Yii::app()->user->checkAccess('store.update'),
                            'items'=>array(
-                               array('label'=>Yii::t('menu', 'Clinic'), 'icon'=> TbHtml::ICON_HOME, 'url'=>Yii::app()->urlManager->createUrl('clinic/admin'), 'active'=>$this->id .'/'. $this->action->id=='clinic/admin',
+                               array('label'=>Yii::t('menu', 'Clinic'), 'icon'=> TbHtml::ICON_HOME, 'url'=>Yii::app()->urlManager->createUrl('clinic/create'), 'active'=>$this->id .'/'. $this->action->id=='clinic/create',
                                    'visible'=> Yii::app()->user->checkAccess('clinic.index') || Yii::app()->user->checkAccess('clinic.create') || Yii::app()->user->checkAccess('clinic.update') || Yii::app()->user->checkAccess('clinic.delete')
                                ),
                                array('label'=>Yii::t('menu', 'Employee'), 'icon'=> TbHtml::ICON_USER, 'url'=>Yii::app()->urlManager->createUrl('employee/admin'), 'active'=>$this->id .'/'. $this->action->id=='employee/admin',

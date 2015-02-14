@@ -34,8 +34,8 @@ class Clinic extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, start_time, end_time', 'required'),
-			array('id, next_followup_days', 'numerical', 'integerOnly'=>true),
+			array('clinic_name, clinic_address, mobile', 'required'),
+			array('next_followup_days', 'numerical', 'integerOnly'=>true),
 			array('start_time, end_time', 'length', 'max'=>10),
 			array('time_interval', 'length', 'max'=>11),
 			array('clinic_name, landline, mobile, email', 'length', 'max'=>50),

@@ -53,23 +53,22 @@ $('.search-form form').submit(function(){
             'dataProvider'=>$model->search(),
             'htmlOptions'=>array('class'=>'table-responsive panel'),
             'columns'=>array(
-		'id',
+		//'id',
 		'first_name',
-		'middle_name',
+		//'middle_name',
 		'last_name',
 		'display_name',
 		'phone_number',
 		/*
 		'email',
-		'contact_image',
+		'contact_image',*/
 		'type',
 		'address_line_1',
-		'address_line_2',
+		/*'address_line_2',
 		'city',
 		'state',
-		'postal_code',
+		'postal_code',*/
 		'country',
-		*/
 		array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
                     'template'=>'<div class="hidden-sm hidden-xs btn-group">{view}{update}{delete}</div>',
