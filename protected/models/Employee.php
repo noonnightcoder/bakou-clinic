@@ -159,6 +159,5 @@ class Employee extends CActiveRecord
         public function undodeleteEmployee($item_id)
         {
             Employee::model()->updateByPk((int)$item_id,array('status'=>$this->employee_active));
-        }
-        
+        }  
 }

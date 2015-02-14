@@ -122,4 +122,49 @@ class Appointment extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function m_get_patient($name = '')
+        {
+            $sql="SELECT id,fullname,display_id,phone_number,display_name 
+                    FROM v_search_patient 
+                    WHERE fullname LIKE :patient_name 
+                    or display_id LIKE :patient_name";
+            
+            $patient_name = '%' . $name . '%';
+            
+            return Yii::app()->db->createCommand($sql)->queryAll(true, array(':patient_name' => $patient_name,));
+        }
+        
+        public function RetreivePatient($patient_id)
+        {
+            $sql="SELECT phone_number,display_name 
+                    FROM v_search_patient
+                    where id=:patient_id";
+            
+            $cmd=Yii::app()->db->createCommand($sql);
+            $cmd->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
+            return $cmd->queryRow();
+            
+            //return Yii::app()->db->createCommand($sql)->queryAll(true, array(':patient_id' => $patient_id,));
+        }
+        
+        public function get_combo_doctor()
+        {
+            $doctor = array();
+            $sql="SELECT t1.id,CONCAT(t2.last_name,' ',t2.first_name) fullname 
+                FROM rbac_user t1
+                INNER JOIN employee t2 ON t1.employee_id=t2.id
+                WHERE t1.group_id=2";
+            
+            $command=Yii::app()->db->createCommand($sql);
+            foreach($command->queryAll() as $row)
+            {
+                $doctor+=array($row['id']=>$row['fullname']);
+            }
+            
+            $rst=array(''=>'');
+            
+            $rst+=$doctor;
+            return $rst;
+        }
 }

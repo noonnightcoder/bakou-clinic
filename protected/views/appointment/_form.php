@@ -22,17 +22,89 @@
 
     <p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
-            <?php echo $form->textFieldControlGroup($model,'appointment_date',array('span'=>5)); ?>
+            <?php //echo $form->textFieldControlGroup($model,'appointment_date',array('span'=>5)); ?>
+            <div class="form-group"><label class="col-sm-3 control-label" for="Patient">Patient</label> 
+            <div class="col-md-5"><?php 
+            $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
+                'asDropDownList' => false,
+                'model'=> $patient, 
+                'attribute'=>'display_id',
+                'pluginOptions' => array(
+                        'placeholder' => Yii::t('app','patient.appointment'),
+                        'multiple'=>false,
+                        'width' => '100%',
+                        //'tokenSeparators' => array(',', ' '),
+                        'allowClear'=>true,
+                        'minimumInputLength'=>1,
+                        'ajax' => array(
+                            'url' => Yii::app()->createUrl('appointment/GetPatient/'), 
+                            'dataType' => 'json',
+                            'cache'=>true,
+                            'data' => 'js:function(term,page) {
+                                        return {
+                                            term: term, 
+                                            page_limit: 10,
+                                            quietMillis: 100, //How long the user has to pause their typing before sending the next request
+                                            apikey: "e5mnmyr86jzb9dhae3ksgd73" // Please create your own key!
+                                        };
+                                    }',
+                            'results' => 'js:function(data){
+                                arr=data.results;
+                                var myResults = [];
+                                $.each(arr, function (index, item) {
+                                    myResults.push({
+                                        id: item.id,
+                                        text: item.fullname + " " + item.display_id
+                                    });
+                                });
+                                return {
+                                    results: myResults
+                                };
+                             }',
+                        ),
+                        'initSelection' => 'js:function (element, callback) {
+                               var id=$(element).val();
+                               console.log(id);
+                        }',
+                        //'htmlOptions'=>array('id'=>'search_item_id'),
+                )));
+            ?></div></div>
 
-            <?php echo $form->textFieldControlGroup($model,'end_date',array('span'=>5)); ?>
-
-            <?php echo $form->textFieldControlGroup($model,'start_time',array('span'=>5)); ?>
-
-            <?php echo $form->textFieldControlGroup($model,'end_time',array('span'=>5)); ?>
-
+            <?php //echo $form->textFieldControlGroup($model,'end_date',array('span'=>5)); ?>
+    
+            <?php echo $form->textFieldControlGroup($contact,'display_name',array('disabled'=>true,'span'=>5,'maxlength'=>50)); ?>
+    
+            <?php echo $form->textFieldControlGroup($contact,'phone_number',array('disabled'=>true,'span'=>5,'maxlength'=>15)); ?>
+    
+            <?php echo $form->dropDownListControlGroup($user,'user_name',@$doctor, array('span' => 5)) ?>            
+    
             <?php echo $form->textFieldControlGroup($model,'title',array('span'=>5,'maxlength'=>150)); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'patient_id',array('span'=>5)); ?>
+            <?php //echo $form->textFieldControlGroup($model,'start_time',array('span'=>5)); ?>
+
+            <?php //echo $form->textFieldControlGroup($model,'end_time',array('span'=>5)); ?>
+    
+            <div class="form-group"><label class="col-sm-3 control-label" for="start_time">Start Time</label> 
+            <div class="col-md-5"><?php $this->widget(
+                    'yiiwheels.widgets.timepicker.WhTimePicker',
+                    array(
+                        'model'=> $model,
+                        'attribute'=> 'start_time',
+                        //'name' => 'Start Time',
+                    )
+                );?></div></div>
+
+            
+            <div class="form-group"><label class="col-sm-3 control-label" for="end_time">End Time</label> 
+            <div class="col-md-5"><?php $this->widget(
+                    'yiiwheels.widgets.timepicker.WhTimePicker',
+                    array(
+                        'model'=> $model,
+                        'attribute'=> 'end_time',
+                    )
+                );?></div></div>    
+    
+            <?php //echo $form->textFieldControlGroup($model,'patient_id',array('span'=>5)); ?>
 
             <?php //echo $form->textFieldControlGroup($model,'user_id',array('span'=>5)); ?>
 
@@ -50,3 +122,34 @@
     <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+<?php 
+Yii::app()->clientScript->registerScript( 'searchPatient', "
+    jQuery( function($){
+        $('#Patient_display_id').on('change', function(e) {
+            e.preventDefault();
+            var remote = $('#Patient_display_id');
+            var patient_id=remote.val();
+            var fullname= $('#Contact_display_name');
+            var msisdn = $('#Contact_phone_number');
+            $.ajax({url: 'RetreivePatient',
+                dataType : 'json',
+                data : {patient_id : patient_id},
+                type : 'post',
+                beforeSend: function() { $('.waiting').show(); },
+                complete: function() { $('.waiting').hide(); },
+                success : function(data) {
+                    if (data.status==='success')
+                    {
+                        fullname.val(data.div_fullname);
+                        msisdn.val(data.div_msisdn);
+                    }
+                    else 
+                    {
+                       console.log(data.message);
+                    }
+                }
+            });
+        });
+    });
+");
+?>

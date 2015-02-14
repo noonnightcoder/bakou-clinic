@@ -32,7 +32,7 @@ class AppointmentController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','admin'),
+				'actions'=>array('create','update','admin','GetPatient','RetreivePatient'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -44,6 +44,10 @@ class AppointmentController extends Controller
 			),
 		);
 	}
+        
+        public function exception_error_handler($errno, $errstr, $errfile, $errline ) {
+            throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+        }
 
 	/**
 	 * Displays a particular model.
@@ -63,19 +67,49 @@ class AppointmentController extends Controller
 	public function actionCreate()
 	{
 		$model=new Appointment;
+                $patient = new Patient;
+                $contact = new Contact;
+                $user = new RbacUser;
+                $app_log= new AppointmentLog;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+                
+                $doctor= Appointment::model()->get_combo_doctor();  
+                
 		if (isset($_POST['Appointment'])) {
-			$model->attributes=$_POST['Appointment'];
+                    $transaction=$model->dbConnection->beginTransaction();
+                    try{
+                        set_error_handler(array(&$this, "exception_error_handler")); 
+			//$model->attributes=$_POST['Appointment'];
+                        $model->appointment_date=date('Y-m-d H:i:s');
+                        $model->end_date=date('Y-m-d');
+                        $model->start_time=$_POST['Appointment']['start_time'];
+                        $model->end_time=$_POST['Appointment']['end_time'];
+                        $model->title=$_POST['Appointment']['title'];
+                        $model->patient_id=$_POST['Patient']['display_id'];
+                        $model->user_id=Yii::app()->user->getId(); 
+                        $model->status='Appointment';
+                        $model->visit_id=0;
 			if ($model->save()) {
-				$this->redirect(array('view','id'=>$model->id));
-			}
+                                $app_log->appointment_id=$model->id;
+                                $app_log->change_date_time=date('Y-m-d H:i:s');
+                                $app_log->start_time=$_POST['Appointment']['start_time'];
+                                $app_log->status='Appointment';
+                                $app_log->user_id=Yii::app()->user->getId();
+                                $app_log->save();
+                                $transaction->commit();
+				$this->redirect(array('create','id'=>$model->id));
+                        }                        
+                    }catch (Exception $e){
+                        $transaction->rollback();
+                        echo $e->getMessage();
+                    }
 		}
-
+                
+                
 		$this->render('create',array(
-			'model'=>$model,
+			'model'=>$model,'patient'=>$patient,'contact'=>$contact,'user'=>$user,'doctor'=>$doctor
 		));
 	}
 
@@ -177,4 +211,25 @@ class AppointmentController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        public function ActionGetPatient()
+        {
+            if (isset($_GET['term'])) {
+                $term = trim($_GET['term']);
+                $ret['results'] = Appointment::model()->m_get_patient($term); //PHP Example · ivaynberg/select2  http://bit.ly/10FNaXD got stuck serveral hoursss :|
+                echo CJSON::encode($ret);
+                Yii::app()->end();
+            }
+        }
+        
+        public function ActionRetreivePatient()
+        {
+            if (isset($_POST['patient_id'])) {
+                $patient_info=Appointment::model()->RetreivePatient($_POST['patient_id']);
+                $data['div_fullname']=$patient_info['display_name'];
+                $data['div_msisdn']=$patient_info['phone_number'];
+                $data['status']='success';
+                echo CJSON::encode($data);
+            }
+        }
 }
