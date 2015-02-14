@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>Yii::t('app','Bakou POS - Simply the Best'),
+	'name'=>Yii::t('app','Bakou Clinic - Simply the Best'),
         'sourceLanguage' => 'en',
         'language' => 'kh',
         'timeZone' => 'Asia/Phnom_Penh',
