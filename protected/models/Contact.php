@@ -11,7 +11,7 @@
  * @property string $display_name
  * @property string $phone_number
  * @property string $email
- * @property string $contact_image
+ * @property string $image_path
  * @property string $type
  * @property string $address_line_1
  * @property string $address_line_2
@@ -19,6 +19,7 @@
  * @property string $state
  * @property string $postal_code
  * @property string $country
+ * @property string $image_name
  *
  * The followings are the available model relations:
  * @property ContactDetail[] $contactDetails
@@ -33,8 +34,10 @@ class Contact extends CActiveRecord
 	{
 		return 'contact';
 	}
+        
+        public $image;
 
-	/**
+        /**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
@@ -44,12 +47,13 @@ class Contact extends CActiveRecord
 		return array(
 			array('type, country', 'required'),
 			array('first_name, middle_name, last_name, type, city, state, postal_code, country', 'length', 'max'=>50),
-			array('display_name, contact_image', 'length', 'max'=>255),
+			array('display_name, image_path', 'length', 'max'=>255),
 			array('phone_number', 'length', 'max'=>15),
 			array('email, address_line_1, address_line_2', 'length', 'max'=>150),
+			array('image_name', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, first_name, middle_name, last_name, display_name, phone_number, email, contact_image, type, address_line_1, address_line_2, city, state, postal_code, country', 'safe', 'on'=>'search'),
+			array('id, first_name, middle_name, last_name, display_name, phone_number, email, image_path, type, address_line_1, address_line_2, city, state, postal_code, country, image_name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,14 +83,15 @@ class Contact extends CActiveRecord
 			'display_name' => 'Display Name',
 			'phone_number' => 'Phone Number',
 			'email' => 'Email',
-			'contact_image' => 'Contact Image',
+			'image_path' => 'Image Path',
 			'type' => 'Type',
-			'address_line_1' => 'Address',
+			'address_line_1' => 'Address Line 1',
 			'address_line_2' => 'Address Line 2',
 			'city' => 'City',
 			'state' => 'State',
 			'postal_code' => 'Postal Code',
 			'country' => 'Country',
+			'image_name' => 'Image Name',
 		);
 	}
 
@@ -115,7 +120,7 @@ class Contact extends CActiveRecord
 		$criteria->compare('display_name',$this->display_name,true);
 		$criteria->compare('phone_number',$this->phone_number,true);
 		$criteria->compare('email',$this->email,true);
-		$criteria->compare('contact_image',$this->contact_image,true);
+		$criteria->compare('image_path',$this->image_path,true);
 		$criteria->compare('type',$this->type,true);
 		$criteria->compare('address_line_1',$this->address_line_1,true);
 		$criteria->compare('address_line_2',$this->address_line_2,true);
@@ -123,6 +128,7 @@ class Contact extends CActiveRecord
 		$criteria->compare('state',$this->state,true);
 		$criteria->compare('postal_code',$this->postal_code,true);
 		$criteria->compare('country',$this->country,true);
+		$criteria->compare('image_name',$this->image_name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -145,5 +151,5 @@ class Contact extends CActiveRecord
             //$sql="CALL Create_patient_id(:myid, :my_last_name)";
             $myid= Yii::app()->db->createCommand("SELECT Create_patient_id($id,'$last_name')");
             return $myid->queryScalar();
-        }
+        } 
 }

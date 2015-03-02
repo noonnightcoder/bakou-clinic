@@ -48,13 +48,16 @@ $this->widget('bootstrap.widgets.TbNav', array(
                                ), 
                                array('label'=>Yii::t('menu','Appointment'),'icon'=> TbHtml::ICON_BELL, 'url'=>Yii::app()->urlManager->createUrl('appointment/create'), 'active'=>$this->id=='Appointment',
                                    'visible'=>Yii::app()->user->checkAccess('appointment.create')
-                               ), 
+                               ),
+                               array('label'=>Yii::t('menu','Waiting Queue'),'icon'=> TbHtml::ICON_BELL, 'url'=>Yii::app()->urlManager->createUrl('appointment/WaitingQueue'), 'active'=>$this->id=='Appointment',
+                                   'visible'=>Yii::app()->user->checkAccess('appointment.waitingqueue')
+                               ),
             )),
             array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Settings')) . '</span>', 'icon'=>'menu-icon fa fa-cogs','url'=>Yii::app()->urlManager->createUrl('settings/index'),
                            'active'=>$this->id=='employee' || $this->id=='clinic' || $this->id=='treatment' || $this->id=='item',
                            'visible'=>Yii::app()->user->checkAccess('store.update'),
                            'items'=>array(
-                               array('label'=>Yii::t('menu', 'Clinic'), 'icon'=> TbHtml::ICON_HOME, 'url'=>Yii::app()->urlManager->createUrl('clinic/create'), 'active'=>$this->id .'/'. $this->action->id=='clinic/create',
+                               array('label'=>Yii::t('menu', 'Clinic'), 'icon'=> TbHtml::ICON_HOME, 'url'=>Yii::app()->urlManager->createUrl('clinic/ClinicInfo'), 'active'=>$this->id .'/'. $this->action->id=='clinic/ClinicInfo',
                                    'visible'=> Yii::app()->user->checkAccess('clinic.index') || Yii::app()->user->checkAccess('clinic.create') || Yii::app()->user->checkAccess('clinic.update') || Yii::app()->user->checkAccess('clinic.delete')
                                ),
                                array('label'=>Yii::t('menu', 'Employee'), 'icon'=> TbHtml::ICON_USER, 'url'=>Yii::app()->urlManager->createUrl('employee/admin'), 'active'=>$this->id .'/'. $this->action->id=='employee/admin',

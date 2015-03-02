@@ -32,7 +32,7 @@ class AppointmentController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','admin','GetPatient','RetreivePatient'),
+				'actions'=>array('create','update','admin','GetPatient','RetreivePatient','WaitingQueue','Consultation','DoctorConsult'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -88,15 +88,16 @@ class AppointmentController extends Controller
                         $model->end_time=$_POST['Appointment']['end_time'];
                         $model->title=$_POST['Appointment']['title'];
                         $model->patient_id=$_POST['Patient']['display_id'];
-                        $model->user_id=Yii::app()->user->getId(); 
-                        $model->status='Appointment';
+                        $model->user_id=$_POST['RbacUser']['user_name'];
+                        $model->status='Waiting';
                         $model->visit_id=0;
 			if ($model->save()) {
                                 $app_log->appointment_id=$model->id;
                                 $app_log->change_date_time=date('Y-m-d H:i:s');
                                 $app_log->start_time=$_POST['Appointment']['start_time'];
-                                $app_log->status='Appointment';
-                                $app_log->user_id=Yii::app()->user->getId();
+                                $app_log->status='Waiting';
+                                //$app_log->user_id=Yii::app()->user->getId();
+                                $app_log->user_id=$_POST['RbacUser']['user_name'];
                                 $app_log->save();
                                 $transaction->commit();
 				$this->redirect(array('create','id'=>$model->id));
@@ -231,4 +232,108 @@ class AppointmentController extends Controller
                 echo CJSON::encode($data);
             }
         }
+        
+        public function actionWaitingQueue()
+        {
+            $model = new Appointment('get_doctor_queue');
+            //return $model->get_doctor_queue();
+            $this->render('DoctorQueue',array(
+                'model'=>$model,
+            ));
+        }
+        
+        protected function gridLeaveStatusColumn($data,$row)
+        {
+            switch ($data['status']) {
+                case 'Waiting': 
+                    $status=$this->renderPartial('_appointment_state',array('status'=>'Waiting'),false,true);
+                    //$status='At Immediate Supervisor';
+                    break;                
+                default:
+                    $status=$this->renderPartial('_appointment_state',array('status'=>'Consultant'),false,true);
+                    //$status='At Next Level Manager';
+            }
+
+            return $status;
+        }
+        
+        public function actionConsultation()
+        {
+            $model = new Appointment;   
+            $visit = new Visit;
+            if(isset($_GET['appoint_id']))
+            {
+                //echo $_GET['appoint_id'];
+                $patient_id=$_GET['patient_id'];
+                $doctor_id=$_GET['doctor_id'];
+                
+                $model->appointment_consult($_GET['appoint_id']);
+                $visit->patient_id=$patient_id;
+                $visit->userid=$doctor_id;
+                $visit->type="New Visit";
+                $visit->visit_date=date('Y-m-d');
+                if($visit->save())
+                {
+                    /*$this->render('DoctorConsult',array(
+                        'model'=>$model,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id,'visit_id'=>$visit->visit_id
+                    ));*/
+                    
+                    $this->redirect(array('DoctorConsult','visit_id'=>$visit->visit_id,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id));
+                }                 
+                $this->render('DocdorQueue',array(
+                    'model'=>$model,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id
+                ));
+            }
+        }
+        
+        public function actionDoctorConsult()
+        {
+            $model = new Appointment;
+            $patient = new Patient;
+            //$employee = new Employee;
+            $visit = new Visit;
+            $load_treatment = new Treatment;
+            $saleItem = new SaleItem;
+            $sale = new Sale;
+            //$my_treat = array();
+            if(isset($_POST['Treatment']))
+            {              
+                $sale->client_id = $_GET['patient_id'];
+                $sale->employee_id = $_GET['doctor_id'];
+                $sale->sale_time = date('Y-m-d');
+                $sale->status=0;
+                if($sale->save())
+                {
+                    $this->treatment_check($_POST['Treatment'],$sale->id);
+                }
+            }
+            
+            $employee= Employee::model()->findByPk($_GET['doctor_id']);
+            //print_r($treatment);
+            if ($employee===null) {
+                    throw new CHttpException(404,'The requested page does not exist.');
+            }
+            $id=1;
+            $treatment=$load_treatment->load_treatment($id);
+            //print_r($treatment);
+            $this->render('create_consult',array('model'=>$model,'visit'=>$visit,'employee'=>$employee,'treatment'=>$treatment,'patient'=>$patient));
+            
+        }
+        
+        protected function treatment_check($treatment,$id)
+        {
+            $saleItem = new SaleItem;
+            $saleItem->sale_id = $id;
+            foreach ($treatment as $key => $value)
+            {
+                foreach ($value as $val)
+                {
+                    $treatment = Treatment::model()->findByPk($val);
+                    $saleItem->item_id = $val;
+                    $saleItem->price = $treatment->price;
+                    $saleItem->isNewRecord = true; //http://bit.ly/1EY9rCW
+                    $saleItem->save();
+                }                           
+            }
+        } 
 }

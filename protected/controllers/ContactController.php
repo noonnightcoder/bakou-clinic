@@ -32,7 +32,7 @@ class ContactController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','admin'),
+				'actions'=>array('create','update','admin','Upload'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -44,6 +44,10 @@ class ContactController extends Controller
 			),
 		);
 	}
+        
+        public function exception_error_handler($errno, $errstr, $errfile, $errline ) {
+            throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+        }
 
 	/**
 	 * Displays a particular model.
@@ -69,19 +73,48 @@ class ContactController extends Controller
 		// $this->performAjaxValidation($model);
 
 		if (isset($_POST['Contact'])) {
-			$model->attributes=$_POST['Contact'];
-			if ($model->save()) {
-				//$this->redirect(array('view','id'=>$model->id));
-                            //$this->redirect(array('admin'));
-                            $patient_id=$model->create_display_patient_id($model->id, $model->last_name);
-                            $patient->display_id=$patient_id;
-                            $patient->contact_id=$model->id;
-                            $patient->patient_since=date("Y-m-d");
-                            $patient->followup_date=date("Y-m-d");
-                            $patient->reference_by='Lux'; //will add this field on interface
-                            $patient->save();
-                            $this->redirect(array('create'));
-			}
+                    $model->attributes=$_POST['Contact'];    
+
+                    $transaction=$model->dbConnection->beginTransaction();
+                    try{
+                        set_error_handler(array(&$this, "exception_error_handler")); 
+
+                        $model->image=CUploadedFile::getInstance($model,'image');
+
+                        $rnd = rand(0,9999);                             
+
+                        $path=Yii::app()->basePath.'/ximages/'.$model->first_name.'_'.$rnd;
+
+                        //$image_name=$path.'/'.$model->image;
+
+                        $model->image_path = $path;
+                        $model->image_name = $model->image;                        
+                        $image_name=$path.'/'.$model->image;
+
+                        if( !is_dir( $path ) ) 
+                        {
+                             mkdir( $path , 0777, true);
+                        }
+
+                        if ($model->image!=null) {
+                            if ($model->save())
+                            {
+                                $patient_id=$model->create_display_patient_id($model->id, $model->last_name);
+                                $patient->display_id=$patient_id;
+                                $patient->contact_id=$model->id;
+                                $patient->patient_since=date("Y-m-d");
+                                $patient->followup_date=date("Y-m-d");
+                                $patient->reference_by='Lux'; //will add this field on interface
+                                $patient->save();
+                                $model->image->saveAs($image_name);
+                                $transaction->commit();
+                                $this->redirect(array('create'));
+                            }
+                        }
+                    }  catch (Exception $e){
+                        $transaction->rollback();
+                        echo $e->getMessage();
+                    }
 		}
 
 		$this->render('create',array(
@@ -103,11 +136,21 @@ class ContactController extends Controller
 
 		if (isset($_POST['Contact'])) {
 			$model->attributes=$_POST['Contact'];
+                        $model->image=CUploadedFile::getInstance($model,'image');
+                        
+                        if($model->image!=null){
+                            $model->image_name = $model->image;
+                            $image_name= $model->image_path.'/'.$model->image;
+                        }
+                        
 			if ($model->save()) {
-				$this->redirect(array('view','id'=>$model->id));
+                                if($model->image!=null){
+                                    $model->image->saveAs($image_name);
+                                }
+				$this->redirect(array('update','id'=>$model->id));
 			}
 		}
-
+                //die();
 		$this->render('update',array(
 			'model'=>$model,
 		));
@@ -187,4 +230,87 @@ class ContactController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        public function actionUpload()
+        {
+            $contact_id=1;
+            header('Vary: Accept');
+            if (isset($_SERVER['HTTP_ACCEPT']) && 
+                (strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false))
+            {
+                header('Content-type: application/json');
+            } else {
+                header('Content-type: text/plain');
+            }
+            
+            $data = array();
+
+            $model = new Contact('upload');
+            //$model=new HrEmpphoto;
+            $model->attributes=$_POST['contact_image'];
+            $model->contact_image = CUploadedFile::getInstance($model, 'contact_image');
+            $model->contact_image;
+            die();
+            if ($model->contact_image !== null  && $model->validate(array('contact_image')))
+            {
+                $rnd = rand(0,9999); 
+                $path=Yii::app()->basePath.'/../ximages/'.strtolower(get_class($model)). '/'. $contact_id;
+                $filename = "{$rnd}_{$model->contact_image}";  // random number + file name
+                $name=$path. '/' . $filename;
+
+                if( !is_dir( $path ) ) 
+                {
+                     mkdir( $path , 0777, true);
+                }
+              
+                //$model->photo->saveAs(
+                //Yii::getPathOfAlias('frontend.www.files').'/'.$model->photo->name);
+                //$model->photo = file_get_contents($model->picture->tempName);
+                $model->thumnailphoto = file_get_contents($model->contact_image->tempName); //saving original photo uploaded
+                $model->filename = $model->contact_image->name;
+                $model->filetype = $model->contact_image->type;
+                $model->size = $model->contact_image->size;
+                $model->id=(int)$contact_id;
+                
+                $model->picture->saveAs($name);
+                        
+                // resizing image using image extension
+                $image = Yii::app()->image->load($name);
+                $image->resize(300, 200)->quality(130)->sharpen(90);
+                $image->save();
+                
+                $model->photo=file_get_contents($name);  
+            
+                // save picture name
+                if( $model->save())
+                {
+                    // return data to the fileuploader
+                    $data[] = array(
+                        'name' => $model->contact_image->name,
+                        'type' => $model->contact_image->type,
+                        'size' => $model->contact_image->size,
+                        // we need to return the place where our image has been saved
+                        //'url' => $model->getImageUrl(), // Should we add a helper method?
+                        // we need to provide a thumbnail url to display on the list
+                        // after upload. Again, the helper method now getting thumbnail.
+                        //'thumbnail_url' => $model->getImageUrl(HrEmpphoto::IMG_THUMBNAIL),
+                        // we need to include the action that is going to delete the picture
+                        // if we want to after loading 
+                        'delete_url' => $this->createUrl('delete', 
+                            array('id' => $model->id, 'method' => 'uploader')),
+                        'delete_type' => 'POST');
+                } else {
+                    $data[] = array('error' => 'Unable to save model after saving picture');
+                }
+            } else {
+                if ($model->hasErrors('contact_image'))
+                {
+                    $data[] = array('error', $model->getErrors('contact_image'));
+                } else {
+                    throw new CHttpException(500, "Could not upload file ".  CHtml::errorSummary($model));
+                }
+            }
+            // JQuery File Upload expects JSON data
+            echo json_encode($data);
+        }
 }

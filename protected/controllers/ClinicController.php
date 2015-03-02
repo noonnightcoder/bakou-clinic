@@ -32,7 +32,7 @@ class ClinicController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','admin'),
+				'actions'=>array('create','update','admin','ClinicInfo'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -90,11 +90,11 @@ class ClinicController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+                $dataProvider=new CActiveDataProvider('Clinic');
 		if (isset($_POST['Clinic'])) {
 			$model->attributes=$_POST['Clinic'];
 			if ($model->save()) {
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->id,'dataProvider'=>$dataProvider));
 			}
 		}
 
@@ -177,4 +177,18 @@ class ClinicController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        public function actionClinicInfo()
+        {
+            //$model = new Clinic;
+            $id=1;
+            $model = Clinic::model()->findByPk($id);
+            
+            if (!empty($model->id))
+            {
+                $this->actionUpdate($model->id);
+            }else{
+                $this->actionCreate();
+            }            
+        }
 }

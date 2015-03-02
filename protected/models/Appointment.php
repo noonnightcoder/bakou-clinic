@@ -112,7 +112,7 @@ class Appointment extends CActiveRecord
 		));
 	}
 
-	/**
+        /**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
@@ -154,7 +154,7 @@ class Appointment extends CActiveRecord
             $sql="SELECT t1.id,CONCAT(t2.last_name,' ',t2.first_name) fullname 
                 FROM rbac_user t1
                 INNER JOIN employee t2 ON t1.employee_id=t2.id
-                WHERE t1.group_id=2";
+                WHERE t1.group_id in (2,1)";
             
             $command=Yii::app()->db->createCommand($sql);
             foreach($command->queryAll() as $row)
@@ -166,5 +166,36 @@ class Appointment extends CActiveRecord
             
             $rst+=$doctor;
             return $rst;
+        }
+        
+        public function get_doctor_queue()
+        {
+            $userid=Yii::app()->user->getId();
+            $sql="SELECT @rownum:=@rownum+1 id,app_id,patient_id,doctor_id,patient_name,
+                    display_id,appointment_date,title,status
+                    from(select app_id,patient_id,user_id doctor_id,patient_name,display_id,appointment_date,title,status
+                        FROM v_appointment_state 
+                        WHERE appointment_date>=DATE_SUB(CURDATE(), INTERVAL 4 DAY)
+                        and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+                        and user_id=$userid
+                        and status not in ('Completed','Canceled')                        
+                        ORDER BY appointment_date
+                    )cl,(SELECT @rownum:=0) r";
+            //echo $sql;
+            //$rawData = Yii::app()->db->createCommand($sql);
+            //$rawData->bindParam(':userid', $userid, PDO::PARAM_INT);
+            return new CSqlDataProvider($sql,array(
+                'sort' => array(
+                        'attributes' => array(
+                            'id','display_id','patient_name'
+                        )
+                    ),
+            ));
+        }
+        
+        public function appointment_consult($app_id)
+        {
+            Appointment::model()->updateByPk($app_id,array('status'=>'Consultant'));            
+            AppointmentLog::model()->updateByPk($app_id,array('status'=>'Consultant'));
         }
 }

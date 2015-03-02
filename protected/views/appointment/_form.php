@@ -80,29 +80,32 @@
     
             <?php echo $form->textFieldControlGroup($model,'title',array('span'=>5,'maxlength'=>150)); ?>
 
-            <?php //echo $form->textFieldControlGroup($model,'start_time',array('span'=>5)); ?>
+            <?php echo $form->textField($model,'start_time',array('span'=>5,'style' => 'display:none')); ?>
 
-            <?php //echo $form->textFieldControlGroup($model,'end_time',array('span'=>5)); ?>
+            <?php echo $form->textField($model,'end_time',array('span'=>5,'style' => 'display:none')); ?>
     
-            <div class="form-group"><label class="col-sm-3 control-label" for="start_time">Start Time</label> 
-            <div class="col-md-5"><?php $this->widget(
+            <!---<div class="form-group"><label class="col-sm-3 control-label" for="start_time">Start Time</label> 
+            <div class="col-md-5">
+                <?php /*$this->widget(
                     'yiiwheels.widgets.timepicker.WhTimePicker',
                     array(
                         'model'=> $model,
                         'attribute'=> 'start_time',
                         //'name' => 'Start Time',
+                        //'htmlOptions' => array('style' => 'display:none')
                     )
-                );?></div></div>
+                );*/?></div></div>--->
 
             
-            <div class="form-group"><label class="col-sm-3 control-label" for="end_time">End Time</label> 
-            <div class="col-md-5"><?php $this->widget(
+            <!--<div class="form-group"><label class="col-sm-3 control-label" for="end_time">End Time</label> 
+            <div class="col-md-5">
+                <?php /*$this->widget(
                     'yiiwheels.widgets.timepicker.WhTimePicker',
                     array(
                         'model'=> $model,
                         'attribute'=> 'end_time',
                     )
-                );?></div></div>    
+                );*/?></div></div>-->    
     
             <?php //echo $form->textFieldControlGroup($model,'patient_id',array('span'=>5)); ?>
 

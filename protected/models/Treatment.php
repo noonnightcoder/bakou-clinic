@@ -94,4 +94,12 @@ class Treatment extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function load_treatment($id)
+        {
+            $criteria = new CDbCriteria();
+            $criteria->addInCondition('id', array(1,2));
+            //$criteria->params = array(':id'=>$id);
+            return Treatment::model()->find($criteria);
+        }
 }

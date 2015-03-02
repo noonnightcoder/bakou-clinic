@@ -132,6 +132,13 @@
                     </div>
                 </div>
                 
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="RbacUser_Treatment">Treatment</label>
+                    <div class="col-sm-9">
+                        <?php echo CHtml::activeCheckboxList($user, 'treatment',Authitem::model()->getAuthItemTreatment(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
+                    </div>
+                </div>
+                
                 <?php //echo $form->inlineCheckBoxListControlGroup($user, 'items',Authitem::model()->getAuthItemItem(),array('class'=>'ace-checkbox-2')); ?>
 
                 <?php //echo $form->inlineCheckBoxListControlGroup($user, 'sales', Authitem::model()->getAuthItemSale(),array('class'=>'ace-checkbox-2')); ?>

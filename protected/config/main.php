@@ -8,8 +8,8 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>Yii::t('app','Bakou Clinic - Simply the Best'),
-        'sourceLanguage' => 'en',
-        'language' => 'kh',
+        //'sourceLanguage' => 'en',
+        'language' => 'en',
         'timeZone' => 'Asia/Phnom_Penh',
     
         'aliases' => array(
@@ -35,7 +35,8 @@ return array(
                 'bootstrap.behaviors.TbWidget', //application.extensions.bootstrap.helpers.TbHtml 
                 'bootstrap.components.TbApi', //application.extensions.bootstrap.helpers.TbHtml 
                 'bootstrap.widgets.*',
-                'application.extensions.EExcelView.*'
+                'application.extensions.EExcelView.*',
+                //'application.extensions.select2.*'
 	),
         'theme'=>'ace', 
       
