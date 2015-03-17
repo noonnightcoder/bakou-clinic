@@ -1,7 +1,3 @@
-<?php /*$form=$this->beginWidget('\TbActiveForm', array(
-	'action'=>Yii::app()->createUrl($this->route),
-	'method'=>'get',
-));*/ ?>
 <table class="table table-hover table-condensed">
     <thead>
         <tr>
@@ -20,55 +16,72 @@
                 <?php //echo $item['id']; ?><br/>                        
             </td>-->
             <td style="display:none">
-                <?php //echo $form->textField($treatment, "id", array('value' => $item['id'], 'class' => 'input-small numeric input-grid', 'id' => "id_$item_id")); ?> 
-                <input value="<?php echo $item['id']; ?>" class="input-small numeric input-grid form-control" id="id_<?php echo $item_id; ?>" name="Treatment[id]" type="text" />
+                <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+                        'method'=>'post',
+                        //'action' => Yii::app()->createUrl('appointment/EditTreatment?Treatment_id='.$item_id),
+                        'htmlOptions'=>array('class'=>'line_treatment_form'),
+                    ));
+                ?>
+                <?php echo $form->textField($treatment, "id", array('value' => $item['id'], 'class' => 'input-small numeric input-grid', 'id' => "id_$item_id")); ?>    
+                <?php $this->endWidget(); ?>
+            </td>
             <td> 
                 <?php echo $item['treatment']; ?><br/>                        
             </td>
             <td>
-                <?php //echo $form->textField($treatment, "price", array('value' => $item['price'], 'class' => 'input-small numeric input-grid', 'id' => "price_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50, 'onkeypress' => 'return isNumberKey(event)')); ?>
-                <input value="<?php echo $item['price']; ?>" class="input-small numeric input-grid form-control" id="price_<?php echo $item_id; ?>" placeholder="Price" data-id="2" maxlength="50" onkeypress="return isNumberKey(event)" name="Treatment[price]" type="text" />
+                <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+                        'method'=>'post',
+                        'action' => Yii::app()->createUrl('appointment/EditTreatment?Treatment_id='.$item_id),
+                        'htmlOptions'=>array('class'=>'line_treatment_form'),
+                    ));
+                ?>
+                <?php echo $form->textField($treatment, "price", array('value' => $item['price'], 'class' => 'input-small numeric input-grid', 'id' => "price_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50,)); ?>
+                <?php $this->endWidget(); ?>
             </td>
-            <td><?php
-                        echo TbHtml::linkButton('', array(
-                            'color'=>TbHtml::BUTTON_COLOR_DANGER,
-                            'size' => TbHtml::BUTTON_SIZE_MINI,
-                            'icon' => 'glyphicon glyphicon-trash ',
-                            'url' => array('DeleteTreatment', 'treatment_id' => $item_id),
-                            //'label'=>'delete',
-                            'class' => 'delete-item',
-                            'title' =>  'Remove',                            
-                        ));
-                        ?>
+            <td>
+                <?php
+                    echo TbHtml::linkButton('', array(
+                        'color'=>TbHtml::BUTTON_COLOR_DANGER,
+                        'size' => TbHtml::BUTTON_SIZE_MINI,
+                        'icon' => 'glyphicon glyphicon-trash ',
+                        'url' => array('DeleteTreatment', 'treatment_id' => $item_id),
+                        //'label'=>'delete',
+                        'class' => 'delete-treatment',
+                        'title' =>  'Remove',                            
+                    ));
+                ?>
+                <?php
+                /*echo TbHtml::linkButton('', array(
+                    'color'=>TbHtml::BUTTON_COLOR_DANGER,
+                    'size' => TbHtml::BUTTON_SIZE_MINI,
+                    'icon' => 'glyphicon glyphicon-trash ',
+                    //'url' => array('DeleteTreatment', 'treatment_id' => $item_id),
+                    //'label'=>'delete',
+                    'class' => 'delete-item',
+                    'title' =>  'Remove',
+                    'ajax'=>array(
+                        'type'=>'post',
+                        'dataType'=>'json',
+                        'beforeSend'=>"function() { $('.waiting').show(); }",
+                        'complete'=>"function() { $('.waiting').hide(); }",
+                        'url'=>Yii::app()->createUrl('appointment/DeleteTreatment',array('treatment_id'=>$item_id)),
+                        'success'=>'function (data) {
+                            if(data.status=="success")
+                            {
+                                $("#treatment_form").html(data.div_treatment_form);
+                            }
+                        }'
+                    )
+                ));*/
+                ?>
             </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
-</table> 
+</table>  
 <?php
     if (empty($treatment_selected_items)) {
-        echo Yii::t('app', 'There are no treatment in the cart');
+        echo Yii::t('app', 'There are no treatment select');
     }
 ?> 
-<?php //$this->endWidget(); ?> 
-<?php
-Yii::app()->clientScript->registerScript( 'deleteTreatment',"
-        $('div#treatment_form').on('click','a.delete-item',function(e) {
-        e.preventDefault();
-        var url = $(this).attr('href');
-        $.ajax({
-            url:url,
-            dataType:'json',
-            type:'post',    
-            //beforeSend:function() { $('#loading').addClass('waiting'); },
-            //complete:function() { $('#loading').removeClass('waiting'); },
-            success:function(data) {
-                if(data.status=='success')
-                {
-                    $('#treatment_form').html(data.div_treatment_form);
-                }
-            }
-        });
-    });
-");
-?>
+

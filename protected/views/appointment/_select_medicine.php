@@ -20,7 +20,7 @@
             <td style="display:none">
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        //'action' => Yii::app()->createUrl('appointment/EditMedicine/'),
+                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
@@ -34,7 +34,7 @@
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        //'action' => Yii::app()->createUrl('appointment/EditMedicine/'),
+                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
@@ -45,7 +45,7 @@
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        //'action' => Yii::app()->createUrl('appointment/EditMedicine/'),
+                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
@@ -69,3 +69,45 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<script>
+    var submitting = false;
+    var url = $(this).attr('href');
+    $(document).ready(function()
+    {
+        $('.line_item_form').ajaxForm({target: "#select_medicine_form", beforeSubmit: salesBeforeSubmit});
+        
+        $('#medicine_contents').on('change','input.input-grid',function(e) {
+            e.preventDefault();
+            $(this.form).ajaxSubmit({url: url,target: "#select_medicine_form", beforeSubmit: salesBeforeSubmit });
+        });
+    });
+    
+    /*$(document).ready(function()
+    {
+        $('.line_item_form').ajaxForm({target: "#register_container", beforeSubmit: salesBeforeSubmit});
+        
+        $('#medicine_contents').on('change','input.input-grid',function(e) {
+            e.preventDefault();
+            $(this.form).ajaxSubmit({target: "#register_container", beforeSubmit: salesBeforeSubmit });
+        });
+    });*/
+    
+    function salesBeforeSubmit(formData, jqForm, options)
+    {
+        if (submitting)
+        {
+            return false;
+        }
+        submitting = true;
+        $('.waiting').show();
+    }
+    /*$(document).ready(function()
+    {
+        $('#medicine_contents').on('change','input.input-grid',function(e) {
+            e.preventDefault();
+            $(this.form).ajaxSubmit({target: "#register_container", beforeSubmit: salesBeforeSubmit });
+        });
+    });*/
+    
+</script>

@@ -1,4 +1,4 @@
-<div class="form">
+<div class="register_container">
     <?php $this->widget('bootstrap.widgets.TbAlert', array(
             'block'=>true, // display a larger alert block?
             'fade'=>true, // use transitions?
@@ -10,46 +10,17 @@
     )); ?>
     
     <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-                //'id'=>'doctor_consult',
-                //'action'=>Yii::app()->createUrl('appointment/DoctorConsult'),
-                'enableAjaxValidation'=>false,
-                'layout'=>TbHtml::FORM_LAYOUT_HORIZONTAL,
-                'id'=>'add_item_form',
-        )); ?>
+            //'id'=>'doctor_consult',
+            //'action'=>Yii::app()->createUrl('appointment/DoctorConsult'),
+            'enableAjaxValidation'=>false,
+            'layout'=>TbHtml::FORM_LAYOUT_HORIZONTAL,
+            'id'=>'add_item_form',
+    )); ?>
     
         <?php if(Yii::app()->user->hasFlash('error')):?>
             <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
         <?php endif; ?>
-    
-        <!--<p class="help-block">Fields with <span class="required">*</span> are required.</p>--->
-        <div class="col-sm-6">         
-            
-            <!-- 
-            <div class="form-group"><label class="col-sm-3 control-label" for="first_name">Doctor</label> 
-                <?php //echo $form->textField($employee,'doctor_name',array('disabled'=>true,'span'=>6,'maxlength'=>50)); ?>
-            </div>    
-            -->
-            <?php //echo $form->textFieldControlGroup($visit,'type',array('disabled'=>true,'span'=>5,'maxlength'=>50)); ?>
-            <!--
-            <div class="form-group"><label class="col-sm-3 control-label" for="followup_date">Follow Up Date</label> 
-                <div class="col-md-6">
-                    <?php /*$this->widget('yiiwheels.widgets.datepicker.WhDatePicker', array(
-                            //'name' => 'datepickertest',
-                            'model'=> $patient,
-                            'attribute'=> 'followup_date',
-                            'pluginOptions' => array(
-                                'format' => 'yyyy-mm-dd',
-                                'placeholder'=> 'yyyy-mm-dd'
-                            )
-                        ));
-                     * 
-                     */
-                    ?>
-                    <span class="add-on"><icon class="icon-calendar"></icon></span>
-                </div>
-            </div>  
-            -->
-            <?php //echo $form->textareaControlGroup($visit,'assessment',array('span'=>6,'row' => 1,'maxlength'=>50)); ?> 
+        <div class="col-sm-6"> 
             
             <?php echo $form->textAreaControlGroup($visit,'sympton',array('rows'=>1 , 'cols'=>10, 'class'=>'span2')); ?>
             
@@ -63,70 +34,18 @@
             <?php echo $form->textAreaControlGroup($visit,'plan',array('rows'=>1 , 'cols'=>10, 'class'=>'span2')); ?>
         </div>
     
-    
-    <div class="col-sm-12">
+        <div class="col-sm-12">
         <?php $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
             'title' => Yii::t('app','Treatment'),
             'headerIcon' => 'ace-icon fa fa-medkit',
             'headerButtons' => array(
-                $this->renderpartial('_select_treatment',array('treatment'=>$treatment,'treatment_items'=>$treatment_items,'form'=>$form),true)            
+                $this->renderpartial('_select_treatment',array('treatment'=>$treatment,'treatment_items'=>$treatment_items),true)            
             ),
             'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
             //'content' => $this->renderPartial('_form_treatment'),
         ));?> 
-            <div class="grid-view" id="treatment_form">                
-                <table class="table table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th style="display:none">ID</th>
-                            <th>Treatment</th>
-                            <th>Price</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="treatment_contents">
-                        <?php //$treatment_selected_items =array(); ?>
-                        <?php foreach ($treatment_selected_items as $id => $item): ?>
-                        <?php $item_id=$item['id']; ?>
-                        <tr>
-                            <!--<td style="display:none"> 
-                                <?php //echo $item['id']; ?><br/>                        
-                            </td>-->
-                            <td style="display:none">
-                                <?php echo $form->textField($treatment, "id", array('value' => $item['id'], 'class' => 'input-small numeric input-grid', 'id' => "id_$item_id")); ?>    
-                            <td> 
-                                <?php echo $item['treatment']; ?><br/>                        
-                            </td>
-                            <td><?php echo $form->textField($treatment, "price", array('value' => $item['price'], 'class' => 'input-small numeric input-grid', 'id' => "price_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50, 'onkeypress' => 'return isNumberKey(event)')); ?></td>
-                            <td><?php
-                                echo TbHtml::linkButton('', array(
-                                    'color'=>TbHtml::BUTTON_COLOR_DANGER,
-                                    'size' => TbHtml::BUTTON_SIZE_MINI,
-                                    'icon' => 'glyphicon glyphicon-trash ',
-                                    //'url' => array('DeleteTreatment', 'treatment_id' => $item_id),
-                                    //'label'=>'delete',
-                                    'class' => 'delete-item',
-                                    'title' =>  'Remove',
-                                    'ajax'=>array(
-                                        'type'=>'post',
-                                        'dataType'=>'json',
-                                        'beforeSend'=>"function() { $('.waiting').show(); }",
-                                        'complete'=>"function() { $('.waiting').hide(); }",
-                                        'url'=>Yii::app()->createUrl('appointment/DeleteTreatment',array('treatment_id'=>$item_id)),
-                                        'success'=>'function (data) {
-                                            if(data.status=="success")
-                                            {
-                                                $("#treatment_form").html(data.div_treatment_form);
-                                            }
-                                        }'
-                                    )
-                                ));
-                                ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>   
+            <div class="grid-view" id="select_treatment_form">                
+                <?php $this->renderPartial('_ajax_treatment', array('treatment_selected_items' => $treatment_selected_items,'treatment'=>$treatment), false) ?> 
             </div>
         <?php $this->endWidget(); ?> 
     </div>  
@@ -141,7 +60,7 @@
                 'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
                 //'content' => $this->renderPartial('_form', array('model'=>$model,'model_search'=>$model_search,'leave_detail_wrapper'=>$leave_detail_wrapper,'employee_id'=>$employee_id), true),
             ));?> 
-                <div id="register_container">
+                <div id="select_medicine_form">
                     <?php $this->renderPartial('_select_medicine', array('medicine_selected_items'=>$medicine_selected_items,'medicine'=>$medicine), false); ?>
                 </div>
             <?php $this->endWidget(); ?> 
@@ -175,29 +94,8 @@
         
  <?php $this->endWidget(); ?>
     
-</div>    
-<?php 
-$url=Yii::app()->createUrl('Appointment/Addtreatment/');        
-Yii::app()->clientScript->registerScript( 'update_treament',"
-    $('#Treatment_id').on('change',function(e) {
-        treatment_id=$('#Treatment_id').val();
-        //alert(treatment_id);
-        $.ajax({
-            url:'$url', 
-            dataType : 'json',    
-            type : 'post',
-            data : {treatment_id:treatment_id},
-            success : function(data) {
-                if(data.status=='success')
-                {
-                    $('#treatment_form').html(data.div_treatment_form);
-                     //location.reload();
-                }    
-            }
-        });
-    });
-"); 
-?>
+</div>  
+
 
 <?php 
 $url=Yii::app()->createUrl('Appointment/Addmedicine/');        
@@ -212,7 +110,7 @@ Yii::app()->clientScript->registerScript( 'update_medicine',"
             success : function(data) {
                 if(data.status=='success')
                 {
-                    $('#register_container').html(data.div_medicine_form);
+                    $('#select_medicine_form').html(data.div_medicine_form);
                      //location.reload();
                 }    
             }
@@ -223,7 +121,7 @@ Yii::app()->clientScript->registerScript( 'update_medicine',"
 
 <?php
 Yii::app()->clientScript->registerScript( 'deleteMedicine',"
-        $('div#register_container').on('click','a.delete-item',function(e) {
+        $('div#select_medicine_form').on('click','a.delete-item',function(e) {
         e.preventDefault();
         var url = $(this).attr('href');
         $.ajax({
@@ -235,7 +133,7 @@ Yii::app()->clientScript->registerScript( 'deleteMedicine',"
             success:function(data) {
                 if(data.status=='success')
                 {
-                    $('#register_container').html(data.div_medicine_form);
+                    $('#select_medicine_form').html(data.div_medicine_form);
                 }
             }
         });
@@ -244,12 +142,13 @@ Yii::app()->clientScript->registerScript( 'deleteMedicine',"
 ?>
 
 <?php
-$url = Yii::app()->createUrl('appointment/EditMedicine/');
+/*$url = Yii::app()->createUrl('appointment/EditMedicine/');
 Yii::app()->clientScript->registerScript( 'update_med_quatity',"
         $('tbody#medicine_contents').on('change','input.input-grid',function(e) {
         e.preventDefault();
+        alert(this.id);
         price=$('#Item_unit_price').val();
-        var url = $(this).attr('href');
+        //var url = $(this).attr('href');
         $.ajax({
             url:'$url',
             dataType:'json',
@@ -265,5 +164,50 @@ Yii::app()->clientScript->registerScript( 'update_med_quatity',"
             }
         });
     });
+");*/
+?>
+<?php
+Yii::app()->clientScript->registerScript( 'deleteTreatment',"
+        $('div#select_treatment_form').on('click','a.delete-treatment',function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            url:url,
+            dataType:'json',
+            type:'post',    
+            //beforeSend:function() { $('#loading').addClass('waiting'); },
+            //complete:function() { $('#loading').removeClass('waiting'); },
+            success:function(data) {
+                if(data.status=='success')
+                {
+                    //$('#select_medicine_form').html(data.div_medicine_form);
+                    $('#select_treatment_form').html(data.div_treatment_form);
+                }
+            }
+        });
+    });
 ");
+?>
+
+<?php
+$url=Yii::app()->createUrl('Appointment/Addtreatment/');        
+Yii::app()->clientScript->registerScript( 'update_treament',"
+    $('#Treatment_id').on('change',function(e) {
+        treatment_id=$('#Treatment_id').val();
+        //alert(treatment_id);
+        $.ajax({
+            url:'$url', 
+            dataType : 'json',    
+            type : 'post',
+            data : {treatment_id:treatment_id},
+            success : function(data) {
+                if(data.status=='success')
+                {
+                    $('#select_treatment_form').html(data.div_treatment_form);
+                     //location.reload();
+                }    
+            }
+        });
+    });
+");  
 ?>

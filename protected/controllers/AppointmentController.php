@@ -328,7 +328,7 @@ class AppointmentController extends Controller
         public function actionDoctorConsult()
         {
             if(isset($_GET['visit_id']) and isset($_GET['patient_id']) and isset($_GET['doctor_id']))
-            {
+            {   
                 $userid = Yii::app()->user->getId();            
                 if($userid!=$_GET['doctor_id'])
                 {
@@ -344,27 +344,28 @@ class AppointmentController extends Controller
                 $medicine = new Item;
                 
                 if(isset($_POST['Treatment']) || isset($_POST['Visit']))
-                {   
-                        $num = Appointment::model()->ValidateConsult($_GET['visit_id'],$_GET['patient_id'],$_GET['doctor_id']);            
-                
-                        if($num>0)
-                        {
-                            $sale->client_id = $_GET['patient_id'];
-                            $sale->employee_id = $_GET['doctor_id'];
-                            $sale->sale_time = date('Y-m-d');
-                            $sale->status=0;
-                            if($sale->save())
-                            {
-                                //$this->treatment_check($_POST['Treatment'],$sale->id);
-                                $this->redirect(Yii::app()->user->returnUrl);
-                            }
-                            //Yii::app()->user->returnUrl;
-                            Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
-                        }else{
-                            Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
-                        }
-                }else{
+                { 
+                    $num = Appointment::model()->ValidateConsult($_GET['visit_id'],$_GET['patient_id'],$_GET['doctor_id']);            
 
+                    if($num>0)
+                    {
+                        $sale->client_id = $_GET['patient_id'];
+                        $sale->employee_id = $_GET['doctor_id'];
+                        $sale->sale_time = date('Y-m-d');
+                        $sale->status=0;
+                        if($sale->save())
+                        {
+                            //$this->treatment_check($_POST['Treatment'],$sale->id);
+                            $this->redirect('waitingqueue');
+
+                        }
+                        //Yii::app()->user->returnUrl;
+                        Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
+                    }else{
+                        Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
+                    }
+                }else{
+                   
                 }
 
                 $employee_id = RbacUser::model()->findByPk($_GET['doctor_id']);
@@ -436,6 +437,8 @@ class AppointmentController extends Controller
                         'bootstrap.bootbox.min.js' => false,
                     );
                 }
+                Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
+                Yii::app()->clientScript->scriptMap['box.css'] = false;
                 echo CJSON::encode(array(
                     'status' => 'success',
                     'div_treatment_form' => $this->renderPartial('_ajax_treatment', array('treatment_selected_items' => $treatment_selected_items,'treatment'=>$treatment), true, true),
@@ -466,6 +469,8 @@ class AppointmentController extends Controller
                         'bootstrap.bootbox.min.js' => false,
                     );
                 }
+                Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
+                Yii::app()->clientScript->scriptMap['box.css'] = false;
                 echo CJSON::encode(array(
                     'status' => 'success',
                     'div_treatment_form' => $this->renderPartial('_ajax_treatment', array('treatment_selected_items' => $treatment_selected_items,'treatment'=>$treatment), true, true),
@@ -501,6 +506,8 @@ class AppointmentController extends Controller
                         'bootstrap.bootbox.min.js' => false,
                     );
                 }
+                Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
+                Yii::app()->clientScript->scriptMap['box.css'] = false; 
                 echo CJSON::encode(array(
                     'status' => 'success',
                     'div_medicine_form' => $this->renderPartial('_select_medicine', $data, true, true),
@@ -515,10 +522,12 @@ class AppointmentController extends Controller
         public function actionDeleteMedicine($medicine_id)
         {
             $treatment = new Treatment;
+            $medicine = new Item;
             
             if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) {
                 Yii::app()->treatmentCart->deleteMedicine($medicine_id);
                 $data['medicine_selected_items']=Yii::app()->treatmentCart->getMedicine();
+                 $data['medicine']=  $medicine; 
                 
                 if (Yii::app()->request->isAjaxRequest) {
                     $cs = Yii::app()->clientScript;
@@ -531,6 +540,8 @@ class AppointmentController extends Controller
                         'bootstrap.bootbox.min.js' => false,
                     );
                 }
+                Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
+                Yii::app()->clientScript->scriptMap['box.css'] = false; 
                 echo CJSON::encode(array(
                     'status' => 'success',
                     'div_medicine_form' => $this->renderPartial('_select_medicine', $data, true, true),
@@ -560,48 +571,44 @@ class AppointmentController extends Controller
             }
         }
         
-        public function actionEditMedicine()
-        {
+        public function actionEditMedicine($medicine_id)
+        {            
             $medicine = new Item;
+            
             if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) {
                 $data= array();
                 $model = new Item;
-                $medicine_id = isset($_POST['Item']['id']) ? $_POST['Item']['id'] : null;
                 $quantity = isset($_POST['Item']['quantity']) ? $_POST['Item']['quantity'] : null;
                 $price =isset($_POST['Item']['unit_price']) ? $_POST['Item']['unit_price'] : null;
                 
-                $model->quantity=$quantity;
-                $model->unit_price=$price;
-
-                if ($model->validate()) {
-                    Yii::app()->treatmentCart->editMedicine($medicine_id, $quantity, $price);
-                } else {
-                    $error=CActiveForm::validate($model);
-                    $errors = explode(":", $error);
-                    //$data['warning']=  str_replace("}","",$errors[1]);
-                    $data['warning'] = Yii::t('app','Input data type is invalid');
-                }
+                //$medicine->quantity=$quantity;
+                //$medicine->unit_price=$price;
+                //echo $_POST['Item']['quantity'];
+                Yii::app()->treatmentCart->editMedicine($medicine_id, $quantity, $price);
                 
                 $data['medicine']=$medicine;
                 $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
                 
-                if (Yii::app()->request->isAjaxRequest) {
-                    $cs = Yii::app()->clientScript;
-                    $cs->scriptMap = array(
-                        'jquery.js' => false,
-                        'bootstrap.js' => false,
-                        'jquery.min.js' => false,
-                        'bootstrap.min.js' => false,
-                        'bootstrap.notify.js' => false,
-                        'bootstrap.bootbox.min.js' => false,
-                    );
-                }
-                echo CJSON::encode(array(
+                $cs = Yii::app()->clientScript;
+                $cs->scriptMap = array(
+                    'jquery.js' => false,
+                    'bootstrap.js' => false,
+                    'jquery.min.js' => false,
+                    'bootstrap.min.js' => false,
+                    'bootstrap.notify.js' => false,
+                    'bootstrap.bootbox.min.js' => false,
+                );
+                
+                Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
+                Yii::app()->clientScript->scriptMap['box.css'] = false; 
+                
+                $this->renderPartial('_select_medicine', $data,false,true);
+                /*echo CJSON::encode(array(
                     'status' => 'success',
                     'div_medicine_form' => $this->renderPartial('_select_medicine', $data, true, true),
                 ));
                 
-                Yii::app()->end();
+                Yii::app()->end();*/
             } else {
                 throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
             }

@@ -54,25 +54,3 @@ $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
     )));
 ?>
 
-<?php
-$url=Yii::app()->createUrl('Appointment/Addtreatment/');        
-Yii::app()->clientScript->registerScript( 'update_treament',"
-    $('#Treatment_id').on('change',function(e) {
-        treatment_id=$('#Treatment_id').val();
-        //alert(treatment_id);
-        $.ajax({
-            url:'$url', 
-            dataType : 'json',    
-            type : 'post',
-            data : {treatment_id:treatment_id},
-            success : function(data) {
-                if(data.status=='success')
-                {
-                    $('#treatment_form').html(data.div_treatment_form);
-                     //location.reload();
-                }    
-            }
-        });
-    });
-");    
-?>
