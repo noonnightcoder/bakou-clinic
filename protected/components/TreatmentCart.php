@@ -149,6 +149,18 @@ class TreatmentCart extends CApplicationComponent
 
         return false;
     }
+    
+    public function editTreatment($treatment_id, $price)
+    {
+        $treatments = $this->getCart();
+        if (isset($treatments[$treatment_id])) {
+            //$medicines[$medicine_id]['quantity'] = $quantity !=null ? $quantity : $medicines[$medicine_id]['quantity'];
+            $treatments[$treatment_id]['price'] = $price !=null ? round($price, $this->getDecimalPlace()) : $treatments[$treatment_id]['price'];
+            $this->setCart($treatments);
+        }
+
+        return false;
+    }
 }
 
 ?>

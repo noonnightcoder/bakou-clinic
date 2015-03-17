@@ -1,40 +1,40 @@
 <div class="register_container">
-    <?php $this->widget('bootstrap.widgets.TbAlert', array(
-            'block'=>true, // display a larger alert block?
-            'fade'=>true, // use transitions?
-            'closeText'=>'&times;', // close link text - if set to false, no close link is displayed
-            'alerts'=>array( // configurations per alert type
-                'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'), 
-                'error'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'),
-            ),
-    )); ?>
-    
-    <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-            //'id'=>'doctor_consult',
-            //'action'=>Yii::app()->createUrl('appointment/DoctorConsult'),
-            'enableAjaxValidation'=>false,
-            'layout'=>TbHtml::FORM_LAYOUT_HORIZONTAL,
-            'id'=>'add_item_form',
-    )); ?>
-    
-        <?php if(Yii::app()->user->hasFlash('error')):?>
-            <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
-        <?php endif; ?>
-        <div class="col-sm-6"> 
-            
-            <?php echo $form->textAreaControlGroup($visit,'sympton',array('rows'=>1 , 'cols'=>10, 'class'=>'span2')); ?>
-            
-            <?php echo $form->textAreaControlGroup($visit,'assessment',array('rows'=>1 , 'cols'=>10, 'class'=>'span2')); ?>
-        </div>
-    
-        <div class="col-sm-6">
-            <!--<h4 class="header blue bolder smaller"><i class="ace-icon fa fa-key blue"></i><?php echo Yii::t('app','Treatment Result') ?></h4>--->
+<?php $this->widget('bootstrap.widgets.TbAlert', array(
+        'block'=>true, // display a larger alert block?
+        'fade'=>true, // use transitions?
+        'closeText'=>'&times;', // close link text - if set to false, no close link is displayed
+        'alerts'=>array( // configurations per alert type
+            'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'), 
+            'error'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'),
+        ),
+)); ?>
 
-            <?php echo $form->textAreaControlGroup($visit,'observation',array('rows'=>1 , 'cols'=>10, 'class'=>'span2')); ?>
-            <?php echo $form->textAreaControlGroup($visit,'plan',array('rows'=>1 , 'cols'=>10, 'class'=>'span2')); ?>
-        </div>
-    
-        <div class="col-sm-12">
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+        //'id'=>'doctor_consult',
+        //'action'=>Yii::app()->createUrl('appointment/DoctorConsult'),
+        'enableAjaxValidation'=>false,
+        'layout'=>TbHtml::FORM_LAYOUT_HORIZONTAL,
+        'id'=>'add_item_form',
+)); ?>
+
+    <?php if(Yii::app()->user->hasFlash('error')):?>
+        <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
+    <?php endif; ?>
+    <div class="col-sm-6"> 
+
+        <?php echo $form->textAreaControlGroup($visit,'sympton',array('rows'=>1 , 'cols'=>10, 'class'=>'span2')); ?>
+
+        <?php echo $form->textAreaControlGroup($visit,'assessment',array('rows'=>1 , 'cols'=>10, 'class'=>'span2')); ?>
+    </div>
+
+    <div class="col-sm-6">
+        <!--<h4 class="header blue bolder smaller"><i class="ace-icon fa fa-key blue"></i><?php echo Yii::t('app','Treatment Result') ?></h4>--->
+
+        <?php echo $form->textAreaControlGroup($visit,'observation',array('rows'=>1 , 'cols'=>10, 'class'=>'span2')); ?>
+        <?php echo $form->textAreaControlGroup($visit,'plan',array('rows'=>1 , 'cols'=>10, 'class'=>'span2')); ?>
+    </div>
+
+    <div class="col-sm-12">
         <?php $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
             'title' => Yii::t('app','Treatment'),
             'headerIcon' => 'ace-icon fa fa-medkit',
@@ -49,7 +49,7 @@
             </div>
         <?php $this->endWidget(); ?> 
     </div>  
-      
+
     <div class="col-sm-12" id="medicine_form">
         <?php $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
                 'title' => 'Medicine',
@@ -63,9 +63,9 @@
                 <div id="select_medicine_form">
                     <?php $this->renderPartial('_select_medicine', array('medicine_selected_items'=>$medicine_selected_items,'medicine'=>$medicine), false); ?>
                 </div>
-            <?php $this->endWidget(); ?> 
+        <?php $this->endWidget(); ?> 
     </div>
-    
+
     <div class="col-sm-12">
         <div class="form-actions">
              <?php echo TbHtml::submitButton($visit->isNewRecord ? Yii::t('app','Save') : Yii::t('app','Save'),array(
@@ -91,8 +91,8 @@
         </div>  
     </div>
 
-        
- <?php $this->endWidget(); ?>
+
+<?php $this->endWidget(); ?>
     
 </div>  
 
@@ -141,31 +141,6 @@ Yii::app()->clientScript->registerScript( 'deleteMedicine',"
 ");
 ?>
 
-<?php
-/*$url = Yii::app()->createUrl('appointment/EditMedicine/');
-Yii::app()->clientScript->registerScript( 'update_med_quatity',"
-        $('tbody#medicine_contents').on('change','input.input-grid',function(e) {
-        e.preventDefault();
-        alert(this.id);
-        price=$('#Item_unit_price').val();
-        //var url = $(this).attr('href');
-        $.ajax({
-            url:'$url',
-            dataType:'json',
-            type:'post',  
-            data : {price:treatment_id},
-            //beforeSend:function() { $('#loading').addClass('waiting'); },
-            //complete:function() { $('#loading').removeClass('waiting'); },
-            success:function(data) {
-                if(data.status=='success')
-                {
-                    $('#register_container').html(data.div_medicine_form);
-                }
-            }
-        });
-    });
-");*/
-?>
 <?php
 Yii::app()->clientScript->registerScript( 'deleteTreatment',"
         $('div#select_treatment_form').on('click','a.delete-treatment',function(e) {

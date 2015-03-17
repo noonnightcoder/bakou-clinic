@@ -31,7 +31,7 @@
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        'action' => Yii::app()->createUrl('appointment/EditTreatment?Treatment_id='.$item_id),
+                        'action' => Yii::app()->createUrl('appointment/EditTreatment?treatment_id='.$item_id),
                         'htmlOptions'=>array('class'=>'line_treatment_form'),
                     ));
                 ?>
@@ -84,4 +84,46 @@
         echo Yii::t('app', 'There are no treatment select');
     }
 ?> 
+
+<script>
+    var submitting = false;
+    var url = $(this).attr('href');
+    $(document).ready(function()
+    {
+        $('.line_treatment_form').ajaxForm({target: "#select_treatment_form", beforeSubmit: treatmentBeforeSubmit});
+        
+        $('#treatment_contents').on('change','input.input-grid',function(e) {
+            e.preventDefault();
+            $(this.form).ajaxSubmit({url: url,target: "#select_treatment_form", beforeSubmit: treatmentBeforeSubmit });
+        });
+    });
+    
+    /*$(document).ready(function()
+    {
+        $('.line_item_form').ajaxForm({target: "#register_container", beforeSubmit: salesBeforeSubmit});
+        
+        $('#medicine_contents').on('change','input.input-grid',function(e) {
+            e.preventDefault();
+            $(this.form).ajaxSubmit({target: "#register_container", beforeSubmit: salesBeforeSubmit });
+        });
+    });*/
+    
+    function treatmentBeforeSubmit(formData, jqForm, options)
+    {
+        if (submitting)
+        {
+            return false;
+        }
+        submitting = true;
+        $('.waiting').show();
+    }
+    /*$(document).ready(function()
+    {
+        $('#medicine_contents').on('change','input.input-grid',function(e) {
+            e.preventDefault();
+            $(this.form).ajaxSubmit({target: "#register_container", beforeSubmit: salesBeforeSubmit });
+        });
+    });*/
+    
+</script>
 

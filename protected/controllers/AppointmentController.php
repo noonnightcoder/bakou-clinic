@@ -37,7 +37,8 @@ class AppointmentController extends Controller
                                     'WaitingQueue','Consultation','DoctorConsult','AppointmentDash',
                                     'AddTreatment','DeleteTreatment','SelectMedicine',
                                     'Addmedicine','GetMedicine','DeleteMedicine',
-                                    'GetTreatment','InitTreatment','EditMedicine'
+                                    'GetTreatment','InitTreatment','EditMedicine',
+                                    'EditTreatment'
                                     ),
 				'users'=>array('@'),
 			),
@@ -573,11 +574,10 @@ class AppointmentController extends Controller
         
         public function actionEditMedicine($medicine_id)
         {            
-            $medicine = new Item;
+            //$medicine = new Item;
             
             if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) {
                 $data= array();
-                $model = new Item;
                 $quantity = isset($_POST['Item']['quantity']) ? $_POST['Item']['quantity'] : null;
                 $price =isset($_POST['Item']['unit_price']) ? $_POST['Item']['unit_price'] : null;
                 
@@ -612,6 +612,43 @@ class AppointmentController extends Controller
             } else {
                 throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
             }
-
+        }
+        
+        public function actionEditTreatment($treatment_id)
+        {
+            $treatment = new Treatment;
+            
+            if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) {
+                $data= array();
+                $price =isset($_POST['Treatment']['price']) ? $_POST['Treatment']['price'] : null;
+                
+                Yii::app()->treatmentCart->editTreatment($treatment_id, $price);
+                
+                $data['treatment']=$treatment;
+                $data['treatment_selected_items'] = Yii::app()->treatmentCart->getCart();
+                
+                $cs = Yii::app()->clientScript;
+                $cs->scriptMap = array(
+                    'jquery.js' => false,
+                    'bootstrap.js' => false,
+                    'jquery.min.js' => false,
+                    'bootstrap.min.js' => false,
+                    'bootstrap.notify.js' => false,
+                    'bootstrap.bootbox.min.js' => false,
+                );
+                
+                Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
+                Yii::app()->clientScript->scriptMap['box.css'] = false; 
+                
+                $this->renderPartial('_ajax_treatment', $data,false,true);
+                /*echo CJSON::encode(array(
+                    'status' => 'success',
+                    'div_medicine_form' => $this->renderPartial('_select_medicine', $data, true, true),
+                ));
+                
+                Yii::app()->end();*/
+            } else {
+                throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+            }
         }
 }
