@@ -93,12 +93,16 @@ $('.search-form form').submit(function(){
 		array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
                     'template'=>'{view}{delete}',
+                    //'template'=>'<div class="hidden-sm hidden-xs btn-group">{view}{update}{delete}{undeleted}</div>',
                     'buttons'=>array(
                         'view' => array(
-                            'label' => 'Consultant',
+                            'label' => 'Consultant',                            
                             'url'=>'Yii::app()->createUrl("Appointment/Consultation", array("appoint_id"=>$data["app_id"],"doctor_id"=>$data["doctor_id"],"patient_id"=>$data["patient_id"]))',
+                            /*'options' => array(
+                                'class'=>'fa fa-user-md',
+                            ),*/
                         ),
-                        //http://www.yiiframework.com/wiki/593/yii-cgridview-add-custom-button/
+                        //http://bit.ly/1bdSADp
                         'delete' => array(
                             'label' => 'Cancel',
                             'url'=>'#',

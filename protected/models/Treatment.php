@@ -165,4 +165,18 @@ class Treatment extends CActiveRecord
             return Yii::app()->db->createCommand($sql)->queryAll(true, array(':name' => $name));
        
         }
+        
+        public function saveTreatment($bill_id = null,$treatment_id = null,$price = null)
+        {
+            $cmd = Yii::app()->db->createCommand("CALL pro_save_treatment(:bill_id, :treatment_id,:price)");
+            $cmd->bindParam(":bill_id", $bill_id);
+            $cmd->bindParam(":treatment_id", $treatment_id);
+            $cmd->bindParam(":price", $price);
+            //$cmd->queryAll(array(':bill_id' => $bill_id, ':treatment_id' => $treatment_id,':price'=>$price));
+            $cmd->execute();
+            
+            //$sql="CALL pro_save_treatment(:bill_id, :treatment_id,:price)";
+            //return Yii::app()->db->createCommand($sql)->queryAll(true, array(':bill_id' =>(int) $bill_id, ':treatment_id' => (int)$treatment_id,':price'=>$price));
+
+        }
 }

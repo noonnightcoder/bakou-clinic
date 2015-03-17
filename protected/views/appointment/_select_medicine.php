@@ -6,6 +6,7 @@
             <th>Medicine Name</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Total</th>
             <th></th>
         </tr>
     </thead>
@@ -53,6 +54,9 @@
                 <!--<input value="<?php //echo $item['quantity']; ?>" class="input-small numeric input-grid form-control" id="price_<?php //echo $item_id; ?>" placeholder="Price" data-id="2" maxlength="50" onkeypress="return isNumberKey(event)" name="item[quatity]" type="text" />--->
                 <?php $this->endWidget(); ?>
             </td>
+            <td> 
+                <?php echo $item['price']*$item['quantity']; ?><br/>                        
+            </td>
             <td><?php
                         echo TbHtml::linkButton('', array(
                             'color'=>TbHtml::BUTTON_COLOR_DANGER,
@@ -69,7 +73,11 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-
+<?php
+    if (empty($treatment_selected_items)) {
+        echo Yii::t('app', 'There are no medicine select');
+    }
+?> 
 <script>
     var submitting = false;
     var url = $(this).attr('href');

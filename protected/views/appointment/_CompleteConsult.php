@@ -73,7 +73,23 @@
                //'size'=>TbHtml::BUTTON_SIZE_SMALL,
            )); ?>
             <?php 
-            echo TbHtml::linkButton('Completed Consult',array(
+            echo TbHtml::linkButton('Hold Consultation',array(
+               'buttonType'=>'button',
+               'type'=>'primary',
+               'color' => TbHtml::BUTTON_COLOR_DANGER,
+               'ajax'=>array(
+                   'type'=>'post',
+                   'dataType'=>'json',
+                   //'beforeSend'=>"function() { $('.waiting').show(); }",
+                   //'complete'=>"function() { $('.waiting').hide(); }",
+                   'url'=>'#',
+                   'success'=>'function (data) {                    
+                    }'
+                )
+            ));
+            ?>
+            <?php 
+            echo TbHtml::linkButton('Completed Consultation',array(
                'buttonType'=>'button',
                'type'=>'primary',
                'color' => TbHtml::BUTTON_COLOR_SUCCESS,
