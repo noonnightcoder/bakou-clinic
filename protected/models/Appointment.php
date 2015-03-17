@@ -148,13 +148,15 @@ class Appointment extends CActiveRecord
             //return Yii::app()->db->createCommand($sql)->queryAll(true, array(':patient_id' => $patient_id,));
         }
         
-        public function get_combo_doctor()
+        public function get_combo_doctor($id = null)
         {
+            if($id==null){$cond='';}else{ $cond='and t1.id='.$id;}
             $doctor = array();
             $sql="SELECT t1.id,CONCAT(t2.last_name,' ',t2.first_name) fullname 
                 FROM rbac_user t1
                 INNER JOIN employee t2 ON t1.employee_id=t2.id
-                WHERE t1.group_id in (2,1)";
+                WHERE t1.group_id in (2,1)
+                $cond";
             
             $command=Yii::app()->db->createCommand($sql);
             foreach($command->queryAll() as $row)
@@ -162,7 +164,7 @@ class Appointment extends CActiveRecord
                 $doctor+=array($row['id']=>$row['fullname']);
             }
             
-            $rst=array(''=>'');
+            $rst=array();
             
             $rst+=$doctor;
             return $rst;
@@ -175,7 +177,7 @@ class Appointment extends CActiveRecord
                     display_id,appointment_date,title,status
                     from(select app_id,patient_id,user_id doctor_id,patient_name,display_id,appointment_date,title,status
                         FROM v_appointment_state 
-                        WHERE appointment_date>=DATE_SUB(CURDATE(), INTERVAL 4 DAY)
+                        WHERE appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
                         and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)
                         and user_id=$userid
                         and status not in ('Completed','Canceled')                        
@@ -195,7 +197,59 @@ class Appointment extends CActiveRecord
         
         public function appointment_consult($app_id)
         {
-            Appointment::model()->updateByPk($app_id,array('status'=>'Consultant'));            
-            AppointmentLog::model()->updateByPk($app_id,array('status'=>'Consultant'));
+            Appointment::model()->updateByPk($app_id,array('status'=>'Consultation'));            
+            AppointmentLog::model()->updateByPk($app_id,array('status'=>'Consultation'));
         }
+        
+        public function appointment_visit($app_id,$visit_id)
+        {
+            Appointment::model()->updateByPk($app_id,array('visit_id'=>$visit_id));   
+        }
+
+                public function get_appointment()
+        {
+            $sql="SELECT doc_id,user_id,status,fullname, 
+                @row_number:=CASE WHEN @user_id=user_id THEN @row_number+1 ELSE 1 END AS id
+                ,@user_id:=user_id AS user_id
+                FROM (
+                SELECT t1.user_id doc_id,t1.user_id,status,CONCAT(t2.last_name,' ',t2.first_name) fullname
+                                FROM appointment t1
+                                INNER JOIN v_patient t2 ON t1.patient_id=t2.patient_id
+                                WHERE appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
+                                AND appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+                                ORDER BY t1.user_id,appointment_date
+                )cr, (SELECT @row_number:=0,@user_id:='') AS t ";
+            
+            $command=Yii::app()->db->createCommand($sql);
+            return $command->queryall();
+        }
+        
+        public function ValidateConsult($visit_id,$patient_id,$doctor_id)
+        {
+            $sql = "select count(*) from visit where visit_id=:visit_id and patient_id=:patient_id and userid=:doctor_id";
+            $cmd=Yii::app()->db->createCommand($sql);
+            $cmd->bindParam(':visit_id', $visit_id, PDO::PARAM_INT);
+            $cmd->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
+            $cmd->bindParam(':doctor_id', $doctor_id, PDO::PARAM_INT);
+            
+            return $cmd->queryScalar();
+        }
+        
+        public function CheckApptStatus($appt_id,$patient_id,$doctor_id)
+        {
+            $sql = "select count(*) from appointment 
+                    where id=:appt_id 
+                    and patient_id=:patient_id 
+                    and user_id=:doctor_id
+                    and status<>'Completed'
+                    and visit_id>0";
+            
+            $cmd=Yii::app()->db->createCommand($sql);
+            $cmd->bindParam(':appt_id', $appt_id, PDO::PARAM_INT);
+            $cmd->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
+            $cmd->bindParam(':doctor_id', $doctor_id, PDO::PARAM_INT);
+            
+            return $cmd->queryScalar();
+        }       
+        
 }

@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>/css/ace-fonts.css" />
     
     <!-- ace styles -->
-    <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>/css/ace.min.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>/css/ace.min.css" />  
     
     <!--[if lte IE 9]>
         <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>/css/ace-part2.min.css" />
@@ -56,6 +56,7 @@
         $cs->registerScriptFile($baseUrl.'/js/ace.min.js',CClientScript::POS_END);
         //$cs->registerScriptFile($baseUrl.'/js/jquery.jkey.min.js',CClientScript::POS_END);
         //$cs->registerScriptFile($baseUrl.'/js/common.js',CClientScript::POS_END);
+        $cs->registerScriptFile($baseUrl.'/js/jquery.form.min.js',CClientScript::POS_END);
     ?>
     
     <?php 

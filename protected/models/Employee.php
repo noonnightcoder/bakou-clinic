@@ -26,6 +26,7 @@ class Employee extends CActiveRecord
         public $login_id;
         public $image;
         public $search;
+        public $doctor_name;
         
         private $employee_active = '1';
         private $employee_inactive = '0'; 
@@ -57,7 +58,7 @@ class Employee extends CActiveRecord
 			array('notes', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, first_name, last_name, mobile_no, adddress1, address2, city_id, country_code, email, notes, status', 'safe', 'on'=>'search'),
+			array('search,id, first_name, last_name, mobile_no, adddress1, address2, city_id, country_code, email, notes, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -91,6 +92,7 @@ class Employee extends CActiveRecord
 			'email' => Yii::t('app','Email'), //'Email',
 			'notes' => Yii::t('app','Notes'), //'Notes',
                         'search' => Yii::t('app','Search') . Yii::t('app','Employee'),
+                        'doctor_name' => Yii::t('app','Doctor Name'),
 		);
 	}
 
@@ -123,12 +125,13 @@ class Employee extends CActiveRecord
 		//$criteria->compare('email',$this->email,true);
 		//$criteria->compare('notes',$this->notes,true);
 		//$criteria->compare('status',$this->status,true);
-                
+                //echo $this->search;
+                //die();
                 if ($this->search) {
                 
-                    $criteria->condition="(first_name=:search or last_name=:search or concat(first_name,last_name)=:fullname or concat(last_name,first_name)=:fullname  or mobile_no like :mobile_no)";
+                    $criteria->condition="(first_name like :search or last_name like :search or concat(first_name,last_name)=:fullname or mobile_no like :mobile_no)";
                     $criteria->params = array(
-                                ':search' => $this->search, 
+                                ':search' => '%' . $this->search . '%',
                                 ':fullname' => preg_replace('/\s+/', '',$this->search),
                                 ':mobile_no' => '%' . $this->search . '%',
                     );
@@ -139,6 +142,21 @@ class Employee extends CActiveRecord
                         //'sort'=>array( 'defaultOrder'=>'first_name'),
 		));
 	}
+        
+        public function get_doctorName($doctor_id)
+        {
+            $criteria=new CDbCriteria;
+            $criteria->select = "concat(last_name,' ',first_name) as doctor_name";
+            $criteria->condition = 'id=:id';
+            $criteria->params = array(':id'=>$doctor_id);
+            return Employee::model()->find($criteria);
+            
+            /*return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+                        //'sort'=>array( 'defaultOrder'=>'first_name'),
+		));*/
+            
+        }
 
 	/**
 	 * Returns the static model of the specified AR class.

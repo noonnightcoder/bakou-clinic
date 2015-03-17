@@ -99,8 +99,8 @@ class ContactController extends Controller
                         if ($model->image!=null) {
                             if ($model->save())
                             {
-                                $patient_id=$model->create_display_patient_id($model->id, $model->last_name);
-                                $patient->display_id=$patient_id;
+                                $display_id=$model->create_display_patient_id($model->id, $model->last_name);
+                                $patient->display_id=$display_id;
                                 $patient->contact_id=$model->id;
                                 $patient->patient_since=date("Y-m-d");
                                 $patient->followup_date=date("Y-m-d");

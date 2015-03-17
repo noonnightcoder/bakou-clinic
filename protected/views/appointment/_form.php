@@ -28,7 +28,7 @@
             $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                 'asDropDownList' => false,
                 'model'=> $patient, 
-                'attribute'=>'display_id',
+                'attribute'=>'patient_id',
                 'pluginOptions' => array(
                         'placeholder' => Yii::t('app','patient.appointment'),
                         'multiple'=>false,
@@ -76,7 +76,10 @@
     
             <?php echo $form->textFieldControlGroup($contact,'phone_number',array('disabled'=>true,'span'=>5,'maxlength'=>15)); ?>
     
-            <?php echo $form->dropDownListControlGroup($user,'user_name',@$doctor, array('span' => 5)) ?>            
+            <div class="form-group"><label class="col-sm-3 control-label" for="user_name">Doctor</label> 
+            <div class="col-md-5"><?php echo $form->dropDownList($user,'id',
+                    //@$doctor, 
+                    Appointment::model()->get_combo_doctor(),array()) ?> </div></div>
     
             <?php echo $form->textFieldControlGroup($model,'title',array('span'=>5,'maxlength'=>150)); ?>
 

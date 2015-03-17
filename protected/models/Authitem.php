@@ -289,5 +289,33 @@ class Authitem extends CActiveRecord
             return $list;
         }
         
+        public function getAuthAppointment($match='appointment')
+        {
+            $match = addcslashes($match, '%_'); // escape LIKE's special characters
+            
+            $q = new CDbCriteria( array(
+                'condition' => "name LIKE :match and type=0",         // no quotes around :match
+                'params'    => array(':match' => "$match%"),
+                'order'     => "sort_order",
+            ) );
+            
+            $model = Authitem::model()->findAll($q);
+            $list    = CHtml::listData($model , 'name','AuthItemName');
+            return $list;
+        }
         
+        public function getAuthcontact($match='contact')
+        {
+            $match = addcslashes($match, '%_'); // escape LIKE's special characters
+            
+            $q = new CDbCriteria( array(
+                'condition' => "name LIKE :match and type=0",         // no quotes around :match
+                'params'    => array(':match' => "$match%"),
+                'order'     => "sort_order",
+            ) );
+            
+            $model = Authitem::model()->findAll($q);
+            $list    = CHtml::listData($model , 'name','AuthItemName');
+            return $list;
+        }
 }

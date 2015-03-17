@@ -67,6 +67,7 @@ class EmployeeController extends Controller
     {
         $model = new Employee;
         $user = new RbacUser;
+        $group = new RbacGroup;
         $disabled = ""; 
      
         // Uncomment the following line if AJAX validation is needed
@@ -77,6 +78,7 @@ class EmployeeController extends Controller
             if (isset($_POST['Employee'])) {
                 $model->attributes = $_POST['Employee'];
                 $user->attributes = $_POST['RbacUser'];
+                //$group->attributes = $_POST['RbacGroup'];
                 //$location_id = $_POST['Employee']['location'];
           
                 // validate BOTH $a and $b
@@ -90,7 +92,11 @@ class EmployeeController extends Controller
                             $user->employee_id = $model->id;
                             
                             if ($user->save()) {
-                                $assignitems = array('items', 'sales', 'employees', 'customers', 'suppliers', 'store', 'receivings', 'reports', 'invoices', 'payments');
+                                $assignitems = array('items', 'sales', 'employees', 
+                                                    'customers', 'suppliers', 'store', 
+                                                    'receivings', 'reports', 'invoices', 
+                                                    'payments','treatments','appointments',
+                                                    'contacts');
 
                                 foreach ($assignitems as $assignitem) {
                                     if (!empty($_POST['RbacUser'][$assignitem])) {
@@ -124,7 +130,7 @@ class EmployeeController extends Controller
             throw new CHttpException(403, 'You are not authorized to perform this action');
         }
 
-        $this->render('create', array('model' => $model, 'user' => $user, 'disabled' => $disabled ));
+        $this->render('create', array('model' => $model, 'user' => $user, 'disabled' => $disabled,'group'=>$group ));
     }
 
     /**
@@ -161,6 +167,9 @@ class EmployeeController extends Controller
             $user->reports = $auth_items;
             $user->invoices = $auth_items;
             $user->payments = $auth_items;
+            $user->treatments = $auth_items;
+            $user->appointments = $auth_items;
+            $user->contacts = $auth_items;
 
             // Uncomment the following line if AJAX validation is needed
             // $this->performAjaxValidation($model);
@@ -186,7 +195,11 @@ class EmployeeController extends Controller
                             // Delete all existing granted module 
                             Authassignment::model()->deleteAuthassignment($user->id);
 
-                            $assignitems = array('items', 'sales', 'employees', 'customers', 'suppliers', 'store', 'receivings', 'reports', 'invoices', 'payments');
+                            $assignitems = array('items', 'sales', 'employees', 
+                                            'customers', 'suppliers', 'store', 
+                                            'receivings', 'reports', 'invoices', 
+                                            'payments','treatments','appointments',
+                                            'contacts');
 
                             foreach ($assignitems as $assignitem) {
                                 if (!empty($_POST['RbacUser'][$assignitem])) {

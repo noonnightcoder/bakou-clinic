@@ -41,13 +41,13 @@ $this->widget('bootstrap.widgets.TbNav', array(
             )),*/
             array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Patients')) . '</span>', 'icon'=>'menu-icon fa fa-group','url'=>Yii::app()->urlManager->createUrl('patient/index'),
                            'active'=>$this->id=='contact' || strtolower($this->id)=='default' || $this->id=='appointment' || $this->id=='settings' || $this->id=='location',
-                           'visible'=>Yii::app()->user->checkAccess('contact.index') || Yii::app()->user->checkAccess('appointment.index'),
+                           'visible'=>Yii::app()->user->checkAccess('contact.index') || Yii::app()->user->checkAccess('appointment.index')|| Yii::app()->user->checkAccess('appointment.waitingqueue'),
                            'items'=>array(
                                array('label'=>Yii::t('menu','Patient'),'icon'=> TbHtml::ICON_USER, 'url'=>Yii::app()->urlManager->createUrl('contact/admin'), 'active'=>$this->id=='contact',
-                                   'visible'=>Yii::app()->user->checkAccess('contact.index')
+                                   'visible'=>Yii::app()->user->checkAccess('contact.index')||Yii::app()->user->checkAccess('contact.create')
                                ), 
                                array('label'=>Yii::t('menu','Appointment'),'icon'=> TbHtml::ICON_BELL, 'url'=>Yii::app()->urlManager->createUrl('appointment/create'), 'active'=>$this->id=='Appointment',
-                                   'visible'=>Yii::app()->user->checkAccess('appointment.create')
+                                   'visible'=>Yii::app()->user->checkAccess('appointment.index')
                                ),
                                array('label'=>Yii::t('menu','Waiting Queue'),'icon'=> TbHtml::ICON_BELL, 'url'=>Yii::app()->urlManager->createUrl('appointment/WaitingQueue'), 'active'=>$this->id=='Appointment',
                                    'visible'=>Yii::app()->user->checkAccess('appointment.waitingqueue')

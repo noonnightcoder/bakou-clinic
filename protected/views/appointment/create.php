@@ -1,5 +1,5 @@
 <?php $this->breadcrumbs=array(
-        'Contact'=>array('admin'),
+        'Contact'=>array('appointmentdash'),
 	'Create',
 );
 ?>
@@ -8,7 +8,7 @@
               'headerIcon' => 'ace-icon fa fa-user',
               'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
               'content' => $this->renderPartial('_form', array('model'=>$model,'patient'=>$patient,'contact'=>$contact,
-                                                               'user'=>$user,'doctor'=>$doctor), true),
+                                                               'user'=>$user), true),
  )); ?>  
 
 <?php $this->endWidget(); ?>

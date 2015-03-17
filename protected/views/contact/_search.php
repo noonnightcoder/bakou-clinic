@@ -12,7 +12,9 @@
         'layout'=>TbHtml::FORM_LAYOUT_HORIZONTAL,
 )); ?>
 
-                    <?php echo $form->textFieldControlGroup($model,'first_name',array('class'=>'span4','maxlength'=>50,'placeholder'=>Yii::t('app','Type Name or ID'))); ?>
+                    <?php echo $form->textFieldControlGroup($model,'search',array('class'=>'span4','maxlength'=>30,'placeholder'=>Yii::t('app','Type Name or ID'))); ?>
+    
+                    <?php //echo $form->textFieldControlGroup($model,'first_name',array('class'=>'span4','maxlength'=>30,'placeholder'=>Yii::t('app','Type Name or ID'))); ?>
 
                     <?php //echo $form->textFieldControlGroup($model,'first_name',array('span'=>5,'maxlength'=>50)); ?>
 

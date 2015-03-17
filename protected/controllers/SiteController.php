@@ -127,7 +127,7 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
+				$this->redirect(Yii::app()->request->urlReferrer);
 		}
 		// display the login form
 		// display the login form
@@ -138,10 +138,13 @@ class SiteController extends Controller
                 }    
                 else
                 {
-                    if ( Yii::app()->user->checkAccess('report.index') ) {
+                    if ( Yii::app()->user->checkAccess('appointment.waitingqueue') ) {
+                        $this->redirect(array('appointment/WaitingQueue'));
+                    }elseif(Yii::app()->user->checkAccess('appointment.index')){
+                        $this->redirect(array('appointment/appointmentdash'));
+                    }else {
+                        //$this->redirect(array('saleItem/index'));
                         $this->redirect(array('dashboard/view'));
-                    } else {
-                        $this->redirect(array('saleItem/index'));
                     }
                     
                 }

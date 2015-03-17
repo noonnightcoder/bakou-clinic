@@ -30,6 +30,10 @@ class Item extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+    
+        private $_active_status = '1';
+        //private $_inactive_status = '0'; 
+        
 	public function tableName()
 	{
 		return 'item';
@@ -146,4 +150,48 @@ class Item extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function suggest($keyword,$limit=20)
+	{
+		$models=$this->findAll(array(
+			'condition'=>'(name LIKE :keyword or item_number=:item_number) and status=:status',
+			'order'=>'name',
+			'limit'=>$limit,
+			'params'=>array(':keyword'=>"%$keyword%",':item_number'=>$keyword,':status'=>$this->_active_status)
+		));
+		$suggest=array();
+		foreach($models as $model) {
+			$suggest[] = array(
+				'label'=>$model->name.' - '.$model->unit_price.' - '.$model->quantity,  // label for dropdown list
+				'value'=>$model->name,  // value for input field
+				'id'=>$model->id,       // return values from autocomplete
+				'unit_price'=>$model->unit_price,
+				'quantity'=>$model->quantity,
+			);
+		}
+		return $suggest;
+	}
+        
+        public function get_selected_medicine($id)
+        {
+            $sql="SELECT id,name,unit_price,quantity FROM item WHERE id=$id";
+            
+            $cmd=Yii::app()->db->createCommand($sql);
+            //$cmd->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
+            return $cmd->queryAll();
+            //return new CSqlDataProvider($cmd->query());
+            //$model=Treatment::model()->findall();
+            //return $dataProvider=new CArrayDataProvider($model, array('id'=>'id'));
+        }
+        
+        public function m_get_medicine($name='')
+        {
+            $sql="SELECT id,name,unit_price,quantity 
+                    FROM item  
+                    WHERE name LIKE :medicine_name";
+            
+            $medicine_name = '%' . $name . '%';
+            
+            return Yii::app()->db->createCommand($sql)->queryAll(true, array(':medicine_name' => $medicine_name,));
+        }
 }

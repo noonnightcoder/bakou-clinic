@@ -51,7 +51,7 @@ $('.search-form form').submit(function(){
         <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 <?php endif; ?>
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
-            'id'=>'employee-grid',
+            'id'=>'treatment-grid',
             'dataProvider'=>$model->search(),
             'htmlOptions'=>array('class'=>'table-responsive panel'),
             'columns'=>array(

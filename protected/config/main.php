@@ -81,6 +81,9 @@ return array(
                 ),
                 'shoppingCart' => array(
                     'class' => 'ShoppingCart',
+                ),            
+                'treatmentCart' => array(
+                    'class' => 'TreatmentCart',
                 ),
                 'clientitemCart' => array(
                     'class' => 'ClientItemCart',

@@ -1,0 +1,997 @@
+/* 
+    Document   : style
+    Created on : 8 Oct, 2012, 10:01:57 AM
+    Author     : Dhara
+    Description: Purpose of the stylesheet follows.
+*/
+
+body{
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
+    margin:0;
+}
+
+/* ----------- Header----------- */
+.header_wrapper{
+    padding:20px;
+    height:50px;
+    background:url(../images/header_bg.jpg);
+    margin:0;
+    clear: both;
+}
+.header{
+    margin: 0 auto;
+    width: 964px;
+}
+.content_wrapper{
+    margin: 0 auto;
+    padding: 20px;
+    width: 964px;
+    clear: both;
+}
+/* ----------- Footer ----------- */
+.footer_wrapper{
+    clear: both;
+    margin: 0;
+}
+.footer{
+    margin: 0 auto;
+    width: 964px;
+    
+}
+p, h1,h2,h3, form{border:0; margin:0; padding:0;}
+
+iframe{ margin-left: 20px; border: 0;}
+
+a.link{
+   color: #000;
+   padding: 8px 16px;
+   clear:both;
+   text-decoration: none;
+   font-size: 12px;
+   font-weight:bold;
+   height:20px;
+   display: block;    
+}
+a.link:hover {
+   background: #385624;
+   color: #fff;
+   }
+.button {
+   background: #43682b;
+   background: -webkit-gradient(linear, left top, left bottom, from(#70ad47), to(#43682b));
+   background: -webkit-linear-gradient(top, #70ad47, #43682b);
+   background: -moz-linear-gradient(top, #70ad47, #43682b);
+   background: -ms-linear-gradient(top, #70ad47, #43682b);
+   background: -o-linear-gradient(top, #70ad47, #43682b);
+   color:#FFFFFF;
+   padding: 8px 16px;
+   -webkit-border-radius: 39px;
+   -moz-border-radius: 39px;
+   border-radius: 39px;
+   clear:both;
+   text-decoration: none;
+   text-align:center;
+   font-size: 12px;
+   font-weight:bold;
+   height:35px;
+   }
+.button:hover {
+   background: #385624;
+   color: #ccc;
+   }
+.button:active {
+   background: #385624;
+   }
+.spacer{clear:both; height:1px;}
+
+.alignright{float:right;}
+/* ----------- View Style ----------- */
+.view_style{
+    border:solid 2px #76806B;
+    background-color:#F1FFE2;
+    width:900px;
+    padding:14px;
+    margin: 10px;
+    display: inline-block;
+}
+.view_style_image{
+    float: left;
+    width: 20%;
+}
+.view_style_data{
+    width: 40%;
+    float: left;
+}
+.view_style .view_label{
+    font-size:14px;
+    font-weight:bold;
+    width:150px;
+    display: inline-block;
+    text-align: right;
+    margin: 5px;
+	vertical-align:top;
+}
+.view_style .view_detail{
+    font-size:14px;
+    margin-top: 5px;
+	display:inline-block;
+}
+/* ----------- Table Style ----------- */
+.table_style
+{
+    border-collapse:collapse;
+}
+.table_style td, .table_style th 
+{
+    border:1px solid #98bf21;
+    padding:3px 7px 2px 7px;
+}
+.table_style th 
+{
+    text-align:left;
+    padding-top:5px;
+    padding-bottom:4px;
+    background-color:#A7C942;
+    color:#ffffff;
+}
+.table_style tr.alt td 
+{
+    color:#000000;
+    background-color:#EAF2D3;
+}
+/* ----------- Form Style ----------- */
+.form_style{
+    border:solid 1px #70AD47;
+    background-color:#F1FFE2;
+    width:964px;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+.form_style form {
+    margin: 15px;
+}
+.form_style form div{
+    /*display: block;
+    
+    overflow: auto;*/
+    margin: 2px;
+}
+.form_style h2 {
+    font-size:14px;
+    font-weight:bold;
+    background:url(../images/header_bg.jpg);
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+.form_style p{
+    font-size:11px;
+    color:#666666;
+    /*    margin-bottom:20px;*/
+    /*    border-bottom:solid 1px #b7ddf2;*/
+    padding-bottom:10px;
+}
+.form_style label{
+    font-size:12px;
+    padding: 4px;
+    margin:2px;
+    font-weight:bold;
+    text-align:right;
+    width:140px;
+    float:left;
+}
+.form_style table label{
+    text-align:left;
+}
+.form_style .tblvisit label{
+    text-align:right;
+} label{
+    text-align:right;
+}
+.form_style .small{
+    color:#666666;
+    display:block;
+    font-size:11px;
+    font-weight:normal;
+    text-align:right;
+    width:140px;
+}
+.form_style input{
+    display: inline-block;
+    font-family: Verdana, Arial, sans-serif;
+    font-size:13px;
+    padding:5px;
+    padding-left: 10px;
+    border:solid 1px #DADADA;
+    border-radius: 5px;
+    height:25px;
+    width:200px;
+    margin:2px;
+    margin-bottom: 5px;
+
+}
+.form_style input[type='checkbox']{
+    font-size:12px;
+    padding: 4px;
+    border:solid 1px #aacfe4;
+    height:25px;
+    width:25px;
+    margin:2px;
+}
+.form_style input.inline{
+    display:inline;
+    float:left;
+}
+.form_style textarea{
+    font-size:12px;
+    padding:4px 2px;
+    border:solid 1px #aacfe4;
+    width:600px;
+    height:100px;
+    margin:2px;
+}
+.form_style select{
+    font-size:12px;
+    padding: 4px;
+    border:solid 1px #aacfe4;
+/*    height:25px;*/
+    width:200px;
+    margin:2px;
+}
+.form_style button{
+    
+}
+.form_style span.err p{
+    display:block;  
+    font-weight:bold;
+    color:#ff0000;
+    margin-left: 158px;
+}
+/**********************************************/
+.dashboard_style{
+    border:solid 1px #70AD47;
+    background-color:#F1FFE2;
+    width:964px;
+    margin: 10px;
+    border-radius: 10px;
+}
+.dashboard_style h2 {
+    font-size:14px;
+    font-weight:bold;
+    background:url(../images/header_bg.jpg);
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.dashboard_left{
+    float: left;
+    width:560px;
+}
+.dashboard_right{
+    float: right;
+    width:360px;
+}
+.dashboard_style table tr td{
+    font-size: 13px;
+    line-height: 25px;
+    padding-left: 10px;
+}
+/* ----------- Links and Button ----------- */
+div.button_link{
+    display: block;
+    clear: both;
+    min-height: 40px;
+}
+.search{
+    float: left;
+    width:40px;
+    height:40px;
+    background:url(../images/search.png) no-repeat;
+}
+.save{
+    float: left;
+    width:40px;
+    height:40px;
+    background:url(../images/save.png) no-repeat;
+}
+.appointment{
+    float: left;
+    width:40px;
+    height:40px;
+    background:url(../images/appointment.png) no-repeat;
+}
+.add{
+    float:left;
+    width:40px;
+    height:40px;
+    background:url(../images/add.png) no-repeat;
+}
+.print{
+    float:right;
+    width:80px;
+    height:80px;
+    background:url(../images/print.png) no-repeat;
+}
+.visit{
+    float:left;
+    width:40px;
+    height:40px;
+    background:url(../images/visit.png) no-repeat;
+}
+.edit{
+    float: left;
+    width:40px;
+    height:40px;
+    background:url(../images/edit.png) no-repeat;
+}
+.delete{
+    float: left;
+    width:40px;
+    height:40px;
+    background:url(../images/delete.png) no-repeat;
+}
+.select{
+    float: left;
+    width:40px;
+    height:40px;
+    background:url(../images/select.png) no-repeat;
+}
+.bill{
+    float: left;
+    width:40px;
+    height:40px;
+    background:url(../images/bill.png) no-repeat;
+}
+.back{
+    float: left;
+    width:40px;
+    height:40px;
+    background:url(../images/back.png) no-repeat;
+}
+button.add_email{
+    width:40px;
+    height:40px;
+    float:right;
+    background:url(../images/add.png) no-repeat;
+}
+button.submit{
+    width:100px;
+    height:40px;    
+    background:url(../images/submit.png) no-repeat;
+    border-radius: 2px;
+}
+/* ----------- Navigation Style ----------- */
+.navigation_wrapper {
+        margin: 0;
+	background: #000;
+	height: 40px;
+	border-top: 1px solid #3d3d3d;
+	border-bottom: 2px solid #dadada;
+        z-index:10;
+}
+nav{
+        height: 40px;
+        width:964px;
+        margin:0 auto;
+}
+nav ul{
+        margin: 0;
+}
+nav ul ul {
+	display: none;
+}
+nav ul li:hover > ul {
+	display: block;
+}
+nav ul{
+        background: #000; 
+	box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+	padding: 0 20px;
+	list-style: none;
+	position: relative;
+	display: inline-table;
+        font-size: 12px;
+        font-weight: bold;
+}
+nav ul:after {
+    content: ""; clear: both; display: block;
+}
+nav ul li {
+	float: left;
+}
+nav ul li:hover {
+        background: #616161;
+}
+
+nav ul li a {
+        display: block; 
+        padding: 12px 20px;
+        color: #F5F5F5;
+        text-decoration: none;
+}
+nav ul ul {
+	background: #404040; 
+        padding: 0;
+	position: absolute;
+        top: 100%;
+}
+nav ul ul li {
+        float: none; 
+        position: relative;
+        background: #000; 
+}
+nav ul ul li a {
+        padding: 12px 20px;
+        color: #616161;
+}	
+nav ul ul li a:hover {
+        background: #616161;
+        color: #fff;
+}
+nav ul ul ul {
+	position: absolute; left: 100%; top:0;
+}
+nav ul ul ul li * {
+        float: none; 
+        position: relative;
+        background: #000;
+        display: block;
+        width: 100%;
+}
+nav ul li a:hover {
+        color: #fff;
+}
+nav ul li:hover li a {
+        color: #A5A5A5;
+}
+nav ul li:hover li:hover a {
+        color: #fff;
+}
+nav ul li:hover a {
+        color: #fff;
+}
+
+/* ----------- Navigation Style Complete ----------- */
+/*ul.nav
+{
+        width:964px;
+        margin: 0 auto;
+        list-style-type:none;
+        padding:0;
+        padding-top:6px;
+        padding-bottom:6px;
+}
+ul.nav li
+{
+display:inline;
+}
+ul.nav a:link,ul.nav a:visited
+{
+font-weight:bold;
+color:#FFFFFF;
+background-color:#98bf21;
+text-align:center;
+padding:6px;
+margin:2px;
+text-decoration:none;
+text-transform:uppercase;
+}
+ul.nav a:hover,ul.nav a:active
+{
+background-color:#7A991A;
+}
+a.button{
+    display: inline-block;
+    color:#FFFFFF;
+    background-color:#98bf21;
+    text-decoration:none;
+    text-align:center;
+    padding:6px;
+    margin:5px;
+}
+a.button:hover,a.button:active
+{
+    background-color:#7A991A;
+    
+}*/
+.label{
+    font-size: 1.3em;
+    margin:5px;
+}
+.data{
+    font-size: 1.3em;
+    margin:5px;
+}
+.hidden{
+    display: none;
+}
+
+
+
+/* Date Picker 
+ * creates a little calendar icon instead of a text link for "Choose date"
+ */
+a.dp-choose-date {
+	width: 25px;
+	height: 25px;
+	padding: 0;
+	margin: 5px 3px 0;
+	display: block;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url(../images/calendar.png) no-repeat; 
+}
+a.dp-choose-date.dp-disabled {
+	background-position: 0 -20px;
+	cursor: default;
+}
+/* makes the input field shorter once the date picker code
+ * has run (to allow space for the calendar icon
+ */
+input.dp-applied {
+	width: 140px;
+	float: left;
+}
+/*****************Appointments******************/
+.calendar{
+    float:left; 
+    width:25%;
+    padding:5px;
+    margin: 5px;
+}
+.calendar table{
+    border-collapse: collapse;
+    
+}
+.calendar table td{
+    height: 30px;
+    width: 30px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    
+}
+.calendar table a{
+    display: inline-block;
+    background-color: #EAF2D3;
+    color: #000;
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    
+}
+.calendar table a:hover{
+    background-color: #98BF21;
+}
+.current_date{
+    width: 100%;
+    text-align: center;
+    color: #98BF21;
+    font-size: 15px;
+    font-weight: bold;
+	line-height:35px;
+}
+.day_appointment{
+    float:right;
+    width:74%;
+}
+.day_appointment table{
+    border-collapse: collapse;
+    /*width: 650px;*/
+    width: auto;
+}
+.day_appointment table td{
+    border:1px solid #98bf21;
+}
+.appointment_time{
+    margin: 2px;
+    width: 4%;
+}
+.appointment_time td{
+    height: 15px;
+    margin: 0;
+}
+.appointment_time {
+/*    display: inline-block; */
+    background-color: #EAF2D3;
+    color: #000;
+    /*width: 100%;*/
+    height: 15px;
+    padding: 7px;
+    margin: 2px;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+}
+.appointment_time a:hover{
+    background-color: #98BF21;
+}
+.appointment_title td{
+    height: 15px;
+    padding: 0;
+    margin: 0;
+}
+.appointment_title a{
+    display: block;
+    color: #000;
+    height: 15px;
+    padding: 5px;
+    margin: 2px;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.appointment_title a:hover{
+    background-color: #98BF21;
+}
+.todo{
+    float:left;   
+    margin: 10px 4px 5px;
+}
+
+.todo h2{
+    text-align: center;
+}
+
+.todo_list{
+    padding-top: 10px;
+    height: 25px;
+    font-size: 1.125em;
+}
+
+.todo_img {
+    float:right;           
+    text-decoration: none;
+    padding-right: 5px;
+}
+
+.receipt{
+    width:21cm;
+    margin:25px auto;
+    font-family:"times",serif;
+    font-size: 16px;
+}
+.receipt .header{
+    width:100%;
+}
+.receipt .header h1{
+    text-align: center;
+    font-size: 30px;
+}
+.receipt .header h2{
+    text-align: center;
+    font-size: 20px;
+}
+.receipt .header .clinic_address{
+    text-align: center;
+    font-size: 14px;
+    display: block;
+}
+.receipt .header .contact{
+    text-align: center;
+    font-size: 14px;
+    display: block;
+}
+.receipt h3{
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.receipt .header hr {
+    height: 2px;
+    background-color: #000;
+}
+.receipt hr {
+    height: 1px;
+    background-color: #000;
+}
+.patient_name{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.bill_no{
+    text-align: right;
+    float: right;
+}
+.receipt table{
+    width:100%;
+    margin-top:25px;
+    margin-bottom:25px;
+    border-collapse: collapse;
+}
+.receipt td ,.receipt th{
+    border:1px solid black;
+    padding:5px;
+    
+}
+.receipt .particular{
+    width:400px;
+    text-align: left;
+}
+.receipt .amount{
+    width:250px;
+    text-align: right;
+}
+
+table.display td{
+    height: 35px;
+}
+
+table.table_style td{
+    height: 35px;
+}
+/********************Purchase Report Page*********************/
+.puchase_report{
+    width:21cm;
+    margin:25px auto;
+    font-family:"times",serif;
+    font-size: 16px;
+}
+
+.puchase_report table{
+    width:100%;
+    margin-top:25px;
+    margin-bottom:25px;
+    border-collapse: collapse;
+}
+
+.puchase_report h3{
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/********************Credit Page*********************/
+.credit_page{
+    margin:0 auto;
+    margin-top: 100px;
+    width:964px;
+    padding: 25px;
+    box-shadow: 10px 10px 5px #bbbbbb;
+    border: 1px solid #bbbbbb;
+    font:14px trebuchet ms,tahoma,arial;
+}
+.credit_page .content_wrapper h1{
+    padding: 10px;
+    font-size: 35px;
+    text-align: center;
+    color: #bbbbbb; 
+}
+.ui-helper-hidden-accessible{
+    display:none;
+}
+
+.red-bg{
+    background-color: red;
+}
+
+.imgs{
+    display: inline-block;
+    margin-right: 20px;        
+}
+.img_wrapper{
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+
+.img_name{
+    text-align: center;
+}
+#Appointments{
+    /*width:250px;*/
+    background-color: green;
+	color: #fff;
+	padding:10px;
+}
+
+#Appointments a{
+    text-decoration: none;
+    background-color: green;
+    padding-left:10px;
+    display:inline-block;
+	color: #fff;
+}
+
+#Waiting {
+    /*width:250px;*/
+    background-color: blue ;
+	color: #fff;
+	padding:10px;
+}
+
+#Waiting a{    
+    color: white;
+    text-decoration: none;
+    background-color: blue ;
+    padding-left:10px;
+display:inline-block;
+}
+
+#Complete {
+    /*width:250px;*/
+    background-color: #FF66FF;
+	color: #fff;
+	padding:10px;
+}
+
+#Complete a{    
+    color: white;
+    text-decoration: none;
+    background-color: #FF66FF;
+    width:90%;
+    height:100%;
+    padding-left:10px;
+    display:block;
+}
+
+#Consultation {
+    background-color: #880000;
+	color: #fff;
+	padding:10px;
+}
+
+#Consultation a{    
+    color: white;
+    text-decoration: none;
+    background-color: #880000;
+    width:90%;
+    height:100%;
+    /*padding-top:10px;*/
+    padding-left:10px;
+    display:block;
+}
+
+#Cancel{
+    background-color: #cccccc;
+	padding:10px;
+}
+
+#Cancel a{    
+    color: black;
+    text-decoration: none;
+    /*background-color: red;*/
+    width:90%;
+    height:100%;
+    /*padding-top:10px;*/
+    padding-left:10px;
+    display:block;
+}
+
+#action {
+    width: 250px;
+    padding-left: 10px;
+}
+
+#NotAvailable {
+    width:250px;
+    background-color: rgb(231, 231, 47);
+	color: #000;
+	padding:10px;
+}
+
+#NotAvailable a{    
+    color: #000	;
+    text-decoration: none;
+    background-color: rgb(231, 231, 47);
+    width:90%;
+    height:100%;
+    /*padding-top:10px;*/
+    padding-left:10px;
+    display:block;
+}
+
+.followup {  
+    padding:5px;
+    /*margin: 5px;*/
+    margin-top: 250px;   
+}
+
+.followup table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.followup table td{
+    height: 30px;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.follow-date {
+    font-size: 13px;
+}
+
+.follow-name {
+    font-size: 13px;
+}
+.app_sidebar {
+    float:left; 
+    width:25%;
+/*    padding:5px;
+    margin: 5px;*/
+    height: auto;      
+}
+
+.patient_img{
+    max-width: 600px;
+    max-height: 150px;
+}
+
+#image_gallery div.imgs{
+    display: inline-block;
+    margin-right: 20px;
+}
+.image_compare{
+    width:48%;
+    height: auto;
+    float:left;
+    margin:1%;
+}
+.right{
+    text-align: right;
+}
+
+#install {
+    display: block;    
+    overflow: auto;
+    margin: 2px;
+}
+
+.access_forbidden {
+    font-size: 1.257em;
+    font-weight: bold;
+    color: red;
+}
+#innertbl{
+	width:100%;
+	height:100%;
+	border-collapse:collapse;
+	border-spacing: 1px 0;
+}
+#innertbl td{
+	/*border:none;*/
+	width:auto;
+	/*height:auto;*/
+	text-align:center;
+}
+
+#blank {
+    background-color: white;
+	border:none;
+}
+
+#blank a{
+    text-decoration: none;
+    width:90%;
+    height:15px;
+    padding-top:10px;
+    padding-left:10px;
+    display:block;
+}
+#blank_d {
+    background-color: white;
+	/*border:none;*/
+}
+
+#blank_d a{
+    text-decoration: none;
+    width:90%;
+    height:15px;
+    padding-top:10px;
+    padding-left:10px;
+    display:block;
+}

@@ -28,11 +28,17 @@ class AppointmentController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','suggestItem'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','admin','GetPatient','RetreivePatient','WaitingQueue','Consultation','DoctorConsult'),
+				'actions'=>array(
+                                    'create','update','admin','GetPatient','RetreivePatient',
+                                    'WaitingQueue','Consultation','DoctorConsult','AppointmentDash',
+                                    'AddTreatment','DeleteTreatment','SelectMedicine',
+                                    'Addmedicine','GetMedicine','DeleteMedicine',
+                                    'GetTreatment','InitTreatment','EditMedicine'
+                                    ),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -48,6 +54,17 @@ class AppointmentController extends Controller
         public function exception_error_handler($errno, $errstr, $errfile, $errline ) {
             throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
         }
+        
+        public function actions()
+	{
+		return array(
+			'suggestItem'=>array(
+				'class'=>'ext.actions.XSuggestAction',
+				'modelName'=>'Item',
+				'methodName'=>'suggest',
+			),
+                );   
+        }    
 
 	/**
 	 * Displays a particular model.
@@ -75,7 +92,7 @@ class AppointmentController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
                 
-                $doctor= Appointment::model()->get_combo_doctor();  
+                //$doctor= Appointment::model()->get_combo_doctor();  
                 
 		if (isset($_POST['Appointment'])) {
                     $transaction=$model->dbConnection->beginTransaction();
@@ -87,8 +104,8 @@ class AppointmentController extends Controller
                         $model->start_time=$_POST['Appointment']['start_time'];
                         $model->end_time=$_POST['Appointment']['end_time'];
                         $model->title=$_POST['Appointment']['title'];
-                        $model->patient_id=$_POST['Patient']['display_id'];
-                        $model->user_id=$_POST['RbacUser']['user_name'];
+                        $model->patient_id=$_POST['Patient']['patient_id'];
+                        $model->user_id=$_POST['RbacUser']['id'];
                         $model->status='Waiting';
                         $model->visit_id=0;
 			if ($model->save()) {
@@ -97,19 +114,24 @@ class AppointmentController extends Controller
                                 $app_log->start_time=$_POST['Appointment']['start_time'];
                                 $app_log->status='Waiting';
                                 //$app_log->user_id=Yii::app()->user->getId();
-                                $app_log->user_id=$_POST['RbacUser']['user_name'];
+                                $app_log->user_id=$_POST['RbacUser']['id'];
                                 $app_log->save();
                                 $transaction->commit();
-				$this->redirect(array('create','id'=>$model->id));
+				//$this->redirect(array('create','id'=>$model->id));
+                                $this->redirect(Yii::app()->user->returnUrl);
                         }                        
                     }catch (Exception $e){
                         $transaction->rollback();
                         echo $e->getMessage();
                     }
 		}                
+                if(isset($_GET['doctor_id']))
+                {
+                    $user = RbacUser::model()->findByPk($_GET['doctor_id']);
+                }
                 
 		$this->render('create',array(
-			'model'=>$model,'patient'=>$patient,'contact'=>$contact,'user'=>$user,'doctor'=>$doctor
+			'model'=>$model,'patient'=>$patient,'contact'=>$contact,'user'=>$user
 		));
 	}
 
@@ -222,6 +244,16 @@ class AppointmentController extends Controller
             }
         }
         
+        public function actionGetMedicine()
+        {
+            if (isset($_GET['term'])) {
+                $term = trim($_GET['term']);
+                $ret['results'] = Item::model()->m_get_medicine($term); //PHP Example · ivaynberg/select2  http://bit.ly/10FNaXD got stuck serveral hoursss :|
+                echo CJSON::encode($ret);
+                Yii::app()->end();
+            }
+        }
+
         public function ActionRetreivePatient()
         {
             if (isset($_POST['patient_id'])) {
@@ -261,25 +293,32 @@ class AppointmentController extends Controller
         {
             $model = new Appointment;   
             $visit = new Visit;
-            if(isset($_GET['appoint_id']))
+            if(isset($_GET['appoint_id']) && isset($_GET['patient_id']) && isset($_GET['doctor_id']))
             {
                 //echo $_GET['appoint_id'];
                 $patient_id=$_GET['patient_id'];
                 $doctor_id=$_GET['doctor_id'];
-                
-                $model->appointment_consult($_GET['appoint_id']);
-                $visit->patient_id=$patient_id;
-                $visit->userid=$doctor_id;
-                $visit->type="New Visit";
-                $visit->visit_date=date('Y-m-d');
-                if($visit->save())
+                $num = Appointment::model()->CheckApptStatus($_GET['appoint_id'], $_GET['patient_id'], $_GET['doctor_id']);
+                if ($num==0)
                 {
-                    /*$this->render('DoctorConsult',array(
-                        'model'=>$model,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id,'visit_id'=>$visit->visit_id
-                    ));*/
-                    
-                    $this->redirect(array('DoctorConsult','visit_id'=>$visit->visit_id,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id));
-                }                 
+                    $model->appointment_consult($_GET['appoint_id']);
+                    $visit->patient_id=$patient_id;
+                    $visit->userid=$doctor_id;
+                    $visit->type="New Visit";
+                    $visit->visit_date=date('Y-m-d');
+                    if($visit->save())
+                    {
+                        /*$this->render('DoctorConsult',array(
+                            'model'=>$model,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id,'visit_id'=>$visit->visit_id
+                        ));*/
+                        $model->appointment_visit($_GET['appoint_id'],$visit->visit_id);
+                        $this->redirect(array('DoctorConsult','visit_id'=>$visit->visit_id,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id));
+                    } 
+                }else{
+                   $visit = Appointment::model()->findByPk($_GET['appoint_id']); 
+                   $this->redirect(array('DoctorConsult','visit_id'=>$visit->visit_id,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id));
+                }  
+                
                 $this->render('DocdorQueue',array(
                     'model'=>$model,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id
                 ));
@@ -288,38 +327,69 @@ class AppointmentController extends Controller
         
         public function actionDoctorConsult()
         {
-            $model = new Appointment;
-            $patient = new Patient;
-            //$employee = new Employee;
-            $visit = new Visit;
-            $load_treatment = new Treatment;
-            $saleItem = new SaleItem;
-            $sale = new Sale;
-            //$my_treat = array();
-            if(isset($_POST['Treatment']))
-            {              
-                $sale->client_id = $_GET['patient_id'];
-                $sale->employee_id = $_GET['doctor_id'];
-                $sale->sale_time = date('Y-m-d');
-                $sale->status=0;
-                if($sale->save())
+            if(isset($_GET['visit_id']) and isset($_GET['patient_id']) and isset($_GET['doctor_id']))
+            {
+                $userid = Yii::app()->user->getId();            
+                if($userid!=$_GET['doctor_id'])
                 {
-                    $this->treatment_check($_POST['Treatment'],$sale->id);
+                    throw new CHttpException(400, 'Invalid Doctor. Please do not repeat this request again.');
                 }
+
+                $model = new Appointment;
+                $patient = new Patient;
+                //$employee = new Employee;
+                $visit = new Visit;
+                $treatment = new Treatment;
+                $sale = new Sale;
+                $medicine = new Item;
+                
+                if(isset($_POST['Treatment']) || isset($_POST['Visit']))
+                {   
+                        $num = Appointment::model()->ValidateConsult($_GET['visit_id'],$_GET['patient_id'],$_GET['doctor_id']);            
+                
+                        if($num>0)
+                        {
+                            $sale->client_id = $_GET['patient_id'];
+                            $sale->employee_id = $_GET['doctor_id'];
+                            $sale->sale_time = date('Y-m-d');
+                            $sale->status=0;
+                            if($sale->save())
+                            {
+                                //$this->treatment_check($_POST['Treatment'],$sale->id);
+                                $this->redirect(Yii::app()->user->returnUrl);
+                            }
+                            //Yii::app()->user->returnUrl;
+                            Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
+                        }else{
+                            Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
+                        }
+                }else{
+
+                }
+
+                $employee_id = RbacUser::model()->findByPk($_GET['doctor_id']);
+                //$employee= Employee::model()->findByPk($employee_id->employee_id);
+                $employee = Employee::model()->get_doctorName($employee_id->employee_id);
+
+                if ($employee===null) {
+                        throw new CHttpException(404,'The requested page does not exist.');
+                }
+                $data['model']=$model;
+                $data['visit']=$visit;
+                $data['employee']=$employee;
+                $data['treatment']=$treatment;
+                $data['patient']=$patient;
+                $data['treatment_items']=$treatment->get_all_treatment(); 
+                $data['medicine']=$medicine;
+                $data['treatment_selected_items']=Yii::app()->treatmentCart->getCart(); 
+                $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
+
+                $this->render('create_consult',$data);
+            }else{
+                throw new CHttpException(404,'The requested page does not exist.');
             }
-            
-            $employee= Employee::model()->findByPk($_GET['doctor_id']);
-            //print_r($treatment);
-            if ($employee===null) {
-                    throw new CHttpException(404,'The requested page does not exist.');
-            }
-            $id=1;
-            $treatment=$load_treatment->load_treatment($id);
-            //print_r($treatment);
-            $this->render('create_consult',array('model'=>$model,'visit'=>$visit,'employee'=>$employee,'treatment'=>$treatment,'patient'=>$patient));
-            
         }
-        
+
         protected function treatment_check($treatment,$id)
         {
             $saleItem = new SaleItem;
@@ -335,5 +405,206 @@ class AppointmentController extends Controller
                     $saleItem->save();
                 }                           
             }
-        } 
+        }
+        
+        public function actionAppointmentDash()
+        {
+            $model = new Appointment;
+            //$doctors= array('name'=>'Tep Phally');
+            $doctors = $model->get_combo_doctor();
+            $appointment = $model->get_appointment();
+            $this->render('Appointment_dashboard',array('doctors'=>$doctors,'appointment'=>$appointment));
+        }
+        
+        public function actionAddTreatment()
+        {
+            $treatment = new Treatment;
+            //$treatment_selected_items = array();
+            if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest )
+            {
+                Yii::app()->treatmentCart->addItem($_POST['treatment_id']);                
+                $treatment_selected_items=Yii::app()->treatmentCart->getCart();
+                
+                if (Yii::app()->request->isAjaxRequest) {
+                    $cs = Yii::app()->clientScript;
+                    $cs->scriptMap = array(
+                        'jquery.js' => false,
+                        'bootstrap.js' => false,
+                        'jquery.min.js' => false,
+                        'bootstrap.min.js' => false,
+                        'bootstrap.notify.js' => false,
+                        'bootstrap.bootbox.min.js' => false,
+                    );
+                }
+                echo CJSON::encode(array(
+                    'status' => 'success',
+                    'div_treatment_form' => $this->renderPartial('_ajax_treatment', array('treatment_selected_items' => $treatment_selected_items,'treatment'=>$treatment), true, true),
+                ));
+                
+                Yii::app()->end();
+            } else {
+                throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+            }
+        }
+        
+        public function actionDeleteTreatment($treatment_id)
+        {
+            $treatment = new Treatment;
+            
+            if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) {
+                Yii::app()->treatmentCart->deleteItem($treatment_id);
+                $treatment_selected_items=Yii::app()->treatmentCart->getCart();
+                
+                if (Yii::app()->request->isAjaxRequest) {
+                    $cs = Yii::app()->clientScript;
+                    $cs->scriptMap = array(
+                        'jquery.js' => false,
+                        'bootstrap.js' => false,
+                        'jquery.min.js' => false,
+                        'bootstrap.min.js' => false,
+                        'bootstrap.notify.js' => false,
+                        'bootstrap.bootbox.min.js' => false,
+                    );
+                }
+                echo CJSON::encode(array(
+                    'status' => 'success',
+                    'div_treatment_form' => $this->renderPartial('_ajax_treatment', array('treatment_selected_items' => $treatment_selected_items,'treatment'=>$treatment), true, true),
+                ));
+                
+                Yii::app()->end();
+            } else {
+                throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+            }
+        }
+        
+        public function actionAddmedicine()
+        {
+            $medicine = new Item;
+            
+            if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) {                
+                Yii::app()->treatmentCart->addMedicine($_POST['medicine_id']);                
+                //$medicine_selected_items=Yii::app()->treatmentCart->getMedicine();
+                $data['medicine']=$medicine;
+                $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
+                Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
+                Yii::app()->clientScript->scriptMap['box.css'] = false; 
+                
+                
+                if (Yii::app()->request->isAjaxRequest) {
+                    $cs = Yii::app()->clientScript;
+                    $cs->scriptMap = array(
+                        'jquery.js' => false,
+                        'bootstrap.js' => false,
+                        'jquery.min.js' => false,
+                        'bootstrap.min.js' => false,
+                        'bootstrap.notify.js' => false,
+                        'bootstrap.bootbox.min.js' => false,
+                    );
+                }
+                echo CJSON::encode(array(
+                    'status' => 'success',
+                    'div_medicine_form' => $this->renderPartial('_select_medicine', $data, true, true),
+                ));
+                
+                Yii::app()->end();
+            } else {
+                throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+            }
+        }
+        
+        public function actionDeleteMedicine($medicine_id)
+        {
+            $treatment = new Treatment;
+            
+            if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) {
+                Yii::app()->treatmentCart->deleteMedicine($medicine_id);
+                $data['medicine_selected_items']=Yii::app()->treatmentCart->getMedicine();
+                
+                if (Yii::app()->request->isAjaxRequest) {
+                    $cs = Yii::app()->clientScript;
+                    $cs->scriptMap = array(
+                        'jquery.js' => false,
+                        'bootstrap.js' => false,
+                        'jquery.min.js' => false,
+                        'bootstrap.min.js' => false,
+                        'bootstrap.notify.js' => false,
+                        'bootstrap.bootbox.min.js' => false,
+                    );
+                }
+                echo CJSON::encode(array(
+                    'status' => 'success',
+                    'div_medicine_form' => $this->renderPartial('_select_medicine', $data, true, true),
+                ));
+                
+                Yii::app()->end();
+            } else {
+                throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+            }
+        }
+        
+        public function actionGetTreatment() { 
+            if (isset($_GET['term'])) {
+                 $term = trim($_GET['term']);
+                 $ret['results'] = Treatment::getTreatment($term); //PHP Example · ivaynberg/select2  http://bit.ly/10FNaXD got stuck serveral hoursss :|
+                 echo CJSON::encode($ret);
+                 Yii::app()->end();
+
+            }
+        }
+        
+        public function actionInitTreatment() 
+        {
+            $model = Treatment::model()->find('id=:treatment_id',array(':treatment_id'=>(int)$_GET['id']));
+            if($model!==null) {
+                echo CJSON::encode(array('id'=>$model->id,'text'=>$model->treatment));
+            }
+        }
+        
+        public function actionEditMedicine()
+        {
+            $medicine = new Item;
+            if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) {
+                $data= array();
+                $model = new Item;
+                $medicine_id = isset($_POST['Item']['id']) ? $_POST['Item']['id'] : null;
+                $quantity = isset($_POST['Item']['quantity']) ? $_POST['Item']['quantity'] : null;
+                $price =isset($_POST['Item']['unit_price']) ? $_POST['Item']['unit_price'] : null;
+                
+                $model->quantity=$quantity;
+                $model->unit_price=$price;
+
+                if ($model->validate()) {
+                    Yii::app()->treatmentCart->editMedicine($medicine_id, $quantity, $price);
+                } else {
+                    $error=CActiveForm::validate($model);
+                    $errors = explode(":", $error);
+                    //$data['warning']=  str_replace("}","",$errors[1]);
+                    $data['warning'] = Yii::t('app','Input data type is invalid');
+                }
+                
+                $data['medicine']=$medicine;
+                $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
+                
+                if (Yii::app()->request->isAjaxRequest) {
+                    $cs = Yii::app()->clientScript;
+                    $cs->scriptMap = array(
+                        'jquery.js' => false,
+                        'bootstrap.js' => false,
+                        'jquery.min.js' => false,
+                        'bootstrap.min.js' => false,
+                        'bootstrap.notify.js' => false,
+                        'bootstrap.bootbox.min.js' => false,
+                    );
+                }
+                echo CJSON::encode(array(
+                    'status' => 'success',
+                    'div_medicine_form' => $this->renderPartial('_select_medicine', $data, true, true),
+                ));
+                
+                Yii::app()->end();
+            } else {
+                throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+            }
+
+        }
 }

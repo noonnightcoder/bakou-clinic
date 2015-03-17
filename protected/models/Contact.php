@@ -36,6 +36,7 @@ class Contact extends CActiveRecord
 	}
         
         public $image;
+        public $search;
 
         /**
 	 * @return array validation rules for model attributes.
@@ -53,7 +54,7 @@ class Contact extends CActiveRecord
 			array('image_name', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, first_name, middle_name, last_name, display_name, phone_number, email, image_path, type, address_line_1, address_line_2, city, state, postal_code, country, image_name', 'safe', 'on'=>'search'),
+			array('search,id, first_name, middle_name, last_name, display_name, phone_number, email, image_path, type, address_line_1, address_line_2, city, state, postal_code, country, image_name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -113,22 +114,32 @@ class Contact extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('first_name',$this->first_name,true);
-		$criteria->compare('middle_name',$this->middle_name,true);
-		$criteria->compare('last_name',$this->last_name,true);
-		$criteria->compare('display_name',$this->display_name,true);
-		$criteria->compare('phone_number',$this->phone_number,true);
-		$criteria->compare('email',$this->email,true);
-		$criteria->compare('image_path',$this->image_path,true);
-		$criteria->compare('type',$this->type,true);
-		$criteria->compare('address_line_1',$this->address_line_1,true);
-		$criteria->compare('address_line_2',$this->address_line_2,true);
-		$criteria->compare('city',$this->city,true);
-		$criteria->compare('state',$this->state,true);
-		$criteria->compare('postal_code',$this->postal_code,true);
-		$criteria->compare('country',$this->country,true);
-		$criteria->compare('image_name',$this->image_name,true);
+		//$criteria->compare('id',$this->id);
+		//$criteria->compare('first_name',$this->first_name,true);
+		//$criteria->compare('middle_name',$this->middle_name,true);
+		//$criteria->compare('last_name',$this->last_name,true);
+		//$criteria->compare('display_name',$this->display_name,true);
+		//$criteria->compare('phone_number',$this->phone_number,true);
+		//$criteria->compare('email',$this->email,true);
+		//$criteria->compare('image_path',$this->image_path,true);
+		//$criteria->compare('type',$this->type,true);
+		//$criteria->compare('address_line_1',$this->address_line_1,true);
+		//$criteria->compare('address_line_2',$this->address_line_2,true);
+		//$criteria->compare('city',$this->city,true);
+		//$criteria->compare('state',$this->state,true);
+		//$criteria->compare('postal_code',$this->postal_code,true);
+		//$criteria->compare('country',$this->country,true);
+		//$criteria->compare('image_name',$this->image_name,true);
+                
+                if ($this->search) {
+                
+                    $criteria->condition="(first_name like :search or last_name like :search or concat(first_name,last_name)=:fullname or display_name like :search)";
+                    $criteria->params = array(
+                                ':search' => '%' . $this->search . '%',
+                                ':fullname' => preg_replace('/\s+/', '',$this->search),
+                                ':display_name' => '%' . $this->search . '%',
+                    );
+                }
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

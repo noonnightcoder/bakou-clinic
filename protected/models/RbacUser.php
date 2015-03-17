@@ -38,7 +38,9 @@ class RbacUser extends CActiveRecord
         public $reports;
         public $invoices;
         public $payments;
-        public $treatment;
+        public $treatments;
+        public $appointments;
+        public $contacts;
 
 
         /**

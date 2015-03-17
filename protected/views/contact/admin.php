@@ -49,26 +49,45 @@ $('.search-form form').submit(function(){
         <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 <?php endif; ?> 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
-            'id'=>'employee-grid',
+            'id'=>'contact-grid',
             'dataProvider'=>$model->search(),
+            //'filter'=>$model,
             'htmlOptions'=>array('class'=>'table-responsive panel'),
             'columns'=>array(
 		//'id',
-		'first_name',
-		//'middle_name',
-		'last_name',
-		'display_name',
-		'phone_number',
-		/*
-		'email',
-		'contact_image',*/
-		'type',
-		'address_line_1',
-		/*'address_line_2',
-		'city',
-		'state',
-		'postal_code',*/
-		'country',
+                array(
+                    'name'=>'first_name',
+                    'header'=>'First Name', 
+                ),
+                array(
+                    'name'=>'last_name',
+                    'header'=>'Last Name', 
+                    'filter'=>FALSE
+                ),
+                array(
+                    'name'=>'display_name',
+                    'header'=>'Display Name', 
+                ),
+                array(
+                    'name'=>'phone_number',
+                    'header'=>'Phone Number', 
+                    'filter'=>FALSE
+                ),
+                array(
+                    'name'=>'type',
+                    'header'=>'Type', 
+                    'filter'=>FALSE
+                ),
+                array(
+                    'name'=>'address_line_1',
+                    'header'=>'Address', 
+                    'filter'=>FALSE
+                ),
+                array(
+                    'name'=>'country',
+                    'header'=>'Country', 
+                    'filter'=>FALSE
+                ),
 		array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
                     'template'=>'<div class="hidden-sm hidden-xs btn-group">{view}{update}{delete}</div>',
