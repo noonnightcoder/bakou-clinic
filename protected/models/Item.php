@@ -194,4 +194,5 @@ class Item extends CActiveRecord
             
             return Yii::app()->db->createCommand($sql)->queryAll(true, array(':medicine_name' => $medicine_name,));
         }
+        
 }

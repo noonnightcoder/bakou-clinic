@@ -357,6 +357,7 @@ class AppointmentController extends Controller
             $medicine = new Item;
             
             $treatment_selected = Yii::app()->treatmentCart->getCart();
+            $medcine_selected = Yii::app()->treatmentCart->getMedicine();
             
             if(isset($_POST['Treatment']) || isset($_POST['Visit']))
             { 
@@ -364,20 +365,9 @@ class AppointmentController extends Controller
 
                 if($num>0)
                 {
-                    /*$sale->client_id = $_GET['patient_id'];
-                    $sale->employee_id = $_GET['doctor_id'];
-                    $sale->sale_time = date('Y-m-d');
-                    $sale->status=0;
-                    if($sale->save())
-                    {
-                        //$this->treatment_check($_POST['Treatment'],$sale->id);
-                        $this->redirect('waitingqueue');
-
-                    }*/
-
                     $transaction=$model->dbConnection->beginTransaction();
                     try{
-                        //check whether the current visit already insert yet
+                        //-----***check whether the current visit already insert yet***----//
                         $chk_bill = Bill::model()->find(array(
                                     'condition' => 'patient_id=:patient_id and visit_id=:visit_id and status=0',
                                     'params' => array(':patient_id'=>$_GET['patient_id'],':visit_id'=>$_GET['visit_id']))
@@ -385,7 +375,7 @@ class AppointmentController extends Controller
 
                         if(!empty($chk_bill))
                         {
-                            //Delete if bill already exists 
+                            //----***Delete if bill already exists***----// 
                             if(!empty($treatment_selected))
                             {
                                 BillDetail::model()->deleteAll(
@@ -405,12 +395,46 @@ class AppointmentController extends Controller
                             if($bill->validate()) $bill->save();
                             
                             foreach ($treatment_selected as $key => $value) {                                  
-                                    $treatment->saveTreatment($chk_bill->bill_id,$value['id'],$value['price']);
+                                    $treatment->saveTreatment($bill->bill_id,$value['id'],$value['price']);
                             }
-                        }    
+                        } 
+                        //-----****Loop from Medicine session****-----//
+                        $chk_medicine = Prescription::model()->find(array(
+                                    'condition' => 'visit_id=:visit_id',
+                                    'params' => array(':visit_id'=>$_GET['visit_id']))
+                                );
+
+                        if(!empty($chk_medicine))
+                        {
+                            //---***Delete if Prescription already exists***---// 
+                            if(!empty($medcine_selected))
+                            {
+                                PrescriptionDetail::model()->deleteAll(
+                                    array('condition'=>'prescription_id=:prescription_id',
+                                    'params'=>array(':prescription_id'=>$chk_medicine->id))
+                                );
+
+                                foreach ($medcine_selected as $key => $value) {                                  
+                                    $prescription->saveMedicine($chk_medicine->id,$value['id'],$value['quantity'],$value['price']);
+                                }
+                            }                                
+                        }else{
+                            $prescription->date_created = date('Y-m-d');
+                            $prescription->visit_id = $_GET['visit_id'];
+                            $prescription->last_update = date('Y-m-d');
+                            $prescription->updated_by = $userid;
+                            
+                            if($prescription->validate()) $prescription->save();
+                            
+                            foreach ($medcine_selected as $key => $value) {                                  
+                                    $prescription->saveMedicine($prescription->id,$value['id'],$value['quantity'],$value['price']);
+                            }
+                        }
+                        //----***Update Visit table****----//
                         //
                         $transaction->commit();
                         Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
+                        //$this->redirect('waitingqueue');
                     }catch (Exception $e){
                         $transaction->rollback();
                         Yii::app()->user->setFlash('error', '<strong>Process was rollback! </strong>Please contact administrator.');

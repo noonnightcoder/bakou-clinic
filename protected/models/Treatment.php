@@ -174,7 +174,7 @@ class Treatment extends CActiveRecord
             $cmd->bindParam(":price", $price);
             //$cmd->queryAll(array(':bill_id' => $bill_id, ':treatment_id' => $treatment_id,':price'=>$price));
             $cmd->execute();
-            
+            return false;
             //$sql="CALL pro_save_treatment(:bill_id, :treatment_id,:price)";
             //return Yii::app()->db->createCommand($sql)->queryAll(true, array(':bill_id' =>(int) $bill_id, ':treatment_id' => (int)$treatment_id,':price'=>$price));
 

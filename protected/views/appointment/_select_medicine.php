@@ -74,7 +74,7 @@
     </tbody>
 </table>
 <?php
-    if (empty($treatment_selected_items)) {
+    if (empty($medicine_selected_items)) {
         echo Yii::t('app', 'There are no medicine select');
     }
 ?> 
