@@ -11,7 +11,8 @@
                                 'employee'=>$employee,'treatment'=>$treatment,
                                 'patient'=>$patient,'treatment_items'=>$treatment_items,
                                 'treatment_selected_items'=>$treatment_selected_items,
-                                'medicine'=>$medicine,'medicine_selected_items'=>$medicine_selected_items), true,false),
+                                'medicine'=>$medicine,'medicine_selected_items'=>$medicine_selected_items,
+                                'visit_id'=>$visit_id), true,false),
  )); ?>  
 
 <?php $this->endWidget(); ?>

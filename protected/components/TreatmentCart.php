@@ -60,7 +60,7 @@ class TreatmentCart extends CApplicationComponent
                 array(
                     'id' => $model["id"],
                     'treatment' => $model["treatment"],
-                    'price' => $model["price"],
+                    'price' => $price!= null ? round($price, $this->getDecimalPlace()) : round($model["price"], $this->getDecimalPlace()),
                 )
             );
         }
@@ -73,7 +73,7 @@ class TreatmentCart extends CApplicationComponent
         return true;
     }
     
-    public function addMedicine($medicine_id,$quantity = 1)
+    public function addMedicine($medicine_id,$price = null,$quantity = 1)
     {
         $this->setSession(Yii::app()->session);
         //Get all items in the cart so far...
@@ -92,7 +92,7 @@ class TreatmentCart extends CApplicationComponent
                 array(
                     'id' => $model["id"],
                     'name' => $model["name"],
-                    'price' => $model["unit_price"],
+                    'price' => $price!= null ? round($price, $this->getDecimalPlace()) : round($model["unit_price"], $this->getDecimalPlace()),
                     'quantity' => $quantity,
                 )
             );

@@ -179,4 +179,15 @@ class Treatment extends CActiveRecord
             //return Yii::app()->db->createCommand($sql)->queryAll(true, array(':bill_id' =>(int) $bill_id, ':treatment_id' => (int)$treatment_id,':price'=>$price));
 
         }
+        
+        public function get_tbl_treatment($visit_id)
+        {
+            $sql="SELECT id,treatment,amount
+                    FROM v_bill_payment
+                    WHERE visit_id=48";
+            
+            $cmd=Yii::app()->db->createCommand($sql,array(':visit_id'=>$visit_id));
+            //$cmd->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
+            return $cmd->queryAll();
+        }
 }

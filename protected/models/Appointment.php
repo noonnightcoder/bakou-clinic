@@ -23,7 +23,9 @@ class Appointment extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
-	public function tableName()
+    
+        public $patient_name;
+        public function tableName()
 	{
 		return 'appointment';
 	}
@@ -72,6 +74,7 @@ class Appointment extends CActiveRecord
 			'end_time' => 'End Time',
 			'title' => 'Title',
 			'patient_id' => 'Patient',
+                        'patient_name' => 'Patient Name'
 			//'user_id' => 'User',
 			//'status' => 'Status',
 			//'visit_id' => 'Visit',
@@ -180,7 +183,7 @@ class Appointment extends CActiveRecord
                         WHERE appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
                         and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)
                         and user_id=$userid
-                        and status not in ('Completed','Canceled')                        
+                        and status not in ('Complete','Cancel')                        
                         ORDER BY appointment_date
                     )cl,(SELECT @rownum:=0) r";
             //echo $sql;
@@ -206,7 +209,7 @@ class Appointment extends CActiveRecord
             Appointment::model()->updateByPk($app_id,array('visit_id'=>$visit_id));   
         }
 
-                public function get_appointment()
+        public function get_appointment()
         {
             $sql="SELECT doc_id,user_id,status,fullname, 
                 @row_number:=CASE WHEN @user_id=user_id THEN @row_number+1 ELSE 1 END AS id
@@ -252,4 +255,59 @@ class Appointment extends CActiveRecord
             return $cmd->queryScalar();
         }       
         
+        public function updateCompleteAppt($visit_id,$user_id)
+        {
+            $cmd = Yii::app()->db->createCommand("CALL pro_completed_consult(:visit_id, :user_id)");
+            $cmd->bindParam(":visit_id", $visit_id);
+            $cmd->bindParam(":user_id", $user_id);
+            $cmd->execute();
+            return false;
+            
+        }
+        
+        public function showBillDetail($visit_id)
+        {
+            $sql="select @rownum:=@rownum+1 id,patient_id,visit_id,fullname,
+                visit_date,item,quantity,unit_price,flag info
+                from(SELECT t3.patient_id,t2.visit_id,CONCAT(last_name,' ',first_name) fullname,t2.visit_date,t1.item,t1.quantity,t1.unit_price,t1.flag
+                FROM (
+                        SELECT medicine_id id,medicine_name item,visit_id,quantity,unit_price,'medicine' flag 
+                        FROM v_medicine_payment where visit_id=$visit_id
+                        UNION ALL
+                        SELECT id,treatment,visit_id,1 quantity,amount,'treatment' flag
+                        FROM v_bill_payment where visit_id=$visit_id
+                )t1 INNER JOIN visit t2
+                ON t1.visit_id=t2.visit_id
+                INNER JOIN patient t3 ON t2.patient_id=t3.patient_id
+                INNER JOIN contact t4 ON t3.contact_id=t4.id
+                ORDER BY visit_id,flag
+                )lv,(SELECT @rownum:=0) r";
+            
+            return new CSqlDataProvider($sql,array(
+                'sort' => array(
+                        'attributes' => array(
+                            'patient_id','visit_id','fullname'
+                        )
+                    ),
+            ));
+        }
+        
+        public function showBill()
+        {
+            $sql="select @rownum:=@rownum+1 id,appointment_id,patient_id,doctor_id,visit_id,
+                patient_name,display_id,appointment_date,title,status
+                from(
+                SELECT app_id appointment_id,patient_id,user_id doctor_id,visit_id,
+                patient_name,display_id,appointment_date,title,status
+                FROM v_appointment_state WHERE STATUS='Complete'
+            )lv,(SELECT @rownum:=0) r";
+            
+            return new CSqlDataProvider($sql,array(
+                'sort' => array(
+                        'attributes' => array(
+                            'appointment_id','patient_id','visit_id'
+                        )
+                    ),
+            ));
+        }
 }

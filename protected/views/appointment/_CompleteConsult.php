@@ -67,13 +67,13 @@
     </div>
 
     <div class="col-sm-12">
-        <div class="form-actions">
+        <div class="form-actions" id="form-actions">
              <?php echo TbHtml::submitButton($visit->isNewRecord ? Yii::t('app','Save') : Yii::t('app','Save'),array(
                'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
                //'size'=>TbHtml::BUTTON_SIZE_SMALL,
            )); ?>
             <?php 
-            echo TbHtml::linkButton('Hold Consultation',array(
+            /*echo TbHtml::linkButton('Hold Consultation',array(
                'buttonType'=>'button',
                'type'=>'primary',
                'color' => TbHtml::BUTTON_COLOR_DANGER,
@@ -86,22 +86,17 @@
                    'success'=>'function (data) {                    
                     }'
                 )
-            ));
+            ));*/
             ?>
             <?php 
             echo TbHtml::linkButton('Completed Consultation',array(
                'buttonType'=>'button',
                'type'=>'primary',
                'color' => TbHtml::BUTTON_COLOR_SUCCESS,
-               'ajax'=>array(
-                   'type'=>'post',
-                   'dataType'=>'json',
-                   //'beforeSend'=>"function() { $('.waiting').show(); }",
-                   //'complete'=>"function() { $('.waiting').hide(); }",
-                   'url'=>'#',
-                   'success'=>'function (data) {                    
-                    }'
-                )
+               'url' => array('completedConsult', 'visit_id' => $visit_id),
+               //'url' => '#',
+                'class' => 'completed-consult',
+                //'title' =>  'Remove', 
             ));
             ?>
         </div>  
@@ -201,4 +196,28 @@ Yii::app()->clientScript->registerScript( 'update_treament',"
         });
     });
 ");  
+?>
+
+<?php
+$red_url = Yii::app()->createUrl('Appointment/waitingqueue/');  
+Yii::app()->clientScript->registerScript( 'completedConsult',"
+        $('div#form-actions').on('click','a.completed-consult',function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            url:url,
+            dataType:'json',
+            type:'post',    
+            //beforeSend:function() { $('#loading').addClass('waiting'); },
+            //complete:function() { $('#loading').removeClass('waiting'); },
+            success:function(data) {
+                if(data.status=='success')
+                {
+                    //$('#select_medicine_form').html(data.div_medicine_form);
+                    window.location.href = '$red_url';
+                }
+            }
+        });
+    });
+");
 ?>

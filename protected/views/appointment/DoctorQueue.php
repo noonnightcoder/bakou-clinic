@@ -41,12 +41,14 @@ $('.search-form form').submit(function(){
     'model'=>$model,
 )); ?>
 </div><!-- search-form -->
+<?php if (Yii::app()->user->checkAccess('appointment.create')) {?>
 <?php echo TbHtml::linkButton(Yii::t( 'app', 'Add New' ),array(
             'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
             'size'=>TbHtml::BUTTON_SIZE_SMALL,
             'icon'=>'glyphicon-plus white',
             'url'=>$this->createUrl('create'),
     )); ?>
+<?php } ?>
 <?php if(Yii::app()->user->hasFlash('success')):?>
         <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 <?php endif; ?>
@@ -92,6 +94,7 @@ $('.search-form form').submit(function(){
                  ), 
 		array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
+                    'deleteConfirmation'=>'Are you sure you want to Cancel the appointment?',
                     'template'=>'{view}{delete}',
                     //'template'=>'<div class="hidden-sm hidden-xs btn-group">{view}{update}{delete}{undeleted}</div>',
                     'buttons'=>array(
@@ -105,10 +108,8 @@ $('.search-form form').submit(function(){
                         //http://bit.ly/1bdSADp
                         'delete' => array(
                             'label' => 'Cancel',
-                            'url'=>'#',
-                            /*'click'=>'function(){
-                                $("#show-modal").modal("show"); 
-                            }'*/
+                            'url'=>'Yii::app()->createUrl("Appointment/cancelAppointment", array("appoint_id"=>$data["app_id"],"doctor_id"=>$data["doctor_id"],"patient_id"=>$data["patient_id"]))',
+                            
                         ),
                     ),
                 ),

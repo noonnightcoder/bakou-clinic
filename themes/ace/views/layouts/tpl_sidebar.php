@@ -43,21 +43,24 @@ $this->widget('bootstrap.widgets.TbNav', array(
                            'active'=>$this->id=='contact' || strtolower($this->id)=='default' || $this->id=='appointment' || $this->id=='settings' || $this->id=='location',
                            'visible'=>Yii::app()->user->checkAccess('contact.index') || Yii::app()->user->checkAccess('appointment.index')|| Yii::app()->user->checkAccess('appointment.waitingqueue'),
                            'items'=>array(
-                               array('label'=>Yii::t('menu','Patient'),'icon'=> TbHtml::ICON_USER, 'url'=>Yii::app()->urlManager->createUrl('contact/admin'), 'active'=>$this->id=='contact',
+                               array('label'=>Yii::t('menu','Patient'),'icon'=> 'fa fa-users', 'url'=>Yii::app()->urlManager->createUrl('contact/admin'), 'active'=>$this->id=='contact',
                                    'visible'=>Yii::app()->user->checkAccess('contact.index')||Yii::app()->user->checkAccess('contact.create')
                                ), 
-                               array('label'=>Yii::t('menu','Appointment'),'icon'=> TbHtml::ICON_BELL, 'url'=>Yii::app()->urlManager->createUrl('appointment/create'), 'active'=>$this->id=='Appointment',
+                               array('label'=>Yii::t('menu','Appointment'),'icon'=> 'fa fa-calendar', 'url'=>Yii::app()->urlManager->createUrl('appointment/create'), 'active'=>$this->id=='Appointment',
                                    'visible'=>Yii::app()->user->checkAccess('appointment.index')
                                ),
-                               array('label'=>Yii::t('menu','Waiting Queue'),'icon'=> TbHtml::ICON_BELL, 'url'=>Yii::app()->urlManager->createUrl('appointment/WaitingQueue'), 'active'=>$this->id=='Appointment',
+                               array('label'=>Yii::t('menu','Waiting Queue'),'icon'=> 'fa fa-user-md', 'url'=>Yii::app()->urlManager->createUrl('appointment/WaitingQueue'), 'active'=>$this->id=='Appointment',
                                    'visible'=>Yii::app()->user->checkAccess('appointment.waitingqueue')
+                               ),                               
+                               array('label'=>Yii::t('menu','Prescription Bill'),'icon'=> 'fa fa-plus-square', 'url'=>Yii::app()->urlManager->createUrl('appointment/Prescription'), 'active'=>$this->id=='Prescription',
+                                   'visible'=>Yii::app()->user->checkAccess('appointment.prescription')
                                ),
             )),
             array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Settings')) . '</span>', 'icon'=>'menu-icon fa fa-cogs','url'=>Yii::app()->urlManager->createUrl('settings/index'),
                            'active'=>$this->id=='employee' || $this->id=='clinic' || $this->id=='treatment' || $this->id=='item',
                            'visible'=>Yii::app()->user->checkAccess('store.update'),
                            'items'=>array(
-                               array('label'=>Yii::t('menu', 'Clinic'), 'icon'=> TbHtml::ICON_HOME, 'url'=>Yii::app()->urlManager->createUrl('clinic/ClinicInfo'), 'active'=>$this->id .'/'. $this->action->id=='clinic/ClinicInfo',
+                               array('label'=>Yii::t('menu', 'Clinic'), 'icon'=> 'fa fa-h-square', 'url'=>Yii::app()->urlManager->createUrl('clinic/ClinicInfo'), 'active'=>$this->id .'/'. $this->action->id=='clinic/ClinicInfo',
                                    'visible'=> Yii::app()->user->checkAccess('clinic.index') || Yii::app()->user->checkAccess('clinic.create') || Yii::app()->user->checkAccess('clinic.update') || Yii::app()->user->checkAccess('clinic.delete')
                                ),
                                array('label'=>Yii::t('menu', 'Employee'), 'icon'=> TbHtml::ICON_USER, 'url'=>Yii::app()->urlManager->createUrl('employee/admin'), 'active'=>$this->id .'/'. $this->action->id=='employee/admin',
