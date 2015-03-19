@@ -8,8 +8,8 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>Yii::t('app','Bakou Clinic - Simply the Best'),
-        //'sourceLanguage' => 'en',
-        'language' => 'en',
+        'sourceLanguage' => 'en',
+        'language' => 'kh',
         'timeZone' => 'Asia/Phnom_Penh',
     
         'aliases' => array(
