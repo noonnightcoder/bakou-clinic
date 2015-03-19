@@ -3,7 +3,7 @@
   display: flex !important;
 }
 </style>
-<div class="row" id="contact">
+<div class="row" id="bill-payment-form">
 <div class="col-xs-12 col-sm-8 widget-container-col">
 <?php
 /* @var $this ContactController */
@@ -89,16 +89,16 @@ $('.search-form form').submit(function(){
                     <?php
                     $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                         'id' => 'finish_sale_form',
-                        //'action' => Yii::app()->createUrl('appointment/completeSale/'),
+                        'action' => Yii::app()->createUrl('appointment/completeSale?visit_id='.$visit_id),
                         'enableAjaxValidation' => false,
                         'layout' => TbHtml::FORM_LAYOUT_INLINE,
                     ));
                     ?>
                         <table class="table table-bordered table-condensed">
-                            <tbody>
+                            <tbody id="payment-form">
                                 <tr>
                                     <td style="display:none">
-                                        
+                                        <input type="text" name="amount" value="<?php echo @$amount; ?>">
                                     </td>
                                 </tr>
                                 <tr>
@@ -107,17 +107,43 @@ $('.search-form form').submit(function(){
                                 </tr>                                
                                 <tr>
                                     <td><?php echo Yii::t('app', 'Total'); ?> :</td>
-                                    <td><span class="badge badge-info bigger-120"><?php //echo Yii::app()->settings->get('site', 'currencySymbol') . number_format($total, Yii::app()->shoppingCart->getDecimalPlace(), '.', ','); ?></span></td>
+                                    <td>
+                                        <span class="badge badge-info bigger-120">
+                                            <?php echo Yii::app()->settings->get('site', 'currencySymbol').@$amount ?>
+                                        </span>
+                                    </td>
                                 </tr>
                                  <tr>
                                     <td><?php echo Yii::t('app', 'Total in KHR'); ?> :</td>
-                                    <td><span class="badge badge-success bigger-120">
-                                         <?php //echo Yii::app()->settings->get('site', 'altcurrencySymbol') . number_format($total_khr, 0, '.', ','); ?>
-
-                                         <?php //echo Yii::app()->settings->get('site', 'altcurrencySymbol') . number_format($total_khr_round, 0, '.', ','); ?>
+                                    <td>
+                                        <span class="badge badge-success bigger-120">
+                                            <?php echo @$amount*4000 ?>
                                         </span>
                                     </td>
-                                </tr>                                
+                                </tr> 
+                                <?php if ($count_payment > 0) { ?>
+                                    <?php foreach ($payments as $id => $payment): ?>
+                                    <tr>
+                                        <td>
+                                            <?php
+                                            echo TbHtml::linkButton('', array(
+                                                'size' => TbHtml::BUTTON_SIZE_MINI,
+                                                'color' => TbHtml::BUTTON_COLOR_DANGER,
+                                                'icon' => 'glyphicon-remove',
+                                                'url' => Yii::app()->createUrl('appointment/DeletePayment', array('visit_id' => $payment['visit_id'])),
+                                                'class' => 'delete-payment pull-right',
+                                                'title' => Yii::t('app', 'Delete Payment'),
+                                            ));
+                                            ?>  
+                                            <?php echo Yii::t('App','Paid Amount[Cash]'); ?></td>
+                                        <td>
+                                            <span class="badge badge-info bigger-120">
+                                                <?php echo $payment['payment_amount']; ?> Or <?php echo $payment['payment_amount']*4000; ?>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                <?php } ?>
                                 <?php if (@$count_payment == 0) { ?>                                     
                                     <tr>
                                         <td colspan="2" style='text-align:right'><?php
@@ -125,7 +151,7 @@ $('.search-form form').submit(function(){
                                                 'color' => TbHtml::BUTTON_COLOR_INFO,
                                                 'size' => TbHtml::BUTTON_SIZE_MINI,
                                                 'icon' => 'glyphicon-plus white',
-                                                'url' => Yii::app()->createUrl('payment/AddPayment?visit_id='.$visit_id),
+                                                'url' => Yii::app()->createUrl('appointment/AddPayment?visit_id='.$visit_id),
                                                 'class' => 'add-payment',
                                                 //'title' => Yii::t('app', 'Add Payment'),
                                             ));
@@ -164,4 +190,58 @@ $('.search-form form').submit(function(){
     </div> <!-- payment cart -->
 </div>    
     
-</div>    
+</div>
+
+<div class="waiting"><!-- Place at bottom of page --></div>
+
+<script>
+$(document).ready(function()
+{
+     $('#payment_cart').on('click','a.complete-sale',function(e) {
+        e.preventDefault();
+        $("#finish_sale_button").hide();
+        $('#finish_sale_form').submit();
+    });
+ });
+</script>
+
+<?php 
+    Yii::app()->clientScript->registerScript( 'addPayment', "
+        jQuery( function($){
+            $('tbody#payment-form').on('click','a.add-payment',function(e) {
+                e.preventDefault();
+                var url=$(this).attr('href');
+                $.ajax({
+                    url:url,
+                    type : 'post',
+                    beforeSend: function() { $('.waiting').show(); },
+                    complete: function() { $('.waiting').hide(); },
+                    success : function(data) {
+                        $('#bill-payment-form').html(data);
+                    }
+                });
+            });
+        });
+      ");
+ ?> 
+
+<?php 
+    Yii::app()->clientScript->registerScript( 'deletePayment', "
+        jQuery( function($){
+            $('tbody#payment-form').on('click','a.delete-payment',function(e) {
+                e.preventDefault();
+                var url=$(this).attr('href');
+                $.ajax({
+                    url:url,
+                    type : 'post',
+                    beforeSend: function() { $('.waiting').show(); },
+                    complete: function() { $('.waiting').hide(); },
+                    success : function(data) {
+                        $('#bill-payment-form').html(data);
+                    }
+                });
+            });
+        });
+      ");
+ ?> 
+

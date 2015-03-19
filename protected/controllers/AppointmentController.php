@@ -39,7 +39,8 @@ class AppointmentController extends Controller
                                 'Addmedicine','GetMedicine','DeleteMedicine',
                                 'GetTreatment','InitTreatment','EditMedicine',
                                 'EditTreatment','completedConsult','CancelAppointmen',
-                                'Prescription','prescriptionDetail'
+                                'Prescription','prescriptionDetail','AddPayment',
+                                'CompleteSale','DeletePayment'
                                 ),
                             'users'=>array('@'),
                     ),
@@ -459,6 +460,7 @@ class AppointmentController extends Controller
                                     )
                                 );
                         //
+                        Yii::app()->treatmentCart->clearAll();
                         $transaction->commit();
                         Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
                         //$this->redirect('waitingqueue');
@@ -807,22 +809,159 @@ class AppointmentController extends Controller
     }
     
     public function actionprescriptionDetail($visit_id)
-    {
+    {  
+        $model = new Appointment;
+        $data['model'] = new Appointment('showBillDetail');
+        $data['count_item'] = $model->countBill($visit_id);
+        $data['amount'] = $model->sumBill($visit_id);
+        $data['visit_id'] = $visit_id;
         
-        $model = new Appointment('showBillDetail');
-        $count_item = $model->countBill($visit_id);
-        //return $model->get_doctor_queue();
-        if($count_item>0)
+        $data['payments'] =Yii::app()->treatmentCart->getPayments();
+        
+        //---***find bill was added yet***---//
+        $count_payment=0;
+        if(!empty($data['payments'])){$count_payment=1;}
+        if($data['count_item']>0)
         {
-            $this->render('prescriptionDetail',array(
-                'model'=>$model,'visit_id'=>$visit_id,'count_item'=>$count_item
-            ));
+            $data['count_payment'] = $count_payment;
+            $this->render('prescriptionDetail',$data);
         }else{
             Yii::app()->user->setFlash('error', '<strong>There are no item! </strong>Please contact administrator.');
             $this->render('prescription',array(
                 'model'=>$model,
             ));
         }
+    }
+    
+    /*public function actionCompleteSale($visit_id)
+    {
+        if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) 
+        {
+
+        }else{
+            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+        }
+    }*/
+
+    public function actionAddPayment($visit_id)
+    {
+        if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) 
+        {
+            $payment = new Payment;
+            $model = new Appointment('showBillDetail');
+            $data['model'] = $model;
+            $data['payment'] =$payment;
+            $data['count_item'] = $model->countBill($visit_id);
+            $data['amount'] = $model->sumBill($visit_id);        
+            $data['visit_id'] = $visit_id;
+            Yii::app()->treatmentCart->addPayment($visit_id,$data['amount']);
+            $data['payments'] = Yii::app()->treatmentCart->getPayments();
+                
+            $count_payment=0;
+            if(!empty($data['payments'])){$count_payment=1;}
         
+            if($data['count_item']>0)
+            { 
+                //$data['count_payment'] = Payment::model()->addPayment($visit_id);
+                //----***set Payment into session from request***----//
+                
+                $data['count_payment'] = $count_payment;
+
+                $cs = Yii::app()->clientScript;
+                $cs->scriptMap = array(
+                    'jquery.js' => false,
+                    'bootstrap.js' => false,
+                    'jquery.min.js' => false,
+                    'bootstrap.min.js' => false,
+                    'bootstrap.notify.js' => false,
+                    'bootstrap.bootbox.min.js' => false,
+                );
+
+                Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
+                Yii::app()->clientScript->scriptMap['box.css'] = false; 
+
+                $this->renderPartial('prescriptionDetail',$data,false, true);
+            }
+        }else{
+            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+        }
+    }
+    
+    public function actionDeletePayment($visit_id)
+    {
+        if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) 
+        {
+            $payment = new Payment;
+            $model = new Appointment('showBillDetail');
+            $data['model'] = $model;
+            $data['payment'] =$payment;
+            $data['count_item'] = $model->countBill($visit_id);
+            $data['amount'] = $model->sumBill($visit_id);        
+            $data['visit_id'] = $visit_id;
+            
+            $count_payment=0;
+            if(!empty($data['payments'])){$count_payment=1;}
+                
+            if($data['count_item']>0)
+            { 
+                Yii::app()->treatmentCart->deletePayment($visit_id);
+                $data['payments'] =Yii::app()->treatmentCart->getPayments();
+                
+                $data['count_payment'] = $count_payment;
+
+                $cs = Yii::app()->clientScript;
+                $cs->scriptMap = array(
+                    'jquery.js' => false,
+                    'bootstrap.js' => false,
+                    'jquery.min.js' => false,
+                    'bootstrap.min.js' => false,
+                    'bootstrap.notify.js' => false,
+                    'bootstrap.bootbox.min.js' => false,
+                );
+
+                Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
+                Yii::app()->clientScript->scriptMap['box.css'] = false; 
+
+                $this->renderPartial('prescriptionDetail',$data,false, true);
+            }    
+        }
+    }
+    
+     public function actionCompleteSale($visit_id)
+    {
+        
+        $this->layout = '//layouts/column_receipt';
+        
+        $sale_id = Payment::model()->CompleteSale($visit_id);
+        //echo $sale_id; die();
+
+        $cust_info=Appointment::model()->generateInvoice($visit_id);
+        $data['cust_fullname'] =  $cust_info[1]['fullname'];
+        $data['employee'] = 'MeyMey';
+        $data['cust_info'] = $cust_info;
+        $data['sale_id'] = $sale_id;
+        $data['discount'] = 0;
+        $data['colspan'] = Yii::app()->settings->get('sale','discount')=='hidden' ? '2' : '3';
+        $subtotal = 0;
+        foreach ($cust_info as $id => $item) 
+        {
+            $subtotal+=round($item['price'] * $item['quantity'] - $item['price'] * $item['quantity'] * $item['discount'] / 100, 2, PHP_ROUND_HALF_DOWN);
+        }
+        $data['sub_total'] = $subtotal;
+        $data['total_discount'] = 0;
+        $data['discount_amount']=0;
+        $total=0;
+        foreach ($cust_info as $id => $item) 
+        {
+            $total+=round($item['price'] * $item['quantity'] - $item['price'] * $item['quantity'] * $item['discount'] / 100, 2, PHP_ROUND_HALF_DOWN);
+        }
+        $data['total']=$total - $total*$data['discount_amount']/100;
+        
+        $data['total_khr_round']=($total - $total*$data['discount_amount']/100)*4000;
+        $data['amount_change']=0;
+        $data['amount_change_khr_round']=0;
+        //print_r($cust_info); die();
+        $this->render('_receipt', $data);
+        Yii::app()->shoppingCart->clearAll();
     }
 }

@@ -161,6 +161,75 @@ class TreatmentCart extends CApplicationComponent
 
         return false;
     }
+    
+    public function getPayments()
+    {
+        $this->setSession(Yii::app()->session);
+        if (!isset($this->session['payments'])) {
+            $this->setPayments(array());
+        }
+        return $this->session['payments'];
+    }
+
+    public function setPayments($payments_data)
+    {
+        $this->setSession(Yii::app()->session);
+        $this->session['payments'] = $payments_data;
+    }
+    
+    public function addPayment($visit_id, $payment_amount)
+    {
+        $this->setSession(Yii::app()->session);
+        $payments = $this->getPayments();
+        $payment = array($visit_id =>
+            array(
+                'visit_id' => $visit_id,
+                'payment_amount' => $payment_amount
+            )
+        );
+
+        //payment_method already exists, add to payment_amount
+        if (isset($payments[$visit_id])) {
+            $payments[$visit_id]['payment_amount'] += $payment_amount;
+        } else {
+            //add to existing array
+            $payments += $payment;
+        }
+
+        $this->setPayments($payments);
+        return true;
+    }
+
+    public function deletePayment($visit_id)
+    {
+        $payments = $this->getPayments();
+        unset($payments[$visit_id]);
+        $this->setPayments($payments);
+    }
+    
+    protected function emptyPayment()
+    {
+        $this->setSession(Yii::app()->session);
+        unset($this->session['payments']);
+    }
+    
+    protected function emptyCart()
+    {
+        $this->setSession(Yii::app()->session);
+        unset($this->session['cart']);
+    }
+    
+    protected function emptyMedicine()
+    {
+        $this->setSession(Yii::app()->session);
+        unset($this->session['medicine']);
+    }
+    
+    protected function clearAll()
+    {
+        $this->emptyCart();
+        $this->emptyMedicine();
+    }
 }
 
 ?>

@@ -326,4 +326,41 @@ class Appointment extends CActiveRecord
             
             return $cmd->queryScalar();
         }
+        
+        public function sumBill($visit_id)
+        {
+            $sql="select sum(amount)
+                from (
+                    SELECT medicine_id id,medicine_name item,visit_id,quantity,unit_price amount,'medicine' flag 
+                    FROM v_medicine_payment where visit_id= $visit_id
+                    UNION ALL
+                    SELECT id,treatment,visit_id,1 quantity,amount,'treatment' flag
+                    FROM v_bill_payment where visit_id=$visit_id
+                )bl";
+            
+            $cmd=Yii::app()->db->createCommand($sql);
+            
+            return $cmd->queryScalar();
+        }
+        
+        public function generateInvoice($visit_id)
+        {
+            $sql="select fullname,visit_date,item name,quantity,unit_price price,0 discount
+                from(SELECT t3.patient_id,t2.visit_id,CONCAT(last_name,' ',first_name) fullname,t2.visit_date,t1.item,t1.quantity,t1.unit_price,t1.flag
+                FROM (
+                        SELECT medicine_id id,medicine_name item,visit_id,quantity,unit_price,'medicine' flag 
+                        FROM v_medicine_payment where visit_id=$visit_id
+                        UNION ALL
+                        SELECT id,treatment,visit_id,1 quantity,amount,'treatment' flag
+                        FROM v_bill_payment where visit_id=$visit_id
+                )t1 INNER JOIN visit t2
+                ON t1.visit_id=t2.visit_id
+                INNER JOIN patient t3 ON t2.patient_id=t3.patient_id
+                INNER JOIN contact t4 ON t3.contact_id=t4.id
+                ORDER BY visit_id,flag
+                )dl";
+            
+            $command=Yii::app()->db->createCommand($sql);
+            return $command->queryAll();
+        }
 }
