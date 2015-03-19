@@ -199,10 +199,10 @@ class Item extends CActiveRecord
         {
             $sql="SELECT medicine_id id,medicine_name,unit_price,quantity
                     FROM v_medicine_payment
-                    WHERE visit_id=48";
+                    WHERE visit_id=:visit_id";
             
-            $cmd=Yii::app()->db->createCommand($sql,array(':visit_id'=>$visit_id));
-            //$cmd->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
+            $cmd=Yii::app()->db->createCommand($sql);
+            $cmd->bindParam(':visit_id', $visit_id, PDO::PARAM_INT);
             return $cmd->queryAll();
         }
         

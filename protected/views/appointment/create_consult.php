@@ -16,3 +16,5 @@
  )); ?>  
 
 <?php $this->endWidget(); ?>
+
+<div class="waiting"><!-- Place at bottom of page --></div>

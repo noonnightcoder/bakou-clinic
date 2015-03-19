@@ -310,4 +310,20 @@ class Appointment extends CActiveRecord
                     ),
             ));
         }
+        
+        public function countBill($visit_id)
+        {
+            $sql="select count(*) 
+                from (
+                    SELECT medicine_id id,medicine_name item,visit_id,quantity,unit_price,'medicine' flag 
+                    FROM v_medicine_payment where visit_id= $visit_id
+                    UNION ALL
+                    SELECT id,treatment,visit_id,1 quantity,amount,'treatment' flag
+                    FROM v_bill_payment where visit_id=$visit_id
+                )bl";
+            
+            $cmd=Yii::app()->db->createCommand($sql);
+            
+            return $cmd->queryScalar();
+        }
 }

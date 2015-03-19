@@ -118,6 +118,8 @@ Yii::app()->clientScript->registerScript( 'update_medicine',"
             dataType : 'json',    
             type : 'post',
             data : {medicine_id:medicine_id},
+            beforeSend: function() { $('.waiting').show(); },
+            complete: function() { $('.waiting').hide(); },
             success : function(data) {
                 if(data.status=='success')
                 {
@@ -139,8 +141,8 @@ Yii::app()->clientScript->registerScript( 'deleteMedicine',"
             url:url,
             dataType:'json',
             type:'post',    
-            //beforeSend:function() { $('#loading').addClass('waiting'); },
-            //complete:function() { $('#loading').removeClass('waiting'); },
+            beforeSend: function() { $('.waiting').show(); },
+            complete: function() { $('.waiting').hide(); },
             success:function(data) {
                 if(data.status=='success')
                 {
@@ -161,8 +163,8 @@ Yii::app()->clientScript->registerScript( 'deleteTreatment',"
             url:url,
             dataType:'json',
             type:'post',    
-            //beforeSend:function() { $('#loading').addClass('waiting'); },
-            //complete:function() { $('#loading').removeClass('waiting'); },
+            beforeSend: function() { $('.waiting').show(); },
+            complete: function() { $('.waiting').hide(); },
             success:function(data) {
                 if(data.status=='success')
                 {
@@ -186,6 +188,8 @@ Yii::app()->clientScript->registerScript( 'update_treament',"
             dataType : 'json',    
             type : 'post',
             data : {treatment_id:treatment_id},
+            beforeSend: function() { $('.waiting').show(); },
+            complete: function() { $('.waiting').hide(); },
             success : function(data) {
                 if(data.status=='success')
                 {
@@ -208,8 +212,8 @@ Yii::app()->clientScript->registerScript( 'completedConsult',"
             url:url,
             dataType:'json',
             type:'post',    
-            //beforeSend:function() { $('#loading').addClass('waiting'); },
-            //complete:function() { $('#loading').removeClass('waiting'); },
+            beforeSend: function() { $('.waiting').show(); },
+            complete: function() { $('.waiting').hide(); },
             success:function(data) {
                 if(data.status=='success')
                 {

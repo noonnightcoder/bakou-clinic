@@ -83,6 +83,8 @@
     var url = $(this).attr('href');
     $(document).ready(function()
     {
+        $('.waiting').hide();
+        
         $('.line_item_form').ajaxForm({target: "#select_medicine_form", beforeSubmit: salesBeforeSubmit});
         
         $('#medicine_contents').on('change','input.input-grid',function(e) {

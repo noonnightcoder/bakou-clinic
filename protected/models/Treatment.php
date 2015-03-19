@@ -184,10 +184,10 @@ class Treatment extends CActiveRecord
         {
             $sql="SELECT id,treatment,amount
                     FROM v_bill_payment
-                    WHERE visit_id=48";
+                    WHERE visit_id=:visit_id";
             
-            $cmd=Yii::app()->db->createCommand($sql,array(':visit_id'=>$visit_id));
-            //$cmd->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
+            $cmd=Yii::app()->db->createCommand($sql);
+            $cmd->bindParam(':visit_id', $visit_id, PDO::PARAM_INT);
             return $cmd->queryAll();
         }
 }

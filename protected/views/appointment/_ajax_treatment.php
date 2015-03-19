@@ -90,6 +90,8 @@
     var url = $(this).attr('href');
     $(document).ready(function()
     {
+        $('.waiting').hide();
+        
         $('.line_treatment_form').ajaxForm({target: "#select_treatment_form", beforeSubmit: treatmentBeforeSubmit});
         
         $('#treatment_contents').on('change','input.input-grid',function(e) {

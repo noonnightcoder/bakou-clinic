@@ -85,7 +85,7 @@ $('.search-form form').submit(function(){
 <div class="col-xs-12 col-sm-4 widget-container-col">
     <div class="row">
         <div class="sidebar-nav" id="payment_cart">
-            <?php $count_item=2;if ($count_item <> 0) { ?>
+            <?php if ($count_item <> 0) { ?>
                     <?php
                     $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                         'id' => 'finish_sale_form',
@@ -97,8 +97,13 @@ $('.search-form form').submit(function(){
                         <table class="table table-bordered table-condensed">
                             <tbody>
                                 <tr>
+                                    <td style="display:none">
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td><?php echo Yii::t('app', 'Item Select'); ?> :</td>
-                                    <td><?php $count_payment =0; echo $count_item; ?></td>
+                                    <td><?php echo $count_item; ?></td>
                                 </tr>                                
                                 <tr>
                                     <td><?php echo Yii::t('app', 'Total'); ?> :</td>
@@ -120,7 +125,7 @@ $('.search-form form').submit(function(){
                                                 'color' => TbHtml::BUTTON_COLOR_INFO,
                                                 'size' => TbHtml::BUTTON_SIZE_MINI,
                                                 'icon' => 'glyphicon-plus white',
-                                                'url' => Yii::app()->createUrl('payment/AddPayment/'),
+                                                'url' => Yii::app()->createUrl('payment/AddPayment?visit_id='.$visit_id),
                                                 'class' => 'add-payment',
                                                 //'title' => Yii::t('app', 'Add Payment'),
                                             ));

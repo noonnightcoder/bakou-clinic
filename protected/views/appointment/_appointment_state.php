@@ -6,6 +6,6 @@ if($status=='Waiting'){
 }elseif ($status=='Cancel') {
     echo TbHtml::labelTb('Cancel',array('color' => TbHtml::LABEL_COLOR_SUCCESS));  
 }else{
-   echo TbHtml::labelTb('Consultant', array('color' => TbHtml::LABEL_COLOR_INVERSE));
+   echo TbHtml::labelTb('Consultant');
 }
 ?>

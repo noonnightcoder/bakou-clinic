@@ -808,10 +808,21 @@ class AppointmentController extends Controller
     
     public function actionprescriptionDetail($visit_id)
     {
+        
         $model = new Appointment('showBillDetail');
+        $count_item = $model->countBill($visit_id);
         //return $model->get_doctor_queue();
-        $this->render('prescriptionDetail',array(
-            'model'=>$model,'visit_id'=>$visit_id
-        ));
+        if($count_item>0)
+        {
+            $this->render('prescriptionDetail',array(
+                'model'=>$model,'visit_id'=>$visit_id,'count_item'=>$count_item
+            ));
+        }else{
+            Yii::app()->user->setFlash('error', '<strong>There are no item! </strong>Please contact administrator.');
+            $this->render('prescription',array(
+                'model'=>$model,
+            ));
+        }
+        
     }
 }
