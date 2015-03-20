@@ -184,10 +184,11 @@ class ContactController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Contact');
+		/*$dataProvider=new CActiveDataProvider('Contact');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
-		));
+		));*/
+            throw new CHttpException(400,'Invalid page request.');
 	}
 
 	/**

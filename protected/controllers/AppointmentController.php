@@ -784,7 +784,7 @@ class AppointmentController extends Controller
         {
            $user_id = Yii::app()->user->getId();
             Appointment::model()->updateCompleteAppt($visit_id,$user_id); 
-            
+            Yii::app()->treatmentCart->clearAll();
             echo CJSON::encode(array(
                 'status' => 'success',
                 //'div_medicine_form' => 'OK',
@@ -958,7 +958,7 @@ class AppointmentController extends Controller
     {
         
         $this->layout = '//layouts/column_receipt';
-        
+        //$sale_id=10;
         $sale_id = Payment::model()->CompleteSale($visit_id);
         //echo $sale_id; die();
         $clinic_info = Clinic::model()->find();
@@ -966,7 +966,9 @@ class AppointmentController extends Controller
         $employee = Employee::model()->get_doctorName($employee_id->employee_id);
 
         $cust_info=Appointment::model()->generateInvoice($visit_id);
-        $data['cust_fullname'] =  $cust_info[1]['fullname'];
+        $patient_id = Appointment::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
+        $rs = VSearchPatient::model()->find("id=:patient_id",array(':patient_id'=>$patient_id->patient_id));
+        $data['cust_fullname'] =  $rs->fullname;
         $data['employee'] = $employee->doctor_name;
         $data['cust_info'] = $cust_info;
         $data['sale_id'] = $sale_id;
