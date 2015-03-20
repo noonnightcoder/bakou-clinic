@@ -492,7 +492,7 @@ class AppointmentController extends Controller
             if ($employee===null) {
                     throw new CHttpException(404,'The requested page does not exist.');
             }
-            
+            $data['chk_bill_saved'] = Bill::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
             $data['model']=$model;
             $data['visit']=$visit;
             $data['employee']=$employee;
@@ -820,7 +820,6 @@ class AppointmentController extends Controller
         }
         
         $model->date_report = $date_report;
-        
         
         //return $model->get_doctor_queue();
         $this->render('prescription',array(

@@ -305,6 +305,11 @@ class Appointment extends CActiveRecord
             ));
         }
         
+        public function chk_completed_bill()
+        {
+            
+        }
+
         public function showBill()
         {
             if(isset($_GET['Appointment']))
@@ -333,7 +338,10 @@ class Appointment extends CActiveRecord
                 from(
                 SELECT app_id appointment_id,patient_id,user_id doctor_id,visit_id,
                 patient_name,display_id,appointment_date,title,status
-                FROM v_appointment_state WHERE STATUS='Complete' $cond1 $cond
+                FROM v_appointment_state
+                WHERE visit_id IN (SELECT visit_id FROM bill WHERE STATUS in (0,1))
+                and STATUS='Complete'
+                $cond1 $cond
             )lv,(SELECT @rownum:=0) r";
             
             return new CSqlDataProvider($sql,array(

@@ -88,6 +88,7 @@
                 )
             ));*/
             ?>
+            <?php if(!empty($chk_bill_saved)) { ?>
             <?php 
             echo TbHtml::linkButton('Completed Consultation',array(
                'buttonType'=>'button',
@@ -99,6 +100,7 @@
                 //'title' =>  'Remove', 
             ));
             ?>
+            <?php } ?>
         </div>  
     </div>
 
