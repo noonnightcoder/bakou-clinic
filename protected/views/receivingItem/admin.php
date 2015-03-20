@@ -28,7 +28,7 @@
                     <th><?php echo Yii::t('app','Buy Price'); ?></th>
                     <th><?php echo Yii::t('app','Sell Price'); ?></th>
                     <th><?php echo Yii::t('app','Quantity'); ?></th>
-                    <th class="<?php echo Yii::app()->settings->get('sale', 'discount'); ?>"><?php echo Yii::t('app','model.receivingitem.discount_amount'); ?></th>
+                    <th class="<?php echo Yii::app()->settings->get('sale', 'discount'); ?>"><?php echo Yii::t('app','Discount Amount'); ?></th>
                     <th class='<?php echo $expiredate_class; ?>'><?php echo Yii::t('app','model.receivingitem.expire_date'); ?></th>
                     <th><?php echo Yii::t('app','Total'); ?></th>
                     <th></th>

@@ -89,8 +89,8 @@ class ReceivingItem extends CActiveRecord
                 return array(
 			'receive_id' => Yii::t('app','Receiving'), //'Sale',
 			'item_id' => Yii::t('app','Item'), //'Item',
-			'description' => Yii::t('app','model.receivingitem.description'), //'Description',
-			'line' => Yii::t('app','model.receivingitem.line'), //'Line',
+			'description' => Yii::t('app','Mescription'), //'Description',
+			'line' => Yii::t('app','Line'), //'Line',
 			'quantity' => Yii::t('app','Quantity'), //'Quantity',
 			'cost_price' => Yii::t('app','Buy Price'), //'Cost Price',
 			'unit_price' => Yii::t('app','Sell Price'), // 'Unit Price',

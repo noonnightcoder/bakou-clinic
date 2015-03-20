@@ -288,8 +288,17 @@ class AppointmentController extends Controller
                 $status=$this->renderPartial('_appointment_state',array('status'=>'Consultant'),false,true);
                 //$status='At Next Level Manager';
         }*/
-        $status=$this->renderPartial('_appointment_state',array('status'=>$data['status']),false,true);
-        return $status;
+        //$status=$this->renderPartial('_appointment_state',array('status'=>$data['status']),false,true);
+        if($data['status']=='Waiting'){ 
+            echo TbHtml::labelTb('Waiting',array('color' => TbHtml::LABEL_COLOR_WARNING));  
+        }elseif ($data['status']=='Complete') {
+            echo TbHtml::labelTb('Complete',array('color' => TbHtml::LABEL_COLOR_SUCCESS));  
+        }elseif ($data['status']=='Cancel') {
+            echo TbHtml::labelTb('Cancel',array('color' => TbHtml::LABEL_COLOR_SUCCESS));  
+        }else{
+           echo TbHtml::labelTb('Consultant');
+        }
+        //return $status;
     }
 
     public function actionConsultation()
@@ -802,9 +811,20 @@ class AppointmentController extends Controller
     public function actionPrescription()
     {
         $model = new Appointment('showBill');
+        
+        if (isset($_GET['date_report'])) {
+            $model->attributes = $_GET['date_report'];
+            $date_report = $_GET['Appointment']['date_report'];
+        } else {
+            $date_report = date('Y-m-d');
+        }
+        
+        $model->date_report = $date_report;
+        
+        
         //return $model->get_doctor_queue();
         $this->render('prescription',array(
-            'model'=>$model,
+            'model'=>$model,'date_report'=>$date_report
         ));
     }
     
@@ -937,7 +957,7 @@ class AppointmentController extends Controller
 
         $cust_info=Appointment::model()->generateInvoice($visit_id);
         $data['cust_fullname'] =  $cust_info[1]['fullname'];
-        $data['employee'] = 'MeyMey';
+        $data['employee'] = 'Heng Heng';
         $data['cust_info'] = $cust_info;
         $data['sale_id'] = $sale_id;
         $data['discount'] = 0;

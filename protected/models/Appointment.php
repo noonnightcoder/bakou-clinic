@@ -25,6 +25,8 @@ class Appointment extends CActiveRecord
 	 */
     
         public $patient_name;
+        public $date_report;
+        
         public function tableName()
 	{
 		return 'appointment';
@@ -42,10 +44,10 @@ class Appointment extends CActiveRecord
 			array('patient_id, user_id, visit_id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>150),
 			array('status', 'length', 'max'=>255),
-			array('end_date, start_time, end_time', 'safe'),
+			array('end_date, start_time, end_time,date_report', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, appointment_date, end_date, start_time, end_time, title, patient_id, user_id, status, visit_id', 'safe', 'on'=>'search'),
+			array('id, appointment_date, end_date, start_time, end_time, title, patient_id, user_id, status, visit_id,date_report', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -294,12 +296,33 @@ class Appointment extends CActiveRecord
         
         public function showBill()
         {
+            if(isset($_GET['Appointment']))
+            {
+                //-----***Check condition of query***----//
+                $search = $_GET['Appointment']['patient_name'];
+                $cond=" and (lower(patient_name) like '%".  $search ."%' or lower(display_id) like  '%".  $search ."%')";
+            
+                if (isset($_GET['Appointment']['date_report'])) {
+                    $date_report = $_GET['Appointment']['date_report'];
+                    $cond1 =" and appointment_date>=DATE_SUB('$date_report', INTERVAL 0 DAY)
+                              and appointment_date<DATE_ADD('$date_report', INTERVAL 1 DAY)";
+                } else {
+                    $cond1 =" and appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
+                              and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)";
+                }
+        
+            }else{
+                $cond="";
+                $cond1 =" and appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
+                              and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)";
+            }
+            
             $sql="select @rownum:=@rownum+1 id,appointment_id,patient_id,doctor_id,visit_id,
                 patient_name,display_id,appointment_date,title,status
                 from(
                 SELECT app_id appointment_id,patient_id,user_id doctor_id,visit_id,
                 patient_name,display_id,appointment_date,title,status
-                FROM v_appointment_state WHERE STATUS='Complete'
+                FROM v_appointment_state WHERE STATUS='Complete' $cond1 $cond
             )lv,(SELECT @rownum:=0) r";
             
             return new CSqlDataProvider($sql,array(

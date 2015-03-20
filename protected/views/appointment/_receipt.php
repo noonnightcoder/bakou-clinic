@@ -34,10 +34,10 @@ if (isset($error_message))
             <!-- <div class="panel panel-default"> -->
                 <!-- <div class="panel-body"> -->
                 <p>
-                    <?php if (Yii::app()->settings->get('receipt', 'printcompanyLogo')=='1') { ?>
+                    <?php //if (Yii::app()->settings->get('receipt', 'printcompanyLogo')=='1') { ?>
                         <?php echo TbHtml::image(Yii::app()->baseUrl . '/images/shop_logo.png','Company\'s logo',array('width'=>'150')); ?> <br>
                         <!-- <h5> Tube Plastic </h5> -->
-                    <?php } ?>
+                    <?php //} ?>
                 </p>
                 <!-- </div> -->
             <!-- </div> -->
@@ -45,21 +45,24 @@ if (isset($error_message))
         <div class="col-xs-6 col-xs-offset-1 text-right">
             <!-- <div class="panel panel-default"> -->
                 <p>
-                    <?php if (Yii::app()->settings->get('receipt', 'printcompanyName')=='1') { ?>    
+                    <?php //if (Yii::app()->settings->get('receipt', 'printcompanyName')=='1') { ?>    
                         <strong>
-                        <?php echo TbHtml::encode(Yii::app()->settings->get('site', 'companyName')); ?> 
+                        <?php //echo TbHtml::encode(Yii::app()->settings->get('site', 'companyName')); ?> 
+                            Medilux
                         </strong>  <br>
-                    <?php } ?>
-
-                    <?php if (Yii::app()->settings->get('receipt', 'printcompanyPhone')=='1') { ?>    
-                        <?php echo TbHtml::encode(Yii::app()->settings->get('site', 'companyPhone')); ?><br>
-                    <?php } ?>    
-                    <?php if (Yii::app()->settings->get('receipt', 'printcompanyAddress')=='1') { ?>    
-                        <?php echo TbHtml::encode(Yii::app()->settings->get('site', 'companyAddress')); ?><br>
-                    <?php } ?>
-                     <?php if (Yii::app()->settings->get('receipt', 'printcompanyAddress1')=='1') { ?>    
-                        <?php echo TbHtml::encode(Yii::app()->settings->get('site', 'companyAddress1')); ?><br>
-                    <?php } ?>    
+                    <?php //} ?>
+                        012777722
+                    <?php //if (Yii::app()->settings->get('receipt', 'printcompanyPhone')=='1') { ?>    
+                        <?php //echo TbHtml::encode(Yii::app()->settings->get('site', 'companyPhone')); ?><br>
+                    <?php //} ?>  
+                        #168, St 168 ,Vealvong 7Makara,
+                    <?php //if (Yii::app()->settings->get('receipt', 'printcompanyAddress')=='1') { ?>    
+                        <?php //echo TbHtml::encode(Yii::app()->settings->get('site', 'companyAddress')); ?><br>
+                    <?php //} ?>
+                        Phnom Penh, Cambodia
+                     <?php //if (Yii::app()->settings->get('receipt', 'printcompanyAddress1')=='1') { ?>    
+                        <?php //echo TbHtml::encode(Yii::app()->settings->get('site', 'companyAddress1')); ?><br>
+                    <?php //} ?>    
                     <?php if (Yii::app()->settings->get('receipt', 'printtransactionTime')=='1') { ?> 
                         <?php echo TbHtml::encode($transaction_time); ?><br>
                     <?php } ?>

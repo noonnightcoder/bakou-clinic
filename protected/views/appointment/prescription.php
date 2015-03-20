@@ -28,7 +28,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#appointment-grid').yiiGridView('update', {
+	$('#medicine-form-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -46,10 +46,10 @@ $('.search-form form').submit(function(){
 <?php endif; ?>
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
-            'id'=>'waiting-queue',
+            'id'=>'medicine-form-grid',
             'dataProvider'=>$model->showBill(),
-            //'htmlOptions'=>array('class'=>'table-responsive panel'),
-            'template' => "{items}",
+            'htmlOptions'=>array('class'=>'table-responsive panel'),
+            //'template' => "{items}",
             'columns'=>array(
                 array('name'=>'id',
                        'header'=>'#', 
@@ -83,11 +83,11 @@ $('.search-form form').submit(function(){
                        'header'=>'Appointment', 
                 ),
 		'title',
-                //'status',
-                array('name'=>'status',
+                'status',
+                /*array('name'=>'status',
                   'header'=>'Status',
                   'value' =>array($this,"gridLeaveStatusColumn"),
-                 ), 
+                 ),*/
 		array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
                     'template'=>'{view}',
@@ -96,9 +96,6 @@ $('.search-form form').submit(function(){
                         'view' => array(
                             'label' => 'Detail',                            
                             'url'=>'Yii::app()->createUrl("Appointment/prescriptionDetail", array("visit_id"=>$data["visit_id"]))',
-                            /*'options' => array(
-                                'class'=>'fa fa-user-md',
-                            ),*/
                         ),
                     ),
                 ),
