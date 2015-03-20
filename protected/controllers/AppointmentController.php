@@ -800,10 +800,10 @@ class AppointmentController extends Controller
         $transaction=$model->dbConnection->beginTransaction();
         try{
             $user_id = Yii::app()->user->getId();
-            Appointment::model()->updateByPk($appoint_id,array('status'=>'Cancelled'));
+            Appointment::model()->updateByPk($appoint_id,array('status'=>'Cancel'));
             $model->appointment_id = $appoint_id;
             $model->change_date_time = date('Y-m-d h:i:s');
-            $model->status = 'Cancelled';
+            $model->status = 'Cancel';
             $model->user_id = $user_id;
             $model->save();
             $transaction->commit();                        

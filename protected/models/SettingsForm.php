@@ -17,7 +17,7 @@ class SettingsForm extends CFormModel
         'email' => '',
         'returnPolicy' => '',
     );
-    public $system = array(
+    /*public $system = array(
         'language' => '',
         'decimalPlace'=>'',
     );
@@ -41,7 +41,7 @@ class SettingsForm extends CFormModel
     public $item = array(
         'itemNumberPerPage' => '',
         'itemExpireDate'=> ''
-    );
+    );*/
    
     /**
      * Declares customized attribute labels.

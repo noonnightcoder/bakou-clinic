@@ -108,7 +108,7 @@ $('.search-form form').submit(function(){
                         //http://bit.ly/1bdSADp
                         'delete' => array(
                             'label' => 'Cancel',
-                            'url'=>'Yii::app()->createUrl("Appointment/cancelAppointment", array("appoint_id"=>$data["app_id"],"doctor_id"=>$data["doctor_id"],"patient_id"=>$data["patient_id"]))',
+                            'url'=>'Yii::app()->createUrl("Appointment/CancelAppointmen", array("appoint_id"=>$data["app_id"],"doctor_id"=>$data["doctor_id"],"patient_id"=>$data["patient_id"]))',
                             
                         ),
                     ),
