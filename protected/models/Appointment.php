@@ -405,4 +405,18 @@ class Appointment extends CActiveRecord
             $command=Yii::app()->db->createCommand($sql);
             return $command->queryAll();
         }
+        
+        public function chk_user_inqueue($patient_id)
+        {
+            $sql="SELECT COUNT(*) FROM appointment  
+            WHERE appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
+            and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)    
+            AND patient_id=:patient_id 
+            AND STATUS NOT IN ('Complete','Cancel')";  
+            
+            $cmd=Yii::app()->db->createCommand($sql);
+            $cmd->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
+            
+            return $cmd->queryScalar();
+        }
 }

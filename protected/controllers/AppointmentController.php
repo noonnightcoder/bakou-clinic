@@ -95,38 +95,44 @@ class AppointmentController extends Controller
             // Uncomment the following line if AJAX validation is needed
             // $this->performAjaxValidation($model);
 
-            //$doctor= Appointment::model()->get_combo_doctor();  
-
+            //$doctor= Appointment::model()->get_combo_doctor(); 
             if (isset($_POST['Appointment'])) {
-                $transaction=$model->dbConnection->beginTransaction();
-                try{
-                    set_error_handler(array(&$this, "exception_error_handler")); 
-                    //$model->attributes=$_POST['Appointment'];
-                    $model->appointment_date=date('Y-m-d H:i:s');
-                    $model->end_date=date('Y-m-d');
-                    $model->start_time=$_POST['Appointment']['start_time'];
-                    $model->end_time=$_POST['Appointment']['end_time'];
-                    $model->title=$_POST['Appointment']['title'];
-                    $model->patient_id=$_POST['Patient']['patient_id'];
-                    $model->user_id=$_POST['RbacUser']['id'];
-                    $model->status='Waiting';
-                    $model->visit_id=0;
-                    if ($model->save()) {
-                            $app_log->appointment_id=$model->id;
-                            $app_log->change_date_time=date('Y-m-d H:i:s');
-                            $app_log->start_time=$_POST['Appointment']['start_time'];
-                            $app_log->status='Waiting';
-                            //$app_log->user_id=Yii::app()->user->getId();
-                            $app_log->user_id=$_POST['RbacUser']['id'];
-                            $app_log->save();
-                            $transaction->commit();
-                            //$this->redirect(array('create','id'=>$model->id));
-                            $this->redirect(Yii::app()->user->returnUrl);
-                    }                        
-                }catch (Exception $e){
-                    $transaction->rollback();
-                    echo $e->getMessage();
-                }
+                
+                $chk=Appointment::model()->chk_user_inqueue($_POST['Patient']['patient_id']);
+                if($chk==0)
+                {
+                   $transaction=$model->dbConnection->beginTransaction();
+                    try{
+                        set_error_handler(array(&$this, "exception_error_handler")); 
+                        //$model->attributes=$_POST['Appointment'];
+                        $model->appointment_date=date('Y-m-d H:i:s');
+                        $model->end_date=date('Y-m-d');
+                        $model->start_time=$_POST['Appointment']['start_time'];
+                        $model->end_time=$_POST['Appointment']['end_time'];
+                        $model->title=$_POST['Appointment']['title'];
+                        $model->patient_id=$_POST['Patient']['patient_id'];
+                        $model->user_id=$_POST['RbacUser']['id'];
+                        $model->status='Waiting';
+                        $model->visit_id=0;
+                        if ($model->save()) {
+                                $app_log->appointment_id=$model->id;
+                                $app_log->change_date_time=date('Y-m-d H:i:s');
+                                $app_log->start_time=$_POST['Appointment']['start_time'];
+                                $app_log->status='Waiting';
+                                //$app_log->user_id=Yii::app()->user->getId();
+                                $app_log->user_id=$_POST['RbacUser']['id'];
+                                $app_log->save();
+                                $transaction->commit();
+                                //$this->redirect(array('create','id'=>$model->id));
+                                $this->redirect(Yii::app()->user->returnUrl);
+                        }                        
+                    }catch (Exception $e){
+                        $transaction->rollback();
+                        echo $e->getMessage();
+                    } 
+                }else{
+                    Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> This patient already in queue.');
+                }                
             }                
             if(isset($_GET['doctor_id']))
             {
