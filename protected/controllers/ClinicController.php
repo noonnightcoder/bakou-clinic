@@ -70,7 +70,7 @@ class ClinicController extends Controller
 		if (isset($_POST['Clinic'])) {
 			$model->attributes=$_POST['Clinic'];
 			if ($model->save()) {
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('ClinicInfo','id'=>$model->id));
 			}
 		}
 
@@ -200,8 +200,8 @@ class ClinicController extends Controller
         public function actionClinicInfo()
         {
             $model = new Clinic;
-            $id=1;
-            $model = Clinic::model()->findByPk($id);
+            //$id=2;
+            $model = Clinic::model()->find();
 
             if (!empty($model->id))
             {
