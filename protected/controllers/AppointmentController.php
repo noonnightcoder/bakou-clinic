@@ -469,10 +469,10 @@ class AppointmentController extends Controller
                                     )
                                 );
                         //
-                        //Yii::app()->treatmentCart->clearAll();
+                        Yii::app()->treatmentCart->clearAll();
                         $transaction->commit();
                         Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
-                        //$this->redirect('waitingqueue');
+                        $this->redirect('waitingqueue');
                     }catch (Exception $e){
                         $transaction->rollback();
                         Yii::app()->user->setFlash('error', '<strong>Process was rollback! </strong>Please contact administrator.');
@@ -505,6 +505,7 @@ class AppointmentController extends Controller
             $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
 
             $this->render('create_consult',$data);
+            
         }else{
             throw new CHttpException(404,'The requested page does not exist.');
         }

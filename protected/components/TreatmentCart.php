@@ -225,7 +225,7 @@ class TreatmentCart extends CApplicationComponent
         unset($this->session['medicine']);
     }
     
-    protected function clearAll()
+    public function clearAll()
     {
         $this->emptyCart();
         $this->emptyMedicine();
