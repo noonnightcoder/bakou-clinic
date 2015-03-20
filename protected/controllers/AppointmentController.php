@@ -193,10 +193,11 @@ class AppointmentController extends Controller
      */
     public function actionIndex()
     {
-            $dataProvider=new CActiveDataProvider('Appointment');
+            /*$dataProvider=new CActiveDataProvider('Appointment');
             $this->render('index',array(
                     'dataProvider'=>$dataProvider,
-            ));
+            ));*/
+        throw new CHttpException(400,'Invalid page request.');
     }
 
     /**
