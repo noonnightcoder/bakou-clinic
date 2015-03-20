@@ -163,4 +163,11 @@ class Contact extends CActiveRecord
             $myid= Yii::app()->db->createCommand("SELECT Create_patient_id($id,'$last_name')");
             return $myid->queryScalar();
         } 
+        
+        public function deleteContact($id)
+        {
+            Patient::model()->deleteAll("contact_id=:contact_id",array('contact_id'=>$id));
+            
+            Contact::model()->findByPk($id)->delete();
+        }
 }
