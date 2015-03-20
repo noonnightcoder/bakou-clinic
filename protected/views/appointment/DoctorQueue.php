@@ -28,7 +28,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#appointment-grid').yiiGridView('update', {
+	$('#waiting-queue').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;

@@ -149,7 +149,7 @@ class Receiving extends CActiveRecord
                             $trans_date=date('Y-m-d H:i:s');
                             
                             // Saving & Updating Account and Account Receivable either transaction 'receive' or 'return'
-                            $this->saveAccountAR($employee_id, $receiving_id, $supplier_id, $sub_total, $trans_date, $trans_mode);
+                            //$this->saveAccountAR($employee_id, $receiving_id, $supplier_id, $sub_total, $trans_date, $trans_mode);
                                
                             // Saving receiving item to receiving_item table
                             $this->saveReceiveItem($items, $receiving_id, $employee_id,$trans_date);

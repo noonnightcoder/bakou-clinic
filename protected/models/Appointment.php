@@ -177,6 +177,16 @@ class Appointment extends CActiveRecord
         
         public function get_doctor_queue()
         {
+            if(isset($_GET['Appointment']))
+            {
+                //-----***Check condition of query***----//
+                $search = $_GET['Appointment']['patient_name'];
+                $cond=" and (lower(patient_name) like '%".  $search ."%' or lower(display_id) like  '%".  $search ."%')";
+            }else{
+                $cond="";
+                
+            }
+            
             $userid=Yii::app()->user->getId();
             $sql="SELECT @rownum:=@rownum+1 id,app_id,patient_id,doctor_id,patient_name,
                     display_id,appointment_date,title,status
@@ -185,7 +195,8 @@ class Appointment extends CActiveRecord
                         WHERE appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
                         and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)
                         and user_id=$userid
-                        and status not in ('Complete','Cancel')                        
+                        and status not in ('Complete','Cancel')  
+                        $cond
                         ORDER BY appointment_date
                     )cl,(SELECT @rownum:=0) r";
             //echo $sql;
