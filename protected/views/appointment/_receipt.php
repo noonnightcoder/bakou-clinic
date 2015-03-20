@@ -47,19 +47,17 @@ if (isset($error_message))
                 <p>
                     <?php //if (Yii::app()->settings->get('receipt', 'printcompanyName')=='1') { ?>    
                         <strong>
-                        <?php //echo TbHtml::encode(Yii::app()->settings->get('site', 'companyName')); ?> 
-                            Medilux
+                        <?php echo TbHtml::encode($clinic_name); ?> 
                         </strong>  <br>
                     <?php //} ?>
-                        012777722
+                        <?php echo TbHtml::encode($clinic_mobile); ?>
                     <?php //if (Yii::app()->settings->get('receipt', 'printcompanyPhone')=='1') { ?>    
                         <?php //echo TbHtml::encode(Yii::app()->settings->get('site', 'companyPhone')); ?><br>
                     <?php //} ?>  
-                        #168, St 168 ,Vealvong 7Makara,
+                        <?php echo TbHtml::encode($clinic_address); ?>
                     <?php //if (Yii::app()->settings->get('receipt', 'printcompanyAddress')=='1') { ?>    
                         <?php //echo TbHtml::encode(Yii::app()->settings->get('site', 'companyAddress')); ?><br>
                     <?php //} ?>
-                        Phnom Penh, Cambodia
                      <?php //if (Yii::app()->settings->get('receipt', 'printcompanyAddress1')=='1') { ?>    
                         <?php //echo TbHtml::encode(Yii::app()->settings->get('site', 'companyAddress1')); ?><br>
                     <?php //} ?>    
@@ -188,10 +186,10 @@ if (isset($error_message))
      
 </div>
 
-<script>
+<!--<script>
 $(window).bind("load", function() {
     setTimeout(window.location.href='Prescription',5000); 
     window.print();
     return true;
 });    
-</script>
+</script>-->

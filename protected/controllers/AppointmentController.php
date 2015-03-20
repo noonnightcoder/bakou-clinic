@@ -960,13 +960,21 @@ class AppointmentController extends Controller
         
         $sale_id = Payment::model()->CompleteSale($visit_id);
         //echo $sale_id; die();
+        $clinic_info = Clinic::model()->find();
+        $employee_id = RbacUser::model()->findByPk(Yii::app()->user->getId());
+        $employee = Employee::model()->get_doctorName($employee_id->employee_id);
 
         $cust_info=Appointment::model()->generateInvoice($visit_id);
         $data['cust_fullname'] =  $cust_info[1]['fullname'];
-        $data['employee'] = 'Heng Heng';
+        $data['employee'] = $employee->doctor_name;
         $data['cust_info'] = $cust_info;
         $data['sale_id'] = $sale_id;
         $data['discount'] = 0;
+        
+        $data['clinic_name']=$clinic_info->clinic_name;
+        $data['clinic_address']= $clinic_info->clinic_address;
+        $data['clinic_mobile'] = $clinic_info->mobile;
+        
         $data['colspan'] = Yii::app()->settings->get('sale','discount')=='hidden' ? '2' : '3';
         $subtotal = 0;
         foreach ($cust_info as $id => $item) 
