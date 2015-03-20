@@ -83,15 +83,15 @@
                     array('class'=>'bootstrap.widgets.TbButtonColumn',
                         //'header'=> Yii::t('app','Edit'),  
                         //'template'=>'{delete}{update}{invoice}{payment}',
-                        'template'=>'<div class="hidden-sm hidden-xs btn-group">{view}{update}{delete}{undeleted}</div>',  
+                        'template'=>'<div class="hidden-sm hidden-xs btn-group">{update}{delete}{undeleted}</div>',  
                         'htmlOptions'=>array('class'=>'nowrap'),
                         'buttons' => array(
-                            'view' => array(
+                            /*'view' => array(
                               //'url'=>'Yii::app()->createUrl("client/delete/",array("id"=>$data->id))',
                               'options' => array(
                                   'class'=>'btn btn-xs btn-success',
                                 ),   
-                            ),
+                            ),*/
                             'update' => array(
                               'icon' => 'ace-icon fa fa-edit',
                               'options' => array(

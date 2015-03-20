@@ -30,7 +30,7 @@
                 'model'=> $patient, 
                 'attribute'=>'patient_id',
                 'pluginOptions' => array(
-                        'placeholder' => Yii::t('app','patient.appointment'),
+                        'placeholder' => Yii::t('app','Select Patient'),
                         'multiple'=>false,
                         'width' => '100%',
                         //'tokenSeparators' => array(',', ' '),
@@ -131,9 +131,9 @@
 <?php 
 Yii::app()->clientScript->registerScript( 'searchPatient', "
     jQuery( function($){
-        $('#Patient_display_id').on('change', function(e) {
+        $('#Patient_patient_id').on('change', function(e) {
             e.preventDefault();
-            var remote = $('#Patient_display_id');
+            var remote = $('#Patient_patient_id');
             var patient_id=remote.val();
             var fullname= $('#Contact_display_name');
             var msisdn = $('#Contact_phone_number');

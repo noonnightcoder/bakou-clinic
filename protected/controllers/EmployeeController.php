@@ -115,7 +115,7 @@ class EmployeeController extends Controller
 
                                 $transaction->commit();
                                 Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
-                                $this->redirect(array('view', 'id' => $model->id));
+                                $this->redirect(array('admin', 'id' => $model->id));
                             } else {
                                 Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
                             }

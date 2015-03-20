@@ -1,11 +1,6 @@
-<?php
-/* @var $this ItemController */
-/* @var $data Item */
-?>
-
 <div class="view">
 
-    	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id),array('view','id'=>$data->id)); ?>
 	<br />
 
@@ -58,20 +53,8 @@
 	<?php echo CHtml::encode($data->description); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
-	<?php echo CHtml::encode($data->status); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('created_date')); ?>:</b>
-	<?php echo CHtml::encode($data->created_date); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('modified_date')); ?>:</b>
-	<?php echo CHtml::encode($data->modified_date); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('is_expire')); ?>:</b>
-	<?php echo CHtml::encode($data->is_expire); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('deleted')); ?>:</b>
+	<?php echo CHtml::encode($data->deleted); ?>
 	<br />
 
 	*/ ?>

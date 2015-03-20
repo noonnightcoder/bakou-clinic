@@ -230,6 +230,11 @@ class TreatmentCart extends CApplicationComponent
         $this->emptyCart();
         $this->emptyMedicine();
     }
+    
+    protected function clearMedicine()
+    {
+        
+    }
 }
 
 ?>

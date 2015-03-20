@@ -469,7 +469,7 @@ class AppointmentController extends Controller
                                     )
                                 );
                         //
-                        Yii::app()->treatmentCart->clearAll();
+                        //Yii::app()->treatmentCart->clearAll();
                         $transaction->commit();
                         Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
                         //$this->redirect('waitingqueue');

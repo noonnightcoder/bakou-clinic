@@ -96,21 +96,23 @@ class ContactController extends Controller
                              mkdir( $path , 0777, true);
                         }
 
-                        if ($model->image!=null) {
-                            if ($model->save())
-                            {
-                                $display_id=$model->create_display_patient_id($model->id, $model->last_name);
-                                $patient->display_id=$display_id;
-                                $patient->contact_id=$model->id;
-                                $patient->patient_since=date("Y-m-d");
-                                $patient->followup_date=date("Y-m-d");
-                                $patient->reference_by='Lux'; //will add this field on interface
-                                $patient->save();
+                        //if ($model->image!=null) {
+                        if ($model->save())
+                        {
+                            $display_id=$model->create_display_patient_id($model->id, $model->last_name);
+                            $patient->display_id=$display_id;
+                            $patient->contact_id=$model->id;
+                            $patient->patient_since=date("Y-m-d");
+                            $patient->followup_date=date("Y-m-d");
+                            $patient->reference_by='Lux'; //will add this field on interface
+                            $patient->save();
+                            if ($model->image!=null) {
                                 $model->image->saveAs($image_name);
-                                $transaction->commit();
-                                $this->redirect(array('create'));
                             }
+                            $transaction->commit();
+                            $this->redirect(array('admin'));
                         }
+                        //}
                     }  catch (Exception $e){
                         $transaction->rollback();
                         echo $e->getMessage();

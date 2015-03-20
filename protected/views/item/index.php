@@ -1,9 +1,4 @@
 <?php
-/* @var $this ItemController */
-/* @var $dataProvider CActiveDataProvider */
-?>
-
-<?php
 $this->breadcrumbs=array(
 	'Items',
 );
@@ -16,7 +11,7 @@ $this->menu=array(
 
 <h1>Items</h1>
 
-<?php $this->widget('\TbListView',array(
+<?php $this->widget('bootstrap.widgets.TbListView',array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
 )); ?>

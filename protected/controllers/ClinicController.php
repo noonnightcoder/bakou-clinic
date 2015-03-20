@@ -180,15 +180,34 @@ class ClinicController extends Controller
         
         public function actionClinicInfo()
         {
-            //$model = new Clinic;
+            $model = new Clinic;
             $id=1;
             $model = Clinic::model()->findByPk($id);
-            
+
             if (!empty($model->id))
             {
-                $this->actionUpdate($model->id);
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if (isset($_POST['Clinic'])) {
+			$model->attributes=$_POST['Clinic'];
+			if ($model->save()) {
+				//$this->redirect(array('view','id'=>$model->id));
+			}
+		}
+                
+                //$this->actionUpdate($model->id);
+                $model=$this->loadModel($model->id);
+
+		$this->render('update',array(
+			'model'=>$model,
+		));
             }else{
                 $this->actionCreate();
+                /*$model = new Clinic;
+                $this->render('admin',array(
+			'model'=>$model,
+		));*/
             }            
         }
 }
