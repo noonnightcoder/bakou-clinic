@@ -97,6 +97,11 @@ class AppointmentController extends Controller
             // $this->performAjaxValidation($model);
 
             //$doctor= Appointment::model()->get_combo_doctor(); 
+            if(!Yii::app()->user->checkAccess('appointment.create'))
+            {
+                throw new CHttpException(400,'You are not authorized to perform this action.');
+            }
+            
             if (isset($_POST['Appointment'])) {
                 
                 $chk=Appointment::model()->chk_user_inqueue($_POST['Patient']['patient_id']);
@@ -176,6 +181,11 @@ class AppointmentController extends Controller
      */
     public function actionDelete($id)
     {
+            if(!Yii::app()->user->checkAccess('appointment.delete'))
+            {
+                throw new CHttpException(400,'You are not authorized to perform this action.');
+            }
+            
             if (Yii::app()->request->isPostRequest) {
                     // we only allow deletion via POST request
                     $this->loadModel($id)->delete();
@@ -314,6 +324,12 @@ class AppointmentController extends Controller
         $model = new Appointment;  
         $app_log = new AppointmentLog;
         $visit = new Visit;
+        
+        if(!Yii::app()->user->checkAccess('consultation.create'))
+        {
+            throw new CHttpException(400,'You are not authorized to perform this action.');
+        }
+        
         if(isset($_GET['appoint_id']) && isset($_GET['patient_id']) && isset($_GET['doctor_id']))
         {
             //----***Check if appointment already exist***----//
@@ -355,6 +371,11 @@ class AppointmentController extends Controller
 
     public function actionDoctorConsult()
     {
+        if(!Yii::app()->user->checkAccess('consultation.create'))
+        {
+            throw new CHttpException(400,'You are not authorized to perform this action.');
+        }
+        
         if(isset($_GET['visit_id']) and isset($_GET['patient_id']) and isset($_GET['doctor_id']))
         {   
             $userid = Yii::app()->user->getId();            
@@ -529,11 +550,16 @@ class AppointmentController extends Controller
     
     public function actionLabocheck()
     {
-        $model = new Appointment('get_patient_queue');
-        //return $model->get_doctor_queue();
-        $this->render('labocheck',array(
-            'model'=>$model,
-        ));
+        if(!Yii::app()->user->checkAccess('consultation.view'))
+        {
+            throw new CHttpException(400,'You are not authorized to perform this action.');
+        }else{
+            $model = new Appointment('get_patient_queue');
+            //return $model->get_doctor_queue();
+            $this->render('labocheck',array(
+                'model'=>$model,
+            ));
+        }
     }
     
     public function actionLaboPreview()
@@ -546,6 +572,11 @@ class AppointmentController extends Controller
         $patient_id=$_GET['patient_id'];
         $doctor_id=$_GET['doctor_id'];
         
+        if(!Yii::app()->user->checkAccess('consultation.view'))
+        {
+            throw new CHttpException(400,'You are not authorized to perform this action.');
+        }
+        
         $visit = Appointment::model()->findByPk($_GET['appoint_id']); 
         $this->redirect(array('LaboView','visit_id'=>$visit->visit_id,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id));       
     }
@@ -557,6 +588,11 @@ class AppointmentController extends Controller
         $treatment = new Treatment;
         $medicine = new Item;
         $patient = new Patient;
+        
+        if(!Yii::app()->user->checkAccess('consultation.view'))
+        {
+            throw new CHttpException(400,'You are not authorized to perform this action.');
+        }
         
         if(isset($_GET['visit_id']) and isset($_GET['patient_id']) and isset($_GET['doctor_id']))
         {   

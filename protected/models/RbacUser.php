@@ -41,6 +41,10 @@ class RbacUser extends CActiveRecord
         public $treatments;
         public $appointments;
         public $contacts;
+        public $prescriptions;
+        Public $pharmacys;
+        public $laboratorys;
+        public $consultations;
 
 
         /**

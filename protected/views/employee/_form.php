@@ -63,7 +63,43 @@
                 
                 <?php //echo $form->textFieldControlGroup($user,'employee_id',array('class'=>'span5')); ?>
                 <h4 class="header blue bolder"><i class="ace-icon fa fa-gavel blue"></i><?php echo Yii::t('app','Employee Permissions and Access'); ?></h4>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="RbacUser_patients">Patient</label>
+                    <div class="col-sm-9">
+                        <?php echo CHtml::activeCheckboxList($user, 'contacts',Authitem::model()->getAuthcontact(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="RbacUser_appointments">Appointment</label>
+                    <div class="col-sm-9">
+                        <?php echo CHtml::activeCheckboxList($user, 'appointments',Authitem::model()->getAuthAppointment(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
+                    </div>
+                </div>
                 
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="RbacUser_prescription">Print Bill</label>
+                    <div class="col-sm-9">
+                        <?php echo CHtml::activeCheckboxList($user, 'prescriptions',Authitem::model()->getAuthPrescription(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="RbacUser_laboratory">Laboratory</label>
+                    <div class="col-sm-9">
+                        <?php echo CHtml::activeCheckboxList($user, 'laboratorys',Authitem::model()->getAuthlist('laboratory'), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="RbacUser_pharmacy">Pharmacy</label>
+                    <div class="col-sm-9">
+                        <?php echo CHtml::activeCheckboxList($user, 'pharmacys',Authitem::model()->getAuthlist('pharmacy'), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="RbacUser_consultation">Consultation</label>
+                    <div class="col-sm-9">
+                        <?php echo CHtml::activeCheckboxList($user, 'consultations',Authitem::model()->getAuthlist('consultation'), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
+                    </div>
+                </div>                
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="RbacUser_items"><?php echo Yii::t('app','Item'); ?></label>
                     <div class="col-sm-9">
@@ -71,19 +107,19 @@
                     </div>
                 </div> 
                 
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label class="col-sm-3 control-label" for="RbacUser_sales"><?php echo Yii::t('app','Sale'); ?></label>
                     <div class="col-sm-9">
-                        <?php echo CHtml::activeCheckboxList($user, 'sales',Authitem::model()->getAuthItemSale(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
+                        <?php //echo CHtml::activeCheckboxList($user, 'sales',Authitem::model()->getAuthItemSale(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
                     </div>
-                </div>
+                </div>-->
                 
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label class="col-sm-3 control-label" for="RbacUser_invoices"><?php echo Yii::t('app','Sale Invoices'); ?></label>
                     <div class="col-sm-9">
-                        <?php echo CHtml::activeCheckboxList($user, 'invoices',Authitem::model()->getAuthItemInvoice(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
+                        <?php //echo CHtml::activeCheckboxList($user, 'invoices',Authitem::model()->getAuthItemInvoice(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
                     </div>
-                </div>
+                </div>-->
                   
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="RbacUser_employees"><?php echo Yii::t('app','Employee'); ?></label>
@@ -92,12 +128,12 @@
                     </div>
                 </div>
                 
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label class="col-sm-3 control-label" for="RbacUser_customers"><?php echo Yii::t('app','Customer'); ?></label>
                     <div class="col-sm-9">
-                        <?php echo CHtml::activeCheckboxList($user, 'customers',Authitem::model()->getAuthItemClient(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
+                        <?php //echo CHtml::activeCheckboxList($user, 'customers',Authitem::model()->getAuthItemClient(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
                     </div>
-                </div>
+                </div>-->
                 
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="RbacUser_payments"><?php echo Yii::t('app','Supplier'); ?></label>
@@ -139,20 +175,7 @@
                     <div class="col-sm-9">
                         <?php echo CHtml::activeCheckboxList($user, 'treatments',Authitem::model()->getAuthItemTreatment(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
                     </div>
-                </div>                
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" for="RbacUser_appointments">Appointment</label>
-                    <div class="col-sm-9">
-                        <?php echo CHtml::activeCheckboxList($user, 'appointments',Authitem::model()->getAuthAppointment(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" for="RbacUser_patients">Contact</label>
-                    <div class="col-sm-9">
-                        <?php echo CHtml::activeCheckboxList($user, 'contacts',Authitem::model()->getAuthcontact(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
-                    </div>
-                </div>
+                </div>                   
                 
                 <?php //echo $form->inlineCheckBoxListControlGroup($user, 'items',Authitem::model()->getAuthItemItem(),array('class'=>'ace-checkbox-2')); ?>
 

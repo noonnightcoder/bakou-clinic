@@ -53,7 +53,7 @@ $this->widget('bootstrap.widgets.TbNav', array(
                                    'visible'=>Yii::app()->user->checkAccess('appointment.waitingqueue')
                                ),                               
                                array('label'=>Yii::t('menu','Prescription Bill'),'icon'=> 'fa fa-plus-square', 'url'=>Yii::app()->urlManager->createUrl('appointment/Prescription'), 'active'=>$this->id=='Prescription',
-                                   'visible'=>Yii::app()->user->checkAccess('appointment.prescription')
+                                   'visible'=>Yii::app()->user->checkAccess('prescription.view')
                                ),
                                array('label'=>Yii::t('menu','laboratory'),'icon'=> 'fa fa-stethoscope', 'url'=>Yii::app()->urlManager->createUrl('appointment/labocheck'), 'active'=>$this->id=='labocheck',
                                    'visible'=>Yii::app()->user->checkAccess('laboratory.view')

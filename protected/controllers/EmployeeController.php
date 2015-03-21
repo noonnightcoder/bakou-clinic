@@ -96,7 +96,8 @@ class EmployeeController extends Controller
                                                     'customers', 'suppliers', 'store', 
                                                     'receivings', 'reports', 'invoices', 
                                                     'payments','treatments','appointments',
-                                                    'contacts');
+                                                    'contacts','prescriptions','pharmacys',
+                                                    'laboratorys','consultations');
 
                                 foreach ($assignitems as $assignitem) {
                                     if (!empty($_POST['RbacUser'][$assignitem])) {
@@ -169,7 +170,11 @@ class EmployeeController extends Controller
             $user->payments = $auth_items;
             $user->treatments = $auth_items;
             $user->appointments = $auth_items;
-            $user->contacts = $auth_items;
+            $user->contacts = $auth_items;            
+            $user->prescriptions = $auth_items;
+            $user->pharmacys = $auth_items;
+            $user->laboratorys = $auth_items;
+            $user->consultations = $auth_items;
 
             // Uncomment the following line if AJAX validation is needed
             // $this->performAjaxValidation($model);
@@ -199,7 +204,8 @@ class EmployeeController extends Controller
                                             'customers', 'suppliers', 'store', 
                                             'receivings', 'reports', 'invoices', 
                                             'payments','treatments','appointments',
-                                            'contacts');
+                                            'contacts','prescriptions','pharmacys',
+                                            'laboratorys','consultations');
 
                             foreach ($assignitems as $assignitem) {
                                 if (!empty($_POST['RbacUser'][$assignitem])) {
