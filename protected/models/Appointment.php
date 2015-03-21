@@ -233,6 +233,7 @@ class Appointment extends CActiveRecord
                                 INNER JOIN v_patient t2 ON t1.patient_id=t2.patient_id
                                 WHERE appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
                                 AND appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+                                and t1.status in ('Waiting','Consultation')
                                 ORDER BY t1.user_id,appointment_date
                 )cr, (SELECT @row_number:=0,@user_id:='') AS t ";
             
@@ -418,5 +419,81 @@ class Appointment extends CActiveRecord
             $cmd->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
             
             return $cmd->queryScalar();
+        }
+        
+        public function showConsultDrug()
+        {
+            if(isset($_GET['Appointment']))
+            {
+                //-----***Check condition of query***----//
+                $search = $_GET['Appointment']['patient_name'];
+                $cond=" and (lower(patient_name) like '%".  $search ."%' or lower(display_id) like  '%".  $search ."%')";
+            
+                if (isset($_GET['Appointment']['date_report'])) {
+                    $date_report = $_GET['Appointment']['date_report'];
+                    $cond1 =" appointment_date>=DATE_SUB('$date_report', INTERVAL 0 DAY)
+                              and appointment_date<DATE_ADD('$date_report', INTERVAL 1 DAY)";
+                } else {
+                    $cond1 =" and appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
+                              and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)";
+                }
+        
+            }else{
+                $cond="";
+                $cond1 =" appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
+                              and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)";
+            }
+            
+            $sql="select @rownum:=@rownum+1 id,appointment_id,patient_id,doctor_id,visit_id,
+                patient_name,display_id,appointment_date,title,status
+                from(
+                SELECT app_id appointment_id,patient_id,user_id doctor_id,visit_id,
+                patient_name,display_id,appointment_date,title,status
+                FROM v_appointment_state
+                WHERE $cond1 $cond
+            )lv,(SELECT @rownum:=0) r";
+            
+            return new CSqlDataProvider($sql,array(
+                'sort' => array(
+                        'attributes' => array(
+                            'appointment_id','patient_id','visit_id'
+                        )
+                    ),
+            ));
+        }
+        
+        public function get_patient_queue()
+        {
+            if(isset($_GET['Appointment']))
+            {
+                //-----***Check condition of query***----//
+                $search = $_GET['Appointment']['patient_name'];
+                $cond=" and (lower(patient_name) like '%".  $search ."%' or lower(display_id) like  '%".  $search ."%')";
+            }else{
+                $cond="";
+                
+            }
+            
+            $userid=Yii::app()->user->getId();
+            $sql="SELECT @rownum:=@rownum+1 id,app_id,patient_id,doctor_id,patient_name,
+                    display_id,appointment_date,title,status
+                    from(select app_id,patient_id,user_id doctor_id,patient_name,display_id,appointment_date,title,status
+                        FROM v_appointment_state 
+                        WHERE appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
+                        and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+                        and user_id=$userid  
+                        $cond
+                        ORDER BY appointment_date
+                    )cl,(SELECT @rownum:=0) r";
+            //echo $sql;
+            //$rawData = Yii::app()->db->createCommand($sql);
+            //$rawData->bindParam(':userid', $userid, PDO::PARAM_INT);
+            return new CSqlDataProvider($sql,array(
+                'sort' => array(
+                        'attributes' => array(
+                            'id','display_id','patient_name'
+                        )
+                    ),
+            ));
         }
 }

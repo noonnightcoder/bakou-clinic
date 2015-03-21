@@ -53,6 +53,8 @@ class DashboardController extends Controller
             if ( Yii::app()->user->checkAccess('report.index') ) {
                 //$report=new Report;  
                 $this->render('index');
+            }elseif(Yii::app()->user->checkAccess('appointment.index')){
+                $this->redirect(array('appointment/appointmentdash'));
             } else {
                 throw new CHttpException(403, 'You are not authorized to perform this action');
             }

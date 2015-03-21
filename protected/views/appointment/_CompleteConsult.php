@@ -70,6 +70,7 @@
         <div class="form-actions" id="form-actions">
              <?php echo TbHtml::submitButton($visit->isNewRecord ? Yii::t('app','Save') : Yii::t('app','Save'),array(
                'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
+               'name'=>'Save_consult' 
                //'size'=>TbHtml::BUTTON_SIZE_SMALL,
            )); ?>
             <?php 
@@ -90,7 +91,7 @@
             ?>
             <?php if(!empty($chk_bill_saved)) { ?>
             <?php 
-            echo TbHtml::linkButton('Completed Consultation',array(
+            /*echo TbHtml::linkButton('Completed Consultation',array(
                'buttonType'=>'button',
                'type'=>'primary',
                'color' => TbHtml::BUTTON_COLOR_SUCCESS,
@@ -98,7 +99,12 @@
                //'url' => '#',
                 'class' => 'completed-consult',
                 //'title' =>  'Remove', 
-            ));
+            ));*/
+            echo TbHtml::submitButton($visit->isNewRecord ? Yii::t('app','Completed Consultation') : Yii::t('app','Completed Consultation'),array(
+               'color'=>TbHtml::BUTTON_COLOR_SUCCESS,
+               'name'=>'Completed_consult' 
+               //'size'=>TbHtml::BUTTON_SIZE_SMALL,
+           ));
             ?>
             <?php } ?>
         </div>  

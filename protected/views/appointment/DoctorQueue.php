@@ -18,7 +18,7 @@
 /* @var $this AppointmentController */
 /* @var $model Appointment */
 $this->breadcrumbs=array(
-            Yii::t('menu','Appoionment')=>array('admin'),
+            Yii::t('menu','Appoionment')=>array('WaitingQueue'),
             Yii::t('app','Manage'),
     );
 

@@ -40,7 +40,8 @@ class AppointmentController extends Controller
                                 'GetTreatment','InitTreatment','EditMedicine',
                                 'EditTreatment','completedConsult','CancelAppointmen',
                                 'Prescription','prescriptionDetail','AddPayment',
-                                'CompleteSale','DeletePayment'
+                                'CompleteSale','DeletePayment','Labocheck',
+                                'LaboPreview','LaboView','Pharmacy','PharmacyDetail'
                                 ),
                             'users'=>array('@'),
                     ),
@@ -282,7 +283,7 @@ class AppointmentController extends Controller
         $this->render('DoctorQueue',array(
             'model'=>$model,
         ));
-    }
+    }    
 
     protected function gridLeaveStatusColumn($data,$row)
     {
@@ -475,11 +476,19 @@ class AppointmentController extends Controller
                                         'plan'=>$_POST['Visit']['plan'],
                                     )
                                 );
-                        //
-                        Yii::app()->treatmentCart->clearAll();
-                        $transaction->commit();
-                        Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
-                        $this->redirect('waitingqueue');
+                        if(!empty($_POST['Visit']['sympton']) || !empty($_POST['Visit']['observation']) || !empty($_POST['Visit']['assessment']) ||!empty($_POST['Visit']['plan']))
+                        {
+                            $transaction->commit();
+                            if(isset($_POST['Completed_consult']))
+                            {
+                                $this->actioncompletedConsult($_GET['visit_id']);
+                            }
+                            Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
+                            $this->redirect('waitingqueue');
+                        }else{
+                            $transaction->rollback();
+                        }    
+                        Yii::app()->treatmentCart->clearAll(); 
                     }catch (Exception $e){
                         $transaction->rollback();
                         Yii::app()->user->setFlash('error', '<strong>Process was rollback! </strong>Please contact administrator.');
@@ -516,6 +525,59 @@ class AppointmentController extends Controller
         }else{
             throw new CHttpException(404,'The requested page does not exist.');
         }
+    }
+    
+    public function actionLabocheck()
+    {
+        $model = new Appointment('get_patient_queue');
+        //return $model->get_doctor_queue();
+        $this->render('labocheck',array(
+            'model'=>$model,
+        ));
+    }
+    
+    public function actionLaboPreview()
+    {
+        $model = new Appointment;  
+        $app_log = new AppointmentLog;
+        $visit = new Visit;
+        $treatment = new Treatment;
+
+        $patient_id=$_GET['patient_id'];
+        $doctor_id=$_GET['doctor_id'];
+        
+        $visit = Appointment::model()->findByPk($_GET['appoint_id']); 
+        $this->redirect(array('LaboView','visit_id'=>$visit->visit_id,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id));       
+    }
+    
+    public function actionLaboView()
+    {
+        $model = new Appointment;  
+        $app_log = new AppointmentLog;
+        $treatment = new Treatment;
+        $medicine = new Item;
+        $patient = new Patient;
+        
+        if(isset($_GET['visit_id']) and isset($_GET['patient_id']) and isset($_GET['doctor_id']))
+        {   
+            $userid = Yii::app()->user->getId();     
+            $employee_id = RbacUser::model()->findByPk($_GET['doctor_id']);
+            $employee = Employee::model()->get_doctorName($employee_id->employee_id);
+            $data['treatment']=$treatment;
+            
+            $data['treatment_selected_items']=$treatment->get_tbl_treatment($_GET['visit_id']);
+            $data['medicine_selected_items']=$medicine->get_tbl_medicine($_GET['visit_id']);
+            $data['model']=$model;
+            $data['visit']=  Visit::model()->findByPk($_GET['visit_id']);
+            $data['employee']=$employee;
+            $data['treatment']=$treatment;
+            $data['patient']=$patient;
+            $data['treatment_items']=$treatment->get_all_treatment(); 
+            $data['medicine']=$medicine;
+            $data['visit_id'] = $_GET['visit_id'];
+            
+            $this->render('labo_view',$data);
+        }    
     }
 
     /*protected function treatment_check($treatment,$id)
@@ -778,21 +840,22 @@ class AppointmentController extends Controller
         }
     }
     
-    public function actioncompletedConsult($visit_id)
+    protected function actioncompletedConsult($visit_id)
     {
-        if(Yii::app()->request->isAjaxRequest) 
-        {
-           $user_id = Yii::app()->user->getId();
+        //if(Yii::app()->request->isAjaxRequest) 
+        //{
+            //Yii::app()->treatmentCart->clearAll();
+            $user_id = Yii::app()->user->getId();
             Appointment::model()->updateCompleteAppt($visit_id,$user_id); 
             Yii::app()->treatmentCart->clearAll();
-            echo CJSON::encode(array(
+            /*echo CJSON::encode(array(
                 'status' => 'success',
                 //'div_medicine_form' => 'OK',
-            ));
+            ));*/
             
-        }else {
+        /*}else {
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
-        }        
+        }   */     
     }
     
     public function actionCancelAppointmen($appoint_id,$doctor_id,$patient_id)
@@ -858,6 +921,33 @@ class AppointmentController extends Controller
                 'model'=>$model,
             ));
         }
+    }
+    
+    public function actionPharmacy()
+    {
+        $model = new Appointment('showConsultDrug');
+        
+        if (isset($_GET['date_report'])) {
+            $model->attributes = $_GET['date_report'];
+            $date_report = $_GET['Appointment']['date_report'];
+        } else {
+            $date_report = date('Y-m-d');
+        }
+        
+        $model->date_report = $date_report;
+        
+        //return $model->get_doctor_queue();
+        $this->render('Pharmacy',array(
+            'model'=>$model,'date_report'=>$date_report
+        ));
+    }
+    
+    public function actionPharmacyDetail($visit_id)
+    {  
+        $model = new Appointment;
+        $data['model'] = new Appointment('showPrescription');
+        $data['visit_id'] = $visit_id;
+        $this->render('PharmacyDetail',$data);
     }
     
     /*public function actionCompleteSale($visit_id)
@@ -954,11 +1044,12 @@ class AppointmentController extends Controller
         }
     }
     
-     public function actionCompleteSale($visit_id)
+    public function actionCompleteSale($visit_id)
     {
         
         $this->layout = '//layouts/column_receipt';
         //$sale_id=10;
+        
         $sale_id = Payment::model()->CompleteSale($visit_id);
         //echo $sale_id; die();
         $clinic_info = Clinic::model()->find();

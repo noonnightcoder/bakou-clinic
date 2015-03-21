@@ -70,7 +70,7 @@ class TreatmentController extends Controller
 		if (isset($_POST['Treatment'])) {
 			$model->attributes=$_POST['Treatment'];
 			if ($model->save()) {
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin','id'=>$model->id));
 			}
 		}
 
@@ -94,7 +94,7 @@ class TreatmentController extends Controller
 		if (isset($_POST['Treatment'])) {
 			$model->attributes=$_POST['Treatment'];
 			if ($model->save()) {
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin','id'=>$model->id));
 			}
 		}
 

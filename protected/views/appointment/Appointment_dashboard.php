@@ -30,6 +30,8 @@ echo "<tbody>";
         {
             //$doc=$doctor;
             $url=Yii::app()->createUrl('Appointment/create',array("doctor_id"=>$doc_id));
+            $cancel_url = Yii::app()->createUrl('Appointment/create');
+            $change_doc_url = Yii::app()->createUrl('Appointment/create');
             $count=0;
             echo "<td><table id=\"innertbl\"><tr $class>";
             foreach ($appointment as $app)
@@ -39,6 +41,7 @@ echo "<tbody>";
                     if($i==$app['id'])
                     {
                         echo "<td id='" . $app['status']. "'><a href='#'>" . $app['fullname'] . "</a></td>";
+                        //echo "<td id='" . $app['status']. "'>" . $app['fullname'] . "<a href='$change_doc_url' title='Change Doctor' class='fa fa-exchange'></a><a href='$cancel_url' title='Cancel Appointment' class='fa fa-times'></a></td>";
                         /*switch($app['status'])
                         {
                             case 'Waiting':

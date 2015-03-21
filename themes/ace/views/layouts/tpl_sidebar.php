@@ -20,7 +20,7 @@ $this->widget('bootstrap.widgets.TbNav', array(
     'encodeLabel' => false,
     'items' => array(
             array('label'=>'<span class="menu-text">' . strtoupper(Yii::t('menu', 'Dashboard')) . '</span>', 'icon'=>'menu-icon fa fa-tachometer', 'url'=>Yii::app()->urlManager->createUrl('dashboard/view'), 'active'=>$this->id .'/'. $this->action->id=='dashboard/view'?true:false,
-                    'visible'=> Yii::app()->user->checkAccess('report.index')
+                    'visible'=> Yii::app()->user->checkAccess('report.index')||Yii::app()->user->checkAccess('appointment.index')
             ),
             /*array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Clinc Info')) . '</span>', 'icon'=>'glyphicon glyphicon-tower','url'=>Yii::app()->urlManager->createUrl('client/admin'),
                            'active'=>$this->id=='employee' || $this->id=='clinic' || $this->id=='treatment' || $this->id=='item',
@@ -54,6 +54,12 @@ $this->widget('bootstrap.widgets.TbNav', array(
                                ),                               
                                array('label'=>Yii::t('menu','Prescription Bill'),'icon'=> 'fa fa-plus-square', 'url'=>Yii::app()->urlManager->createUrl('appointment/Prescription'), 'active'=>$this->id=='Prescription',
                                    'visible'=>Yii::app()->user->checkAccess('appointment.prescription')
+                               ),
+                               array('label'=>Yii::t('menu','laboratory'),'icon'=> 'fa fa-stethoscope', 'url'=>Yii::app()->urlManager->createUrl('appointment/labocheck'), 'active'=>$this->id=='labocheck',
+                                   'visible'=>Yii::app()->user->checkAccess('laboratory.view')
+                               ),
+                               array('label'=>Yii::t('menu','pharmacy'),'icon'=> 'fa fa-ambulance', 'url'=>Yii::app()->urlManager->createUrl('appointment/pharmacy'), 'active'=>$this->id=='pharmacy',
+                                   'visible'=>Yii::app()->user->checkAccess('pharmacy.view')
                                ),
             )),
             array('label'=>'<span class="menu-text">' . strtoupper(Yii::t('menu','Transaction')) .'</span>', 'icon'=>'menu-icon fa fa-desktop','url'=>Yii::app()->urlManager->createUrl('receivingItem/index'),'active'=>$this->id .'/'. $this->action->id=='receivingItem/index',

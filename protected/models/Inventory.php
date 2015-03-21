@@ -49,6 +49,8 @@ class Inventory extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'transItems' => array(self::BELONGS_TO, 'Item', 'trans_items'),
+                        'employee' => array(self::BELONGS_TO, 'Employee', 'trans_user'),
 		);
 	}
 
@@ -66,7 +68,7 @@ class Inventory extends CActiveRecord
 			'trans_inventory' => 'Trans Inventory',
 			'trans_qty' => 'Trans Qty',
 			'qty_b4_trans' => 'Qty B4 Trans',
-			'qty_af_trans' => 'Qty Af Trans',
+                        'qty_af_trans' => 'Qty After Trans',
 		);
 	}
 
@@ -82,7 +84,7 @@ class Inventory extends CActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($item_id)
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
@@ -96,10 +98,14 @@ class Inventory extends CActiveRecord
 		$criteria->compare('trans_inventory',$this->trans_inventory);
 		$criteria->compare('trans_qty',$this->trans_qty);
 		$criteria->compare('qty_b4_trans',$this->qty_b4_trans);
-		$criteria->compare('qty_af_trans',$this->qty_af_trans);
+                $criteria->compare('qty_af_trans',$this->qty_af_trans);
+                
+                $criteria->condition="trans_items=:trans_items";
+                $criteria->params = array(':trans_items' => $item_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'sort'=>array( 'defaultOrder'=>'trans_date desc')
 		));
 	}
 
