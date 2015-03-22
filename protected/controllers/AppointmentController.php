@@ -894,7 +894,7 @@ class AppointmentController extends Controller
         }   */     
     }
     
-    public function actionCancelAppointmen($appoint_id,$doctor_id,$patient_id)
+    public function actionCancelAppointmen($appoint_id,$doctor_id='',$patient_id='')
     {
         $model = new AppointmentLog;
         $transaction=$model->dbConnection->beginTransaction();
@@ -907,14 +907,14 @@ class AppointmentController extends Controller
             $model->user_id = $user_id;
             $model->save();
             $transaction->commit();                        
-            $this->redirect('waitingqueue');
+            $this->redirect(Yii::app()->user->returnUrl);
         }catch (Exception $e){
             $transaction->rollback(); 
             Yii::app()->user->setFlash('error', '<strong>Process was rollback! </strong>Please contact administrator.');
             echo $e->getMessage();
         }
     }
-    
+
     public function actionPrescription()
     {
         $model = new Appointment('showBill');
