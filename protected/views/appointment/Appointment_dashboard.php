@@ -30,8 +30,7 @@ echo "<tbody>";
         {
             //$doc=$doctor;
             $url=Yii::app()->createUrl('Appointment/create',array("doctor_id"=>$doc_id));
-            $cancel_url = Yii::app()->createUrl('Appointment/create');
-            $change_doc_url = Yii::app()->createUrl('Appointment/create');
+
             $count=0;
             echo "<td><table id=\"innertbl\"><tr $class>";
             foreach ($appointment as $app)
@@ -40,6 +39,16 @@ echo "<tbody>";
                 {
                     if($i==$app['id'])
                     {
+                        $change_doc_url= Yii::app()->createUrl('Appointment/update',array('appt_id'=>$app['id'],'doctor_id'=>$app['doc_id']));
+                        $cancel_url=Yii::app()->createUrl('Appointment/delete',array('appt_id'=>$app['id'],'doctor_id'=>$app['doc_id']));
+                                
+                        /*if($app['status'] != 'Waiting')
+                        {
+                            echo "<td id='" . $app['status']. "'><a href='#'>" . $app['fullname'] . "</a></td>";
+                        }else{
+                            echo "<td id='" . $app['status']."'>" . $app['fullname'] . "<a href='$change_doc_url' title='Change Doctor' class='fa fa-exchange'></a><a href='$cancel_url' title='Cancel Appointment' class='fa fa-times' onclick=\"cancel(".$app['id'].");\"></a></td>";
+                        }*/
+                        
                         echo "<td id='" . $app['status']. "'><a href='#'>" . $app['fullname'] . "</a></td>";
                         //echo "<td id='" . $app['status']. "'>" . $app['fullname'] . "<a href='$change_doc_url' title='Change Doctor' class='fa fa-exchange'></a><a href='$cancel_url' title='Cancel Appointment' class='fa fa-times'></a></td>";
                         /*switch($app['status'])
@@ -83,3 +92,15 @@ echo "<tr><td id = \"Appointments\" style=\"height: 15px;width: 15px;\"></td>";
 <?php $this->endWidget(); ?>
     </div>
 </div>
+
+<script type="text/javascript">
+    function cancel (appt_id) {
+        var answer=confirm("Are you sure! you wan to cancel appointment?");
+        if (answer==false)
+        {
+            return false;
+        }else{
+            return true;
+        }
+    }
+</script>

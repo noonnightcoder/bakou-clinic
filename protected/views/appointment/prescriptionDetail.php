@@ -113,14 +113,14 @@ $('.search-form form').submit(function(){
                                         </span>
                                     </td>
                                 </tr>
-                                 <tr>
+                                <!--<tr>
                                     <td><?php echo Yii::t('app', 'Total in KHR'); ?> :</td>
                                     <td>
                                         <span class="badge badge-success bigger-120">
-                                            <?php echo @$amount*4000 ?>
+                                            <?php //echo @$amount*4000 ?>
                                         </span>
                                     </td>
-                                </tr> 
+                                </tr> --->
                                 <?php if ($count_payment > 0) { ?>
                                     <?php foreach ($payments as $id => $payment): ?>
                                     <tr>
@@ -138,7 +138,7 @@ $('.search-form form').submit(function(){
                                             <?php echo Yii::t('App','Paid Amount[Cash]'); ?></td>
                                         <td>
                                             <span class="badge badge-info bigger-120">
-                                                <?php echo $payment['payment_amount']; ?> Or <?php echo $payment['payment_amount']*4000; ?>
+                                                <?php echo $payment['payment_amount']; ?><?php //echo $payment['payment_amount']*4000; ?>
                                             </span>
                                         </td>
                                     </tr>

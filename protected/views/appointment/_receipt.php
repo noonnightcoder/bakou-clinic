@@ -121,28 +121,28 @@ if (isset($error_message))
                         <td><?php echo TbHtml::encode($item['name']); ?></td>
                         <td class="center"><?php echo TbHtml::encode(number_format($item['price'],Yii::app()->shoppingCart->getDecimalPlace())); ?></td>
                         <td class="center"><?php echo TbHtml::encode($item['quantity']); ?></td>
-                        <td class="<?php echo 'center' . ' ' . Yii::app()->settings->get('sale','discount'); ?>"><?php echo TbHtml::encode($item['discount']); ?></td>
+                        <td class="<?php //echo 'center' . ' ' . Yii::app()->settings->get('sale','discount'); ?>"><?php //echo TbHtml::encode($item['discount']); ?></td>
                         <td class="text-right"><?php echo TbHtml::encode($total_item); ?>
                     </tr>
                 <?php endforeach; ?> <!--/endforeach--> 
                     <tr class="gift_receipt_element">
-                        <td colspan="<?php echo $colspan; ?>" style='text-align:right;border-top:2px solid #000000;'><?php echo Yii::t('app','Sub Total'); ?></td>
-                        <td colspan="2" style='text-align:right;border-top:2px solid #000000;'> <?php echo Yii::app()->settings->get('site', 'currencySymbol') . number_format($sub_total,Yii::app()->shoppingCart->getDecimalPlace(), '.', ','); ?></td>
+                        <td colspan="<?php echo $colspan; ?>" style='text-align:right;border-top:2px solid #000000;'><?php //echo Yii::t('app','Sub Total'); ?></td>
+                        <td colspan="2" style='text-align:right;border-top:2px solid #000000;'> <?php //echo Yii::app()->settings->get('site', 'currencySymbol') . number_format($sub_total,Yii::app()->shoppingCart->getDecimalPlace(), '.', ','); ?></td>
                     </tr>
-                     <tr class="gift_receipt_element">
-                        <td colspan="<?php echo $colspan; ?>" style='text-align:right;'><?php echo $total_discount . '% ' . Yii::t('app', 'Discount'); ?></td>
+                    <!--<tr class="gift_receipt_element">
+                        <td colspan="<?php echo $colspan; ?>" style='text-align:right;'><?php //echo $total_discount . '% ' . Yii::t('app', 'Discount'); ?></td>
                         <td colspan="2" style='text-align:right;'>
-                            <?php echo Yii::app()->settings->get('site', 'currencySymbol') . number_format($discount_amount,Yii::app()->shoppingCart->getDecimalPlace(), '.', ','); ?>
+                            <?php //echo Yii::app()->settings->get('site', 'currencySymbol') . number_format($discount_amount,Yii::app()->shoppingCart->getDecimalPlace(), '.', ','); ?>
                         </td>
-                    </tr>
+                    </tr>-->
                     
                     <tr class="gift_receipt_element">
                         <td colspan="<?php echo $colspan; ?>" style='text-align:right;'><?php echo TbHtml::b(Yii::t('app','Total')); ?></td>
                         <td colspan="2" style='text-align:right;'>
                             <span style="font-size:12px;font-weight:bold">
                             <?php echo Yii::app()->settings->get('site', 'currencySymbol') . number_format($total,Yii::app()->shoppingCart->getDecimalPlace(), '.', ','); ?>
-                            <?php echo Yii::t('app','OR'); ?>
-                            <?php echo Yii::app()->settings->get('site', 'altcurrencySymbol') . number_format($total_khr_round,0, '.', ','); ?>
+                            <?php //echo Yii::t('app','OR'); ?>
+                            <?php //echo Yii::app()->settings->get('site', 'altcurrencySymbol') . number_format($total_khr_round,0, '.', ','); ?>
                             </span>
                         </td>
                     </tr>
@@ -163,11 +163,11 @@ if (isset($error_message))
                     <?php //endforeach;?>
                     
                     <tr>
-                        <td colspan="<?php echo $colspan; ?>" style='text-align:right'><?php echo Yii::t('app','Change Due'); ?></td>
+                        <td colspan="<?php echo $colspan; ?>" style='text-align:right'><?php //echo Yii::t('app','Change Due'); ?></td>
                         <td colspan="2" style='text-align:right'> 
-                            <?php echo Yii::app()->settings->get('site', 'currencySymbol') . number_format($amount_change,Yii::app()->shoppingCart->getDecimalPlace(), '.', ','); ?>
-                            <?php echo Yii::t('app','OR'); ?>
-                            <?php echo Yii::app()->settings->get('site', 'altcurrencySymbol') . number_format($amount_change_khr_round,0, '.' , ','); ?>
+                            <?php //echo Yii::app()->settings->get('site', 'currencySymbol') . number_format($amount_change,Yii::app()->shoppingCart->getDecimalPlace(), '.', ','); ?>
+                            <?php //echo Yii::t('app','OR'); ?>
+                            <?php //echo Yii::app()->settings->get('site', 'altcurrencySymbol') . number_format($amount_change_khr_round,0, '.' , ','); ?>
                         </td>
                     </tr>
                      
@@ -186,10 +186,10 @@ if (isset($error_message))
      
 </div>
 
-<script>
+<!--<script>
 $(window).bind("load", function() {
     setTimeout(window.location.href='Prescription',5000); 
     window.print();
     return true;
 });    
-</script>
+</script>--->
