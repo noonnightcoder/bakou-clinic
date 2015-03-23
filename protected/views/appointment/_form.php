@@ -23,7 +23,7 @@
     <p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
             <?php //echo $form->textFieldControlGroup($model,'appointment_date',array('span'=>5)); ?>
-            <div class="form-group"><label class="col-sm-3 control-label" for="Patient">Patient</label> 
+            <div class="form-group"><label class="col-sm-3 control-label" for="Patient">Patient *</label> 
             <div class="col-md-5"><?php 
             $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                 'asDropDownList' => false,
@@ -68,7 +68,9 @@
                         }',
                         //'htmlOptions'=>array('id'=>'search_item_id'),
                 )));
-            ?></div></div>
+            ?>
+            <strong><?php echo $form->error($model,'patient_id'); ?></strong></div></div>
+            
 
             <?php //echo $form->textFieldControlGroup($model,'end_date',array('span'=>5)); ?>
     

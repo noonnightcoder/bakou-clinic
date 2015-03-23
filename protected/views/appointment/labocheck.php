@@ -9,7 +9,7 @@
 /* @var $this ContactController */
 /* @var $model Contact */
     $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-                  'title' => Yii::t('app','Waiting Queue'),
+                  'title' => Yii::t('app','Laboratory'),
                   'headerIcon' => 'ace-icon fa fa-users',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));

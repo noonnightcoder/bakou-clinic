@@ -8,7 +8,7 @@
 /* @var $this ContactController */
 /* @var $model Contact */
     $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-                  'title' => Yii::t('app','Pharmacy Detail'),
+                  'title' => Yii::t('app','Pharmacy Detail').'  >>> '.$patient_name,
                   'headerIcon' => 'ace-icon fa fa-users',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
@@ -57,9 +57,9 @@ $('.search-form form').submit(function(){
                 ),
                 //'patient_id',
                 //'patient_name',
-                array('name'=>'fullname',
+                /*array('name'=>'fullname',
                        'header'=>'Patient Name', 
-                ),
+                ),*/
                 array('name'=>'visit_date',
                        'header'=>'Visit Date', 
                 ),

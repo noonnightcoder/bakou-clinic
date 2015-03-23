@@ -5,7 +5,7 @@
 ?>
 
 <?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-              'title' => Yii::t('app','Consultation') . ' : ' . $employee->doctor_name,
+              'title' => Yii::t('app','Consultation') . ' : ' . $patient_name,
               'headerIcon' => 'ace-icon fa fa-user',
               'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small') ,
               'content' => $this->renderPartial('_laboratory', array('model'=>$model,'visit'=>$visit,

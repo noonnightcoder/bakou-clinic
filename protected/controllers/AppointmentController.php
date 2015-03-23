@@ -96,7 +96,6 @@ class AppointmentController extends Controller
             // Uncomment the following line if AJAX validation is needed
             // $this->performAjaxValidation($model);
 
-            //$doctor= Appointment::model()->get_combo_doctor(); 
             if(!Yii::app()->user->checkAccess('appointment.create'))
             {
                 throw new CHttpException(400,'You are not authorized to perform this action.');
@@ -111,6 +110,7 @@ class AppointmentController extends Controller
                     try{
                         set_error_handler(array(&$this, "exception_error_handler")); 
                         //$model->attributes=$_POST['Appointment'];
+                        $model->attributes=$_POST['Appointment'];
                         $model->appointment_date=date('Y-m-d H:i:s');
                         $model->end_date=date('Y-m-d');
                         $model->start_time=$_POST['Appointment']['start_time'];
@@ -376,15 +376,13 @@ class AppointmentController extends Controller
             throw new CHttpException(400,'You are not authorized to perform this action.');
         }
         
-        if(isset($_GET['visit_id']) and isset($_GET['patient_id']) and isset($_GET['doctor_id']))
+        if(isset($_GET['visit_id']) && isset($_GET['patient_id']) && isset($_GET['doctor_id']))
         {   
             $userid = Yii::app()->user->getId();            
             if($userid!=$_GET['doctor_id'])
             {
                 throw new CHttpException(400, 'Invalid Doctor. Please login to the right doctor.');
             }
-
-            //Appointment::model()->findByPk($id);
             
             $model = new Appointment; 
             $patient = new Patient;
@@ -395,10 +393,8 @@ class AppointmentController extends Controller
             
             $medicine = new Item;
             
-            //print_r($visit);
-            
             $treatment_selected = Yii::app()->treatmentCart->getCart();
-            $medcine_selected = Yii::app()->treatmentCart->getMedicine();
+            $medicine_selected = Yii::app()->treatmentCart->getMedicine();
             
             //---****Loop treatment into session****---//
             if(empty($treatment_selected))
@@ -410,7 +406,7 @@ class AppointmentController extends Controller
             }
             
             //---****Loop medicine into session****---//
-            if(empty($medcine_selected))
+            if(empty($medicine_selected))
             {
                 $tbl_medicine = $medicine->get_tbl_medicine($_GET['visit_id']);
                 foreach ($tbl_medicine as $value) {
@@ -426,7 +422,7 @@ class AppointmentController extends Controller
                 {
                     $transaction=$model->dbConnection->beginTransaction();
                     try{
-                        //-----***check whether the current visit already insert yet***----//
+                        //-----***check whether the current visit already insert to bill yet***----//
                         $chk_bill = Bill::model()->find(array(
                                     'condition' => 'patient_id=:patient_id and visit_id=:visit_id and status=0',
                                     'params' => array(':patient_id'=>$_GET['patient_id'],':visit_id'=>$_GET['visit_id']))
@@ -466,14 +462,14 @@ class AppointmentController extends Controller
                         if(!empty($chk_medicine))
                         {
                             //---***Delete if Prescription already exists***---// 
-                            if(!empty($medcine_selected))
+                            if(!empty($medicine_selected))
                             {
                                 PrescriptionDetail::model()->deleteAll(
                                     array('condition'=>'prescription_id=:prescription_id',
                                     'params'=>array(':prescription_id'=>$chk_medicine->id))
                                 );
 
-                                foreach ($medcine_selected as $key => $value) {                                  
+                                foreach ($medicine_selected as $key => $value) {                                  
                                     $prescription->saveMedicine($chk_medicine->id,$value['id'],$value['quantity'],$value['price']);
                                 }
                             }                                
@@ -485,7 +481,7 @@ class AppointmentController extends Controller
                             
                             if($prescription->validate()) $prescription->save();
                             
-                            foreach ($medcine_selected as $key => $value) {                                  
+                            foreach ($medicine_selected as $key => $value) {                                  
                                     $prescription->saveMedicine($prescription->id,$value['id'],$value['quantity'],$value['price']);
                             }
                         }
@@ -500,15 +496,24 @@ class AppointmentController extends Controller
                         if(!empty($_POST['Visit']['sympton']) || !empty($_POST['Visit']['observation']) || !empty($_POST['Visit']['assessment']) ||!empty($_POST['Visit']['plan']))
                         {
                             $transaction->commit();
+                            
                             if(isset($_POST['Completed_consult']))
                             {
-                                $this->actioncompletedConsult($_GET['visit_id']);
+                                if(!empty($treatment_selected) || !empty($medicine_selected))
+                                {
+                                    $this->actioncompletedConsult($_GET['visit_id']);
+                                }else{
+                                    Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> Please select treatment or medicine!.');
+                                }
+                            }else{
+                                Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
+                                
                             }
-                            Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
-                            $this->redirect('waitingqueue');
                         }else{
+                            Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> Please insert the Sympton, Observation....');
                             $transaction->rollback();
                         }    
+                        $this->redirect('waitingqueue');
                         Yii::app()->treatmentCart->clearAll(); 
                     }catch (Exception $e){
                         $transaction->rollback();
@@ -555,7 +560,6 @@ class AppointmentController extends Controller
             throw new CHttpException(400,'You are not authorized to perform this action.');
         }else{
             $model = new Appointment('get_patient_queue');
-            //return $model->get_doctor_queue();
             $this->render('labocheck',array(
                 'model'=>$model,
             ));
@@ -564,27 +568,21 @@ class AppointmentController extends Controller
     
     public function actionLaboPreview()
     {
-        $model = new Appointment;  
-        $app_log = new AppointmentLog;
-        $visit = new Visit;
-        $treatment = new Treatment;
-
         $patient_id=$_GET['patient_id'];
         $doctor_id=$_GET['doctor_id'];
         
         if(!Yii::app()->user->checkAccess('consultation.view'))
         {
             throw new CHttpException(400,'You are not authorized to perform this action.');
-        }
-        
-        $visit = Appointment::model()->findByPk($_GET['appoint_id']); 
-        $this->redirect(array('LaboView','visit_id'=>$visit->visit_id,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id));       
+        }else{
+            $visit = Appointment::model()->findByPk($_GET['appoint_id']); 
+            $this->redirect(array('LaboView','visit_id'=>$visit->visit_id,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id));
+        }    
     }
     
     public function actionLaboView()
     {
         $model = new Appointment;  
-        $app_log = new AppointmentLog;
         $treatment = new Treatment;
         $medicine = new Item;
         $patient = new Patient;
@@ -594,9 +592,8 @@ class AppointmentController extends Controller
             throw new CHttpException(400,'You are not authorized to perform this action.');
         }
         
-        if(isset($_GET['visit_id']) and isset($_GET['patient_id']) and isset($_GET['doctor_id']))
-        {   
-            $userid = Yii::app()->user->getId();     
+        if(isset($_GET['visit_id']) && isset($_GET['patient_id']) && isset($_GET['doctor_id']))
+        {      
             $employee_id = RbacUser::model()->findByPk($_GET['doctor_id']);
             $employee = Employee::model()->get_doctorName($employee_id->employee_id);
             $data['treatment']=$treatment;
@@ -611,8 +608,12 @@ class AppointmentController extends Controller
             $data['treatment_items']=$treatment->get_all_treatment(); 
             $data['medicine']=$medicine;
             $data['visit_id'] = $_GET['visit_id'];
+            $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
+            $data['patient_name'] = $rst->patient_name;
             
             $this->render('labo_view',$data);
+        }else{
+            throw new CHttpException(404,'The requested page does not exist.');
         }    
     }
 
@@ -713,12 +714,10 @@ class AppointmentController extends Controller
 
         if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) {                
             Yii::app()->treatmentCart->addMedicine($_POST['medicine_id']);                
-            //$medicine_selected_items=Yii::app()->treatmentCart->getMedicine();
             $data['medicine']=$medicine;
             $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
             Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
             Yii::app()->clientScript->scriptMap['box.css'] = false; 
-
 
             if (Yii::app()->request->isAjaxRequest) {
                 $cs = Yii::app()->clientScript;
@@ -826,13 +825,7 @@ class AppointmentController extends Controller
             Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
             Yii::app()->clientScript->scriptMap['box.css'] = false; 
 
-            $this->renderPartial('_select_medicine', $data,false,true);
-            /*echo CJSON::encode(array(
-                'status' => 'success',
-                'div_medicine_form' => $this->renderPartial('_select_medicine', $data, true, true),
-            ));
-
-            Yii::app()->end();*/
+            $this->renderPartial('_select_medicine', $data,false,true);            
         } else {
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
         }
@@ -878,20 +871,19 @@ class AppointmentController extends Controller
     
     protected function actioncompletedConsult($visit_id)
     {
-        //if(Yii::app()->request->isAjaxRequest) 
-        //{
-            //Yii::app()->treatmentCart->clearAll();
+        if(!Yii::app()->user->checkAccess('consultation.create'))
+        {
+            throw new CHttpException(400,'You are not authorized to perform this action.');
+        }else{
             $user_id = Yii::app()->user->getId();
             Appointment::model()->updateCompleteAppt($visit_id,$user_id); 
             Yii::app()->treatmentCart->clearAll();
-            /*echo CJSON::encode(array(
-                'status' => 'success',
-                //'div_medicine_form' => 'OK',
-            ));*/
-            
-        /*}else {
-            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
-        }   */     
+        }
+        
+        /*echo CJSON::encode(array(
+            'status' => 'success',
+            //'div_medicine_form' => 'OK',
+        ));*/
     }
     
     public function actionCancelAppointmen($appoint_id,$doctor_id='',$patient_id='')
@@ -920,7 +912,7 @@ class AppointmentController extends Controller
         $model = new Appointment('showBill');
         
         if (isset($_GET['date_report'])) {
-            $model->attributes = $_GET['date_report'];
+            $model->attributes = $_GET['Appointment'];
             $date_report = $_GET['Appointment']['date_report'];
         } else {
             $date_report = date('Y-m-d');
@@ -928,7 +920,6 @@ class AppointmentController extends Controller
         
         $model->date_report = $date_report;
         
-        //return $model->get_doctor_queue();
         $this->render('prescription',array(
             'model'=>$model,'date_report'=>$date_report
         ));
@@ -941,7 +932,7 @@ class AppointmentController extends Controller
         $data['count_item'] = $model->countBill($visit_id);
         $data['amount'] = $model->sumBill($visit_id);
         $data['visit_id'] = $visit_id;
-        
+        $data['patient_name'] = $data['model']->patient_name;
         $data['payments'] =Yii::app()->treatmentCart->getPayments();
         
         //---***find bill was added yet***---//
@@ -983,6 +974,8 @@ class AppointmentController extends Controller
         $model = new Appointment;
         $data['model'] = new Appointment('showPrescription');
         $data['visit_id'] = $visit_id;
+        $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
+        $data['patient_name'] = $rst->patient_name;
         $this->render('PharmacyDetail',$data);
     }
     

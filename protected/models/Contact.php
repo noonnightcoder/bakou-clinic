@@ -46,7 +46,7 @@ class Contact extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('type, country', 'required'),
+			array('first_name,last_name', 'required'),
 			array('first_name, middle_name, last_name, type, city, state, postal_code, country', 'length', 'max'=>50),
 			array('display_name, image_path', 'length', 'max'=>255),
 			array('phone_number', 'length', 'max'=>15),

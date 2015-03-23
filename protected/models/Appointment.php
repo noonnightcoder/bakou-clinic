@@ -40,10 +40,11 @@ class Appointment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('appointment_date, title, patient_id, user_id, status', 'required'),
+			array('appointment_date, title, user_id, status', 'required'),
 			array('patient_id, user_id, visit_id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>150),
 			array('status', 'length', 'max'=>255),
+                        array('patient_id','patient_validate','required'),
 			array('end_date, start_time, end_time,date_report', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -495,5 +496,14 @@ class Appointment extends CActiveRecord
                         )
                     ),
             ));
+        }
+        
+        public function patient_validate($attribute,$params)
+        {
+            //echo $this->patient_id;
+            if($this->patient_id=='')
+            {
+                $this->addError('patient_id','Please select the patient');
+            }
         }
 }

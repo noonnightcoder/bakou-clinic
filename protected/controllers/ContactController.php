@@ -73,7 +73,8 @@ class ContactController extends Controller
 		// $this->performAjaxValidation($model);
 
 		if (isset($_POST['Contact'])) {
-                    $model->attributes=$_POST['Contact'];    
+                    $model->attributes=$_POST['Contact']; 
+                    //$patient->attributes=$_POST['Patient']; 
 
                     $transaction=$model->dbConnection->beginTransaction();
                     try{
