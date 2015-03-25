@@ -36,6 +36,22 @@
             <?php echo $form->textFieldControlGroup($model,'last_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
             <?php echo $form->textFieldControlGroup($model,'display_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            
+            <div class="form-group"><label class="col-sm-3 control-label" for="dob"><?php echo Yii::t('app','Date Of Birth'); ?></label>
+                <div class="col-md-9">
+                    <?php $this->widget('yiiwheels.widgets.datepicker.WhDatePicker', array(
+                    'attribute' => 'dob',
+                    'model' => $model,
+                    'pluginOptions' => array(
+                            'format' => 'yyyy-mm-dd',
+                        )
+                    ));
+                    ?>
+                    <!--<span class="input-group-addon col-sm-3"><i class="ace-icon fa fa-calendar"></i></span>-->
+                </div>  
+            </div>
+            
+            <?php echo $form->dropDownListControlGroup($model,'sex',array('Female'=>'Female','Male'=>'Male'), array('class'=>'span7')) ?>
 
             <?php echo $form->textFieldControlGroup($model,'phone_number',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 

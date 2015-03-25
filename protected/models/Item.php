@@ -42,7 +42,13 @@ class Item extends CActiveRecord
         public $promo_price;
         public $promo_start_date;
         public $promo_end_date;
-        
+        public $dosage;
+        public $duration;
+        public $frequency;
+        public $instruction_id;
+        public $comment;
+
+
         private $_active_status = '1';
         private $_inactive_status = '0'; 
         
@@ -545,7 +551,8 @@ class Item extends CActiveRecord
                 
         public function get_selected_medicine($id)
         {
-            $sql="SELECT id,name,unit_price,quantity FROM item WHERE id=$id";
+            $sql="SELECT id,name,unit_price,quantity,null dosage,
+                null duration,null frequency,null instruction,null comment FROM item WHERE id=$id";
             
             $cmd=Yii::app()->db->createCommand($sql);
             //$cmd->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
@@ -568,7 +575,7 @@ class Item extends CActiveRecord
         
         public function get_tbl_medicine($visit_id)
         {
-            $sql="SELECT medicine_id id,medicine_name,unit_price,quantity
+            $sql="SELECT medicine_id id,medicine_name,unit_price,quantity,dosage,duration,frequency,instruction_id,remarks comment
                     FROM v_medicine_payment
                     WHERE visit_id=:visit_id";
             

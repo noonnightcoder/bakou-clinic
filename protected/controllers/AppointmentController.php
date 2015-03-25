@@ -410,7 +410,7 @@ class AppointmentController extends Controller
             {
                 $tbl_medicine = $medicine->get_tbl_medicine($_GET['visit_id']);
                 foreach ($tbl_medicine as $value) {
-                    Yii::app()->treatmentCart->addMedicine($value['id'],$value['unit_price'],$value['quantity']);
+                    Yii::app()->treatmentCart->addMedicine($value['id'],$value['unit_price'],$value['quantity'],$value['dosage'],$value['duration'],$value['frequency'],$value['instruction_id'],$value['comment']);
                 }                
             }
             
@@ -470,7 +470,7 @@ class AppointmentController extends Controller
                                 );
 
                                 foreach ($medicine_selected as $key => $value) {                                  
-                                    $prescription->saveMedicine($chk_medicine->id,$value['id'],$value['quantity'],$value['price']);
+                                    $prescription->saveMedicine($chk_medicine->id,$value['id'],$value['quantity'],$value['price'],$value['dosage'],$value['duration'],$value['frequency'],$value['instruction_id'],$value['comment']);
                                 }
                             }                                
                         }else{
@@ -534,6 +534,10 @@ class AppointmentController extends Controller
             if ($employee===null) {
                     throw new CHttpException(404,'The requested page does not exist.');
             }
+            
+            $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
+            $data['patient_name'] = $rst->patient_name;
+        
             $data['chk_bill_saved'] = Bill::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
             $data['model']=$model;
             $data['visit']=$visit;
@@ -712,10 +716,11 @@ class AppointmentController extends Controller
     {
         $medicine = new Item;
 
-        if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) {                
+        if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) {  
             Yii::app()->treatmentCart->addMedicine($_POST['medicine_id']);                
             $data['medicine']=$medicine;
             $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
+            //print_r($data['medicine_selected_items']); die();
             Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
             Yii::app()->clientScript->scriptMap['box.css'] = false; 
 
@@ -803,15 +808,20 @@ class AppointmentController extends Controller
             $data= array();
             $quantity = isset($_POST['Item']['quantity']) ? $_POST['Item']['quantity'] : null;
             $price =isset($_POST['Item']['unit_price']) ? $_POST['Item']['unit_price'] : null;
-
+            $dosage =isset($_POST['Item']['dosage']) ? $_POST['Item']['dosage'] : null;
+            $duration =isset($_POST['Item']['duration']) ? $_POST['Item']['duration'] : null;
+            $frequency =isset($_POST['Item']['frequency']) ? $_POST['Item']['frequency'] : null;
+            $instruction_id =isset($_POST['Item']['instruction_id']) ? $_POST['Item']['instruction_id'] : null;
+            $comment =isset($_POST['Item']['comment']) ? $_POST['Item']['comment'] : null;
+            
+            //echo $price;
             //$medicine->quantity=$quantity;
             //$medicine->unit_price=$price;
             //echo $_POST['Item']['quantity'];
-            Yii::app()->treatmentCart->editMedicine($medicine_id, $quantity, $price);
+            Yii::app()->treatmentCart->editMedicine($medicine_id, $quantity, $price,$dosage,$duration,$frequency,$instruction_id,$comment);
 
             $data['medicine']=$medicine;
             $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
-
             $cs = Yii::app()->clientScript;
             $cs->scriptMap = array(
                 'jquery.js' => false,
@@ -1084,11 +1094,17 @@ class AppointmentController extends Controller
         $clinic_info = Clinic::model()->find();
         $employee_id = RbacUser::model()->findByPk(Yii::app()->user->getId());
         $employee = Employee::model()->get_doctorName($employee_id->employee_id);
+        //$cust_info = array();
+        $cust_info=Appointment::model()->generateInvoice($visit_id); 
 
-        $cust_info=Appointment::model()->generateInvoice($visit_id);
         $patient_id = Appointment::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
-        $rs = VSearchPatient::model()->find("id=:patient_id",array(':patient_id'=>$patient_id->patient_id));
+        $rs = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$patient_id->patient_id));
+        
+        //$data['pres_detail'] = VPrescriptionDetail::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
+        //$pres_detail = PrescriptionDetail::model()->find("prescription_id=:prescription_id",array(':prescription_id'=>$prescription_id));
+        
         $data['cust_fullname'] =  $rs->fullname;
+        //$data['cust_fullname'] =  'Hello';
         $data['employee'] = $employee->doctor_name;
         $data['cust_info'] = $cust_info;
         $data['sale_id'] = $sale_id;

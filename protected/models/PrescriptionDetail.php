@@ -7,6 +7,10 @@
  * @property integer $id
  * @property integer $prescription_id
  * @property integer $item_id
+ * @property double $dosage
+ * @property string $duration
+ * @property integer $frequency
+ * @property integer $instruction_id
  * @property string $quantity
  * @property string $unit_price
  * @property string $remarks
@@ -33,12 +37,14 @@ class PrescriptionDetail extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('item_id, quantity, unit_price', 'required'),
-			array('prescription_id, item_id', 'numerical', 'integerOnly'=>true),
+			array('prescription_id, item_id, frequency, instruction_id', 'numerical', 'integerOnly'=>true),
+			array('dosage', 'numerical'),
+			array('duration', 'length', 'max'=>10),
 			array('quantity, unit_price', 'length', 'max'=>15),
 			array('remarks', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, prescription_id, item_id, quantity, unit_price, remarks', 'safe', 'on'=>'search'),
+			array('id, prescription_id, item_id, dosage, duration, frequency, instruction_id, quantity, unit_price, remarks', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +69,10 @@ class PrescriptionDetail extends CActiveRecord
 			'id' => 'ID',
 			'prescription_id' => 'Prescription',
 			'item_id' => 'Item',
+			'dosage' => 'Dosage',
+			'duration' => 'Duration',
+			'frequency' => 'Frequency',
+			'instruction_id' => 'Instruction',
 			'quantity' => 'Quantity',
 			'unit_price' => 'Unit Price',
 			'remarks' => 'Remarks',
@@ -90,6 +100,10 @@ class PrescriptionDetail extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('prescription_id',$this->prescription_id);
 		$criteria->compare('item_id',$this->item_id);
+		$criteria->compare('dosage',$this->dosage);
+		$criteria->compare('duration',$this->duration,true);
+		$criteria->compare('frequency',$this->frequency);
+		$criteria->compare('instruction_id',$this->instruction_id);
 		$criteria->compare('quantity',$this->quantity,true);
 		$criteria->compare('unit_price',$this->unit_price,true);
 		$criteria->compare('remarks',$this->remarks,true);

@@ -73,7 +73,7 @@ class TreatmentCart extends CApplicationComponent
         return true;
     }
     
-    public function addMedicine($medicine_id,$price = null,$quantity = 1)
+    public function addMedicine($medicine_id,$price = null,$quantity = 1,$dosage = null,$duration =  null,$frequency =  null,$instruction_id =  null,$comment = null)
     {
         $this->setSession(Yii::app()->session);
         //Get all items in the cart so far...
@@ -86,14 +86,18 @@ class TreatmentCart extends CApplicationComponent
             return false;
         }
 
-        foreach ($models as $model) {
-        
+        foreach ($models as $k => $model) {            
             $item_data = array((int)$medicine_id =>
                 array(
                     'id' => $model["id"],
                     'name' => $model["name"],
                     'price' => $price!= null ? round($price, $this->getDecimalPlace()) : round($model["unit_price"], $this->getDecimalPlace()),
                     'quantity' => $quantity,
+                    'dosage' => $dosage,
+                    'duration' => $duration,
+                    'frequency' => $frequency,
+                    'instruction_id' => $instruction_id,
+                    'comment' => $comment
                 )
             );
         }
@@ -138,12 +142,17 @@ class TreatmentCart extends CApplicationComponent
         $this->setMedicine($items);
     }
     
-    public function editMedicine($medicine_id, $quantity, $price)
+    public function editMedicine($medicine_id, $quantity, $price,$dosage,$duration,$frequency,$instruction_id,$comment)
     {
         $medicines = $this->getMedicine();
         if (isset($medicines[$medicine_id])) {
             $medicines[$medicine_id]['quantity'] = $quantity !=null ? $quantity : $medicines[$medicine_id]['quantity'];
             $medicines[$medicine_id]['price'] = $price !=null ? round($price, $this->getDecimalPlace()) : $medicines[$medicine_id]['price'];
+            $medicines[$medicine_id]['dosage'] = $dosage !=null ? round($dosage, $this->getDecimalPlace()) : $medicines[$medicine_id]['dosage'];
+            $medicines[$medicine_id]['duration'] = $duration !=null ? round($duration, $this->getDecimalPlace()) : $medicines[$medicine_id]['duration'];
+            $medicines[$medicine_id]['frequency'] = $frequency !=null ? round($frequency, $this->getDecimalPlace()) : $medicines[$medicine_id]['frequency'];
+            $medicines[$medicine_id]['instruction_id'] = $instruction_id !=null ? round($instruction_id, $this->getDecimalPlace()) : $medicines[$medicine_id]['instruction_id'];
+            $medicines[$medicine_id]['comment'] = $comment ;
             $this->setMedicine($medicines);
         }
 

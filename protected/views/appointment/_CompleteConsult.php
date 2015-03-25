@@ -61,7 +61,7 @@
                 //'content' => $this->renderPartial('_form', array('model'=>$model,'model_search'=>$model_search,'leave_detail_wrapper'=>$leave_detail_wrapper,'employee_id'=>$employee_id), true),
             ));?> 
                 <div id="select_medicine_form">
-                    <?php $this->renderPartial('_select_medicine', array('medicine_selected_items'=>$medicine_selected_items,'medicine'=>$medicine), false); ?>
+                    <?php $this->renderPartial('_select_medicine', array('medicine_selected_items'=>$medicine_selected_items,'medicine'=>$medicine,), false); ?>
                 </div>
         <?php $this->endWidget(); ?> 
     </div>

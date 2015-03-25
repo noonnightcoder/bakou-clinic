@@ -8,6 +8,8 @@
  * @property string $first_name
  * @property string $middle_name
  * @property string $last_name
+ * @property string $dob
+ * @property string $sex
  * @property string $display_name
  * @property string $phone_number
  * @property string $email
@@ -20,10 +22,6 @@
  * @property string $postal_code
  * @property string $country
  * @property string $image_name
- *
- * The followings are the available model relations:
- * @property ContactDetail[] $contactDetails
- * @property Patient[] $patients
  */
 class Contact extends CActiveRecord
 {
@@ -38,7 +36,7 @@ class Contact extends CActiveRecord
         public $image;
         public $search;
 
-        /**
+	/**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
@@ -46,15 +44,17 @@ class Contact extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('first_name,last_name', 'required'),
-			array('first_name, middle_name, last_name, type, city, state, postal_code, country', 'length', 'max'=>50),
-			array('display_name, image_path', 'length', 'max'=>255),
-			array('phone_number', 'length', 'max'=>15),
-			array('email, address_line_1, address_line_2', 'length', 'max'=>150),
-			array('image_name', 'length', 'max'=>200),
+			array('first_name, last_name', 'required'),
+			array('first_name, middle_name, last_name, address_line_1, address_line_2, image_name', 'length', 'max'=>300),
+			array('sex', 'length', 'max'=>20),
+			array('display_name, email, country', 'length', 'max'=>100),
+			array('phone_number, type', 'length', 'max'=>30),
+			array('image_path', 'length', 'max'=>1000),
+			array('city, state, postal_code', 'length', 'max'=>50),
+			array('dob', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('search,id, first_name, middle_name, last_name, display_name, phone_number, email, image_path, type, address_line_1, address_line_2, city, state, postal_code, country, image_name', 'safe', 'on'=>'search'),
+			array('id, first_name, middle_name, last_name, dob, sex, display_name, phone_number, email, image_path, type, address_line_1, address_line_2, city, state, postal_code, country, image_name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,8 +66,6 @@ class Contact extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'contactDetails' => array(self::HAS_MANY, 'ContactDetail', 'contact_id'),
-			'patients' => array(self::HAS_MANY, 'Patient', 'contact_id'),
 		);
 	}
 
@@ -81,6 +79,8 @@ class Contact extends CActiveRecord
 			'first_name' => 'First Name',
 			'middle_name' => 'Middle Name',
 			'last_name' => 'Last Name',
+			'dob' => 'Dob',
+			'sex' => 'Sex',
 			'display_name' => 'Display Name',
 			'phone_number' => 'Phone Number',
 			'email' => 'Email',

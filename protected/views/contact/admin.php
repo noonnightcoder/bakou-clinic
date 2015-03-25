@@ -56,12 +56,17 @@ $('.search-form form').submit(function(){
             'columns'=>array(
 		//'id',
                 array(
-                    'name'=>'first_name',
-                    'header'=>'First Name', 
+                    'name'=>'fullname',
+                    'header'=>'Patient Name', 
                 ),
-                array(
+                /*array(
                     'name'=>'last_name',
                     'header'=>'Last Name', 
+                    'filter'=>FALSE
+                ),*/
+                array(
+                    'name'=>'display_id',
+                    'header'=>'Display ID', 
                     'filter'=>FALSE
                 ),
                 array(
@@ -69,25 +74,33 @@ $('.search-form form').submit(function(){
                     'header'=>'Display Name', 
                 ),
                 array(
+                    'name'=>'dob',
+                    'header'=>'Date Of Birth', 
+                ),
+                array(
+                    'name'=>'sex',
+                    'header'=>'sex', 
+                ),
+                array(
                     'name'=>'phone_number',
                     'header'=>'Phone Number', 
                     'filter'=>FALSE
                 ),
-                array(
+                /*array(
                     'name'=>'type',
                     'header'=>'Type', 
                     'filter'=>FALSE
-                ),
+                ),*/
                 array(
                     'name'=>'address_line_1',
                     'header'=>'Address', 
                     'filter'=>FALSE
                 ),
-                array(
+                /*array(
                     'name'=>'country',
                     'header'=>'Country', 
                     'filter'=>FALSE
-                ),
+                ),*/
 		array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
                     'template'=>'<div class="hidden-sm hidden-xs btn-group">{update}{delete}</div>',
@@ -101,13 +114,14 @@ $('.search-form form').submit(function(){
                             ),*/
                             'update' => array(
                               'icon' => 'ace-icon fa fa-edit',
+                              'url'=>'Yii::app()->createUrl("contact/update/",array("id"=>$data->contact_id))',  
                               'options' => array(
                                   'class'=>'btn btn-xs btn-info',
                                 ), 
                             ),
                             'delete' => array(
                                'label'=>'Delete',
-                               //'url'=>'Yii::app()->createUrl("sale/Invoice/",array("client_id"=>$data->id))',
+                               'url'=>'Yii::app()->createUrl("contact/delete/",array("id"=>$data->contact_id))',
                                'options' => array(
                                   'class'=>'btn btn-xs btn-danger',
                                ),

@@ -133,6 +133,10 @@ class ContactController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+            
+                //$model = new VSearchPatient;
+                
+                //$model = contact::model()->findbyPk($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -197,10 +201,10 @@ class ContactController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Contact('search');
+		$model=new VSearchPatient('search');
 		$model->unsetAttributes();  // clear any default values
-		if (isset($_GET['Contact'])) {
-			$model->attributes=$_GET['Contact'];
+		if (isset($_GET['VSearchPatient'])) {
+			$model->attributes=$_GET['VSearchPatient'];
 		}
 
 		$this->render('admin',array(

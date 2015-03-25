@@ -4,11 +4,13 @@
  * This is the model class for table "v_search_patient".
  *
  * The followings are the available columns in table 'v_search_patient':
- * @property integer $id
+ * @property integer $patient_id
+ * @property integer $contact_id
  * @property string $fullname
  * @property string $display_id
  * @property string $phone_number
  * @property string $display_name
+ * @property string $address_line_1
  */
 class VSearchPatient extends CActiveRecord
 {
@@ -19,8 +21,10 @@ class VSearchPatient extends CActiveRecord
 	{
 		return 'v_search_patient';
 	}
+        
+        public $search;
 
-	/**
+        /**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
@@ -28,15 +32,15 @@ class VSearchPatient extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('display_id', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
-			array('fullname', 'length', 'max'=>101),
+			array('fullname, display_id', 'required'),
+			array('patient_id, contact_id', 'numerical', 'integerOnly'=>true),
 			array('display_id', 'length', 'max'=>12),
-			array('phone_number', 'length', 'max'=>15),
-			array('display_name', 'length', 'max'=>255),
+			array('phone_number', 'length', 'max'=>30),
+			array('display_name', 'length', 'max'=>100),
+			array('address_line_1', 'length', 'max'=>300),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, fullname, display_id, phone_number, display_name', 'safe', 'on'=>'search'),
+			array('search,patient_id, contact_id, fullname, display_id, phone_number, display_name, address_line_1', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,11 +61,13 @@ class VSearchPatient extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'patient_id' => 'Patient',
+			'contact_id' => 'Contact',
 			'fullname' => 'Fullname',
 			'display_id' => 'Display',
 			'phone_number' => 'Phone Number',
 			'display_name' => 'Display Name',
+			'address_line_1' => 'Address Line 1',
 		);
 	}
 
@@ -83,11 +89,23 @@ class VSearchPatient extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('fullname',$this->fullname,true);
-		$criteria->compare('display_id',$this->display_id,true);
-		$criteria->compare('phone_number',$this->phone_number,true);
-		$criteria->compare('display_name',$this->display_name,true);
+		//$criteria->compare('patient_id',$this->patient_id);
+		//$criteria->compare('contact_id',$this->contact_id);
+		//$criteria->compare('fullname',$this->fullname,true);
+		//$criteria->compare('display_id',$this->display_id,true);
+		//$criteria->compare('phone_number',$this->phone_number,true);
+		//$criteria->compare('display_name',$this->display_name,true);
+		//$criteria->compare('address_line_1',$this->address_line_1,true);
+
+		if ($this->search) {
+                
+                    $criteria->condition="(fullname like :search or display_id like :search or display_name like :search)";
+                    $criteria->params = array(
+                                ':search' => '%' . $this->search . '%',
+                                ':search' => '%' . $this->search . '%',
+                                ':search' => '%' . $this->search . '%',
+                    );
+                }
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
