@@ -152,7 +152,7 @@ class TreatmentCart extends CApplicationComponent
             $medicines[$medicine_id]['duration'] = $duration !=null ? round($duration, $this->getDecimalPlace()) : $medicines[$medicine_id]['duration'];
             $medicines[$medicine_id]['frequency'] = $frequency !=null ? round($frequency, $this->getDecimalPlace()) : $medicines[$medicine_id]['frequency'];
             $medicines[$medicine_id]['instruction_id'] = $instruction_id !=null ? round($instruction_id, $this->getDecimalPlace()) : $medicines[$medicine_id]['instruction_id'];
-            $medicines[$medicine_id]['comment'] = $comment ;
+            $medicines[$medicine_id]['comment'] = $comment !=null ? $comment : $medicines[$medicine_id]['comment'];
             $this->setMedicine($medicines);
         }
 

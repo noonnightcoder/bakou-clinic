@@ -106,7 +106,7 @@ class Prescription extends CActiveRecord
 		return parent::model($className);
 	}
         
-        public function saveMedicine($prescription_id = null,$medicine_id = null,$quantity = null,$price = null,$dosage = null,$duration =  null,$frequency =  null,$instruction =  null,$comment = null)
+        public function saveMedicine($prescription_id = null,$medicine_id = null,$quantity = null,$price = null,$dosage = null,$duration =  null,$frequency =  null,$instruction_id =  null,$comment = null)
         {
             $cmd = Yii::app()->db->createCommand("CALL pro_save_medicine(:prescription_id, :medicine_id,:quantity,:price,:dosage,:duration,:frequency,:instruction,:comment)");
             $cmd->bindParam(":prescription_id", $prescription_id);
@@ -116,7 +116,7 @@ class Prescription extends CActiveRecord
             $cmd->bindParam(":dosage", $dosage);
             $cmd->bindParam(":duration", $duration);
             $cmd->bindParam(":frequency", $frequency);
-            $cmd->bindParam(":instruction", $instruction);
+            $cmd->bindParam(":instruction", $instruction_id);
             $cmd->bindParam(":comment", $comment);
             //$cmd->queryAll(array(':bill_id' => $bill_id, ':treatment_id' => $treatment_id,':price'=>$price));
             $cmd->execute();

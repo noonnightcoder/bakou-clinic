@@ -404,13 +404,13 @@ class AppointmentController extends Controller
                     Yii::app()->treatmentCart->addItem($value['id'],$value['amount']);
                 }                
             }
-            
+            //print_r($medicine_selected);
             //---****Loop medicine into session****---//
             if(empty($medicine_selected))
             {
                 $tbl_medicine = $medicine->get_tbl_medicine($_GET['visit_id']);
                 foreach ($tbl_medicine as $value) {
-                    Yii::app()->treatmentCart->addMedicine($value['id'],$value['unit_price'],$value['quantity'],$value['dosage'],$value['duration'],$value['frequency'],$value['instruction_id'],$value['comment']);
+                    Yii::app()->treatmentCart->addMedicine($value['id'],$value['unit_price'],$value['quantity'],$value['dosage'],$value['duration_id'],$value['frequency'],$value['instruction_id'],$value['comment']);
                 }                
             }
             
@@ -482,7 +482,7 @@ class AppointmentController extends Controller
                             if($prescription->validate()) $prescription->save();
                             
                             foreach ($medicine_selected as $key => $value) {                                  
-                                    $prescription->saveMedicine($prescription->id,$value['id'],$value['quantity'],$value['price']);
+                                    $prescription->saveMedicine($prescription->id,$value['id'],$value['quantity'],$value['price'],$value['dosage'],$value['duration'],$value['frequency'],$value['instruction_id'],$value['comment']);
                             }
                         }
                         //----***Update Visit table****----//
@@ -513,8 +513,9 @@ class AppointmentController extends Controller
                             Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> Please insert the Sympton, Observation....');
                             $transaction->rollback();
                         }    
-                        $this->redirect('waitingqueue');
+                        
                         Yii::app()->treatmentCart->clearAll(); 
+                        $this->redirect('waitingqueue');
                     }catch (Exception $e){
                         $transaction->rollback();
                         Yii::app()->user->setFlash('error', '<strong>Process was rollback! </strong>Please contact administrator.');
@@ -813,7 +814,7 @@ class AppointmentController extends Controller
             $frequency =isset($_POST['Item']['frequency']) ? $_POST['Item']['frequency'] : null;
             $instruction_id =isset($_POST['Item']['instruction_id']) ? $_POST['Item']['instruction_id'] : null;
             $comment =isset($_POST['Item']['comment']) ? $_POST['Item']['comment'] : null;
-            
+            //echo $_POST['Item']['comment'];
             //echo $price;
             //$medicine->quantity=$quantity;
             //$medicine->unit_price=$price;
