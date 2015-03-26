@@ -145,7 +145,7 @@ class Appointment extends CActiveRecord
         {
             $sql="SELECT phone_number,display_name 
                     FROM v_search_patient
-                    where id=:patient_id";
+                    where patient_id=:patient_id";
             
             $cmd=Yii::app()->db->createCommand($sql);
             $cmd->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);

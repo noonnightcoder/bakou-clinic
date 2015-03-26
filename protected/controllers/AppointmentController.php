@@ -371,6 +371,11 @@ class AppointmentController extends Controller
 
     public function actionDoctorConsult()
     {
+        if(!isset($_POST['Completed_consult']) && !isset($_POST['Save_consult']))
+        {
+            Yii::app()->treatmentCart->clearAll();  //Clear old session before new patient comming
+        }
+        
         if(!Yii::app()->user->checkAccess('consultation.create'))
         {
             throw new CHttpException(400,'You are not authorized to perform this action.');
@@ -431,8 +436,8 @@ class AppointmentController extends Controller
                         if(!empty($chk_bill))
                         {
                             //----***Delete if bill already exists***----// 
-                            if(!empty($treatment_selected))
-                            {
+                            //if(!empty($treatment_selected))
+                            //{
                                 BillDetail::model()->deleteAll(
                                     array('condition'=>'bill_id=:bill_id',
                                     'params'=>array(':bill_id'=>$chk_bill->bill_id))
@@ -441,7 +446,7 @@ class AppointmentController extends Controller
                                 foreach ($treatment_selected as $key => $value) {                                  
                                     $treatment->saveTreatment($chk_bill->bill_id,$value['id'],$value['price']);
                                 }
-                            }                                
+                            //}                                
                         }else{  
                             $bill->bill_date = date('Y-m-d');
                             $bill->patient_id = $_GET['patient_id'];
@@ -462,8 +467,8 @@ class AppointmentController extends Controller
                         if(!empty($chk_medicine))
                         {
                             //---***Delete if Prescription already exists***---// 
-                            if(!empty($medicine_selected))
-                            {
+                            //if(!empty($medicine_selected))
+                            //{
                                 PrescriptionDetail::model()->deleteAll(
                                     array('condition'=>'prescription_id=:prescription_id',
                                     'params'=>array(':prescription_id'=>$chk_medicine->id))
@@ -472,7 +477,7 @@ class AppointmentController extends Controller
                                 foreach ($medicine_selected as $key => $value) {                                  
                                     $prescription->saveMedicine($chk_medicine->id,$value['id'],$value['quantity'],$value['price'],$value['dosage'],$value['duration'],$value['frequency'],$value['instruction_id'],$value['comment']);
                                 }
-                            }                                
+                            //}                                
                         }else{
                             $prescription->date_created = date('Y-m-d');
                             $prescription->visit_id = $_GET['visit_id'];
@@ -525,7 +530,7 @@ class AppointmentController extends Controller
                     Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
                 }
             }else{
-
+                
             }
 
             $employee_id = RbacUser::model()->findByPk($_GET['doctor_id']);
