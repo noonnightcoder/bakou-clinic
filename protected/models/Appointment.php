@@ -389,12 +389,12 @@ class Appointment extends CActiveRecord
         
         public function generateInvoice($visit_id)
         {
-            $sql="select fullname,visit_date,item name,quantity,unit_price price,0 discount,dosage,duration,frequency,instruction_id instruction,remarks comment
+            $sql="select fullname,visit_date,item name,quantity,unit_price price,0 discount,dosage,duration,frequency,instruction,remarks comment
                 from(SELECT t3.patient_id,t2.visit_id,CONCAT(last_name,' ',first_name) fullname,t2.visit_date,t1.item,t1.quantity,t1.unit_price,
-                t1.dosage,t1.duration,t1.frequency,t1.instruction_id,t1.remarks,t1.flag
+                t1.dosage,t1.duration,t1.frequency,t1.instruction,t1.remarks,t1.flag
                 FROM (
                         SELECT medicine_id id,medicine_name item,visit_id,quantity,unit_price,
-                        dosage,duration,frequency,instruction_id,remarks,'medicine' flag 
+                        dosage,duration,frequency,instruction,remarks,'medicine' flag 
                         FROM v_medicine_payment where visit_id=$visit_id
                         UNION ALL
                         SELECT id,treatment,visit_id,1 quantity,amount,
@@ -486,6 +486,7 @@ class Appointment extends CActiveRecord
                         WHERE appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
                         and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)
                         and user_id=$userid  
+                        and status in ('Waiting','Consultation')
                         $cond
                         ORDER BY appointment_date
                     )cl,(SELECT @rownum:=0) r";
