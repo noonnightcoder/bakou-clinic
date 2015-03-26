@@ -79,7 +79,7 @@
                 ?>
                 <?php $medicine->instruction_id = $item['instruction_id']?>
                 <?php echo $form->dropDownList($medicine,'instruction_id',
-                         CHtml::listData(Instruction::model()->findall(), 'id', 'description'),array('class' => 'input-small numeric input-grid')); ?>
+                         CHtml::listData(Instruction::model()->findall(), 'id', 'description_khmer'),array('class' => 'input-small numeric input-grid')); ?>
                 <?php $this->endWidget(); ?>  
             </td>
             <td>
