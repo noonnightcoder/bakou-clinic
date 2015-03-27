@@ -113,10 +113,11 @@ $('.search-form form').submit(function(){
                             ),*/
                             'history' => array(
                                 'label' => Yii::t('app','History'),
-                                'url'=> 'Yii::app()->createUrl("contact/index/",array("id"=>$data->patient_id))',
+                                'url'=> 'Yii::app()->createUrl("contact/view/",array("id"=>$data->patient_id))',
                                 'options' => array(
                                   'class'=>'btn btn-xs btn-primary',
                                 ), 
+                                'visible'=>'Yii::app()->user->checkAccess("contact.view")'
                             ),
                             'update' => array(
                                 'icon' => 'ace-icon fa fa-edit',

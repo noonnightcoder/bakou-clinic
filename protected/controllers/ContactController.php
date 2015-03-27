@@ -55,9 +55,12 @@ class ContactController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+            $data['visit'] = new Visit;
+            $data['patient_id'] = $id;
+            $patient=  VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$id));
+            //$patient->unsetAttributes();
+            $data['patient'] = $patient;
+            $this->render('view', $data);
 	}
 
 	/**
@@ -187,20 +190,14 @@ class ContactController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex($id)
+	public function actionIndex()
 	{
 		/*$dataProvider=new CActiveDataProvider('Contact');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));*/
-            //throw new CHttpException(400,'Invalid page request.');
-            //echo $patient_id; die();
-            $data['visit'] = new Visit;
-            $data['patient_id'] = $id;
-            $patient=  VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$id));
-            //$patient->unsetAttributes();
-            $data['patient'] = $patient;
-            $this->render('index', $data);
+            throw new CHttpException(400,'Invalid page request.');
+            //echo $patient_id; die();            
 	}
 
 	/**

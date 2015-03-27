@@ -1,45 +1,47 @@
 <?php
-/* @var $this ContactController */
-/* @var $model Contact */
-?>
-
-<?php
 $this->breadcrumbs=array(
-	'Contacts'=>array('index'),
-	$model->id,
+	Yii::t('app','Contact')=>array('contact/admin'),
+	Yii::t('app','Index'),
 );
 
-$this->menu=array(
-	array('label'=>'List Contact', 'url'=>array('index')),
-	array('label'=>'Create Contact', 'url'=>array('create')),
-	array('label'=>'Update Contact', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Contact', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Contact', 'url'=>array('admin')),
-);
+
 ?>
+<div id="patient_his_container">
+ <?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
+            'title' => Yii::t('app','Patient History'),
+            'headerIcon' => 'ace-icon fa fa-credit-card',
+            'headerButtons' => array(
+                    TbHtml::linkButton(Yii::t( 'app', 'Back to Contact' ),array(
+                            'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
+                            'size'=>TbHtml::BUTTON_SIZE_SMALL,
+                            'icon'=>'ace-icon fa fa-undo white',
+                            'url'=>$this->createUrl('contact/admin'),
+                    )),
+                ),
+            'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
+)); ?>    
+    <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+            'id'=>'patient-history-form',
+            'enableAjaxValidation'=>false,
+            'layout'=>TbHtml::FORM_LAYOUT_HORIZONTAL,
+            //'action' => $this->createUrl('savepayment'),
+    )); ?>
+        <?php echo $form->textFieldControlGroup($patient,'fullname',array('class'=>'span2','disabled'=>'disabled')); ?>
+        <?php echo $form->textFieldControlGroup($patient,'dob',array('class'=>'span2','disabled'=>'disabled')); ?>
+        <?php echo $form->textFieldControlGroup($patient,'sex',array('class'=>'span2','disabled'=>'disabled')); ?>
+        <?php echo $form->textFieldControlGroup($patient,'address_line_1',array('class'=>'span2','disabled'=>'disabled')); ?>
+    <?php $this->endWidget(); ?>
+    
+    <?php $this->widget('bootstrap.widgets.TbTabs', array(
+        'type'=>'tabs',
+        'placement'=>'above', // 'above', 'right', 'below' or 'left'
+        'tabs'=>array(
+            array('label'=>Yii::t('app','Visited History'),'id'=>'tab_1', 'content'=>$this->renderPartial('_visited', array('visit'=>$visit,'patient_id'=>$patient_id),true),'active'=>true),
+            //array('label'=>Yii::t('app','Invoice History'),'id'=>'tab_2', 'content'=>$this->renderPartial('_invoice_his', array('model'=>$model,'client_id'=>$client_id,'balance'=>$balance),true)),
+            //array('label'=>Yii::t('app','Payment History'),'id'=>'tab_3', 'content'=>$this->renderPartial('_sale_payment', array('model'=>$model,'client_id'=>$client_id,'balance'=>$balance),true)),            
+        ),
+        //'events'=>array('shown'=>'js:loadContent')
+    )); ?>        
 
-<h1>View Contact #<?php echo $model->id; ?></h1>
-
-<?php $this->widget('zii.widgets.CDetailView',array(
-    'htmlOptions' => array(
-        'class' => 'table table-striped table-condensed table-hover',
-    ),
-    'data'=>$model,
-    'attributes'=>array(
-		'id',
-		'first_name',
-		'middle_name',
-		'last_name',
-		'display_name',
-		'phone_number',
-		'email',
-		'contact_image',
-		'type',
-		'address_line_1',
-		'address_line_2',
-		'city',
-		'state',
-		'postal_code',
-		'country',
-	),
-)); ?>
+<?php $this->endWidget(); ?>    
+</div>
