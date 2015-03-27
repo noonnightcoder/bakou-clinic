@@ -122,4 +122,27 @@ class Visit extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function showPatientHis($patient_id)
+        {
+            $sql="select @rownum:=@rownum+1 id,patient_id,visit_date,display_id,sympton,observation,assessment,plan
+            from (    
+                SELECT t1.patient_id,visit_date,t2.display_id,sympton,observation,assessment,plan 
+                FROM visit t1
+                INNER JOIN patient t2 ON t1.patient_id = t2.patient_id
+                WHERE t1.patient_id=:patient_id 
+                ORDER BY visit_date DESC
+            )mm,(SELECT @rownum:=0) r";
+            
+            $rawData = Yii::app()->db->createCommand($sql);
+            $rawData->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
+            
+            return new CSqlDataProvider($rawData,array(
+                'sort' => array(
+                        'attributes' => array(
+                            'visit_date'
+                        )
+                    ),
+            ));
+        }
 }

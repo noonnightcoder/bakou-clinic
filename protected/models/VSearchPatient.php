@@ -68,12 +68,12 @@ class VSearchPatient extends CActiveRecord
 			'patient_id' => 'Patient',
 			'contact_id' => 'Contact',
 			'fullname' => 'Fullname',
-			'dob' => 'Dob',
+			'dob' => 'Date Of Birth',
 			'sex' => 'Sex',
 			'display_id' => 'Display',
 			'phone_number' => 'Phone Number',
 			'display_name' => 'Display Name',
-			'address_line_1' => 'Address Line 1',
+			'address_line_1' => 'Address',
 		);
 	}
 

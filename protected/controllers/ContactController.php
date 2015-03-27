@@ -187,13 +187,20 @@ class ContactController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
+	public function actionIndex($id)
 	{
 		/*$dataProvider=new CActiveDataProvider('Contact');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));*/
-            throw new CHttpException(400,'Invalid page request.');
+            //throw new CHttpException(400,'Invalid page request.');
+            //echo $patient_id; die();
+            $data['visit'] = new Visit;
+            $data['patient_id'] = $id;
+            $patient=  VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$id));
+            //$patient->unsetAttributes();
+            $data['patient'] = $patient;
+            $this->render('index', $data);
 	}
 
 	/**
@@ -259,7 +266,7 @@ class ContactController extends Controller
             $model->attributes=$_POST['contact_image'];
             $model->contact_image = CUploadedFile::getInstance($model, 'contact_image');
             $model->contact_image;
-            die();
+
             if ($model->contact_image !== null  && $model->validate(array('contact_image')))
             {
                 $rnd = rand(0,9999); 

@@ -113,7 +113,7 @@ $('.search-form form').submit(function(){
                             ),*/
                             'history' => array(
                                 'label' => Yii::t('app','History'),
-                                'url'=> '#',
+                                'url'=> 'Yii::app()->createUrl("contact/index/",array("id"=>$data->patient_id))',
                                 'options' => array(
                                   'class'=>'btn btn-xs btn-primary',
                                 ), 
