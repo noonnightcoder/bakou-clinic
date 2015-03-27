@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl ?>/css/queue_dash.css" />
 <div class="row" id="contact">
     <div class="grid-view">
+       
 <?php
 /* @var $this ContactController */
 /* @var $model Contact */
@@ -10,9 +11,16 @@
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
 ?>
+<?php $this->widget('bootstrap.widgets.TbAlert', array(
+        'block'=>true, // display a larger alert block?
+        'fade'=>true, // use transitions?
+        'closeText'=>'&times;', // close link text - if set to false, no close link is displayed
+        'alerts'=>array( // configurations per alert type
+            'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'), 
+            'error'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'),
+        ),
+)); ?>         
 <?php
-//print_r($doctors);
-//die();
 echo "<table class=\"items table table-bordered\"><thead><tr><th>No</th>";
 foreach ($doctors as $doctor) 
     {
@@ -20,7 +28,7 @@ foreach ($doctors as $doctor)
             //echo $doctor;
     }
 echo "</tr></thead>";
-echo "<tbody>";
+echo "<tbody id='appointment-dash'>";
     for ($i = 1; $i < 10; $i++)
     {
         if($i%2==0) { $class= "class='even'"; }else{ $class="class='odd'"; }
@@ -33,23 +41,24 @@ echo "<tbody>";
 
             $count=0;
             echo "<td><table id=\"innertbl\"><tr $class>";
+            
             foreach ($appointment as $app)
             {
                 if($doc_id==$app['doc_id'])
                 {
                     if($i==$app['id'])
                     {
-                        $change_doc_url= Yii::app()->createUrl('Appointment/update',array('appt_id'=>$app['id'],'doctor_id'=>$app['doc_id']));
-                        $cancel_url=Yii::app()->createUrl('Appointment/delete',array('appt_id'=>$app['id'],'doctor_id'=>$app['doc_id']));
+                        $change_doc_url= Yii::app()->createUrl('Appointment/update',array('appt_id'=>$app['appointment_id'],'doctor_id'=>$app['doc_id']));
+                        $cancel_url=Yii::app()->createUrl('Appointment/CancelAppointment',array('appoint_id'=>$app['appointment_id'],'doctor_id'=>$app['doc_id']));
                                 
-                        /*if($app['status'] != 'Waiting')
+                        if($app['status'] != 'Waiting')
                         {
                             echo "<td id='" . $app['status']. "'><a href='#'>" . $app['fullname'] . "</a></td>";
                         }else{
-                            echo "<td id='" . $app['status']."'>" . $app['fullname'] . "<a href='$change_doc_url' title='Change Doctor' class='fa fa-exchange'></a><a href='$cancel_url' title='Cancel Appointment' class='fa fa-times' onclick=\"cancel(".$app['id'].");\"></a></td>";
-                        }*/
+                            echo "<td id='" . $app['status']."'>" . $app['fullname'] . "<a href='$change_doc_url' title='Change Doctor' class='fa fa-exchange'></a><a href='$cancel_url' title='Cancel Appointment' class='fa fa-times cancle-appointment'></a></td>";
+                        }
                         
-                        echo "<td id='" . $app['status']. "'><a href='#'>" . $app['fullname'] . "</a></td>";
+                        //echo "<td id='" . $app['status']. "'><a href='#'>" . $app['fullname'] . "</a></td>";
                         //echo "<td id='" . $app['status']. "'>" . $app['fullname'] . "<a href='$change_doc_url' title='Change Doctor' class='fa fa-exchange'></a><a href='$cancel_url' title='Cancel Appointment' class='fa fa-times'></a></td>";
                         /*switch($app['status'])
                         {
@@ -92,8 +101,8 @@ echo "<tr><td id = \"Appointments\" style=\"height: 15px;width: 15px;\"></td>";
 <?php $this->endWidget(); ?>
     </div>
 </div>
-
-<script type="text/javascript">
+<div class="waiting"><!-- Place at bottom of page --></div>
+<!--<script type="text/javascript">
     function cancel (appt_id) {
         var answer=confirm("Are you sure! you wan to cancel appointment?");
         if (answer==false)
@@ -103,4 +112,26 @@ echo "<tr><td id = \"Appointments\" style=\"height: 15px;width: 15px;\"></td>";
             return true;
         }
     }
-</script>
+</script>--->
+
+<?php
+Yii::app()->clientScript->registerScript( 'cancel_appointment',"
+        $('tbody#appointment-dash').on('click','a.cancle-appointment',function(e) {
+        e.preventDefault();
+        var answer=confirm('Are you sure! you wan to cancel appointment?');
+        if(answer==true){
+            var url = $(this).attr('href');
+            $.ajax({
+                url:url,
+                dataType:'json',
+                type:'post',    
+                beforeSend: function() { $('.waiting').show(); },
+                complete: function() { $('.waiting').hide(); },
+                success:function(data) {
+                    window.location.href=window.location.href
+                }
+            });
+        }        
+    });
+");
+?>

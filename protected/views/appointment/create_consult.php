@@ -2,6 +2,7 @@
         'Contact'=>array('admin'),
 	'Create',
 );
+//echo Yii::app()->user->getId();
 ?>
 <?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
               'title' => Yii::t('app','Consultation') . ' Patient : ' . $patient_name,

@@ -33,12 +33,12 @@ class AppointmentController extends Controller
                     ),
                     array('allow', // allow authenticated user to perform 'create' and 'update' actions
                             'actions'=>array(
-                                'create','update','admin','GetPatient','RetreivePatient',
+                                'create','Delete','update','admin','GetPatient','RetreivePatient',
                                 'WaitingQueue','Consultation','DoctorConsult','AppointmentDash',
                                 'AddTreatment','DeleteTreatment','SelectMedicine',
                                 'Addmedicine','GetMedicine','DeleteMedicine',
                                 'GetTreatment','InitTreatment','EditMedicine',
-                                'EditTreatment','completedConsult','CancelAppointmen',
+                                'EditTreatment','completedConsult','CancelAppointment',
                                 'Prescription','prescriptionDetail','AddPayment',
                                 'CompleteSale','DeletePayment','Labocheck',
                                 'LaboPreview','LaboView','Pharmacy','PharmacyDetail'
@@ -816,11 +816,7 @@ class AppointmentController extends Controller
             $frequency =isset($_POST['Item']['frequency']) ? $_POST['Item']['frequency'] : null;
             $instruction_id =isset($_POST['Item']['instruction_id']) ? $_POST['Item']['instruction_id'] : null;
             $comment =isset($_POST['Item']['comment']) ? $_POST['Item']['comment'] : null;
-            //echo $_POST['Item']['comment'];
-            //echo $price;
-            //$medicine->quantity=$quantity;
-            //$medicine->unit_price=$price;
-            //echo $_POST['Item']['quantity'];
+            
             Yii::app()->treatmentCart->editMedicine($medicine_id, $quantity, $price,$dosage,$duration,$frequency,$instruction_id,$comment);
 
             $data['medicine']=$medicine;
@@ -899,24 +895,40 @@ class AppointmentController extends Controller
         ));*/
     }
     
-    public function actionCancelAppointmen($appoint_id,$doctor_id='',$patient_id='')
+    public function actionCancelAppointment($appoint_id,$doctor_id='',$patient_id='')
     {
-        $model = new AppointmentLog;
-        $transaction=$model->dbConnection->beginTransaction();
-        try{
-            $user_id = Yii::app()->user->getId();
-            Appointment::model()->updateByPk($appoint_id,array('status'=>'Cancel'));
-            $model->appointment_id = $appoint_id;
-            $model->change_date_time = date('Y-m-d h:i:s');
-            $model->status = 'Cancel';
-            $model->user_id = $user_id;
-            $model->save();
-            $transaction->commit();                        
-            $this->redirect(Yii::app()->user->returnUrl);
-        }catch (Exception $e){
-            $transaction->rollback(); 
-            Yii::app()->user->setFlash('error', '<strong>Process was rollback! </strong>Please contact administrator.');
-            echo $e->getMessage();
+        $user_id = Yii::app()->user->getId();
+        
+        if(!Yii::app()->user->checkAccess('appointment.delete'))
+        {
+            throw new CHttpException(400,'You are not authorized to perform this action.');
+        }
+        
+        $chk_group = RbacUser::model()->find("employee_id=:employee_id",array(':employee_id'=>$user_id));
+        
+        $chk_appt = Appointment::model()->findByPk($appoint_id);
+
+        if($chk_group->group_id!=2 && $chk_appt->status!='Waiting')
+        {
+            Yii::app()->user->setFlash('success', '<strong>Ooop! </strong>Appointment was already processed!');
+        }else{
+            $model = new AppointmentLog;
+            $transaction=$model->dbConnection->beginTransaction();
+            try{
+
+                Appointment::model()->updateByPk($appoint_id,array('status'=>'Cancel'));
+                $model->appointment_id = $appoint_id;
+                $model->change_date_time = date('Y-m-d h:i:s');
+                $model->status = 'Cancel';
+                $model->user_id = $user_id;
+                $model->save();
+                $transaction->commit();                        
+                //$this->redirect(Yii::app()->user->returnUrl);
+            }catch (Exception $e){
+                $transaction->rollback(); 
+                Yii::app()->user->setFlash('error', '<strong>Process was rollback! </strong>Please contact administrator.');
+                echo $e->getMessage();
+            }
         }
     }
 

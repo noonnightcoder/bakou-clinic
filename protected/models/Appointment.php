@@ -225,11 +225,11 @@ class Appointment extends CActiveRecord
 
         public function get_appointment()
         {
-            $sql="SELECT doc_id,user_id,status,fullname, 
+            $sql="SELECT appointment_id,doc_id,user_id,status,fullname, 
                 @row_number:=CASE WHEN @user_id=user_id THEN @row_number+1 ELSE 1 END AS id
                 ,@user_id:=user_id AS user_id
                 FROM (
-                SELECT t1.user_id doc_id,t1.user_id,status,CONCAT(t2.last_name,' ',t2.first_name) fullname
+                SELECT t1.id appointment_id,t1.user_id doc_id,t1.user_id,status,CONCAT(t2.last_name,' ',t2.first_name) fullname
                                 FROM appointment t1
                                 INNER JOIN v_patient t2 ON t1.patient_id=t2.patient_id
                                 WHERE appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)

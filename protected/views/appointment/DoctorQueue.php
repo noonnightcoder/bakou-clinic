@@ -111,7 +111,7 @@ $('.search-form form').submit(function(){
                         //http://bit.ly/1bdSADp
                         'delete' => array(
                             'label' => Yii::t('app','Cancel'),
-                            'url'=>'Yii::app()->createUrl("Appointment/CancelAppointmen", array("appoint_id"=>$data["app_id"],"doctor_id"=>$data["doctor_id"],"patient_id"=>$data["patient_id"]))',
+                            'url'=>'Yii::app()->createUrl("Appointment/CancelAppointment", array("appoint_id"=>$data["app_id"],"doctor_id"=>$data["doctor_id"],"patient_id"=>$data["patient_id"]))',
                             'icon'=>'bigger-120 glyphicon-trash',
                             'options' => array(
                                 'class'=>'btn btn-xs btn-danger',
