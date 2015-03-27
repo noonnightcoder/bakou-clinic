@@ -45,11 +45,11 @@ $('.search-form form').submit(function(){
         <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 <?php endif; ?>
 
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
+<?php $this->widget('yiiwheels.widgets.grid.WhGridView',array(
             'id'=>'medicine-form-grid',
             'dataProvider'=>$model->showBill(),
             'htmlOptions'=>array('class'=>'table-responsive panel'),
-            //'template' => "{items}",
+            'template' => "{items}",
             'columns'=>array(
                 array('name'=>'id',
                        'header'=>'#', 
@@ -82,20 +82,30 @@ $('.search-form form').submit(function(){
                 array('name'=>'appointment_date',
                        'header'=>'Appointment', 
                 ),
-		'title',
-                'status',
+                array('name'=>'title',
+                       'header'=>'Title', 
+                ),
+                array('name'=>'status',
+                       'header'=>'Status', 
+                ),
                 /*array('name'=>'status',
                   'header'=>'Status',
                   'value' =>array($this,"gridLeaveStatusColumn"),
                  ),*/
 		array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
-                    'template'=>'{view}',
-                    //'template'=>'<div class="hidden-sm hidden-xs btn-group">{view}{update}{delete}{undeleted}</div>',
+                    //'template'=>'{view}',
+                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{detail}</div>',
                     'buttons'=>array(
-                        'view' => array(
-                            'label' => 'Detail',                            
+                        'detail' => array(
+                            'label' => Yii::t('app','Detail'),                            
                             'url'=>'Yii::app()->createUrl("Appointment/prescriptionDetail", array("visit_id"=>$data["visit_id"]))',
+                            'options' => array(
+                                'data-toggle' => 'tooltip', 
+                                'data-update-dialog-title' => 'Detail',
+                                'class'=>'btn btn-xs btn-info', 
+                                'title'=>'Detail',
+                            ),
                         ),
                     ),
                 ),

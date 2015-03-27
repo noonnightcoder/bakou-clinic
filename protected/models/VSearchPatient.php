@@ -7,6 +7,8 @@
  * @property integer $patient_id
  * @property integer $contact_id
  * @property string $fullname
+ * @property string $dob
+ * @property string $sex
  * @property string $display_id
  * @property string $phone_number
  * @property string $display_name
@@ -34,13 +36,15 @@ class VSearchPatient extends CActiveRecord
 		return array(
 			array('fullname, display_id', 'required'),
 			array('patient_id, contact_id', 'numerical', 'integerOnly'=>true),
+			array('sex', 'length', 'max'=>20),
 			array('display_id', 'length', 'max'=>12),
 			array('phone_number', 'length', 'max'=>30),
 			array('display_name', 'length', 'max'=>100),
 			array('address_line_1', 'length', 'max'=>300),
+			array('dob', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('search,patient_id, contact_id, fullname, display_id, phone_number, display_name, address_line_1', 'safe', 'on'=>'search'),
+			array('search,patient_id, contact_id, fullname, dob, sex, display_id, phone_number, display_name, address_line_1', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,6 +68,8 @@ class VSearchPatient extends CActiveRecord
 			'patient_id' => 'Patient',
 			'contact_id' => 'Contact',
 			'fullname' => 'Fullname',
+			'dob' => 'Dob',
+			'sex' => 'Sex',
 			'display_id' => 'Display',
 			'phone_number' => 'Phone Number',
 			'display_name' => 'Display Name',
@@ -88,14 +94,6 @@ class VSearchPatient extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
-		//$criteria->compare('patient_id',$this->patient_id);
-		//$criteria->compare('contact_id',$this->contact_id);
-		//$criteria->compare('fullname',$this->fullname,true);
-		//$criteria->compare('display_id',$this->display_id,true);
-		//$criteria->compare('phone_number',$this->phone_number,true);
-		//$criteria->compare('display_name',$this->display_name,true);
-		//$criteria->compare('address_line_1',$this->address_line_1,true);
 
 		if ($this->search) {
                 

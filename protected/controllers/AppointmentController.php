@@ -312,7 +312,7 @@ class AppointmentController extends Controller
         }elseif ($data['status']=='Complete') {
             echo TbHtml::labelTb('Complete',array('color' => TbHtml::LABEL_COLOR_SUCCESS));  
         }elseif ($data['status']=='Cancel') {
-            echo TbHtml::labelTb('Cancel',array('color' => TbHtml::LABEL_COLOR_SUCCESS));  
+            echo TbHtml::labelTb('Cancel',array('color' => TbHtml::BUTTON_COLOR_INVERSE));  
         }else{
            echo TbHtml::labelTb('Consultant');
         }
@@ -499,11 +499,9 @@ class AppointmentController extends Controller
                                     )
                                 );
                         if(!empty($_POST['Visit']['sympton']) || !empty($_POST['Visit']['observation']) || !empty($_POST['Visit']['assessment']) ||!empty($_POST['Visit']['plan']))
-                        {
-                            $transaction->commit();
-                            
+                        {                            
                             if(isset($_POST['Completed_consult']))
-                            {
+                            {   
                                 if(!empty($treatment_selected) || !empty($medicine_selected))
                                 {
                                     $this->actioncompletedConsult($_GET['visit_id']);
@@ -512,13 +510,12 @@ class AppointmentController extends Controller
                                 }
                             }else{
                                 Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
-                                
                             }
                         }else{
                             Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> Please insert the Sympton, Observation....');
-                            $transaction->rollback();
+                            //$transaction->rollback();
                         }    
-                        
+                        $transaction->commit();
                         Yii::app()->treatmentCart->clearAll(); 
                         $this->redirect('waitingqueue');
                     }catch (Exception $e){
@@ -943,12 +940,15 @@ class AppointmentController extends Controller
     
     public function actionprescriptionDetail($visit_id)
     {  
+        Yii::app()->treatmentCart->emptyPayment();
         $model = new Appointment;
+        $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
+        $data['patient_name'] = $rst->patient_name;
         $data['model'] = new Appointment('showBillDetail');
         $data['count_item'] = $model->countBill($visit_id);
         $data['amount'] = $model->sumBill($visit_id);
         $data['visit_id'] = $visit_id;
-        $data['patient_name'] = $data['model']->patient_name;
+        //$data['patient_name'] = $data['model']->patient_name;
         $data['payments'] =Yii::app()->treatmentCart->getPayments();
         
         //---***find bill was added yet***---//
@@ -978,10 +978,11 @@ class AppointmentController extends Controller
         }
         
         $model->date_report = $date_report;
+        $data['date_report'] = $date_report;
         
         //return $model->get_doctor_queue();
         $this->render('Pharmacy',array(
-            'model'=>$model,'date_report'=>$date_report
+            'model'=>$model,$data
         ));
     }
     
@@ -1014,7 +1015,9 @@ class AppointmentController extends Controller
             $data['model'] = $model;
             $data['payment'] =$payment;
             $data['count_item'] = $model->countBill($visit_id);
-            $data['amount'] = $model->sumBill($visit_id);        
+            $data['amount'] = $model->sumBill($visit_id);    
+            $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
+            $data['patient_name'] = $rst->patient_name;
             $data['visit_id'] = $visit_id;
             Yii::app()->treatmentCart->addPayment($visit_id,$data['amount']);
             $data['payments'] = Yii::app()->treatmentCart->getPayments();
@@ -1060,7 +1063,8 @@ class AppointmentController extends Controller
             $data['count_item'] = $model->countBill($visit_id);
             $data['amount'] = $model->sumBill($visit_id);        
             $data['visit_id'] = $visit_id;
-            
+            $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
+            $data['patient_name'] = $rst->patient_name;
             $count_payment=0;
             if(!empty($data['payments'])){$count_payment=1;}
                 
@@ -1102,13 +1106,12 @@ class AppointmentController extends Controller
         $employee = Employee::model()->get_doctorName($employee_id->employee_id);
         //$cust_info = array();
         $cust_info=Appointment::model()->generateInvoice($visit_id); 
-
         $patient_id = Appointment::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
         $rs = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$patient_id->patient_id));
         
         //$data['pres_detail'] = VPrescriptionDetail::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
         //$pres_detail = PrescriptionDetail::model()->find("prescription_id=:prescription_id",array(':prescription_id'=>$prescription_id));
-        
+
         $data['cust_fullname'] =  $rs->fullname;
         //$data['cust_fullname'] =  'Hello';
         $data['employee'] = $employee->doctor_name;
@@ -1139,8 +1142,8 @@ class AppointmentController extends Controller
         $data['total_khr_round']=($total - $total*$data['discount_amount']/100)*4000;
         $data['amount_change']=0;
         $data['amount_change_khr_round']=0;
-        //print_r($cust_info); die();
+        
+        Yii::app()->treatmentCart->clearAll();
         $this->render('_receipt', $data);
-        Yii::app()->shoppingCart->clearAll();
     }
 }

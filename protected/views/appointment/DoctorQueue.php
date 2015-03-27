@@ -53,7 +53,7 @@ $('.search-form form').submit(function(){
         <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 <?php endif; ?>
 
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
+<?php $this->widget('yiiwheels.widgets.grid.WhGridView',array(
             'id'=>'waiting-queue',
             'dataProvider'=>$model->get_doctor_queue(),
             //'htmlOptions'=>array('class'=>'table-responsive panel'),
@@ -95,20 +95,27 @@ $('.search-form form').submit(function(){
 		array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
                     'deleteConfirmation'=>'Are you sure you want to Cancel the appointment?',
-                    'template'=>'{view}{delete}',
-                    //'template'=>'<div class="hidden-sm hidden-xs btn-group">{view}{update}{delete}{undeleted}</div>',
+                    //'template'=>'{view}{delete}',
+                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{consult}{delete}</div>',
                     'buttons'=>array(
-                        'view' => array(
-                            'label' => 'Consultant',                            
+                        'consult' => array(
+                            'label' => Yii::t('app','Consult'),                            
                             'url'=>'Yii::app()->createUrl("Appointment/Consultation", array("appoint_id"=>$data["app_id"],"doctor_id"=>$data["doctor_id"],"patient_id"=>$data["patient_id"]))',
-                            /*'options' => array(
-                                'class'=>'fa fa-user-md',
-                            ),*/
+                            'options' => array(
+                                'data-toggle' => 'tooltip', 
+                                'data-update-dialog-title' => 'Consultation',
+                                'class'=>'btn btn-xs btn-info', 
+                                'title'=>'Consultation',
+                            ),
                         ),
                         //http://bit.ly/1bdSADp
                         'delete' => array(
-                            'label' => 'Cancel',
+                            'label' => Yii::t('app','Cancel'),
                             'url'=>'Yii::app()->createUrl("Appointment/CancelAppointmen", array("appoint_id"=>$data["app_id"],"doctor_id"=>$data["doctor_id"],"patient_id"=>$data["patient_id"]))',
+                            'icon'=>'bigger-120 glyphicon-trash',
+                            'options' => array(
+                                'class'=>'btn btn-xs btn-danger',
+                             ),
                             
                         ),
                     ),

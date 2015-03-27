@@ -51,7 +51,6 @@ $('.search-form form').submit(function(){
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
             'id'=>'contact-grid',
             'dataProvider'=>$model->search(),
-            //'filter'=>$model,
             'htmlOptions'=>array('class'=>'table-responsive panel'),
             'columns'=>array(
 		//'id',
@@ -79,7 +78,7 @@ $('.search-form form').submit(function(){
                 ),
                 array(
                     'name'=>'sex',
-                    'header'=>'sex', 
+                    'header'=>'Sex', 
                 ),
                 array(
                     'name'=>'phone_number',
@@ -103,7 +102,7 @@ $('.search-form form').submit(function(){
                 ),*/
 		array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
-                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{update}{delete}</div>',
+                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{history}{update}{delete}</div>',
                     'htmlOptions'=>array('class'=>'nowrap'),
                     'buttons' => array(
                             /*'view' => array(
@@ -112,10 +111,17 @@ $('.search-form form').submit(function(){
                                   'class'=>'btn btn-xs btn-success',
                                 ),   
                             ),*/
+                            'history' => array(
+                                'label' => Yii::t('app','History'),
+                                'url'=> '#',
+                                'options' => array(
+                                  'class'=>'btn btn-xs btn-primary',
+                                ), 
+                            ),
                             'update' => array(
-                              'icon' => 'ace-icon fa fa-edit',
-                              'url'=>'Yii::app()->createUrl("contact/update/",array("id"=>$data->contact_id))',  
-                              'options' => array(
+                                'icon' => 'ace-icon fa fa-edit',
+                                'url'=>'Yii::app()->createUrl("contact/update/",array("id"=>$data->contact_id))',  
+                                'options' => array(
                                   'class'=>'btn btn-xs btn-info',
                                 ), 
                             ),

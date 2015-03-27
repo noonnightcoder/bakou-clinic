@@ -8,7 +8,7 @@
 /* @var $this ContactController */
 /* @var $model Contact */
     $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-                  'title' => Yii::t('app','Pharmacy Detail').'  >>> '.$patient_name,
+                  'title' => Yii::t('app','Pharmacy Detail').' Patient: <font color="red">'.$patient_name. '</font>',
                   'headerIcon' => 'ace-icon fa fa-users',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
@@ -38,7 +38,7 @@ $('.search-form form').submit(function(){
         <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 <?php endif; ?>
 
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
+<?php $this->widget('yiiwheels.widgets.grid.WhGridView',array(
             'id'=>'waiting-queue',
             'dataProvider'=>$model->showBillDetail($visit_id),
             //'htmlOptions'=>array('class'=>'table-responsive panel'),

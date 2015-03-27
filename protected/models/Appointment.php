@@ -276,8 +276,7 @@ class Appointment extends CActiveRecord
             $cmd->bindParam(":visit_id", $visit_id);
             $cmd->bindParam(":user_id", $user_id);
             $cmd->execute();
-            return false;
-            
+            return true;
         }
         
         public function showBillDetail($visit_id)

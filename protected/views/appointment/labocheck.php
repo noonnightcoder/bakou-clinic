@@ -45,10 +45,10 @@ $('.search-form form').submit(function(){
         <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 <?php endif; ?>
 
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
+<?php $this->widget('yiiwheels.widgets.grid.WhGridView',array(
             'id'=>'waiting-queue',
             'dataProvider'=>$model->get_patient_queue(),
-            //'htmlOptions'=>array('class'=>'table-responsive panel'),
+            'htmlOptions'=>array('class'=>'table-responsive panel'),
             'template' => "{items}",
             'columns'=>array(
                 array('name'=>'id',
@@ -78,7 +78,9 @@ $('.search-form form').submit(function(){
                 array('name'=>'appointment_date',
                        'header'=>'Appointment', 
                 ),
-		'title',
+		array('name'=>'title',
+                       'header'=>'Title', 
+                ),
                 //'status',
                 array('name'=>'status',
                   'header'=>'Status',

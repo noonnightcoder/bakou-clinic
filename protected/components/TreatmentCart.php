@@ -216,7 +216,7 @@ class TreatmentCart extends CApplicationComponent
         $this->setPayments($payments);
     }
     
-    protected function emptyPayment()
+    public function emptyPayment()
     {
         $this->setSession(Yii::app()->session);
         unset($this->session['payments']);
@@ -238,6 +238,7 @@ class TreatmentCart extends CApplicationComponent
     {
         $this->emptyCart();
         $this->emptyMedicine();
+        $this->emptyPayment();
     }
     
     protected function clearMedicine()
