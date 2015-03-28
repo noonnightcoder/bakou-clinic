@@ -64,6 +64,12 @@
                 <?php //echo $form->textFieldControlGroup($user,'employee_id',array('class'=>'span5')); ?>
                 <h4 class="header blue bolder"><i class="ace-icon fa fa-gavel blue"></i><?php echo Yii::t('app','Employee Permissions and Access'); ?></h4>
                 <div class="form-group">
+                    <label class="col-sm-3 control-label" for="RbacUser_roles">Roles</label>
+                    <div class="col-sm-9">
+                        <?php echo CHtml::activeCheckboxList($user, 'roles',Authitem::model()->getAuthlist('maintask'), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-sm-3 control-label" for="RbacUser_patients">Patient</label>
                     <div class="col-sm-9">
                         <?php echo CHtml::activeCheckboxList($user, 'contacts',Authitem::model()->getAuthcontact(), array('separator' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','checkAll' => Yii::t('app','Select All'))); ?>

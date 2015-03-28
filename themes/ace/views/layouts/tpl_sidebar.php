@@ -41,7 +41,7 @@
             )),*/
             array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Patients')) . '</span>', 'icon'=>'menu-icon fa fa-group','url'=>Yii::app()->urlManager->createUrl('patient/index'),
                 'active'=>$this->id=='contact' || strtolower($this->id)=='default' || $this->id=='appointment' || $this->id=='settings' || $this->id=='location',
-                'visible'=>Yii::app()->user->checkAccess('contact'),
+                'visible'=>Yii::app()->user->checkAccess('maintask.service'),
                 'items'=>array(
                     array('label'=>Yii::t('menu','Patient'),'icon'=> 'fa fa-users', 'url'=>Yii::app()->urlManager->createUrl('contact/admin'), 'active'=>$this->id=='contact',
                         'visible'=>Yii::app()->user->checkAccess('contact.index')
@@ -69,7 +69,7 @@
                 )
             ),
             array('label'=>'<span class="menu-text">' . strtoupper(Yii::t('menu','Transaction')) .'</span>', 'icon'=>'menu-icon fa fa-desktop','url'=>Yii::app()->urlManager->createUrl('receivingItem/index'),'active'=>$this->id .'/'. $this->action->id=='receivingItem/index',
-                'visible'=> Yii::app()->user->checkAccess('transaction'),
+                'visible'=> Yii::app()->user->checkAccess('maintask.transaction'),
                 'items'=>array(
                     array('label'=> Yii::t('menu','Receive from Supplier'),'icon'=> 'menu-icon fa fa-caret-right', 'url'=>Yii::app()->urlManager->createUrl('receivingItem/index',array('trans_mode'=>'receive')), 'active'=>$this->id .'/'. $this->action->id .'/'.Yii::app()->request->getQuery('trans_mode')=='receivingItem/index/receive','visible'=>Yii::app()->user->checkAccess('transaction.receive')),
                     array('label'=> Yii::t('menu','Return to Supplier'), 'icon'=> 'menu-icon fa fa-caret-right', 'url'=>Yii::app()->urlManager->createUrl('receivingItem/index',array('trans_mode'=>'return')),'active'=>$this->id .'/'. $this->action->id .'/'.Yii::app()->request->getQuery('trans_mode')=='receivingItem/index/return','visible'=>Yii::app()->user->checkAccess('transaction.return')),
@@ -80,7 +80,7 @@
             ),
             array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Settings')) . '</span>', 'icon'=>'menu-icon fa fa-cogs','url'=>Yii::app()->urlManager->createUrl('settings/index'),
                 'active'=>$this->id=='employee' || $this->id=='clinic' || $this->id=='treatment' || $this->id=='item',
-                'visible'=>Yii::app()->user->checkAccess('setting'),
+                'visible'=>Yii::app()->user->checkAccess('maintask.setting'),
                 'items'=>array(
                     array('label'=>Yii::t('menu', 'Clinic'), 'icon'=> 'fa fa-h-square', 'url'=>Yii::app()->urlManager->createUrl('clinic/ClinicInfo'), 'active'=>$this->id .'/'. $this->action->id=='clinic/ClinicInfo',
                     'visible'=> Yii::app()->user->checkAccess('clinic.index') 
