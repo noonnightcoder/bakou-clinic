@@ -9,14 +9,14 @@
 /* @var $this ContactController */
 /* @var $model Contact */
     $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-                  'title' => Yii::t('app','List of Contact'),
+                  'title' => Yii::t('app','List of Patients'),
                   'headerIcon' => 'ace-icon fa fa-users',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
 ?>    
 <?php
 $this->breadcrumbs=array(
-            Yii::t('menu','Contact')=>array('admin'),
+            Yii::t('menu','Patient')=>array('admin'),
             Yii::t('app','Manage'),
     );
 
@@ -124,7 +124,8 @@ $('.search-form form').submit(function(){
                                 'url'=>'Yii::app()->createUrl("contact/update/",array("id"=>$data->contact_id))',  
                                 'options' => array(
                                   'class'=>'btn btn-xs btn-info',
-                                ), 
+                                ),
+                                'visible'=>'Yii::app()->user->checkAccess("contact.update")'
                             ),
                             'delete' => array(
                                'label'=>'Delete',

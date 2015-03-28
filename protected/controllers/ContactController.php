@@ -55,12 +55,17 @@ class ContactController extends Controller
 	 */
 	public function actionView($id)
 	{
-            $data['visit'] = new Visit;
-            $data['patient_id'] = $id;
-            $patient=  VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$id));
-            //$patient->unsetAttributes();
-            $data['patient'] = $patient;
-            $this->render('view', $data);
+            if(!Yii::app()->user->checkAccess("contact.view"))
+            {
+                throw new CHttpException(400,'You are not authorized to perform this action.');
+            }else{
+                $data['visit'] = new Visit;
+                $data['patient_id'] = $id;
+                $patient=  VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$id));
+                //$patient->unsetAttributes();
+                $data['patient'] = $patient;
+                $this->render('view', $data);
+            }
 	}
 
 	/**

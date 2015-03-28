@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	Yii::t('app','Contact')=>array('contact/admin'),
+	Yii::t('app','Patient')=>array('contact/admin'),
 	Yii::t('app','Index'),
 );
 

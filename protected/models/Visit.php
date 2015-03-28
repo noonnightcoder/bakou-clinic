@@ -130,6 +130,7 @@ class Visit extends CActiveRecord
                 SELECT t1.patient_id,visit_date,t2.display_id,sympton,observation,assessment,plan 
                 FROM visit t1
                 INNER JOIN patient t2 ON t1.patient_id = t2.patient_id
+                inner join appointment t3 on t1.visit_id = t3.visit_id and t3.status='Complete'
                 WHERE t1.patient_id=:patient_id 
                 ORDER BY visit_date DESC
             )mm,(SELECT @rownum:=0) r";
