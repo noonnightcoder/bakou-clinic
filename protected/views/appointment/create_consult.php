@@ -7,6 +7,16 @@
 <?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
               'title' => Yii::t('app','Consultation') . ' Patient : ' . $patient_name,
               'headerIcon' => 'ace-icon fa fa-user',
+              'headerButtons' => array(
+                    TbHtml::linkButton(Yii::t( 'app', 'Patient History' ),array(
+                        'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
+                        'size'=>TbHtml::BUTTON_SIZE_SMALL,
+                        //'icon'=>'ace-icon fa fa-undo white',
+                        'url'=>$this->createUrl('contact/PatientHistory',array("id"=>$_GET['patient_id'])),
+                        'class'=>'update-dialog-open-link',
+                        'data-update-dialog-title' => Yii::t( 'app', 'Patient History' ),                            
+                    )),
+                ),
               'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small') ,
               'content' => $this->renderPartial('_CompleteConsult', array('model'=>$model,'visit'=>$visit,
                                 'employee'=>$employee,'treatment'=>$treatment,

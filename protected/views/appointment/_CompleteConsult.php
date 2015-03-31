@@ -1,3 +1,4 @@
+<?php $this->widget( 'ext.modaldlg.EModalDlg' ); ?>
 <div class="register_container">
 <?php $this->widget('bootstrap.widgets.TbAlert', array(
         'block'=>true, // display a larger alert block?
@@ -114,6 +115,7 @@
 <?php $this->endWidget(); ?>
     
 </div>  
+
 
 
 <?php 

@@ -32,7 +32,7 @@ class ContactController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','admin','Upload','Delete'),
+				'actions'=>array('create','update','admin','Upload','Delete','PatientHistory'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -64,11 +64,47 @@ class ContactController extends Controller
                 $patient=  VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$id));
                 //$patient->unsetAttributes();
                 $data['patient'] = $patient;
-                $this->render('view', $data);
+                $this->render('view', $data,false,true);
             }
 	}
+        
+        public function actionPatientHistory($id)
+        {
+            if(!Yii::app()->user->checkAccess("contact.view"))
+            {
+                throw new CHttpException(400,'You are not authorized to perform this action.');
+            }else{
+                
+               /* $cs = Yii::app()->clientScript;
+                $cs->scriptMap = array(
+                    'jquery.js' => false,
+                    'bootstrap.js' => false,
+                    'jquery.ba-bbq.min.js' => false,
+                    'jquery.yiigridview.js' => false,
+                    'bootstrap.min.js' => false,
+                    'jquery.min.js' => false,
+                    'bootstrap.notify.js' => false,
+                    'bootstrap.bootbox.min.js' => false,
+                );
 
-	/**
+                Yii::app()->clientScript->scriptMap['*.js'] = false;*/
+            
+                $data['visit'] = new Visit;
+                $data['patient_id'] = $id;
+                $patient=  VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$id));
+                //$patient->unsetAttributes();
+                $data['patient'] = $patient;
+                
+                echo CJSON::encode(array(
+                    'status' => 'render',
+                    'div' => $this->renderPartial('_patient_his_popup', $data, true, true),
+                ));
+                
+                //$this->renderPartial('view', $data,false,true);
+            }
+        }
+
+        /**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
