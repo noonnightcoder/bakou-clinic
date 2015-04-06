@@ -75,7 +75,7 @@ class ContactController extends Controller
                 throw new CHttpException(400,'You are not authorized to perform this action.');
             }else{
                 
-               /* $cs = Yii::app()->clientScript;
+                /*$cs = Yii::app()->clientScript;
                 $cs->scriptMap = array(
                     'jquery.js' => false,
                     'bootstrap.js' => false,

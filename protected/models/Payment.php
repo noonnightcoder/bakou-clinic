@@ -16,7 +16,10 @@ class Payment extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
-	public function tableName()
+    
+        public $actual_amount;
+        public $total_amount;
+        public function tableName()
 	{
 		return 'payment';
 	}

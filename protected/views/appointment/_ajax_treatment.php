@@ -1,3 +1,18 @@
+<?php
+    $treatment_amount = Yii::app()->treatmentCart->getCart();
+    $total_amount = 0;
+    foreach ($treatment_amount as $val)
+    {
+        $total_amount +=$val['price'];
+    }
+    
+    $medicine_amount = Yii::app()->treatmentCart->getMedicine();
+    
+    foreach ($medicine_amount as $val)
+    {
+        $total_amount +=$val['price']*$val['quantity'];
+    }    
+?>
 <table class="table table-hover table-condensed">
     <thead>
         <tr>
@@ -8,7 +23,7 @@
         </tr>
     </thead>
     <tbody id="treatment_contents">
-        <?php //$treatment_selected_items =array(); ?>
+        <?php //print_r($treatment_selected_items); ?>
         <?php foreach ($treatment_selected_items as $id => $item): ?>
         <?php $item_id=$item['id']; ?>
         <tr>
@@ -129,3 +144,14 @@
     
 </script>
 
+<script>    
+    $(document).ready(function() {
+        $('#show-payment-modal').on('shown.bs.modal', function() {
+            $('#Appointment_total_amount').val('<?php echo @$total_amount ?>');
+        });
+    
+        $('#show-payment-modal').on('hidden.bs.modal', function(e) {
+            $('#show-payment-modal').val('');
+        });
+    });
+</script>

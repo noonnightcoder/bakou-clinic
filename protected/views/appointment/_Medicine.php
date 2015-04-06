@@ -66,10 +66,15 @@ $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                     };
                  }',
             ),
-            'initSelection' => 'js:function (element, callback) {
-                   var id=$(element).val();
-                   console.log(id);
-            }',
+            'initSelection' => "js:function (element, callback) {
+                    var id=$(element).val();
+                    if (id!=='') {
+                        $.ajax('".$this->createUrl('/appointment/InitMedicine')."', {
+                            dataType: 'json',
+                            data: { id: id }
+                        }).done(function(data) {callback(data);}); //http://www.eha.ee/labs/yiiplay/index.php/en/site/extension?view=select2
+                    }
+            }",
             //'htmlOptions'=>array('id'=>'search_item_id'),
     )));
 ?>

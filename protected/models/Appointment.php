@@ -26,7 +26,8 @@ class Appointment extends CActiveRecord
     
         public $patient_name;
         public $date_report;
-        
+        public $total_amount;
+        public $actual_amount;
         public function tableName()
 	{
 		return 'appointment';
@@ -39,13 +40,14 @@ class Appointment extends CActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array(
-			array('appointment_date, title, user_id, status', 'required'),
+		return array(                        
+			array('appointment_date,title, user_id, status', 'required'),      
+                        array('actual_amount','amount_validate'),
 			array('patient_id, user_id, visit_id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>150),
 			array('status', 'length', 'max'=>255),
-                        array('patient_id','patient_validate','required'),
-			array('end_date, start_time, end_time,date_report', 'safe'),
+                        array('patient_id','patient_validate','required'),                        
+			array('end_date, start_time, end_time,date_report,actual_amount', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, appointment_date, end_date, start_time, end_time, title, patient_id, user_id, status, visit_id,date_report', 'safe', 'on'=>'search'),
@@ -507,6 +509,16 @@ class Appointment extends CActiveRecord
             if($this->patient_id=='')
             {
                 $this->addError('patient_id','Please select the patient');
+            }
+        }
+        
+        public function amount_validate($attribute,$params)
+        {
+            //echo $this->patient_id;
+            if($this->actual_amount=='')
+            {
+                $this->addError('actual_amount','Actual Amount cannot be blank');
+                //Yii::app()->end();
             }
         }
 }

@@ -1,3 +1,18 @@
+<?php
+    $treatment_amount = Yii::app()->treatmentCart->getCart();
+    $total_amount = 0;
+    foreach ($treatment_amount as $val)
+    {
+        $total_amount +=$val['price'];
+    }
+    
+    $medicine_amount = Yii::app()->treatmentCart->getMedicine();
+    
+    foreach ($medicine_amount as $val)
+    {
+        $total_amount +=$val['price']*$val['quantity'];
+    }    
+?>
 <?php //print_r($medicine_selected_items); die(); ?>
 <table class="table table-hover table-condensed">
     <thead>
@@ -5,18 +20,19 @@
             <th style="display:none">ID</th>
             <th>Medicine</th>
             <th>Dosage</th>
+            <th>Consuming Time</th>
             <th>Duration</th>
-            <th>Frequency</th>
+            <!--<th>Frequency</th>-->
             <th>Instruction</th>
-            <th>Comment</th>
+            <!--<th>Comment</th>-->
             <th>Price</th>
             <th>Quantity</th>
             <th>Total</th>
-            <th>Action</th>
+            <th></th>
         </tr>
     </thead>
     <tbody id="medicine_contents">
-        <?php //print_r($medicine_selected_items); ?>        
+        <?php print_r($medicine_selected_items); ?>        
         <?php foreach ($medicine_selected_items as $id => $item): ?>
         <?php $item_id=$item['id']; ?>
         <tr>
@@ -43,8 +59,21 @@
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
-                <?php echo $form->textField($medicine, "dosage", array('value' => $item['dosage'],'class' => 'input-small numeric input-grid', 'id' => "dosage_$item_id", 'placeholder' => 'Dosage', 'data-id' => "$item_id", 'maxlength' => 50, 'style'=>"width:50px;")); ?>
+                <?php echo $form->textField($medicine, "dosage", array('value' => $item['dosage'],'class' => 'input-small numeric input-grid', 'id' => "dosage_$item_id", 'placeholder' => 'Dosage', 'data-id' => "$item_id", 'maxlength' => 50,)); ?>
                 <?php $this->endWidget(); ?>  
+            </td>
+            
+            <td>                
+                <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+                        'method'=>'post',
+                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
+                        'htmlOptions'=>array('class'=>'line_item_form'),
+                    ));
+                ?>                  
+                <?php $medicine->consuming_time_id = $item['consuming_time_id']?>
+                <?php echo $form->dropDownList($medicine,'consuming_time_id',
+                         CHtml::listData(ConsumingTime::model()->findall(), 'id', 'consuming_time'),array('class' => 'input-small numeric input-grid','style'=>"width:150px;")); ?>
+                <?php $this->endWidget(); ?> 
             </td>
             
             <td>
@@ -60,16 +89,16 @@
                 <?php $this->endWidget(); ?>  
             </td>
             
-            <td>
-                <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+            <!--<td>
+                <?php /*$form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
                         'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
-                    ));
+                    ));*/
                 ?>
-                <?php echo $form->textField($medicine, "frequency", array('value' => $item['frequency'],'class' => 'input-small numeric input-grid', 'id' => "frequency_$item_id", 'placeholder' => 'frequency', 'data-id' => "$item_id", 'maxlength' => 50, 'style'=>"width:50px;")); ?>
-                <?php $this->endWidget(); ?>  
-            </td>   
+                <?php //echo $form->textField($medicine, "frequency", array('value' => $item['frequency'],'class' => 'input-small numeric input-grid', 'id' => "frequency_$item_id", 'placeholder' => 'frequency', 'data-id' => "$item_id", 'maxlength' => 50, 'style'=>"width:50px;")); ?>
+                <?php //$this->endWidget(); ?>  
+            </td>-->   
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
@@ -79,20 +108,20 @@
                 ?>
                 <?php $medicine->instruction_id = $item['instruction_id']?>
                 <?php echo $form->dropDownList($medicine,'instruction_id',
-                         CHtml::listData(Instruction::model()->findall(), 'id', 'description_khmer'),array('class' => 'input-small numeric input-grid')); ?>
+                         CHtml::listData(Instruction::model()->findall(), 'id', 'description_khmer'),array('class' => 'input-small numeric input-grid','style'=>"width:200px;")); ?>
                 <?php $this->endWidget(); ?>  
             </td>
-            <td>
-                <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+            <!--<td>
+                <?php /*$form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
                         'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
-                    ));
+                    ));*/
                 ?>
                 <?php //$item['comment']='dfdfd'; ?>
-                <?php echo $form->textField($medicine, "comment", array('value' => $item['comment'], 'class' => 'input-small numeric input-grid','id' => "comment_$item_id", 'placeholder' => 'comment', 'data-id' => "$item_id", 'maxlength' => 200,'style'=>"width:250px;")); ?>
-                <?php $this->endWidget(); ?>  
-            </td>
+                <?php //echo $form->textField($medicine, "comment", array('value' => $item['comment'], 'class' => 'input-small numeric input-grid','id' => "comment_$item_id", 'placeholder' => 'comment', 'data-id' => "$item_id", 'maxlength' => 200,'style'=>"width:250px;")); ?>
+                <?php //$this->endWidget(); ?>  
+            </td>-->
             
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
@@ -101,7 +130,7 @@
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
-                <?php echo $form->textField($medicine, "unit_price", array('value' => $item['price'], 'class' => 'input-small numeric input-grid', 'id' => "price_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50, 'style'=>"width:50px;")); ?>
+                <?php echo $form->textField($medicine, "unit_price", array('value' => $item['price'], 'class' => 'input-small numeric input-grid', 'id' => "price_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50, )); ?>
                 <?php $this->endWidget(); ?>  
             </td> 
             <td>
@@ -111,7 +140,7 @@
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
-                <?php echo $form->textField($medicine, "quantity", array('value' => $item['quantity'], 'class' => 'input-small numeric input-grid', 'id' => "quantity_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50,'style'=>"width:50px;" )); ?>
+                <?php echo $form->textField($medicine, "quantity", array('value' => $item['quantity'], 'class' => 'input-small numeric input-grid', 'id' => "quantity_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50,)); ?>
                 <?php $this->endWidget(); ?>
             </td>
             <td> 
@@ -180,4 +209,15 @@
         });
     });*/
     
+</script>
+<script>    
+    $(document).ready(function() {
+        $('#show-payment-modal').on('shown.bs.modal', function() {
+            $('#Appointment_total_amount').val('<?php echo $total_amount; ?>');
+        });
+    
+        $('#show-payment-modal').on('hidden.bs.modal', function(e) {
+            $('#show-payment-modal').val('');
+        });
+    });
 </script>

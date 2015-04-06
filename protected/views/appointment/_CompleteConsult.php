@@ -13,7 +13,11 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
         //'id'=>'doctor_consult',
         //'action'=>Yii::app()->createUrl('appointment/DoctorConsult'),
-        'enableAjaxValidation'=>false,
+        'enableAjaxValidation'=>true,
+        'enableClientValidation'=>true,
+        'clientOptions'=>array(
+            'validateOnSubmit'=>true,
+        ),
         'layout'=>TbHtml::FORM_LAYOUT_HORIZONTAL,
         'id'=>'add_item_form',
 )); ?>
@@ -46,7 +50,7 @@
             //'content' => $this->renderPartial('_form_treatment'),
         ));?> 
             <div class="grid-view" id="select_treatment_form">                
-                <?php $this->renderPartial('_ajax_treatment', array('treatment_selected_items' => $treatment_selected_items,'treatment'=>$treatment), false) ?> 
+                <?php $this->renderPartial('_ajax_treatment', array('treatment_selected_items' => $treatment_selected_items,'treatment'=>$treatment), false) ?>                 
             </div>
         <?php $this->endWidget(); ?> 
     </div>  
@@ -66,47 +70,54 @@
                 </div>
         <?php $this->endWidget(); ?> 
     </div>
-
+    
     <div class="col-sm-12">
         <div class="form-actions" id="form-actions">
              <?php echo TbHtml::submitButton($visit->isNewRecord ? Yii::t('app','Save') : Yii::t('app','Save'),array(
                'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
+               'size'=>TbHtml::BUTTON_SIZE_SMALL, 
+               'id'=>'Save_consult',  
                'name'=>'Save_consult' 
                //'size'=>TbHtml::BUTTON_SIZE_SMALL,
            )); ?>
+            <?php if(!empty($chk_bill_saved)) { ?>            
             <?php 
-            /*echo TbHtml::linkButton('Hold Consultation',array(
-               'buttonType'=>'button',
-               'type'=>'primary',
-               'color' => TbHtml::BUTTON_COLOR_DANGER,
-               'ajax'=>array(
-                   'type'=>'post',
-                   'dataType'=>'json',
-                   //'beforeSend'=>"function() { $('.waiting').show(); }",
-                   //'complete'=>"function() { $('.waiting').hide(); }",
-                   'url'=>'#',
-                   'success'=>'function (data) {                    
-                    }'
-                )
-            ));*/
+                $this->widget('bootstrap.widgets.TbModal', array(
+                    'id' => 'show-payment-modal',
+                    'header' => 'Payment Amount',
+                    'content' => $this->renderpartial("_add_payment",array('form'=>$form,'model'=>$model,'actual_form'=>$actual_form),true,false),                    
+                    'footer' => implode(' ', array(
+                        TbHtml::submitButton(Yii::t('app','Pay'), array(
+                            'name'=>'Completed_consult',
+                            'id'=>'Completed_consult',
+                            'color' => TbHtml::BUTTON_COLOR_PRIMARY)
+                        ),
+                        TbHtml::button('Close', array('data-dismiss' => 'modal')),
+                    )),
+                ));
             ?>
-            <?php if(!empty($chk_bill_saved)) { ?>
-            <?php 
-            /*echo TbHtml::linkButton('Completed Consultation',array(
-               'buttonType'=>'button',
-               'type'=>'primary',
-               'color' => TbHtml::BUTTON_COLOR_SUCCESS,
-               'url' => array('completedConsult', 'visit_id' => $visit_id),
-               //'url' => '#',
-                'class' => 'completed-consult',
-                //'title' =>  'Remove', 
-            ));*/
-            echo TbHtml::submitButton($visit->isNewRecord ? Yii::t('app','Completed Consultation') : Yii::t('app','Completed Consultation'),array(
+            <?php echo TbHtml::button(Yii::t('app','Completed Consultation'), array(
+                'color' => TbHtml::BUTTON_COLOR_SUCCESS,
+                'size' => TbHtml::BUTTON_SIZE_SMALL,
+                'data-toggle' => 'modal',
+                'data-target' => '#show-payment-modal',
+            )); ?>
+            <?php             
+            /*echo TbHtml::submitButton($visit->isNewRecord ? Yii::t('app','Completed Consultation') : Yii::t('app','Completed Consultation'),array(
                'color'=>TbHtml::BUTTON_COLOR_SUCCESS,
                'name'=>'Completed_consult' 
                //'size'=>TbHtml::BUTTON_SIZE_SMALL,
-           ));
-            ?>
+           ));*/
+            
+            /*echo TbHtml::linkButton(Yii::t( 'app', 'Completed Consultation' ),array(
+                        'color'=>TbHtml::BUTTON_COLOR_SUCCESS,
+                        'size'=>TbHtml::BUTTON_SIZE_SMALL,
+                        //'icon'=>'ace-icon fa fa-undo white',
+                        'url'=>$this->createUrl('appointment/ActualAmount',array("visit_id"=>$_GET['visit_id'],"patient_id"=>$_GET['patient_id'],"doctor_id"=>$_GET['doctor_id'])),
+                        'class'=>'update-dialog-open-link',
+                        'data-update-dialog-title' => Yii::t( 'app', 'Payment Amount' ),))*/
+            
+            ?>                
             <?php } ?>
         </div>  
     </div>
@@ -134,7 +145,7 @@ Yii::app()->clientScript->registerScript( 'update_medicine',"
                 if(data.status=='success')
                 {
                     $('#select_medicine_form').html(data.div_medicine_form);
-                     //location.reload();
+                    $('#Item_id').select2('val', 'All');
                 }    
             }
         });
@@ -204,7 +215,7 @@ Yii::app()->clientScript->registerScript( 'update_treament',"
                 if(data.status=='success')
                 {
                     $('#select_treatment_form').html(data.div_treatment_form);
-                     //location.reload();
+                    $('#Treatment_id').select2('val', 'All');  //clear select2 value http://bit.ly/1Gttc7X
                 }    
             }
         });

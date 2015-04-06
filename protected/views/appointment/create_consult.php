@@ -23,7 +23,7 @@
                                 'patient'=>$patient,'treatment_items'=>$treatment_items,
                                 'treatment_selected_items'=>$treatment_selected_items,
                                 'medicine'=>$medicine,'medicine_selected_items'=>$medicine_selected_items,
-                                'visit_id'=>$visit_id,'chk_bill_saved'=>$chk_bill_saved), true,false),
+                                'visit_id'=>$visit_id,'chk_bill_saved'=>$chk_bill_saved,'actual_form'=>$actual_form), true,false),
  )); ?>  
 
 <?php $this->endWidget(); ?>

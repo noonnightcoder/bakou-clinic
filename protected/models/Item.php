@@ -47,6 +47,7 @@ class Item extends CActiveRecord
         public $frequency;
         public $instruction_id;
         public $comment;
+        public $consuming_time_id;
 
 
         private $_active_status = '1';
@@ -575,7 +576,7 @@ class Item extends CActiveRecord
         
         public function get_tbl_medicine($visit_id)
         {
-            $sql="SELECT medicine_id id,medicine_name,unit_price,quantity,dosage,duration_id,duration,frequency,instruction_id,instruction,remarks comment
+            $sql="SELECT medicine_id id,medicine_name,unit_price,quantity,consuming_time_id,dosage,duration_id,duration,frequency,instruction_id,instruction,remarks comment
                     FROM v_medicine_payment
                     WHERE visit_id=:visit_id";
             

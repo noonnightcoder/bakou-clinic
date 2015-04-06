@@ -73,7 +73,7 @@ class TreatmentCart extends CApplicationComponent
         return true;
     }
     
-    public function addMedicine($medicine_id,$price = null,$quantity = 1,$dosage = null,$duration =  null,$frequency =  null,$instruction_id =  null,$comment = null)
+    public function addMedicine($medicine_id,$price = null,$quantity = 1,$dosage = 1,$duration =  1,$frequency =  null,$instruction_id =  1,$comment = null,$consuming_time_id = 1)
     {
         $this->setSession(Yii::app()->session);
         //Get all items in the cart so far...
@@ -97,7 +97,8 @@ class TreatmentCart extends CApplicationComponent
                     'duration' => $duration,
                     'frequency' => $frequency,
                     'instruction_id' => $instruction_id,
-                    'comment' => $comment
+                    'comment' => $comment,
+                    'consuming_time_id' => $consuming_time_id
                 )
             );
         }
@@ -142,7 +143,7 @@ class TreatmentCart extends CApplicationComponent
         $this->setMedicine($items);
     }
     
-    public function editMedicine($medicine_id, $quantity, $price,$dosage,$duration,$frequency,$instruction_id,$comment)
+    public function editMedicine($medicine_id, $quantity, $price,$dosage,$duration,$frequency,$instruction_id,$comment,$consuming_time_id)
     {
         $medicines = $this->getMedicine();
         if (isset($medicines[$medicine_id])) {
@@ -153,6 +154,7 @@ class TreatmentCart extends CApplicationComponent
             $medicines[$medicine_id]['frequency'] = $frequency !=null ? round($frequency, $this->getDecimalPlace()) : $medicines[$medicine_id]['frequency'];
             $medicines[$medicine_id]['instruction_id'] = $instruction_id !=null ? round($instruction_id, $this->getDecimalPlace()) : $medicines[$medicine_id]['instruction_id'];
             $medicines[$medicine_id]['comment'] = $comment !=null ? $comment : $medicines[$medicine_id]['comment'];
+            $medicines[$medicine_id]['consuming_time_id'] = $consuming_time_id !=null ? $consuming_time_id : $medicines[$medicine_id]['consuming_time_id'];
             $this->setMedicine($medicines);
         }
 
