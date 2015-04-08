@@ -1183,7 +1183,7 @@ class AppointmentController extends Controller
             $total+=round($item['price'] * $item['quantity'] - $item['price'] * $item['quantity'] * $item['discount'] / 100, 2, PHP_ROUND_HALF_DOWN);
         }
         $data['total']=$total - $total*$data['discount_amount']/100;
-        
+        $data['actual_amount'] = Appointment::model()->get_actual_amount($visit_id);
         $data['total_khr_round']=($total - $total*$data['discount_amount']/100)*4000;
         $data['amount_change']=0;
         $data['amount_change_khr_round']=0;
