@@ -69,11 +69,13 @@ $('.search-form form').submit(function(){
                        'header'=>'Item', 
                 ),
 		array('name'=>'quantity',
-                       'header'=>'Quantity', 
+                        'header'=>'Quantity', 
+                        'value'=> 'round($data["quantity"])'
                 ),
                 //'status',
                 array('name'=>'unit_price',
-                       'header'=>'Price', 
+                        'header'=>'Price', 
+                        'value'=> 'number_format($data["unit_price"], 2, ".", ",")'
                 ),
                 array('name'=>'info',
                        'header'=>'Information', 
@@ -109,7 +111,15 @@ $('.search-form form').submit(function(){
                                     <td><?php echo Yii::t('app', 'Total'); ?> :</td>
                                     <td>
                                         <span class="badge badge-info bigger-120">
-                                            <?php echo Yii::app()->settings->get('site', 'currencySymbol').@$amount ?>
+                                            <?php echo Yii::app()->settings->get('site', 'currencySymbol').number_format(@$amount, 2, '.', ','); ?>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><?php echo Yii::t('app', 'Paid Amount'); ?> :</td>
+                                    <td>
+                                        <span class="badge badge-warning bigger-120">
+                                            <?php echo Yii::app()->settings->get('site', 'currencySymbol').number_format(@$actual_amount, 2, '.', ','); ?>
                                         </span>
                                     </td>
                                 </tr>
@@ -137,8 +147,8 @@ $('.search-form form').submit(function(){
                                             ?>  
                                             <?php echo Yii::t('App','Paid Amount[Cash]'); ?></td>
                                         <td>
-                                            <span class="badge badge-info bigger-120">
-                                                <?php echo $payment['payment_amount']; ?><?php //echo $payment['payment_amount']*4000; ?>
+                                            <span class="badge badge-success bigger-120">
+                                                <?php echo number_format($payment['payment_amount'], 2, '.', ','); ?><?php //echo $payment['payment_amount']*4000; ?>
                                             </span>
                                         </td>
                                     </tr>

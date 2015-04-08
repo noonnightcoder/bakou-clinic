@@ -272,11 +272,13 @@ class Appointment extends CActiveRecord
             return $cmd->queryScalar();
         }       
         
-        public function updateCompleteAppt($visit_id,$user_id)
+        public function updateCompleteAppt($visit_id,$user_id,$patient_id = 0,$actual_amount = 0)
         {
-            $cmd = Yii::app()->db->createCommand("CALL pro_completed_consult(:visit_id, :user_id)");
+            $cmd = Yii::app()->db->createCommand("CALL pro_completed_consult(:visit_id, :user_id,:patient_id,:actual_amount)");
             $cmd->bindParam(":visit_id", $visit_id);
             $cmd->bindParam(":user_id", $user_id);
+            $cmd->bindParam(":patient_id", $patient_id);
+            $cmd->bindParam(":actual_amount", $actual_amount);
             $cmd->execute();
             return true;
         }
@@ -284,13 +286,16 @@ class Appointment extends CActiveRecord
         public function showBillDetail($visit_id)
         {
             $sql="select @rownum:=@rownum+1 id,patient_id,visit_id,fullname,
-                visit_date,item,quantity,unit_price,flag info
-                from(SELECT t3.patient_id,t2.visit_id,CONCAT(last_name,' ',first_name) fullname,t2.visit_date,t1.item,t1.quantity,t1.unit_price,t1.flag
+                visit_date,item,dosage,consuming_time,duration,instruction,quantity,unit_price,flag info
+                from(SELECT t3.patient_id,t2.visit_id,CONCAT(last_name,' ',first_name) fullname,t2.visit_date,t1.item,
+                dosage,consuming_time,duration,instruction,t1.quantity,t1.unit_price,t1.flag
                 FROM (
-                        SELECT medicine_id id,medicine_name item,visit_id,quantity,unit_price,'medicine' flag 
+                        SELECT medicine_id id,medicine_name item,
+                        dosage,consuming_time,duration,instruction,visit_id,quantity,unit_price,'medicine' flag 
                         FROM v_medicine_payment where visit_id=$visit_id
                         UNION ALL
-                        SELECT id,treatment,visit_id,1 quantity,amount,'treatment' flag
+                        SELECT id,treatment,null dosage,null consuming_time,null duration,
+                        null instruction,visit_id,1 quantity,amount,'treatment' flag
                         FROM v_bill_payment where visit_id=$visit_id
                 )t1 INNER JOIN visit t2
                 ON t1.visit_id=t2.visit_id
@@ -514,11 +519,22 @@ class Appointment extends CActiveRecord
         
         public function amount_validate($attribute,$params)
         {
-            //echo $this->patient_id;
-            if($this->actual_amount=='')
+            if(isset($_POST['Completed_consult']))
             {
-                $this->addError('actual_amount','Actual Amount cannot be blank');
-                //Yii::app()->end();
+                if($this->actual_amount=='')
+                {
+                    $this->addError('actual_amount','Actual Amount cannot be blank');
+                    //Yii::app()->end();
+                }
             }
+        }
+        
+        public function get_actual_amount($visit_id)
+        {
+            $sql="select actual_amount from bill_tmp where visit_id= :visit_id and status=0";
+            
+            $cmd=Yii::app()->db->createCommand($sql);
+            $cmd->bindParam(":visit_id", $visit_id);            
+            return $cmd->queryScalar();
         }
 }

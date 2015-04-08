@@ -32,7 +32,7 @@
         </tr>
     </thead>
     <tbody id="medicine_contents">
-        <?php print_r($medicine_selected_items); ?>        
+        <?php //print_r($medicine_selected_items); ?>        
         <?php foreach ($medicine_selected_items as $id => $item): ?>
         <?php $item_id=$item['id']; ?>
         <tr>

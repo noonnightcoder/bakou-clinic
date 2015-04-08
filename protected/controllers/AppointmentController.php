@@ -109,7 +109,7 @@ class AppointmentController extends Controller
                 {
                    $transaction=$model->dbConnection->beginTransaction();
                     try{
-                        set_error_handler(array(&$this, "exception_error_handler")); 
+                        //set_error_handler(array(&$this, "exception_error_handler")); 
                         //$model->attributes=$_POST['Appointment'];
                         $model->attributes=$_POST['Appointment'];
                         $model->appointment_date=date('Y-m-d H:i:s');
@@ -122,6 +122,7 @@ class AppointmentController extends Controller
                         $model->status='Waiting';
                         $model->visit_id=0;
                         $model->actual_amount=0;
+                        
                         if ($model->save()) {
                                 $app_log->appointment_id=$model->id;
                                 $app_log->change_date_time=date('Y-m-d H:i:s');
@@ -133,6 +134,9 @@ class AppointmentController extends Controller
                                 $transaction->commit();
                                 //$this->redirect(array('create','id'=>$model->id));
                                 $this->redirect(Yii::app()->user->returnUrl);
+                        }else{
+                            print_r($_POST);
+                            die();
                         }                        
                     }catch (Exception $e){
                         $transaction->rollback();
@@ -146,7 +150,7 @@ class AppointmentController extends Controller
             {
                 $user = RbacUser::model()->findByPk($_GET['doctor_id']);
             }
-
+            
             $this->render('create',array(
                     'model'=>$model,'patient'=>$patient,'contact'=>$contact,'user'=>$user
             ));
@@ -520,7 +524,8 @@ class AppointmentController extends Controller
                                 {
                                     //if($model->validate())
                                     //{
-                                        $this->actioncompletedConsult($_GET['visit_id']);
+                                        $actual_amount = $_POST['Appointment']['actual_amount'];
+                                        $this->actioncompletedConsult($_GET['visit_id'],$_GET['patient_id'],round($actual_amount,2));
                                     //}
                                 }else{
                                     Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> Please select treatment or medicine!.');
@@ -903,14 +908,14 @@ class AppointmentController extends Controller
         }
     }
     
-    protected function actioncompletedConsult($visit_id)
+    protected function actioncompletedConsult($visit_id,$patient_id = 0,$actual_amount = 0)
     {
         if(!Yii::app()->user->checkAccess('consultation.create'))
         {
             throw new CHttpException(400,'You are not authorized to perform this action.');
         }else{
             $user_id = Yii::app()->user->getId();
-            Appointment::model()->updateCompleteAppt($visit_id,$user_id); 
+            Appointment::model()->updateCompleteAppt($visit_id,$user_id,$patient_id,$actual_amount); 
             Yii::app()->treatmentCart->clearAll();
         }
         
@@ -984,6 +989,7 @@ class AppointmentController extends Controller
         $data['model'] = new Appointment('showBillDetail');
         $data['count_item'] = $model->countBill($visit_id);
         $data['amount'] = $model->sumBill($visit_id);
+        $data['actual_amount'] = $model->get_actual_amount($visit_id);
         $data['visit_id'] = $visit_id;
         //$data['patient_name'] = $data['model']->patient_name;
         $data['payments'] =Yii::app()->treatmentCart->getPayments();
@@ -1052,11 +1058,12 @@ class AppointmentController extends Controller
             $data['model'] = $model;
             $data['payment'] =$payment;
             $data['count_item'] = $model->countBill($visit_id);
-            $data['amount'] = $model->sumBill($visit_id);    
+            $data['amount'] = $model->sumBill($visit_id);  
+            $data['actual_amount'] = $model->get_actual_amount($visit_id);
             $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
             $data['patient_name'] = $rst->patient_name;
             $data['visit_id'] = $visit_id;
-            Yii::app()->treatmentCart->addPayment($visit_id,$data['amount']);
+            Yii::app()->treatmentCart->addPayment($visit_id,$data['actual_amount']);
             $data['payments'] = Yii::app()->treatmentCart->getPayments();
                 
             $count_payment=0;
@@ -1098,7 +1105,8 @@ class AppointmentController extends Controller
             $data['model'] = $model;
             $data['payment'] =$payment;
             $data['count_item'] = $model->countBill($visit_id);
-            $data['amount'] = $model->sumBill($visit_id);        
+            $data['amount'] = $model->sumBill($visit_id); 
+            $data['actual_amount'] = $model->get_actual_amount($visit_id); 
             $data['visit_id'] = $visit_id;
             $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
             $data['patient_name'] = $rst->patient_name;
