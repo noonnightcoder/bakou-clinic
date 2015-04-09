@@ -286,7 +286,7 @@ class Appointment extends CActiveRecord
         public function showBillDetail($visit_id)
         {
             $sql="select @rownum:=@rownum+1 id,patient_id,visit_id,fullname,
-                visit_date,item,dosage,consuming_time,duration,instruction,quantity,unit_price,flag info
+                visit_date,item,dosage,consuming_time,duration,instruction,quantity,quantity*unit_price unit_price,flag info
                 from(SELECT t3.patient_id,t2.visit_id,CONCAT(last_name,' ',first_name) fullname,t2.visit_date,t1.item,
                 dosage,consuming_time,duration,instruction,t1.quantity,t1.unit_price,t1.flag
                 FROM (
