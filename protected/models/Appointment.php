@@ -293,10 +293,10 @@ class Appointment extends CActiveRecord
                         SELECT medicine_id id,medicine_name item,
                         dosage,consuming_time,duration,instruction,visit_id,quantity,unit_price,'medicine' flag 
                         FROM v_medicine_payment where visit_id=$visit_id
-                        UNION ALL
+                        /*UNION ALL
                         SELECT id,treatment,null dosage,null consuming_time,null duration,
                         null instruction,visit_id,1 quantity,amount,'treatment' flag
-                        FROM v_bill_payment where visit_id=$visit_id
+                        FROM v_bill_payment where visit_id=$visit_id*/
                 )t1 INNER JOIN visit t2
                 ON t1.visit_id=t2.visit_id
                 INNER JOIN patient t3 ON t2.patient_id=t3.patient_id
@@ -304,6 +304,8 @@ class Appointment extends CActiveRecord
                 ORDER BY visit_id,flag
                 )lv,(SELECT @rownum:=0) r";
             
+            //$cmd = Yii::app()->db->createCommand($sql);
+            //$cmd->bindParam(":visit_id", $visit_id);
             return new CSqlDataProvider($sql,array(
                 'sort' => array(
                         'attributes' => array(
@@ -528,7 +530,7 @@ class Appointment extends CActiveRecord
                 }elseif (!is_numeric($this->actual_amount)) 
                 {
                     $this->addError('actual_amount','Actual Amount Only Numeric');
-                }elseif($this->actual_amount > $this->total_amount)
+                }elseif($this->actual_amount > $_POST['Appointment']['total_amount'])
                 {
                     $this->addError('actual_amount','Actual Amount cannot bigger than Total amount');
                 }

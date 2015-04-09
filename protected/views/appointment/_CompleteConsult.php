@@ -85,7 +85,7 @@
                 $this->widget('bootstrap.widgets.TbModal', array(
                     'id' => 'show-payment-modal',
                     'header' => 'Payment Amount',
-                    'content' => $this->renderpartial("_add_payment",array('form'=>$form,'model'=>$model,'actual_form'=>$actual_form),true,false),                    
+                    'content' => $this->renderpartial("_add_payment",array('form'=>$form,'model'=>$model),true,false),                    
                     'footer' => implode(' ', array(
                         TbHtml::submitButton(Yii::t('app','Pay'), array(
                             'name'=>'Completed_consult',

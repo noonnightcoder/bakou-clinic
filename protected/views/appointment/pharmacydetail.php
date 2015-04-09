@@ -8,7 +8,7 @@
 /* @var $this ContactController */
 /* @var $model Contact */
     $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-                  'title' => Yii::t('app','Pharmacy Detail').' Patient: <font color="red">'.$patient_name. '</font>',
+                  'title' => Yii::t('app','Pharmacy Detail').' Patient: '.TbHtml::labelTb($patient_name, array('color' => TbHtml::LABEL_COLOR_SUCCESS)),
                   'headerIcon' => 'ace-icon fa fa-users',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
@@ -88,9 +88,9 @@ $('.search-form form').submit(function(){
                         'header'=>'Price', 
                         'value'=> 'number_format($data["unit_price"],2,".",",")'
                 ),
-                array('name'=>'info',
+                /*array('name'=>'info',
                        'header'=>'Information', 
-                ),
+                ),*/
 	),
 )); ?>
 <?php $this->endWidget(); ?>

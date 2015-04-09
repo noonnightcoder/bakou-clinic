@@ -562,7 +562,7 @@ class AppointmentController extends Controller
             
             $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
             $data['patient_name'] = $rst->patient_name;
-            $data['actual_form'] = new ActualAmountForm();
+            //$data['actual_form'] = new ActualAmountForm();
             $data['chk_bill_saved'] = Bill::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
             $data['model']=$model;
             $data['visit']=$visit;
