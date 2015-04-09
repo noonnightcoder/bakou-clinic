@@ -135,8 +135,6 @@ class AppointmentController extends Controller
                                 //$this->redirect(array('create','id'=>$model->id));
                                 $this->redirect(Yii::app()->user->returnUrl);
                         }else{
-                            print_r($_POST);
-                            die();
                         }                        
                     }catch (Exception $e){
                         $transaction->rollback();

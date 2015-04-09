@@ -74,7 +74,7 @@ $('.search-form form').submit(function(){
                 ),
                 array(
                     'name'=>'dob',
-                    'header'=>'Date Of Birth', 
+                    'header'=>'Age', 
                 ),
                 array(
                     'name'=>'sex',
