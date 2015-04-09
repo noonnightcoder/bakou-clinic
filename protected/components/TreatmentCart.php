@@ -79,6 +79,8 @@ class TreatmentCart extends CApplicationComponent
         //Get all items in the cart so far...
         $items = $this->getMedicine();
         
+        $consuming = ConsumingTime::model()->findByPk($consuming_time_id);
+
         //$model = Item::model()->findbyPk($item_id);
         $models = Item::model()->get_selected_medicine($medicine_id);
         
@@ -92,13 +94,14 @@ class TreatmentCart extends CApplicationComponent
                     'id' => $model["id"],
                     'name' => $model["name"],
                     'price' => $price!= null ? round($price, $this->getDecimalPlace()) : round($model["unit_price"], $this->getDecimalPlace()),
-                    'quantity' => $quantity,
+                    'quantity' => $dosage*$duration*$consuming->multiple,
                     'dosage' => $dosage,
                     'duration' => $duration,
                     'frequency' => $frequency,
                     'instruction_id' => $instruction_id,
                     'comment' => $comment,
-                    'consuming_time_id' => $consuming_time_id
+                    'consuming_time_id' => $consuming_time_id,
+                    'cons_multiple' => $consuming->multiple,
                 )
             );
         }
@@ -146,8 +149,23 @@ class TreatmentCart extends CApplicationComponent
     public function editMedicine($medicine_id, $quantity, $price,$dosage,$duration,$frequency,$instruction_id,$comment,$consuming_time_id)
     {
         $medicines = $this->getMedicine();
-        if (isset($medicines[$medicine_id])) {
-            $medicines[$medicine_id]['quantity'] = $quantity !=null ? $quantity : $medicines[$medicine_id]['quantity'];
+        if (isset($medicines[$medicine_id])) {        
+            if($consuming_time_id!=null)
+            {
+                $consuming = ConsumingTime::model()->findByPk($consuming_time_id);
+                $multiple = $consuming->multiple;
+                $quan_cal=$medicines[$medicine_id]['dosage']*$medicines[$medicine_id]['duration']*$multiple;
+            }else
+            {
+                $multiple=$medicines[$medicine_id]['cons_multiple'];
+                $quan_cal=$multiple*$medicines[$medicine_id]['dosage']*$medicines[$medicine_id]['duration'];
+            }
+
+            if($dosage!=null){$quan_cal=$dosage*$medicines[$medicine_id]['duration']*$multiple;}
+            if($duration!=null){$quan_cal=$medicines[$medicine_id]['dosage']*$duration*$multiple;}
+        
+        
+            $medicines[$medicine_id]['quantity'] = $quantity !=null ? $quantity : $quan_cal;
             $medicines[$medicine_id]['price'] = $price !=null ? round($price, $this->getDecimalPlace()) : $medicines[$medicine_id]['price'];
             $medicines[$medicine_id]['dosage'] = $dosage !=null ? round($dosage, $this->getDecimalPlace()) : $medicines[$medicine_id]['dosage'];
             $medicines[$medicine_id]['duration'] = $duration !=null ? round($duration, $this->getDecimalPlace()) : $medicines[$medicine_id]['duration'];
@@ -155,6 +173,7 @@ class TreatmentCart extends CApplicationComponent
             $medicines[$medicine_id]['instruction_id'] = $instruction_id !=null ? round($instruction_id, $this->getDecimalPlace()) : $medicines[$medicine_id]['instruction_id'];
             $medicines[$medicine_id]['comment'] = $comment !=null ? $comment : $medicines[$medicine_id]['comment'];
             $medicines[$medicine_id]['consuming_time_id'] = $consuming_time_id !=null ? $consuming_time_id : $medicines[$medicine_id]['consuming_time_id'];
+            $medicines[$medicine_id]['cons_multiple'] = $multiple;
             $this->setMedicine($medicines);
         }
 

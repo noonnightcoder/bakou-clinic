@@ -431,7 +431,10 @@ class AppointmentController extends Controller
             {
                 $tbl_medicine = $medicine->get_tbl_medicine($_GET['visit_id']);
                 foreach ($tbl_medicine as $value) {
-                    Yii::app()->treatmentCart->addMedicine($value['id'],$value['unit_price'],$value['quantity'],$value['dosage'],$value['duration_id'],$value['frequency'],$value['instruction_id'],$value['comment'],$value['consuming_time_id']);
+                    Yii::app()->treatmentCart->addMedicine($value['id'],$value['unit_price'],$value['quantity'],
+                                            $value['dosage'],$value['duration_id'],$value['frequency'],
+                                            $value['instruction_id'],$value['comment'],
+                                            $value['consuming_time_id']);
                 }                
             }
             
@@ -844,7 +847,7 @@ class AppointmentController extends Controller
             $instruction_id =isset($_POST['Item']['instruction_id']) ? $_POST['Item']['instruction_id'] : null;
             $comment =isset($_POST['Item']['comment']) ? $_POST['Item']['comment'] : null;
             $consuming_time_id = isset($_POST['Item']['consuming_time_id']) ? $_POST['Item']['consuming_time_id'] : null;
-            echo $consuming_time_id;
+            //echo $consuming_time_id;
             Yii::app()->treatmentCart->editMedicine($medicine_id, $quantity, $price,$dosage,$duration,$frequency,$instruction_id,$comment,$consuming_time_id);
 
             $data['medicine']=$medicine;

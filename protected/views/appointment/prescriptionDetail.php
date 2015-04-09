@@ -9,7 +9,7 @@
 /* @var $this ContactController */
 /* @var $model Contact */
     $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-                  'title' => Yii::t('app','Prescription Detail') .' Patient: <font color="red">'.$patient_name. '</font>',
+                  'title' => Yii::t('app','Prescription Detail') .' Patient: '.TbHtml::labelTb($patient_name, array('color' => TbHtml::LABEL_COLOR_SUCCESS)),
                   'headerIcon' => 'ace-icon fa fa-users',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
@@ -41,7 +41,7 @@ $('.search-form form').submit(function(){
 
 <?php $this->widget('yiiwheels.widgets.grid.WhGridView',array(
             'id'=>'waiting-queue',
-            'dataProvider'=>$model->showBillDetail($visit_id),
+            'dataProvider'=>$model->showPrescriptionDetail($visit_id),
             'htmlOptions'=>array('class'=>'table-responsive panel'),
             'template' => "{items}",
             'columns'=>array(
