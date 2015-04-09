@@ -18,7 +18,7 @@
 /* @var $this AppointmentController */
 /* @var $model Appointment */
 $this->breadcrumbs=array(
-            Yii::t('menu','Appoionment')=>array('labocheck'),
+            Yii::t('menu','Laboratory')=>array('labocheck'),
             Yii::t('app','Manage'),
     );
 
@@ -89,15 +89,18 @@ $('.search-form form').submit(function(){
 		array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
                     'deleteConfirmation'=>'Are you sure you want to Cancel the appointment?',
-                    'template'=>'{view}',
-                    //'template'=>'<div class="hidden-sm hidden-xs btn-group">{view}{update}{delete}{undeleted}</div>',
+                    //'template'=>'{view}',
+                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{detail}</div>',
                     'buttons'=>array(
-                        'view' => array(
-                            'label' => 'Consultant',                            
+                        'detail' => array(
+                            'label' => 'Detail',                            
                             'url'=>'Yii::app()->createUrl("Appointment/LaboPreview", array("appoint_id"=>$data["app_id"],"doctor_id"=>$data["doctor_id"],"patient_id"=>$data["patient_id"]))',
-                            /*'options' => array(
-                                'class'=>'fa fa-user-md',
-                            ),*/
+                            'options' => array(
+                                'data-toggle' => 'tooltip', 
+                                'data-update-dialog-title' => 'Detail',
+                                'class'=>'btn btn-xs btn-info', 
+                                'title'=>'Detail',
+                            ),
                         ),
                         //http://bit.ly/1bdSADp
                         /*'delete' => array(

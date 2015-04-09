@@ -60,10 +60,10 @@
                     array('label'=>Yii::t('menu','Prescription Bill'),'icon'=> 'fa fa-plus-square', 'url'=>Yii::app()->urlManager->createUrl('appointment/Prescription'), 'active'=>$this->id=='Prescription',
                         'visible'=>Yii::app()->user->checkAccess('prescription.view')
                     ),
-                    array('label'=>Yii::t('menu','laboratory'),'icon'=> 'fa fa-stethoscope', 'url'=>Yii::app()->urlManager->createUrl('appointment/labocheck'), 'active'=>$this->id=='labocheck',
+                    array('label'=>Yii::t('menu','Laboratory'),'icon'=> 'fa fa-stethoscope', 'url'=>Yii::app()->urlManager->createUrl('appointment/labocheck'), 'active'=>$this->id=='labocheck',
                         'visible'=>Yii::app()->user->checkAccess('laboratory.view')
                     ),
-                    array('label'=>Yii::t('menu','pharmacy'),'icon'=> 'fa fa-ambulance', 'url'=>Yii::app()->urlManager->createUrl('appointment/pharmacy'), 'active'=>$this->id=='pharmacy',
+                    array('label'=>Yii::t('menu','Pharmacy'),'icon'=> 'fa fa-ambulance', 'url'=>Yii::app()->urlManager->createUrl('appointment/pharmacy'), 'active'=>$this->id=='pharmacy',
                         'visible'=>Yii::app()->user->checkAccess('pharmacy.view')
                     ),
                 )

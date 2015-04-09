@@ -525,6 +525,12 @@ class Appointment extends CActiveRecord
                 {
                     $this->addError('actual_amount','Actual Amount cannot be blank');
                     //Yii::app()->end();
+                }elseif (!is_numeric($this->actual_amount)) 
+                {
+                    $this->addError('actual_amount','Actual Amount Only Numeric');
+                }elseif($this->actual_amount > $this->total_amount)
+                {
+                    $this->addError('actual_amount','Actual Amount cannot bigger than Total amount');
                 }
             }
         }

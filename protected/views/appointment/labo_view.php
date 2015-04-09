@@ -1,5 +1,5 @@
 <?php $this->breadcrumbs=array(
-        'Contact'=>array('admin'),
+        'Laboratory'=>array('labocheck'),
 	'Create',
 );
 ?>
