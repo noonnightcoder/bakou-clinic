@@ -144,7 +144,7 @@ class SiteController extends Controller
                         $this->redirect(array('appointment/appointmentdash'));
                     }else {
                         //$this->redirect(array('saleItem/index'));
-                        $this->redirect(array('dashboard/view'));
+                        $this->redirect(array('appointment/appointmentdash'));
                     }
                     
                 }

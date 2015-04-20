@@ -1,3 +1,9 @@
+<?php
+$this->breadcrumbs=array(
+    Yii::t('menu','Appointment')=>array('appointmentdash'),
+    Yii::t('app','Dashboard'),
+);
+?>
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl ?>/css/queue_dash.css" />
 <div class="row" id="contact">
     <div class="grid-view">
@@ -6,8 +12,8 @@
 /* @var $this ContactController */
 /* @var $model Contact */
     $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-                  'title' => Yii::t('app','Dashboad'),
-                  'headerIcon' => 'ace-icon fa fa-users',
+                  'title' => Yii::t('app','Dashboard'),
+                  'headerIcon' => 'ace-icon fa fa-tachometer',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
 ?>
@@ -55,7 +61,7 @@ echo "<tbody id='appointment-dash'>";
                         {
                             echo "<td id='" . $app['status']. "'><a href='#'>" . $app['fullname'] . "</a></td>";
                         }else{
-                            echo "<td id='" . $app['status']."'>" . $app['fullname'] . "<a href='$change_doc_url' title='Change Doctor' class='fa fa-exchange'></a><a href='$cancel_url' title='Cancel Appointment' class='fa fa-times cancle-appointment'></a></td>";
+                            echo "<td id='" . $app['status']."'>" . $app['fullname'] . "<a href='$cancel_url' title='Cancel Appointment' class='fa fa-times cancle-appointment'></a></td>";
                         }
                         
                         //echo "<td id='" . $app['status']. "'><a href='#'>" . $app['fullname'] . "</a></td>";

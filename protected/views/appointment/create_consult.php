@@ -1,12 +1,12 @@
 <?php $this->breadcrumbs=array(
-        'Contact'=>array('admin'),
-	'Create',
+        'Waiting Queue'=>array('appointment/WaitingQueue'),
+	    Yii::t('app','Consultation'),
 );
 //echo Yii::app()->user->getId();
 ?>
 <?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-              'title' => Yii::t('app','Consultation') . ' Patient : ' . $patient_name,
-              'headerIcon' => 'ace-icon fa fa-user',
+              'title' => Yii::t('app','Patient') . ' : ' . $patient_name,
+              'headerIcon' => 'ace-icon fa fa-stethoscope',
               'headerButtons' => array(
                     TbHtml::linkButton(Yii::t( 'app', 'Patient History' ),array(
                         'color'=>TbHtml::BUTTON_COLOR_PRIMARY,

@@ -33,6 +33,12 @@
                     <ul class="nav ace-nav">       
                         <!-- #section:basics/navbar.user_menu -->
                         <li class="white">
+                            <a href="<?php echo Yii::app()->createUrl('site/logout'); ?>">
+                                <i class="ace-icon fa fa-power-off"></i>
+                                Logout
+                            </a>
+                        </li>
+                        <li class="white">
                             <i class="glyphicon glyphicon-time"></i>
                             <span class="">
                                 <?php  echo date("H:i j M Y"); ?>
@@ -49,12 +55,13 @@
                                 </a>
 
                                 <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                                    <li>
-                                        <a href="<?php echo Yii::app()->urlManager->createUrl('Employee/View', array('id' => Yii::app()->session['employeeid'])); ?>">
+                                   <!-- <li>
+                                        <a href="<?php /*echo Yii::app()->urlManager->createUrl('Employee/View', array('id' => Yii::app()->session['employeeid'])); */?>">
                                                 <i class="ace-icon fa fa-user"></i>
                                                 Profile
                                         </a>
-                                    </li>
+                                    </li>-->
+
                                     <li>
                                         <a href="<?php echo Yii::app()->urlManager->createUrl('RbacUser/Update', array('id' => Yii::app()->user->id)); ?>">
                                                 <i class="ace-icon fa fa-key"></i>
@@ -62,14 +69,14 @@
                                         </a>
                                     </li>
 
-                                    <li class="divider"></li>
+<!--                                    <li class="divider"></li>-->
 
-                                    <li>
-                                        <a href="<?php echo Yii::app()->createUrl('site/logout'); ?>">
+                                    <!--<li>
+                                        <a href="<?php /*echo Yii::app()->createUrl('site/logout'); */?>">
                                             <i class="ace-icon fa fa-power-off"></i>
                                             Logout
                                         </a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                         </li>
 

@@ -70,10 +70,10 @@ class Visit extends CActiveRecord
 			'type' => 'Type',
 			'visit_date' => 'Visit Date',
 			'visit_time' => 'Visit Time',
-			'sympton' => 'Sympton',
-			'observation' => 'Observation',
-			'assessment' => 'Assessment',
-			'plan' => 'Plan',
+			'sympton' => 'Symptom',
+			'observation' => 'Past History',
+			'assessment' => 'Investigation',
+			'plan' => 'Diagnosis',
 		);
 	}
 

@@ -21,9 +21,9 @@
                 array('name'=>'visit_date',
                        'header'=>'Visit Date', 
                 ),
-                array('name'=>'display_id',
+               /* array('name'=>'display_id',
                        'header'=>'Patient ID', 
-                ),
+                ),*/
                 array('name'=>'sympton',
                        'header'=>'Sympton', 
                 ),

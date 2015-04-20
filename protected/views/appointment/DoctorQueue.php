@@ -10,7 +10,7 @@
 /* @var $model Contact */
     $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
                   'title' => Yii::t('app','Waiting Queue'),
-                  'headerIcon' => 'ace-icon fa fa-users',
+                  'headerIcon' => 'ace-icon fa fa-clock-o',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
 ?>         
@@ -18,8 +18,8 @@
 /* @var $this AppointmentController */
 /* @var $model Appointment */
 $this->breadcrumbs=array(
-            Yii::t('menu','Queue')=>array('WaitingQueue'),
-            Yii::t('app','Manage'),
+            Yii::t('menu','Appointment')=>array('appointment/appointmentdash'),
+            Yii::t('app','Waiting Queue'),
     );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -41,14 +41,14 @@ $('.search-form form').submit(function(){
     'model'=>$model,
 )); ?>
 </div><!-- search-form -->
-<?php if (Yii::app()->user->checkAccess('appointment.create')) {?>
-<?php echo TbHtml::linkButton(Yii::t( 'app', 'Add New' ),array(
+<?php /*if (Yii::app()->user->checkAccess('appointment.create')) {*/?><!--
+<?php /*echo TbHtml::linkButton(Yii::t( 'app', 'Add New' ),array(
             'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
             'size'=>TbHtml::BUTTON_SIZE_SMALL,
             'icon'=>'glyphicon-plus white',
             'url'=>$this->createUrl('create'),
-    )); ?>
-<?php } ?>
+    )); */?>
+--><?php /*} */?>
 <?php if(Yii::app()->user->hasFlash('success')):?>
         <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 <?php endif; ?>
@@ -59,9 +59,9 @@ $('.search-form form').submit(function(){
             //'htmlOptions'=>array('class'=>'table-responsive panel'),
             'template' => "{items}",
             'columns'=>array(
-                array('name'=>'id',
+               /* array('name'=>'id',
                        'header'=>'#', 
-                ),
+                ),*/
 		array('name'=>'app_id',
                         'headerHtmlOptions' => array('style' => 'display:none'),
                         'htmlOptions' => array('style' => 'display:none'),
@@ -86,7 +86,9 @@ $('.search-form form').submit(function(){
                 array('name'=>'appointment_date',
                        'header'=>'Appointment', 
                 ),
-		'title',
+		        array('name'=>'title',
+                    'header'=>'Tittle'
+                ) ,
                 //'status',
                 array('name'=>'status',
                   'header'=>'Status',

@@ -19,7 +19,7 @@
         'submenuHtmlOptions'=>array('class'=>'submenu'),
         'encodeLabel' => false,
             'items' => array(
-            array('label'=>'<span class="menu-text">' . strtoupper(Yii::t('menu', 'Dashboard')) . '</span>', 'icon'=>'menu-icon fa fa-tachometer', 'url'=>Yii::app()->urlManager->createUrl('dashboard/view'), 'active'=>$this->id .'/'. $this->action->id=='dashboard/view'?true:false,
+            array('label'=>'<span class="menu-text">' . strtoupper(Yii::t('menu', 'Dashboard')) . '</span>', 'icon'=>'menu-icon fa fa-tachometer', 'url'=>Yii::app()->urlManager->createUrl('appointment/appointmentdash'), 'active'=>$this->id .'/'. $this->action->id=='appointment/appointmentdash'?true:false,
                 'visible'=> Yii::app()->user->checkAccess('report.index')||Yii::app()->user->checkAccess('appointment.index')
             ),
             /*array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Clinc Info')) . '</span>', 'icon'=>'glyphicon glyphicon-tower','url'=>Yii::app()->urlManager->createUrl('client/admin'),
@@ -39,22 +39,20 @@
             'visible'=> Yii::app()->user->checkAccess('item.index') || Yii::app()->user->checkAccess('item.create') || Yii::app()->user->checkAccess('item.update') || Yii::app()->user->checkAccess('item.delete')
             ),
             )),*/
-            array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Patients')) . '</span>', 'icon'=>'menu-icon fa fa-group','url'=>Yii::app()->urlManager->createUrl('patient/index'),
-                'active'=>$this->id=='contact' || strtolower($this->id)=='default' || $this->id=='appointment' || $this->id=='settings' || $this->id=='location',
+            array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Patient')) . '</span>', 'icon'=>'menu-icon fa fa-group','url'=>Yii::app()->urlManager->createUrl('patient/index'),
+                'active'=>$this->id=='contact' || $this->id=='appointment' || strtolower($this->id)=='default' || $this->id=='location' ,
                 'visible'=>Yii::app()->user->checkAccess('maintask.service'),
                 'items'=>array(
                     array('label'=>Yii::t('menu','Patient'),'icon'=> 'fa fa-users', 'url'=>Yii::app()->urlManager->createUrl('contact/admin'), 'active'=>$this->id=='contact',
-                        'visible'=>Yii::app()->user->checkAccess('contact.index')
-                            ||Yii::app()->user->checkAccess('contact.create')
-                            ||Yii::app()->user->checkAccess('contact.view')
+                        'visible'=>Yii::app()->user->checkAccess('contact.index') ||Yii::app()->user->checkAccess('contact.create') ||Yii::app()->user->checkAccess('contact.view')
                     ),
-                    array('label'=>Yii::t('menu','Appointment'),'icon'=> 'fa fa-calendar', 'url'=>Yii::app()->urlManager->createUrl('appointment/create'), 'active'=>$this->id=='Appointment',
+                    array('label'=>Yii::t('menu','Appointment'),'icon'=> 'fa fa-calendar', 'url'=>Yii::app()->urlManager->createUrl('appointment/appointmentdash'),'active'=>$this->id .'/'. $this->action->id=='appointment/appointmentdash',
                         'visible'=>Yii::app()->user->checkAccess('appointment.index')
                             || Yii::app()->user->checkAccess('appointment.create')
                             || Yii::app()->user->checkAccess('appointment.delete')
                             || Yii::app()->user->checkAccess('appointment.update')
                     ),
-                    array('label'=>Yii::t('menu','Waiting Queue'),'icon'=> 'fa fa-user-md', 'url'=>Yii::app()->urlManager->createUrl('appointment/WaitingQueue'), 'active'=>$this->id=='Appointment',
+                    array('label'=>Yii::t('menu','Waiting Queue'),'icon'=> 'fa fa-user-md', 'url'=>Yii::app()->urlManager->createUrl('appointment/WaitingQueue'),'active'=>$this->id .'/'. $this->action->id=='appointment/WaitingQueue',
                         'visible'=>Yii::app()->user->checkAccess('appointment.waitingqueue')
                     ),
                     array('label'=>Yii::t('menu','Prescription Bill'),'icon'=> 'fa fa-plus-square', 'url'=>Yii::app()->urlManager->createUrl('appointment/Prescription'), 'active'=>$this->id=='Prescription',
@@ -78,7 +76,7 @@
                     array('label'=> Yii::t('menu','Physical Count'),'icon'=> 'menu-icon fa fa-caret-right', 'url'=>Yii::app()->urlManager->createUrl('receivingItem/index',array('trans_mode'=>'physical_count')),'active'=>$this->id .'/'. $this->action->id.'/'.Yii::app()->request->getQuery('trans_mode')=='receivingItem/index/physical_count','visible'=>Yii::app()->user->checkAccess('transaction.count')),
                 )
             ),
-            array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Settings')) . '</span>', 'icon'=>'menu-icon fa fa-cogs','url'=>Yii::app()->urlManager->createUrl('settings/index'),
+            array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Setting')) . '</span>', 'icon'=>'menu-icon fa fa-cogs','url'=>Yii::app()->urlManager->createUrl('settings/index'),
                 'active'=>$this->id=='employee' || $this->id=='clinic' || $this->id=='treatment' || $this->id=='item',
                 'visible'=>Yii::app()->user->checkAccess('maintask.setting'),
                 'items'=>array(

@@ -74,9 +74,9 @@
 
             <?php //echo $form->textFieldControlGroup($model,'end_date',array('span'=>5)); ?>
     
-            <?php echo $form->textFieldControlGroup($contact,'display_name',array('disabled'=>true,'span'=>5,'maxlength'=>50)); ?>
+            <?php //echo $form->textFieldControlGroup($contact,'display_name',array('disabled'=>true,'span'=>5,'maxlength'=>50)); ?>
     
-            <?php echo $form->textFieldControlGroup($contact,'phone_number',array('disabled'=>true,'span'=>5,'maxlength'=>15)); ?>
+            <?php //echo $form->textFieldControlGroup($contact,'phone_number',array('disabled'=>true,'span'=>5,'maxlength'=>15)); ?>
     
             <div class="form-group"><label class="col-sm-3 control-label" for="user_name">Doctor</label> 
             <div class="col-md-5"><?php echo $form->dropDownList($user,'id',

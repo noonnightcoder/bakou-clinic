@@ -1,11 +1,11 @@
 <?php $this->breadcrumbs=array(
-        'Appointment'=>array('create'),
-	'Create',
+        'Appointment'=>array('appointmentdash'),
+	    'New Appointment',
 );
 ?>
 <?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
                 'title' => Yii::t('app','New Appointment'),
-                'headerIcon' => 'ace-icon fa fa-user',
+                'headerIcon' => 'ace-icon fa fa-clock-o',
                 'headerButtons' => array(
                     TbHtml::buttonGroup(
                         array(

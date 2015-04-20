@@ -61,7 +61,7 @@ class ContactController extends Controller
             }else{
                 $data['visit'] = new Visit;
                 $data['patient_id'] = $id;
-                $patient=  VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$id));
+                $patient = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$id));
                 //$patient->unsetAttributes();
                 $data['patient'] = $patient;
                 $this->render('view', $data,false,true);

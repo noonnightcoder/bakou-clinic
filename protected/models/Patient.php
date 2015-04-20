@@ -33,7 +33,7 @@ class Patient extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('contact_id, patient_since, display_id, followup_date, reference_by', 'required'),
+			array('contact_id, patient_since, followup_date, reference_by', 'required'),
 			array('contact_id', 'numerical', 'integerOnly'=>true),
 			array('display_id', 'length', 'max'=>12),
 			array('reference_by', 'length', 'max'=>255),

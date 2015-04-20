@@ -132,8 +132,8 @@ class AppointmentController extends Controller
                                 $app_log->user_id=$_POST['RbacUser']['id'];
                                 $app_log->save();
                                 $transaction->commit();
-                                //$this->redirect(array('create','id'=>$model->id));
-                                $this->redirect(Yii::app()->user->returnUrl);
+                                $this->redirect(array('appointment/appointmentdash'));
+                                //$this->redirect(Yii::app()->user->returnUrl);
                         }else{
                         }                        
                     }catch (Exception $e){

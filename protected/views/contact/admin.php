@@ -9,7 +9,7 @@
 /* @var $this ContactController */
 /* @var $model Contact */
     $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-                  'title' => Yii::t('app','List of Patients'),
+                  'title' => Yii::t('app','List of Patient'),
                   'headerIcon' => 'ace-icon fa fa-users',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
@@ -17,7 +17,7 @@
 <?php
 $this->breadcrumbs=array(
             Yii::t('menu','Patient')=>array('admin'),
-            Yii::t('app','Manage'),
+//            Yii::t('app','Manage'),
     );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -55,6 +55,11 @@ $('.search-form form').submit(function(){
             'columns'=>array(
 		//'id',
                 array(
+                    'name'=>'display_id',
+                    'header'=>'ID',
+                    'filter'=>FALSE
+                ),
+                array(
                     'name'=>'fullname',
                     'header'=>'Patient Name', 
                 ),
@@ -63,15 +68,10 @@ $('.search-form form').submit(function(){
                     'header'=>'Last Name', 
                     'filter'=>FALSE
                 ),*/
-                array(
-                    'name'=>'display_id',
-                    'header'=>'Display ID', 
-                    'filter'=>FALSE
-                ),
-                array(
+               /* array(
                     'name'=>'display_name',
                     'header'=>'Display Name', 
-                ),
+                ),*/
                 array(
                     'name'=>'dob',
                     'header'=>'Age', 
@@ -102,7 +102,7 @@ $('.search-form form').submit(function(){
                 ),*/
 		array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
-                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{history}{update}{delete}</div>',
+                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{history}{update}</div>',
                     'htmlOptions'=>array('class'=>'nowrap'),
                     'buttons' => array(
                             /*'view' => array(
@@ -124,17 +124,18 @@ $('.search-form form').submit(function(){
                                 'url'=>'Yii::app()->createUrl("contact/update/",array("id"=>$data->contact_id))',  
                                 'options' => array(
                                   'class'=>'btn btn-xs btn-info',
+                                    'title'=> 'View & Update',
                                 ),
                                 'visible'=>'Yii::app()->user->checkAccess("contact.update")'
                             ),
-                            'delete' => array(
+                            /*'delete' => array(
                                'label'=>'Delete',
                                'url'=>'Yii::app()->createUrl("contact/delete/",array("id"=>$data->contact_id))',
                                'options' => array(
                                   'class'=>'btn btn-xs btn-danger',
                                ),
                                'visible'=>'Yii::app()->user->checkAccess("contact.delete")', 
-                            ),
+                            ),*/
                     )    
 		),
 	),
