@@ -75,8 +75,8 @@ if (isset($error_message))
         <div class="col-xs-6">
             <!-- <div class="panel panel-default"> -->
                     <p>
-                        <?php echo Yii::t('app','Cashier') . " : ". TbHtml::encode(ucwords($employee)); ?> <br>
-                        <?php echo Yii::t('app','Customer') . " : ". TbHtml::encode(ucwords($cust_fullname)); ?> <br>
+                        <?php echo Yii::t('app','Doctor') . " : ". TbHtml::encode(ucwords($employee)); ?> <br>
+                        <?php echo Yii::t('app','Patient') . " : ". TbHtml::encode(ucwords($cust_fullname)); ?> <br>
                     </p>
             <!-- </div> -->
         </div>
@@ -94,12 +94,12 @@ if (isset($error_message))
         <table class="table" id="receipt_items">
             <thead>
                 <tr>
-                    <th><?php echo Yii::t('app','Name'); ?></th>
+                    <th><?php echo Yii::t('app',' Treatment / Medicine'); ?></th>
                     <!--<th class="center"><?php //echo Yii::t('app','Price'); ?></th>-->
-                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','dosage')); ?></th>
-                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','duration')); ?></th>
-                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','consuming_time')); ?></th>
-                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','instruction')); ?></th>
+                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Dosage')); ?></th>
+                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Duration')); ?></th>
+                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Consuming Time')); ?></th>
+                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Instruction')); ?></th>
                     <th class="center" ><?php echo TbHtml::encode(Yii::t('app','Qty')); ?></th>
                     <!--<th class="center"> <?php //echo TbHtml::encode(Yii::t('app','Advisery')); ?></th>-->
                     <th class="text-right"><?php echo TbHtml::encode(Yii::t('app','Total')); ?></th>
@@ -154,7 +154,7 @@ if (isset($error_message))
                         </td>
                     </tr>
                     <tr class="gift_receipt_element">
-                        <td colspan="6" style='text-align:right;'><?php echo TbHtml::b(Yii::t('app','Amount To Paid')); ?></td>
+                        <td colspan="6" style='text-align:right;'><?php echo TbHtml::b(Yii::t('app','Paid Amount')); ?></td>
                         <td colspan="6" style='text-align:right;'>
                             <span style="font-size:12px;font-weight:bold">
                             <?php echo Yii::app()->settings->get('site', 'currencySymbol') . number_format($actual_amount,Yii::app()->shoppingCart->getDecimalPlace(), '.', ','); ?>

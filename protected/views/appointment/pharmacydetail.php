@@ -8,8 +8,8 @@
 /* @var $this ContactController */
 /* @var $model Contact */
     $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-                  'title' => Yii::t('app','Pharmacy Detail').' Patient: '.TbHtml::labelTb($patient_name, array('color' => TbHtml::LABEL_COLOR_SUCCESS)),
-                  'headerIcon' => 'ace-icon fa fa-users',
+                  'title' => 'Patient : '.TbHtml::labelTb($patient_name, array('color' => TbHtml::LABEL_COLOR_SUCCESS)),
+                  'headerIcon' => 'ace-icon fa fa-user',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
 ?>         
@@ -18,7 +18,7 @@
 /* @var $model Appointment */
 $this->breadcrumbs=array(
             Yii::t('menu','Pharmacy')=>array('pharmacy'),
-            Yii::t('app','Manage'),
+            Yii::t('app','Medicine'),
     );
 
 Yii::app()->clientScript->registerScript('search', "

@@ -138,15 +138,15 @@ class SiteController extends Controller
                 }    
                 else
                 {
-                    if ( Yii::app()->user->checkAccess('appointment.waitingqueue') ) {
+                    $this->redirect(array('dashboard/view'));
+                    /*if ( Yii::app()->user->checkAccess('appointment.waitingqueue') ) {
                         $this->redirect(array('appointment/WaitingQueue'));
                     }elseif(Yii::app()->user->checkAccess('appointment.index')){
                         $this->redirect(array('appointment/appointmentdash'));
                     }else {
                         //$this->redirect(array('saleItem/index'));
                         $this->redirect(array('appointment/appointmentdash'));
-                    }
-                    
+                    }*/
                 }
 	}
 

@@ -376,7 +376,7 @@ class AppointmentController extends Controller
     public function actionDoctorConsult()
     {
         $model = new Appointment; 
-        //$patient = new Patient;
+        $patient = new Patient;
         $visit = Visit::model()->findByPk($_GET['visit_id']);
         $treatment = new Treatment;
         $bill = new Bill;
@@ -417,7 +417,7 @@ class AppointmentController extends Controller
             $treatment_selected = Yii::app()->treatmentCart->getCart();
             $medicine_selected = Yii::app()->treatmentCart->getMedicine();
 
-            $patient = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id' => $_GET['patient_id']));
+            //$patient = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id' => $_GET['patient_id']));
             
             //---****Loop treatment into session****---//
             if(empty($treatment_selected))

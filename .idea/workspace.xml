@@ -2,25 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab79069d-0ba4-4d40-aea6-774a4ce5637c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/views/appointment/_labo_treatment_old.php" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\nbproject\project.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\nbproject\project.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/AppointmentController.php" afterPath="$PROJECT_DIR$/protected/controllers/AppointmentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/DashboardController.php" afterPath="$PROJECT_DIR$/protected/controllers/DashboardController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/DoctorQueue.php" afterPath="$PROJECT_DIR$/protected/views/appointment/DoctorQueue.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_ajax_treatment.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_ajax_treatment.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_labo_treatment.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_labo_treatment.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_laboratory.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_laboratory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/contact/_patient_his_popup.php" afterPath="$PROJECT_DIR$/protected/views/contact/_patient_his_popup.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_select_medicine.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_select_medicine.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/contact/_visited.php" afterPath="$PROJECT_DIR$/protected/views/contact/_visited.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/SiteController.php" afterPath="$PROJECT_DIR$/protected/controllers/SiteController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_receipt.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_receipt.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/runtime/application.log" afterPath="$PROJECT_DIR$/protected/runtime/application.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/create_consult.php" afterPath="$PROJECT_DIR$/protected/views/appointment/create_consult.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/labo_view.php" afterPath="$PROJECT_DIR$/protected/views/appointment/labo_view.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/labocheck.php" afterPath="$PROJECT_DIR$/protected/views/appointment/labocheck.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/pharmacy.php" afterPath="$PROJECT_DIR$/protected/views/appointment/pharmacy.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/pharmacydetail.php" afterPath="$PROJECT_DIR$/protected/views/appointment/pharmacydetail.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/prescription.php" afterPath="$PROJECT_DIR$/protected/views/appointment/prescription.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/ace/views/layouts/tpl_sidebar.php" afterPath="$PROJECT_DIR$/themes/ace/views/layouts/tpl_sidebar.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/prescriptionDetail.php" afterPath="$PROJECT_DIR$/protected/views/appointment/prescriptionDetail.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kh-clinic.iws" />
@@ -54,7 +45,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/protected/config/main.php" />
-        <option value="$PROJECT_DIR$/protected/controllers/SiteController.php" />
         <option value="$PROJECT_DIR$/themes/ace/views/layouts/tpl_navigation.php" />
         <option value="$PROJECT_DIR$/protected/views/contact/admin.php" />
         <option value="$PROJECT_DIR$/protected/views/contact/update.php" />
@@ -67,9 +57,6 @@
         <option value="$PROJECT_DIR$/protected/models/Visit.php" />
         <option value="$PROJECT_DIR$/themes/ace/views/layouts/tpl_sidebar.php" />
         <option value="$PROJECT_DIR$/protected/controllers/DashboardController.php" />
-        <option value="$PROJECT_DIR$/protected/views/appointment/prescription.php" />
-        <option value="$PROJECT_DIR$/protected/views/appointment/pharmacy.php" />
-        <option value="$PROJECT_DIR$/protected/views/appointment/labocheck.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/DoctorQueue.php" />
         <option value="$PROJECT_DIR$/protected/controllers/ContactController.php" />
         <option value="$PROJECT_DIR$/protected/views/contact/_visited.php" />
@@ -77,10 +64,17 @@
         <option value="$PROJECT_DIR$/protected/views/appointment/_laboratory.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/labo_view.php" />
         <option value="$PROJECT_DIR$/protected/views/contact/_patient_his_popup.php" />
-        <option value="$PROJECT_DIR$/protected/controllers/AppointmentController.php" />
-        <option value="$PROJECT_DIR$/protected/views/appointment/create_consult.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/_ajax_treatment.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/_select_medicine.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/SiteController.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/AppointmentController.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/create_consult.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/prescription.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/labocheck.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/prescriptionDetail.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/_receipt.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/pharmacy.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/pharmacydetail.php" />
       </list>
     </option>
   </component>
@@ -197,7 +191,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="SearchEverywhereHistoryKey" value="_select_me&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_select_medicine.php&#10;_ajax&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_ajax_treatment.php&#10;_select&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_select_treatment.php&#10;_medi&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_Medicine.php&#10;_comp&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;create&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create_consult.php&#10;_labo_tr&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_labo_treatment.php&#10;_labo&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_laboratory.php&#10;labo_v&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labo_view.php&#10;_vi&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_visited.php&#10;_patien&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_patient_his_popup.php&#10;con&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/ContactController.php&#10;doctor&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/DoctorQueue.php&#10;index.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/dashboard/index.php&#10;Pharm&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/pharmacy.php&#10;labocheck&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labocheck.php&#10;prescription.&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/prescription.php&#10;appo&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/AppointmentController.php&#10;das&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/DashboardController.php&#10;visit&#9;null&#9;null&#10;_complete&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;create_cons&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create_consult.php&#10;_form.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_form.php&#10;appointment_das&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/Appointment_dashboard.php&#10;tpl&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/themes/ace/views/layouts/tpl_sidebar.php&#10;_visit&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_visited.php&#10;pa&#9;null&#9;null&#10;contact&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/models/Contact.php&#10;view.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/view.php&#10;update&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/update.php&#10;contactcont&#9;null&#9;null&#10;admin&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/admin.php&#10;tpl_nav&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/themes/ace/views/layouts/tpl_navigation.php&#10;main.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/config/main.php" />
+    <property name="SearchEverywhereHistoryKey" value="pharm&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/pharmacy.php&#10;pharmacyde&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/pharmacydetail.php&#10;_rece&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_receipt.php&#10;prescri&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/prescriptionDetail.php&#10;la&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labocheck.php&#10;pre&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/prescription.php&#10;create&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create_consult.php&#10;sitecon&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/SiteController.php&#10;v&#9;null&#9;null&#10;_select_me&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_select_medicine.php&#10;_ajax&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_ajax_treatment.php&#10;_select&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_select_treatment.php&#10;_medi&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_Medicine.php&#10;_comp&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;_labo_tr&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_labo_treatment.php&#10;_labo&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_laboratory.php&#10;labo_v&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labo_view.php&#10;_vi&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_visited.php&#10;_patien&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_patient_his_popup.php&#10;con&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/ContactController.php&#10;doctor&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/DoctorQueue.php&#10;index.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/dashboard/index.php&#10;Pharm&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/pharmacy.php&#10;labocheck&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labocheck.php&#10;prescription.&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/prescription.php&#10;appo&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/AppointmentController.php&#10;das&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/DashboardController.php&#10;visit&#9;null&#9;null&#10;_complete&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;create_cons&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create_consult.php&#10;_form.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_form.php&#10;appointment_das&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/Appointment_dashboard.php&#10;tpl&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/themes/ace/views/layouts/tpl_sidebar.php&#10;_visit&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_visited.php&#10;pa&#9;null&#9;null&#10;contact&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/models/Contact.php&#10;view.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/view.php&#10;update&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/update.php&#10;contactcont&#9;null&#9;null&#10;admin&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/admin.php&#10;tpl_nav&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/themes/ace/views/layouts/tpl_navigation.php&#10;main.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/config/main.php" />
     <property name="FullScreen" value="false" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
   </component>
@@ -301,13 +295,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41463414" vertical-offset="1581" max-vertical-offset="3672">
           <caret line="112" column="55" selection-start-line="112" selection-start-column="55" selection-end-line="112" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/controllers/SiteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6071887" vertical-offset="2009" max-vertical-offset="2839">
-          <caret line="146" column="74" selection-start-line="146" selection-start-column="47" selection-end-line="146" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -422,16 +409,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/labocheck.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6944801" vertical-offset="1142" max-vertical-offset="2227">
-          <caret line="99" column="39" selection-start-line="99" selection-start-column="39" selection-end-line="99" selection-end-column="39" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/views/dashboard/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45827985" vertical-offset="0" max-vertical-offset="779">
@@ -444,24 +421,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.154047" vertical-offset="118" max-vertical-offset="884">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="46" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/pharmacy.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.436457" vertical-offset="459" max-vertical-offset="2227">
-          <caret line="47" column="62" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="62" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/prescription.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3453145" vertical-offset="1193" max-vertical-offset="2074">
-          <caret line="86" column="18" selection-start-line="84" selection-start-column="14" selection-end-line="86" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -506,22 +465,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/create_consult.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.436457" vertical-offset="0" max-vertical-offset="779">
-          <caret line="20" column="55" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/controllers/AppointmentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0182767" vertical-offset="9435" max-vertical-offset="21114">
-          <caret line="419" column="123" selection-start-line="419" selection-start-column="123" selection-end-line="419" selection-end-column="123" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/views/appointment/_ajax_treatment.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.2637075" vertical-offset="1988" max-vertical-offset="2754">
@@ -557,6 +500,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/ContactController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76893455" vertical-offset="982" max-vertical-offset="6375">
+          <caret line="93" column="109" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="109" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/VAppointmentState.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3491656" vertical-offset="0" max-vertical-offset="2108">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/SiteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7599487" vertical-offset="1788" max-vertical-offset="2839">
+          <caret line="140" column="57" selection-start-line="140" selection-start-column="57" selection-end-line="140" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/create_consult.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15275995" vertical-offset="0" max-vertical-offset="779">
+          <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/labocheck.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.436457" vertical-offset="0" max-vertical-offset="2210">
+          <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/protected/views/appointment/_laboratory.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9165597" vertical-offset="0" max-vertical-offset="1173">
@@ -565,10 +548,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/controllers/ContactController.php">
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/prescription.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76893455" vertical-offset="982" max-vertical-offset="6375">
-          <caret line="93" column="109" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="109" />
+        <state vertical-scroll-proportion="0.45827985" vertical-offset="0" max-vertical-offset="2074">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/prescriptionDetail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.67650837" vertical-offset="2499" max-vertical-offset="4471">
+          <caret line="178" column="95" selection-start-line="178" selection-start-column="95" selection-end-line="178" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/pharmacydetail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6546855" vertical-offset="306" max-vertical-offset="1802">
+          <caret line="48" column="18" selection-start-line="46" selection-start-column="15" selection-end-line="48" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/pharmacy.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45827985" vertical-offset="0" max-vertical-offset="2227">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/AppointmentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33289817" vertical-offset="16728" max-vertical-offset="20842">
+          <caret line="1015" column="20" selection-start-line="1015" selection-start-column="20" selection-end-line="1015" selection-end-column="20" />
+          <folding>
+            <element signature="n#actionPrescription#0;n#AppointmentController#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_receipt.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4229765" vertical-offset="1002" max-vertical-offset="3655">
+          <caret line="78" column="56" selection-start-line="78" selection-start-column="56" selection-end-line="78" selection-end-column="56" />
           <folding />
         </state>
       </provider>
