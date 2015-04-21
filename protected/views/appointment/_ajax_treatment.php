@@ -56,9 +56,9 @@
             <td>
                 <?php
                     echo TbHtml::linkButton('', array(
-                        'color'=>TbHtml::BUTTON_COLOR_DANGER,
+                        'color'=>TbHtml::BUTTON_COLOR_WARNING,
                         'size' => TbHtml::BUTTON_SIZE_MINI,
-                        'icon' => 'glyphicon glyphicon-trash ',
+                        'icon' => 'ace-icon fa fa-eraser',
                         'url' => array('DeleteTreatment', 'treatment_id' => $item_id),
                         //'label'=>'delete',
                         'class' => 'delete-treatment',

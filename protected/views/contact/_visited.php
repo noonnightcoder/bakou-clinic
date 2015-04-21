@@ -3,9 +3,9 @@
         'fixedHeader' => true,
         //'responsiveTable' => true,
         'type'=>'striped bordered hover',
-        'template'=>"{summary}\n{items}\n{exportbuttons}\n{pager}",
+        'template'=>"{summary}{items}\n{pager}",
         'dataProvider'=>$visit->showPatientHis($patient_id),
-        //'summaryText' =>'<p class="text-info"> Invoice Detail </p>', 
+        'summaryText' =>'<p class="text-info"> Visit History </p>',
         'htmlOptions'=>array('class'=>'table-responsive panel'),
         'columns'=>array(
                 array('name'=>'id',

@@ -50,13 +50,7 @@ class DashboardController extends Controller
 	 */
 	public function actionView()
 	{        
-            if(Yii::app()->user->checkAccess('appointment.index')){
-                $this->redirect(array('appointment/appointmentdash'));
-            } else {
-                //throw new CHttpException(403, 'You are not authorized to perform this action');
-                $this->render('index');
-            }
-	}
+        $this->render('index');
+    }
 
-	
 }

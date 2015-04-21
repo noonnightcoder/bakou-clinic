@@ -376,7 +376,7 @@ class AppointmentController extends Controller
     public function actionDoctorConsult()
     {
         $model = new Appointment; 
-        $patient = new Patient;
+        //$patient = new Patient;
         $visit = Visit::model()->findByPk($_GET['visit_id']);
         $treatment = new Treatment;
         $bill = new Bill;
@@ -416,6 +416,8 @@ class AppointmentController extends Controller
             
             $treatment_selected = Yii::app()->treatmentCart->getCart();
             $medicine_selected = Yii::app()->treatmentCart->getMedicine();
+
+            $patient = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id' => $_GET['patient_id']));
             
             //---****Loop treatment into session****---//
             if(empty($treatment_selected))
@@ -617,8 +619,8 @@ class AppointmentController extends Controller
         $model = new Appointment;  
         $treatment = new Treatment;
         $medicine = new Item;
-        $patient = new Patient;
-        
+        //$patient = new Patient;
+
         if(!Yii::app()->user->checkAccess('consultation.view'))
         {
             throw new CHttpException(400,'You are not authorized to perform this action.');
@@ -629,6 +631,7 @@ class AppointmentController extends Controller
             $employee_id = RbacUser::model()->findByPk($_GET['doctor_id']);
             $employee = Employee::model()->get_doctorName($employee_id->employee_id);
             $data['treatment']=$treatment;
+            $patient = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id' => $_GET['patient_id']));
             
             $data['treatment_selected_items']=$treatment->get_tbl_treatment($_GET['visit_id']);
             $data['medicine_selected_items']=$medicine->get_tbl_medicine($_GET['visit_id']);
@@ -1025,7 +1028,7 @@ class AppointmentController extends Controller
         $data['date_report'] = $date_report;
         
         //return $model->get_doctor_queue();
-        $this->render('Pharmacy',array(
+        $this->render('pharmacy',array(
             'model'=>$model,$data
         ));
     }

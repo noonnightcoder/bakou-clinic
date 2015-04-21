@@ -10,7 +10,7 @@
 /* @var $model Contact */
     $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
                   'title' => Yii::t('app','Prescription'),
-                  'headerIcon' => 'ace-icon fa fa-users',
+                  'headerIcon' => 'ace-icon fa fa-medkit',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
 ?>         
@@ -19,7 +19,7 @@
 /* @var $model Appointment */
 $this->breadcrumbs=array(
             Yii::t('menu','Prescription')=>array('prescription'),
-            Yii::t('app','Manage'),
+            Yii::t('app','Report'),
     );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -51,9 +51,9 @@ $('.search-form form').submit(function(){
             'htmlOptions'=>array('class'=>'table-responsive panel'),
             'template' => "{items}",
             'columns'=>array(
-                array('name'=>'id',
+               /* array('name'=>'id',
                        'header'=>'#', 
-                ),
+                ),*/
 		array('name'=>'appointment_id',
                         'headerHtmlOptions' => array('style' => 'display:none'),
                         'htmlOptions' => array('style' => 'display:none'),

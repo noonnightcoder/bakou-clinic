@@ -2,272 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab79069d-0ba4-4d40-aea6-774a4ce5637c" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\009809712b6db52cc6912f4c1ca06e0b.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\01ffb557ae5abb250f9ace2b52e2a53a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\024ab9e4da382a2e771aa1c8c59d8b9e.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\03249995515b059d0d19cd3f161ffb95.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\0395a54b0586ca03c33484c0150477a3.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\042321e13a1bdae62b4635e130d4e08a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\05fe194678e95f5bb6c672894e5c302f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\06759227eb906310bd54ff6dc2fc8f17.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\07ffeeca36fb512cf2b2680331565396.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\0939dc81e3782ea06f32250cea3d6708.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\0970b64fce8cc6c65851c75f8957a581.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\09b7c5dd76f14210e6925381c27c4315.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\0ac4b56108648c3f8c01f22bf0942129.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\0b8755bdad290652f2f0d2166defad0e.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\0d728cb2609f7d5452d807466e94f2e4.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\0f3faf0738243bb73f6181fa5bcbe2da.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\113592baf20104acd448c60e154742da.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\1159ab8cae95d31e7908fee64dac56ce.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\1711bb07301e0c1125909922d2d1b53a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\174f777fe52c4a1d8895d4000daef7c1.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\17f9056da77e961eb9f802c671385ae4.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\1818b897714e39a3ba48f20a7ad9e2b6.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\184d43638deca145855d2be7a6f48016.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\1891487abffa4751a55f9d1908c71e0a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\1be808dbc1a223d40fc700bcf0490e0a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\1bed299b2363db16cbf6fbd67bbc4164.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\1e6718ab6f330cc20189aba3fcba5a62.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\1f2506e4813ad8fa28a9f0ee589b7cf4.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\1f65fdd7984e85c87d0fb29419d87030.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\20d41dc6f0b6dbeb0e5039cd4edcc1a1.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\20e2630bb0a6f53e51127af912ee44f2.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\215a81ee8935f0e3b843b22fe6e13d1b.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\22288e05b8a3911f54b3bc221042e98f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\224e76564d481213b869f7bb3bc8fff0.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\22ddb8a82c6fb0ae1a0c451a126b460b.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\236d8f99e5a1181fa2e19535934b8f82.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\2464df01606cef540159bfb3cf8b87be.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\246aec85cb6ce7d2d1ce543faf835470.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\25aefe3307cf0de079442333fd58ee0f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\2845e17653033f4df5a7e1fcd1940df0.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\295f90a1f58b404b66566083628f9300.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\2a453d3830ba6b3db936981bf160849b.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\2bd752e15867b7131f9a87dbefbb7d5a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\2ec09ad3e9ab726544b7798da7298745.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\303f93c7e40301d2bd7facd71670a923.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\30c81a8d9a882edee73a34962a7f183d.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\31621202bfdec6d03fb8011fb7c24b48.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\31a881b3a7e5f7f61ccc9d9d7a4bd91f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\32f6c2f88b4df27df2244abd31347eff.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\34591fab084138d6c647ffc849419dc0.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\348ed3363a22444084028ed1d3e991c0.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\34d70635db32e1948cabe94610359fee.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\367b6f022f950dca40e3845fc3497c39.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\37a076f9da96e92b54e1295571078c3a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\38ab33ecc4cce5221a55f463bb427c42.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\3bbdb396fef15a504f36a3defbce17c5.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\3eb2c47e6219ca5f8913f307dbc0ae8a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\3ee7184ac6cf8d6dcc9f5ccf999a4155.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\3f1949676f403a3d421ff82f4850b65a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\418e448b320c1bb5943df9dcf123342f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\42ae8f726ed99d395e335f427cee544f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\42c4ee9361d54b21e7a6a48d4502371c.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\437784027eb23ff684c6513edb23b379.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\438d9a00423418f6a90cb88c8b630b6e.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\43bd8de14b0a4304f6092871191fca05.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\4471db32abe6d6dc32770a706dead189.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\44e3a51416de62db7f9a92185aa1f0f0.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\481aae7c627379ce8e3be7d30717617f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\489cea45f206ff953e71ada47c3383ed.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\495be1fa1aaa334a3a5cb54bb78b54fc.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\4a0d03e036cebf4e8e6c5d6e6948a521.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\4aa2c4ec01b7996dd97ba1d2f742d242.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\4af407961e9cb8b56b2c0000b1b04551.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\4b7b810a3bc3595f8224a94f802f26a2.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\4cb0e9127132d1f134f9950e10c2b259.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\4cefeda063301acbe857442a1f6b5392.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\4d72dcc45cdd32d55032b51803815991.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\4e09b87d619c4157364b92b3e21b8a3a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\4eaacab4c97dfc5e8709433fcb45af0c.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\501f8b9a0d826bf647e55e8bc80e4464.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\5020f8c3b7275d99405331045d9ab9cb.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\504c025620af6e8460f0a37a1ebc9b29.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\51c58a410f4ed7b2610ab7e9ce22cffa.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\525b2296fa20de37f44ce89836a00b46.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\532379506ad85ef2e6e49cde29ddf82c.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\53719a3b72f49803bca5689f95d051d2.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\5613e4abc5d94151217132e026e86f3e.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\570b471869b4b8b5daa0365b58faacd1.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\58bc23cbcf19d6e15415cfe2cfb9e18f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\58de4bf09cdfdcac95c873fd3bfa1b84.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\598a766d40c98cb88355fd62736d52a8.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\59abb8c856403067c096a19eb22c0560.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\5b2e7f8b4d629ab3e94f41155027bd0d.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\5d412365e8411082c397266546eec5f5.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\5ec26635699d40bec2464ac83db68a10.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\5fcdd479717eec4459068d36b6a3401d.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\60a53660d5ec3ee40f0e2f3a2ced9d99.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\613817506c01832142edf53c71ef1b1e.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\6285ce1206df07ffe30ee67c887faae3.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\62c740b5d13bde70597642db5f9b17e2.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\6393c80e330677e102a177696ee5ba2c.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\6725f48e93a6c7edc3b05b0f74880101.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\674f79f97a06dbc74cdd56f22c36e181.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\682e30ad62694cd49dec93bf8822fc07.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\68ee2371f187ac62cd1bbfb34cc1dd9b.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\69f0a3e02ba41e89aa4417519116e357.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\6a5973ec58634fe72a1a752caa4d99bd.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\6afc8516e3b1d4eeda405dd382a44798.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\6bd9b8986d2b13c1f7ebcb23d4409fc2.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\6c12b671ff00aa2f4886e14385fd396b.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\6d88ed973dd7008e6c669d9b2009021f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\6da947c5992260a6ea61347905d1e735.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\6e07be0a2dae583af2208952ae7a3f3a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\6f5a90d02a563311b07b3923ec30680d.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\6f70b3c639008e501ad944568525da10.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\70019422b3d176e4c54ba534c72281bc.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\71b3d7e0cb9a57dddcb6ea9c2f1ed1b5.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\7420a0dc16e79b8f42694e4876d99676.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\7627d907578ee8319b1eb36b472308c1.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\767d0ed44006a600b9245727d9db4bfd.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\76d7d62b11ebb9e6271f5dd127797e45.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\773e57c7d785bc3a5c0fc26b7608b115.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\79441198d37bfb683b08019685332101.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\794eeb366a8ae255b7ddef35b30c6b81.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\7a2938757dec96de5ca6a75f23cfbd8b.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\7add2a77ff6cc1cefa378e3113069e91.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\7b58be769e8711fc2b93dba2adb67275.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\7bf73243d0131a19e6041edee3fe13d6.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\7cf14d67fcf421719de9effc1d7d39ef.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\7d604df63177d399c708ea5fc95865f9.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\7e77d9bd27e992c96113c17817af3218.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\7f0d5893baedc01b4d4b2d87d14042eb.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\7f245966f4adaed7be2c41e6219986ef.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\809ad78f27297d06f28335e703168229.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\8114e8339249bef45d21369bf7e63a52.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\82431bb5eee2e6700110a86d48bbfd23.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\826365f2cd69200b0c67e97db08218ae.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\834b56dfad43fd8ce574191c53e3d557.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\846d808a30d3630fd91c67638d420013.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\8519f12b137c468b89e193a357309d5c.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\871be5af08e55b7c92355325265f5b4a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\8863249c3948856301ddc92d738d2b9c.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\891ded627a315ac4115b72b421602860.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\89b8c97c1b6a558b35b97f9457b004e5.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\8dc23a069cf4969f633bdf946c926b43.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\8e5702757241e3c0fa2e0e1cbc3d4f99.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\8e8edfbd3d8e1c65dec61aa0f0a92880.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\8f9028742976239d3ad6d0843ae8553a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\90fccac2eef5fe0e571b7ec13f2b4adf.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\92b97a3f20d7408e4d1637cb190ce3c5.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\94593531c576e9c5fa29ca30c1210600.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\946ade4b46f26ab5eae7a3a85f92145b.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\949f9a4bebcb93b1041205f264ca4e3a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\94bb9ed501290f0c9adbda21efc1ed2f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\9605d32507263dfc5572ee2851359d85.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\9a626020c11934f610909ef4bc9a2f1c.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\9b5a540cd3f2ef2ec95d0db24168f9d3.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\9f52ebed16010b8a194e8ecc8539e52a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\9f672579505317ebaa4eeb3c7d3db2aa.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\a20773d9f6d4728f428bfc712bf05bb9.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\a23499d178eb14e20b69513f98f2ee11.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\a4674cd37965ae4f7569e6b7da35bc2a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\a47c79b58f4b0909858696daf47726bf.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\a5a7b3bddee4d831481ea21a85ce2fa3.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\a65af1c3c87c2f4f0bc3fc4f0342c468.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\a89f1d3cef9940cad12d4a224868dd58.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\ab39036a38bee7c247bd24c3cabd3f2b.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\ac7ac9a2ea5aec26fdf5c273b6a25317.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\acdafe85028eea52581052d70c92f0ab.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\ad62e8ea98f2e3be01a8392d60215dd7.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\b0eea6d2b1b1d1be315f3d2f7e7eaedd.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\b299e563060ed319c0b2cdc236d91cfa.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\b4848257b53d2f319aeb2fb2b31ebe6a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\b85c454026c0581499ded4e9ab524bb6.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\b881d096d25396a056fccde1520743a2.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\ba780a7180a4d25f05e53229243a6eea.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\ba948913155325e8236c010672bdb2b6.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\bb0222c31c125946166c5cd941c3d55e.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\bc851545d7c5737771cb404a6cb028b8.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\bce0833f1b2726ad4391eb239bc41d60.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\bd6e9b215ba27d6010e0a91406967a27.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\bf066c9e95d416586ccef62760339c48.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\c568ecb0489d1f4ee3f4ba8af3a9974a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\c67476dd9a0de1ef988ad75ed0606930.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\c6e25f37598e583f93d942822d1834ee.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\c72b8d5887c736bf00c3b104868359fa.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\c84c9b68716ca06249d99fff70b7ae76.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\c892bd18ac0a3b81a0edc5efa5e8ee9d.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\c921687baf59c18f11c913ee877e81a5.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\c9c647e7cef3fa59f374cccee02d7fee.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\c9fd8078f87eb4e37e541d570724968f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\ce6bd7a6eca296f8d65b9506e8b78726.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\cea75f7bd768ed30c3b3d4ae1e024db0.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\cf3e672a45ffc14f674a38e5a6c2bf2f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\d01db87ae58b54e93c7d2145048aa35c.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\d565d4d76f6cd0b1e01a3371d40f9f9a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\d706a4cc0c92c83c4310c8d8c7cfe858.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\d791ea5dacf7149276d3a4924a8b53ad.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\d92262f919a1de9399b0e653d5b0a2d5.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\da8606d4d86549e9bfcee9b77083b19a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\db63add3acae06575d8b0975ee9c48a0.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\db63f54a9e75c8c7440977000f4b3ef3.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\dbeec31c9f71b83f173246b5e1bbeea3.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\dd70bf2a3a0cce45c2ec6a41b653970a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\df8f8e32e929511c033a6df68e4cbf82.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\dfa1b261acba1fa305212e10b3a1da3a.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e2e89539b399e6083a36a3d1d6b44ee2.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e33eb7b5217f578b4f2c264b3ec60689.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e38466bffb7f64d8d9f6415d3c616f16.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e52d620b7d1d7053edb57312cc2ff9ac.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e5c37e5d22982e9431683b3fd93acbf0.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e5f1be7532ac4cf11349bd48ca24ce43.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e642b006edeff72c3aef464f06eea991.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e693a0ab06923653f47fe5c3d2fd759c.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e6b7d33d181cce52f681473203265956.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e794e09d8f5ba7fde7847b6a427403c6.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e8a80a291fe515206ac1ab636efd36ef.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e8b30f0e189bcc6b0ad4bb67945adf12.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\e8b6935cbfe2b09c49d7b1ced2334dae.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\eaedab1bdbf4e73b2869268dcca51068.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\eeb38c2bda0fa0235bb9b44898db0d33.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\eedd2b7100c287daf0e692cd05dc0fc8.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\efbe66fd810742ea70cb15158fc69ba9.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\f0ff04ead15fb244e07a42b0c072de67.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\f18bf990333a4c336abea820704619be.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\f1e21ee3626dfd2f7190081584fe21b7.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\f2877104c8b4051fafd778bf2c71098e.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\f346a4dc2e7bdb7c308fe3bc2bfee6ae.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\f4c46c07b8655fe1b727564b9607abcb.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\f557b502663f44296f205fe2839a40ca.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\f63ddda58b3047424316204624493157.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\f6619722dfe405e4b0403286a93a3ccb.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\f67002d2cade20a876018706d3f2943f.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\f6d85ada29ca65199b2a1e7e70231605.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\f7cf9777a1c2e54de7b5c08469b302cf.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\fa3ea25c979984fe0c658c7ad9b12e0d.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\facb6aff6ee0f8cefa8426ecedf613ce.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\fb0030df1402dd076763d6b8edf7a3ef.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\fb42852daf6f0e82aba4be5b6c11208c.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\fb505c38352d476a8f8e3a3f4507acc8.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\fb557645cca24e2d8ca1e13c53faae8c.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\fb5755a8a9127f524cd9d54309581d5c.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\fba59c08e8a5778bf8b9ea6e69702dc8.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\fcfbe9eca674de55e9900ca330bc199b.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\fd47bf011379dd1caf56699acf862cbc.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\fd77a8973a3a25f6914660bb3b381190.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\protected\runtime\cache\ff167ed89c034e4139c849aeac8ba9bc.bin" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/views/appointment/_labo_treatment_old.php" />
+      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\nbproject\project.properties" afterPath="" />
+      <change type="DELETED" beforePath="D:\dev_env\vagrant\webroot\kh-clinic\nbproject\project.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/AppointmentController.php" afterPath="$PROJECT_DIR$/protected/controllers/AppointmentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/Appointment_dashboard.php" afterPath="$PROJECT_DIR$/protected/views/appointment/Appointment_dashboard.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/ContactController.php" afterPath="$PROJECT_DIR$/protected/controllers/ContactController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/components/Controller.php" afterPath="$PROJECT_DIR$/protected/components/Controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/DashboardController.php" afterPath="$PROJECT_DIR$/protected/controllers/DashboardController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/DoctorQueue.php" afterPath="$PROJECT_DIR$/protected/views/appointment/DoctorQueue.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/models/Patient.php" afterPath="$PROJECT_DIR$/protected/models/Patient.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/SiteController.php" afterPath="$PROJECT_DIR$/protected/controllers/SiteController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/models/Visit.php" afterPath="$PROJECT_DIR$/protected/models/Visit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_form.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_ajax_treatment.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_ajax_treatment.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_labo_treatment.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_labo_treatment.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_laboratory.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_laboratory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/contact/_patient_his_popup.php" afterPath="$PROJECT_DIR$/protected/views/contact/_patient_his_popup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_select_medicine.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_select_medicine.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/contact/_visited.php" afterPath="$PROJECT_DIR$/protected/views/contact/_visited.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/contact/admin.php" afterPath="$PROJECT_DIR$/protected/views/contact/admin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/runtime/application.log" afterPath="$PROJECT_DIR$/protected/runtime/application.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/create.php" afterPath="$PROJECT_DIR$/protected/views/appointment/create.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/create_consult.php" afterPath="$PROJECT_DIR$/protected/views/appointment/create_consult.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/config/main.php" afterPath="$PROJECT_DIR$/protected/config/main.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/ace/views/layouts/tpl_navigation.php" afterPath="$PROJECT_DIR$/themes/ace/views/layouts/tpl_navigation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/labo_view.php" afterPath="$PROJECT_DIR$/protected/views/appointment/labo_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/labocheck.php" afterPath="$PROJECT_DIR$/protected/views/appointment/labocheck.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/pharmacy.php" afterPath="$PROJECT_DIR$/protected/views/appointment/pharmacy.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/prescription.php" afterPath="$PROJECT_DIR$/protected/views/appointment/prescription.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/ace/views/layouts/tpl_sidebar.php" afterPath="$PROJECT_DIR$/themes/ace/views/layouts/tpl_sidebar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/contact/update.php" afterPath="$PROJECT_DIR$/protected/views/contact/update.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/contact/view.php" afterPath="$PROJECT_DIR$/protected/views/contact/view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kh-clinic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -306,17 +60,27 @@
         <option value="$PROJECT_DIR$/protected/views/contact/update.php" />
         <option value="$PROJECT_DIR$/protected/views/contact/view.php" />
         <option value="$PROJECT_DIR$/protected/models/Patient.php" />
-        <option value="$PROJECT_DIR$/protected/controllers/ContactController.php" />
-        <option value="$PROJECT_DIR$/protected/views/contact/_visited.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/_form.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/create.php" />
-        <option value="$PROJECT_DIR$/protected/controllers/AppointmentController.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/Appointment_dashboard.php" />
-        <option value="$PROJECT_DIR$/themes/ace/views/layouts/tpl_sidebar.php" />
-        <option value="$PROJECT_DIR$/protected/views/appointment/create_consult.php" />
-        <option value="$PROJECT_DIR$/protected/views/appointment/DoctorQueue.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php" />
         <option value="$PROJECT_DIR$/protected/models/Visit.php" />
+        <option value="$PROJECT_DIR$/themes/ace/views/layouts/tpl_sidebar.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/DashboardController.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/prescription.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/pharmacy.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/labocheck.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/DoctorQueue.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/ContactController.php" />
+        <option value="$PROJECT_DIR$/protected/views/contact/_visited.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/_labo_treatment.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/_laboratory.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/labo_view.php" />
+        <option value="$PROJECT_DIR$/protected/views/contact/_patient_his_popup.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/AppointmentController.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/create_consult.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/_ajax_treatment.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/_select_medicine.php" />
       </list>
     </option>
   </component>
@@ -399,7 +163,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kh-clinic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kh-clinic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appointment" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -411,10 +197,36 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="SearchEverywhereHistoryKey" value="visit&#9;null&#9;null&#10;_complete&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;create_cons&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create_consult.php&#10;doctor&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/DoctorQueue.php&#10;_form.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_form.php&#10;create&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create.php&#10;appointment_das&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/Appointment_dashboard.php&#10;appo&#9;null&#9;null&#10;tpl&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/themes/ace/views/layouts/tpl_sidebar.php&#10;_visit&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_visited.php&#10;pa&#9;null&#9;null&#10;contact&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/models/Contact.php&#10;view.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/view.php&#10;update&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/update.php&#10;contactcont&#9;null&#9;null&#10;index.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/index.php&#10;admin&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/admin.php&#10;tpl_nav&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/themes/ace/views/layouts/tpl_navigation.php&#10;main.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/config/main.php" />
+    <property name="SearchEverywhereHistoryKey" value="_select_me&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_select_medicine.php&#10;_ajax&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_ajax_treatment.php&#10;_select&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_select_treatment.php&#10;_medi&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_Medicine.php&#10;_comp&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;create&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create_consult.php&#10;_labo_tr&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_labo_treatment.php&#10;_labo&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_laboratory.php&#10;labo_v&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labo_view.php&#10;_vi&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_visited.php&#10;_patien&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_patient_his_popup.php&#10;con&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/ContactController.php&#10;doctor&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/DoctorQueue.php&#10;index.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/dashboard/index.php&#10;Pharm&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/pharmacy.php&#10;labocheck&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labocheck.php&#10;prescription.&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/prescription.php&#10;appo&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/AppointmentController.php&#10;das&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/DashboardController.php&#10;visit&#9;null&#9;null&#10;_complete&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;create_cons&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create_consult.php&#10;_form.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_form.php&#10;appointment_das&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/Appointment_dashboard.php&#10;tpl&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/themes/ace/views/layouts/tpl_sidebar.php&#10;_visit&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_visited.php&#10;pa&#9;null&#9;null&#10;contact&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/models/Contact.php&#10;view.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/view.php&#10;update&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/update.php&#10;contactcont&#9;null&#9;null&#10;admin&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/admin.php&#10;tpl_nav&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/themes/ace/views/layouts/tpl_navigation.php&#10;main.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/config/main.php" />
     <property name="FullScreen" value="false" />
+    <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\dev_env\vagrant\webroot\kh-clinic\protected\views\appointment" />
+    </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -431,25 +243,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="916" extended-state="7" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.164375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -472,7 +285,15 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/protected/views/contact/_patient_his_popup.php</url>
+          <line>20</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -480,7 +301,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41463414" vertical-offset="1581" max-vertical-offset="3672">
           <caret line="112" column="55" selection-start-line="112" selection-start-column="55" selection-end-line="112" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -488,7 +308,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6071887" vertical-offset="2009" max-vertical-offset="2839">
           <caret line="146" column="74" selection-start-line="146" selection-start-column="47" selection-end-line="146" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -496,7 +315,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6071887" vertical-offset="615" max-vertical-offset="1598">
           <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="69" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -504,7 +322,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -512,7 +329,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32734275" vertical-offset="0" max-vertical-offset="779">
           <caret line="15" column="54" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -532,27 +348,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/contact/_visited.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54557127" vertical-offset="0" max-vertical-offset="782">
-          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/views/contact/view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6546855" vertical-offset="0" max-vertical-offset="779">
           <caret line="30" column="115" selection-start-line="30" selection-start-column="107" selection-end-line="30" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/controllers/ContactController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37612325" vertical-offset="778" max-vertical-offset="6375">
-          <caret line="63" column="27" selection-start-line="63" selection-start-column="27" selection-end-line="63" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -560,13 +359,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2414">
           <caret line="0" column="1" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-          <folding>
-            <marker date="1429531872618" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429531872618" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429531872618" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429531872618" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429531872618" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -574,7 +366,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0872914" vertical-offset="102" max-vertical-offset="2550">
           <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -582,50 +373,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.72400516" vertical-offset="1601" max-vertical-offset="2635">
           <caret line="61" column="7" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
-          <folding>
-            <marker date="1429532675159" expanded="true" signature="-1:-1" placeholder="select @rown..patient_id..." />
-            <marker date="1429532675159" expanded="true" signature="-1:-1" placeholder="SELECT t1.pa..visit..." />
-            <marker date="1429532675159" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3055199" vertical-offset="255" max-vertical-offset="4301">
-          <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/create_consult.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.436457" vertical-offset="0" max-vertical-offset="779">
-          <caret line="20" column="65" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/controllers/AppointmentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3550914" vertical-offset="9588" max-vertical-offset="21063">
-          <caret line="580" column="41" selection-start-line="580" selection-start-column="27" selection-end-line="580" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/ace/views/layouts/tpl_sidebar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46605745" vertical-offset="561" max-vertical-offset="2159">
-          <caret line="54" column="232" selection-start-line="54" selection-start-column="232" selection-end-line="54" selection-end-column="232" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/DoctorQueue.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4801027" vertical-offset="1156" max-vertical-offset="2295">
-          <caret line="90" column="18" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -634,7 +381,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15275995" vertical-offset="0" max-vertical-offset="779">
           <caret line="7" column="55" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -642,7 +388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.6585366" vertical-offset="0" max-vertical-offset="2856">
           <caret line="76" column="20" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -650,13 +395,181 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.53263706" vertical-offset="663" max-vertical-offset="2516">
           <caret line="63" column="88" selection-start-line="63" selection-start-column="88" selection-end-line="63" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/DashboardController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.309371" vertical-offset="275" max-vertical-offset="1054">
+          <caret line="2" column="44" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/ace/views/layouts/tpl_sidebar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5992167" vertical-offset="1020" max-vertical-offset="1870">
+          <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/DoctorQueue.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1462" max-vertical-offset="2312">
+          <caret line="119" column="74" selection-start-line="119" selection-start-column="74" selection-end-line="119" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/labocheck.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6944801" vertical-offset="1142" max-vertical-offset="2227">
+          <caret line="99" column="39" selection-start-line="99" selection-start-column="39" selection-end-line="99" selection-end-column="39" />
           <folding>
-            <marker date="1429531872618" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429531872618" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429531872618" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429531872618" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429531872618" expanded="true" signature="-1:-1" placeholder="..." />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/dashboard/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45827985" vertical-offset="0" max-vertical-offset="779">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_labo_treatment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.154047" vertical-offset="118" max-vertical-offset="884">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="46" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/pharmacy.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.436457" vertical-offset="459" max-vertical-offset="2227">
+          <caret line="47" column="62" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="62" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/prescription.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3453145" vertical-offset="1193" max-vertical-offset="2074">
+          <caret line="86" column="18" selection-start-line="84" selection-start-column="14" selection-end-line="86" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/contact/_visited.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10911425" vertical-offset="0" max-vertical-offset="782">
+          <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_labo_treatment_old.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1683">
+          <caret line="27" column="49" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/contact/_patient_his_popup.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9602054" vertical-offset="102" max-vertical-offset="1581">
+          <caret line="50" column="72" selection-start-line="50" selection-start-column="72" selection-end-line="50" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_select_medicine.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28851175" vertical-offset="2142" max-vertical-offset="3876">
+          <caret line="139" column="11" selection-start-line="139" selection-start-column="11" selection-end-line="139" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4801027" vertical-offset="510" max-vertical-offset="4301">
+          <caret line="52" column="59" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/create_consult.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.436457" vertical-offset="0" max-vertical-offset="779">
+          <caret line="20" column="55" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/AppointmentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0182767" vertical-offset="9435" max-vertical-offset="21114">
+          <caret line="419" column="123" selection-start-line="419" selection-start-column="123" selection-end-line="419" selection-end-column="123" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_ajax_treatment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2637075" vertical-offset="1988" max-vertical-offset="2754">
+          <caret line="60" column="56" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_Medicine.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_select_treatment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.2618742" vertical-offset="204" max-vertical-offset="1054">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/labo_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4801027" vertical-offset="0" max-vertical-offset="1547">
+          <caret line="28" column="88" selection-start-line="28" selection-start-column="88" selection-end-line="28" selection-end-column="88" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_laboratory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9165597" vertical-offset="0" max-vertical-offset="1173">
+          <caret line="42" column="166" selection-start-line="42" selection-start-column="166" selection-end-line="42" selection-end-column="166" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/ContactController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76893455" vertical-offset="982" max-vertical-offset="6375">
+          <caret line="93" column="109" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="109" />
+          <folding />
         </state>
       </provider>
     </entry>

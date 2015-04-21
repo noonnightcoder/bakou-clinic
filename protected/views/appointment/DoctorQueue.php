@@ -106,17 +106,18 @@ $('.search-form form').submit(function(){
                             'options' => array(
                                 'data-toggle' => 'tooltip', 
                                 'data-update-dialog-title' => 'Consultation',
-                                'class'=>'btn btn-xs btn-info', 
-                                'title'=>'Consultation',
+                                'class'=>'btn btn-xs btn-success',
+                                'title'=>Yii::t('app','Consultation'),
                             ),
                         ),
                         //http://bit.ly/1bdSADp
                         'delete' => array(
                             'label' => Yii::t('app','Cancel'),
                             'url'=>'Yii::app()->createUrl("Appointment/CancelAppointment", array("appoint_id"=>$data["app_id"],"doctor_id"=>$data["doctor_id"],"patient_id"=>$data["patient_id"]))',
-                            'icon'=>'bigger-120 glyphicon-trash',
+                            'icon'=>'bigger-120 ace-icon fa fa-eraser',
                             'options' => array(
-                                'class'=>'btn btn-xs btn-danger',
+                                'class'=>'btn btn-xs btn-warning',
+                                'title'=>Yii::t('app','Cancel Consultation')
                              ),
                             
                         ),
