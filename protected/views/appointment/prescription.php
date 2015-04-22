@@ -19,7 +19,7 @@
 /* @var $model Appointment */
 $this->breadcrumbs=array(
             Yii::t('menu','Prescription')=>array('prescription'),
-            Yii::t('app','Report'),
+            //Yii::t('app','Report'),
     );
 
 Yii::app()->clientScript->registerScript('search', "

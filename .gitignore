@@ -4,4 +4,5 @@
 /protected/runtime/application.log
 *.log
 /ximages
-/.idea
+/.idea/
+/.idea/workspace.xml

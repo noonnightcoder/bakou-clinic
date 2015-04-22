@@ -5,7 +5,7 @@
 //echo Yii::app()->user->getId();
 ?>
 <?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-    'title' => Yii::t('app', 'Patient') . ' : ' . $patient_name . ' :  ' . $patient->age . ' Year',
+    'title' => Yii::t('app', 'Patient') . ' : ' . $patient_name, //. ' :  ' . $patient->age . ' Year',
     'headerIcon' => 'ace-icon fa fa-stethoscope',
     'headerButtons' => array(
         TbHtml::linkButton(Yii::t('app', 'Patient History'), array(

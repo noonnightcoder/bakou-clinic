@@ -19,7 +19,6 @@
 /* @var $model Appointment */
 $this->breadcrumbs=array(
             Yii::t('menu','Laboratory')=>array('labocheck'),
-            Yii::t('app','Report'),
     );
 
 Yii::app()->clientScript->registerScript('search', "

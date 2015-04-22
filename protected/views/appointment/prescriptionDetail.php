@@ -9,8 +9,8 @@
 /* @var $this ContactController */
 /* @var $model Contact */
     $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-                  'title' => Yii::t('app','Prescription Detail') .' Patient: '.TbHtml::labelTb($patient_name, array('color' => TbHtml::LABEL_COLOR_SUCCESS)),
-                  'headerIcon' => 'ace-icon fa fa-users',
+                  'title' => 'Patient: '.TbHtml::labelTb($patient_name, array('color' => TbHtml::LABEL_COLOR_SUCCESS)),
+                      'headerIcon' => 'ace-icon fa fa-users',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
 ?>         
@@ -18,8 +18,8 @@
 /* @var $this AppointmentController */
 /* @var $model Appointment */
 $this->breadcrumbs=array(
-            Yii::t('menu','Appoionment')=>array('prescription'),
-            Yii::t('app','Manage'),
+            Yii::t('menu','Prescription Bill')=>array('prescription'),
+            Yii::t('app','Bill Detail'),
     );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -103,10 +103,10 @@ $('.search-form form').submit(function(){
                                         <input type="text" name="amount" value="<?php echo @$amount; ?>">
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td><?php echo Yii::t('app', 'Item Select'); ?> :</td>
-                                    <td><?php echo $count_item; ?></td>
-                                </tr>                                
+                               <!-- <tr>
+                                    <td><?php /*echo Yii::t('app', 'Item Select'); */?> :</td>
+                                    <td><?php /*echo $count_item; */?></td>
+                                </tr>  -->
                                 <tr>
                                     <td><?php echo Yii::t('app', 'Total'); ?> :</td>
                                     <td>
@@ -116,7 +116,7 @@ $('.search-form form').submit(function(){
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><?php echo Yii::t('app', 'Paid Amount'); ?> :</td>
+                                    <td><?php echo Yii::t('app', 'Amount to Pay'); ?> :</td>
                                     <td>
                                         <span class="badge badge-warning bigger-120">
                                             <?php echo Yii::app()->settings->get('site', 'currencySymbol').number_format(@$actual_amount, 2, '.', ','); ?>
@@ -176,7 +176,7 @@ $('.search-form form').submit(function(){
                             <table class="table table-striped table-condensed">
                                         <td colspan="3" style='text-align:right'>
                                         <?php
-                                        echo TbHtml::linkButton(Yii::t('app', 'Complete Sale'), array(
+                                        echo TbHtml::linkButton(Yii::t('app', 'Complete Payment'), array(
                                             'color' => TbHtml::BUTTON_COLOR_SUCCESS,
                                             'icon' => 'glyphicon glyphicon-off white',
                                             //'url' => Yii::app()->createUrl('appointment/CompleteSale/'),
