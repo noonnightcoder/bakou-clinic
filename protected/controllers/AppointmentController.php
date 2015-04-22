@@ -384,7 +384,7 @@ class AppointmentController extends Controller
 
         $medicine = new Item;
             
-        if(!isset($_POST['Completed_consult']) && !isset($_POST['Save_consult']))
+        if(!isset($_POST['Completed_consult']) || !isset($_POST['Save_consult']))
         {
             Yii::app()->treatmentCart->clearAll();  //Clear old session before new patient comming
         }
@@ -457,17 +457,18 @@ class AppointmentController extends Controller
                         if(!empty($chk_bill))
                         {
                             //----***Delete if bill already exists***----// 
-                            //if(!empty($treatment_selected))
-                            //{
+                            if(!empty($treatment_selected))
+                            {
                                 BillDetail::model()->deleteAll(
                                     array('condition'=>'bill_id=:bill_id',
                                     'params'=>array(':bill_id'=>$chk_bill->bill_id))
                                 );
-
-                                foreach ($treatment_selected as $key => $value) {                                  
-                                    $treatment->saveTreatment($chk_bill->bill_id,$value['id'],$value['price']);
-                                }
-                            //}                                
+                            } 
+                            
+                            foreach ($treatment_selected as $key => $value) {                                  
+                                $treatment->saveTreatment($chk_bill->bill_id,$value['id'],$value['price']);
+                            }
+                                                           
                         }else{  
                             $bill->bill_date = date('Y-m-d');
                             $bill->patient_id = $_GET['patient_id'];
@@ -488,17 +489,17 @@ class AppointmentController extends Controller
                         if(!empty($chk_medicine))
                         {
                             //---***Delete if Prescription already exists***---// 
-                            //if(!empty($medicine_selected))
-                            //{
+                            if(!empty($medicine_selected))
+                            {
                                 PrescriptionDetail::model()->deleteAll(
                                     array('condition'=>'prescription_id=:prescription_id',
                                     'params'=>array(':prescription_id'=>$chk_medicine->id))
                                 );
-
-                                foreach ($medicine_selected as $key => $value) {                                  
-                                    $prescription->saveMedicine($chk_medicine->id,$value['id'],$value['quantity'],$value['price'],$value['dosage'],$value['duration'],$value['frequency'],$value['instruction_id'],$value['comment'],$value['consuming_time_id']);
-                                }
-                            //}                                
+                            }
+                                
+                            foreach ($medicine_selected as $key => $value) {                                  
+                                $prescription->saveMedicine($chk_medicine->id,$value['id'],$value['quantity'],$value['price'],$value['dosage'],$value['duration'],$value['frequency'],$value['instruction_id'],$value['comment'],$value['consuming_time_id']);
+                            }                                                            
                         }else{
                             $prescription->date_created = date('Y-m-d');
                             $prescription->visit_id = $_GET['visit_id'];
@@ -528,7 +529,7 @@ class AppointmentController extends Controller
                                     //if($model->validate())
                                     //{
                                         $actual_amount = $_POST['Appointment']['actual_amount'];
-                                        $this->actioncompletedConsult($_GET['visit_id'],$_GET['patient_id'],round($actual_amount,2));
+                                        $this->actioncompletedConsult($_GET['visit_id'],$_GET['patient_id'],$actual_amount);
                                     //}
                                 }else{
                                     Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> Please select treatment or medicine!.');

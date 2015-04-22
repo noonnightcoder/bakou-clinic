@@ -96,10 +96,10 @@ if (isset($error_message))
                 <tr>
                     <th><?php echo Yii::t('app','Name'); ?></th>
                     <!--<th class="center"><?php //echo Yii::t('app','Price'); ?></th>-->
-                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','dosage')); ?></th>
-                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','duration')); ?></th>
-                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','consuming_time')); ?></th>
-                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','instruction')); ?></th>
+                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Dosage')); ?></th>
+                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Duration')); ?></th>
+                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Consuming Time')); ?></th>
+                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Instruction')); ?></th>
                     <th class="center" ><?php echo TbHtml::encode(Yii::t('app','Qty')); ?></th>
                     <!--<th class="center"> <?php //echo TbHtml::encode(Yii::t('app','Advisery')); ?></th>-->
                     <th class="text-right"><?php echo TbHtml::encode(Yii::t('app','Total')); ?></th>

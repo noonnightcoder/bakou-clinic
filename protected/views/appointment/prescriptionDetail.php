@@ -74,7 +74,7 @@ $('.search-form form').submit(function(){
                 ),
                 //'status',
                 array('name'=>'unit_price',
-                        'header'=>'Price', 
+                        'header'=>'Total', 
                         'value'=> 'number_format($data["unit_price"], 2, ".", ",")'
                 ),
                 array('name'=>'info',
