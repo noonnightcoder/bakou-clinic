@@ -4,4 +4,4 @@
 /protected/runtime/application.log
 *.log
 /ximages
-/.idea
+/.idea/
