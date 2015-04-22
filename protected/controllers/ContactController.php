@@ -75,7 +75,7 @@ class ContactController extends Controller
                 throw new CHttpException(400,'You are not authorized to perform this action.');
             }else{
                 
-                /*$cs = Yii::app()->clientScript;
+                $cs = Yii::app()->clientScript;
                 $cs->scriptMap = array(
                     'jquery.js' => false,
                     'bootstrap.js' => false,
@@ -87,7 +87,7 @@ class ContactController extends Controller
                     'bootstrap.bootbox.min.js' => false,
                 );
 
-                Yii::app()->clientScript->scriptMap['*.js'] = false;*/
+                Yii::app()->clientScript->scriptMap['*.js'] = false;
             
                 $data['visit'] = new Visit;
                 $data['patient_id'] = $id;
