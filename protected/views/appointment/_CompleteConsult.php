@@ -246,3 +246,34 @@ Yii::app()->clientScript->registerScript( 'completedConsult',"
     });
 ");
 ?>
+
+<script language="JavaScript" type="text/javascript">  
+    $(document).ready(function()
+    {
+        $('a').click(function(e) {
+            e.preventDefault();
+            a_href = $(this).attr("href");
+            var ans = confirm("Your Data will lose if you leave this page! Are wan to leave?");
+            if(ans===true)
+            { 
+                $.ajax({ type: "POST",
+                     url: "Emptytreatment",
+                     success:function(){                        
+                          window.location.href=a_href;
+                     }
+                });
+            }
+        });
+    });
+    function check_leave_page()
+    {
+        vchk=0;
+        $.ajax({ type: "POST",
+            url: "leavepage",
+            success:function(){  
+                vchk=1;
+            }
+        });
+        return true;
+    }
+</script>  

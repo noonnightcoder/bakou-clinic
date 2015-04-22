@@ -42,7 +42,7 @@ class AppointmentController extends Controller
                                 'Prescription','prescriptionDetail','AddPayment',
                                 'CompleteSale','DeletePayment','Labocheck',
                                 'LaboPreview','LaboView','Pharmacy','PharmacyDetail',
-                                'ActualAmount','InitMedicine'
+                                'ActualAmount','InitMedicine','Emptytreatment','Emptypayment'
                                 ),
                             'users'=>array('@'),
                     ),
@@ -384,10 +384,10 @@ class AppointmentController extends Controller
 
         $medicine = new Item;
             
-        if(!isset($_POST['Completed_consult']) || !isset($_POST['Save_consult']))
+        /*if(!isset($_POST['Completed_consult']) || !isset($_POST['Save_consult']))
         {
             Yii::app()->treatmentCart->clearAll();  //Clear old session before new patient comming
-        }
+        }*/
         
         if(!Yii::app()->user->checkAccess('consultation.create'))
         {
@@ -987,7 +987,7 @@ class AppointmentController extends Controller
     
     public function actionprescriptionDetail($visit_id)
     {  
-        Yii::app()->treatmentCart->emptyPayment();
+        //Yii::app()->treatmentCart->emptyPayment();
         $model = new Appointment;
         $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
         $data['patient_name'] = $rst->patient_name;
@@ -1234,5 +1234,15 @@ class AppointmentController extends Controller
 
             Yii::app()->end();
         }
+    }
+    
+    public function actionEmptytreatment()
+    {
+        Yii::app()->treatmentCart->clearAll();
+    }
+    
+    public function actionEmptypayment()
+    {
+        Yii::app()->treatmentCart->emptyPayment();
     }
 }

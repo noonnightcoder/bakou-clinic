@@ -212,6 +212,21 @@ $(document).ready(function()
         $("#finish_sale_button").hide();
         $('#finish_sale_form').submit();
     });
+    
+    $('a').click(function(e) {
+            e.preventDefault();
+            a_href = $(this).attr("href");
+            var ans = confirm("Your Data will lose if you leave this page! Are wan to leave?");
+            if(ans===true)
+            { 
+                $.ajax({ type: "POST",
+                     url: "Emptypayment",
+                     success:function(){                        
+                          window.location.href=a_href;
+                     }
+                });
+            }
+        });
  });
 </script>
 
