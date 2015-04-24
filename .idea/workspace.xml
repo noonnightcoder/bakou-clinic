@@ -3,16 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab79069d-0ba4-4d40-aea6-774a4ce5637c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/AppointmentController.php" afterPath="$PROJECT_DIR$/protected/controllers/AppointmentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/SiteController.php" afterPath="$PROJECT_DIR$/protected/controllers/SiteController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_receipt.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_receipt.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/models/Visit.php" afterPath="$PROJECT_DIR$/protected/models/Visit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/runtime/application.log" afterPath="$PROJECT_DIR$/protected/runtime/application.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/create_consult.php" afterPath="$PROJECT_DIR$/protected/views/appointment/create_consult.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/labocheck.php" afterPath="$PROJECT_DIR$/protected/views/appointment/labocheck.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/pharmacy.php" afterPath="$PROJECT_DIR$/protected/views/appointment/pharmacy.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/pharmacydetail.php" afterPath="$PROJECT_DIR$/protected/views/appointment/pharmacydetail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/prescription.php" afterPath="$PROJECT_DIR$/protected/views/appointment/prescription.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/prescriptionDetail.php" afterPath="$PROJECT_DIR$/protected/views/appointment/prescriptionDetail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kh-clinic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,7 +29,48 @@
     <favorites_list name="kh-clinic" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="admin.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/protected/views/contact/admin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.7021823" vertical-offset="918" max-vertical-offset="2720">
+              <caret line="132" column="120" selection-start-line="132" selection-start-column="120" selection-end-line="132" selection-end-column="120" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Patient.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/models/Patient.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074">
+              <caret line="19" column="22" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create_consult.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/views/appointment/create_consult.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+              <caret line="19" column="55" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_CompleteConsult.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="5100">
+              <caret line="41" column="27" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,16 +78,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/protected/config/main.php" />
         <option value="$PROJECT_DIR$/themes/ace/views/layouts/tpl_navigation.php" />
-        <option value="$PROJECT_DIR$/protected/views/contact/admin.php" />
         <option value="$PROJECT_DIR$/protected/views/contact/update.php" />
         <option value="$PROJECT_DIR$/protected/views/contact/view.php" />
-        <option value="$PROJECT_DIR$/protected/models/Patient.php" />
-        <option value="$PROJECT_DIR$/protected/views/appointment/_form.php" />
-        <option value="$PROJECT_DIR$/protected/views/appointment/create.php" />
-        <option value="$PROJECT_DIR$/protected/views/appointment/Appointment_dashboard.php" />
-        <option value="$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php" />
         <option value="$PROJECT_DIR$/protected/models/Visit.php" />
         <option value="$PROJECT_DIR$/themes/ace/views/layouts/tpl_sidebar.php" />
         <option value="$PROJECT_DIR$/protected/controllers/DashboardController.php" />
@@ -67,14 +94,22 @@
         <option value="$PROJECT_DIR$/protected/views/appointment/_ajax_treatment.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/_select_medicine.php" />
         <option value="$PROJECT_DIR$/protected/controllers/SiteController.php" />
-        <option value="$PROJECT_DIR$/protected/controllers/AppointmentController.php" />
-        <option value="$PROJECT_DIR$/protected/views/appointment/create_consult.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/prescription.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/labocheck.php" />
-        <option value="$PROJECT_DIR$/protected/views/appointment/prescriptionDetail.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/_receipt.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/pharmacy.php" />
         <option value="$PROJECT_DIR$/protected/views/appointment/pharmacydetail.php" />
+        <option value="$PROJECT_DIR$/protected/config/main.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/prescriptionDetail.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/Appointment_dashboard.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/create.php" />
+        <option value="$PROJECT_DIR$/protected/views/contact/admin.php" />
+        <option value="$PROJECT_DIR$/protected/models/Appointment.php" />
+        <option value="$PROJECT_DIR$/protected/models/Patient.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/_form.php" />
+        <option value="$PROJECT_DIR$/protected/views/appointment/create_consult.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/AppointmentController.php" />
       </list>
     </option>
   </component>
@@ -191,7 +226,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="SearchEverywhereHistoryKey" value="pharm&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/pharmacy.php&#10;pharmacyde&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/pharmacydetail.php&#10;_rece&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_receipt.php&#10;prescri&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/prescriptionDetail.php&#10;la&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labocheck.php&#10;pre&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/prescription.php&#10;create&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create_consult.php&#10;sitecon&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/SiteController.php&#10;v&#9;null&#9;null&#10;_select_me&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_select_medicine.php&#10;_ajax&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_ajax_treatment.php&#10;_select&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_select_treatment.php&#10;_medi&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_Medicine.php&#10;_comp&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;_labo_tr&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_labo_treatment.php&#10;_labo&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_laboratory.php&#10;labo_v&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labo_view.php&#10;_vi&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_visited.php&#10;_patien&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_patient_his_popup.php&#10;con&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/ContactController.php&#10;doctor&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/DoctorQueue.php&#10;index.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/dashboard/index.php&#10;Pharm&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/pharmacy.php&#10;labocheck&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labocheck.php&#10;prescription.&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/prescription.php&#10;appo&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/AppointmentController.php&#10;das&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/DashboardController.php&#10;visit&#9;null&#9;null&#10;_complete&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;create_cons&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create_consult.php&#10;_form.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_form.php&#10;appointment_das&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/Appointment_dashboard.php&#10;tpl&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/themes/ace/views/layouts/tpl_sidebar.php&#10;_visit&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_visited.php&#10;pa&#9;null&#9;null&#10;contact&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/models/Contact.php&#10;view.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/view.php&#10;update&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/update.php&#10;contactcont&#9;null&#9;null&#10;admin&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/admin.php&#10;tpl_nav&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/themes/ace/views/layouts/tpl_navigation.php&#10;main.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/config/main.php" />
+    <property name="SearchEverywhereHistoryKey" value="com&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;pa&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/models/Patient.php&#10;create&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create_consult.php&#10;pat&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/models/Patient.php&#10;patie&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/models/Patient.php&#10;appoint&#9;null&#9;null&#10;vs&#9;null&#9;null&#10;_form&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_form.php&#10;create.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create_consult.php&#10;appoin&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/Appointment_dashboard.php&#10;admin.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/admin.php&#10;contact&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/ContactController.php&#10;pre&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/prescriptionDetail.php&#10;complete&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;consul&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_DoctorConsult.php&#10;main.p&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/config/main.php&#10;pharm&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/pharmacy.php&#10;pharmacyde&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/pharmacydetail.php&#10;_rece&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_receipt.php&#10;prescri&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/prescriptionDetail.php&#10;la&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labocheck.php&#10;sitecon&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/SiteController.php&#10;v&#9;null&#9;null&#10;_select_me&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_select_medicine.php&#10;_ajax&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_ajax_treatment.php&#10;_select&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_select_treatment.php&#10;_medi&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_Medicine.php&#10;_comp&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;_labo_tr&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_labo_treatment.php&#10;_labo&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_laboratory.php&#10;labo_v&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labo_view.php&#10;_vi&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_visited.php&#10;_patien&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_patient_his_popup.php&#10;con&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/ContactController.php&#10;doctor&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/DoctorQueue.php&#10;index.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/dashboard/index.php&#10;Pharm&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/pharmacy.php&#10;labocheck&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/labocheck.php&#10;prescription.&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/prescription.php&#10;appo&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/AppointmentController.php&#10;das&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/controllers/DashboardController.php&#10;visit&#9;null&#9;null&#10;_complete&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_CompleteConsult.php&#10;create_cons&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/create_consult.php&#10;_form.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/_form.php&#10;appointment_das&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/appointment/Appointment_dashboard.php&#10;tpl&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/themes/ace/views/layouts/tpl_sidebar.php&#10;_visit&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/_visited.php&#10;view.php&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/view.php&#10;update&#9;FILE&#9;file://D:/dev_env/vagrant/webroot/kh-clinic/protected/views/contact/update.php" />
     <property name="FullScreen" value="false" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
   </component>
@@ -215,10 +250,16 @@
       <BehatRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -238,7 +279,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="7" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -246,20 +287,20 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.164375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -286,15 +327,52 @@
           <line>20</line>
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/protected/config/main.php">
+    <entry file="file://$PROJECT_DIR$/protected/controllers/ContactController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41463414" vertical-offset="1581" max-vertical-offset="3672">
-          <caret line="112" column="55" selection-start-line="112" selection-start-column="55" selection-end-line="112" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3974" max-vertical-offset="6375">
+          <caret line="246" column="20" selection-start-line="246" selection-start-column="20" selection-end-line="246" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/contact/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1479" max-vertical-offset="2720">
+          <caret line="132" column="130" selection-start-line="132" selection-start-column="93" selection-end-line="132" selection-end-column="130" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/AppointmentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="21301">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#14978#15147#0#PHP" expanded="false" />
+            <element signature="e#15730#15889#0#PHP" expanded="false" />
+            <element signature="e#19370#19591#0#PHP" expanded="false" />
+            <element signature="e#21501#21872#0#PHP" expanded="false" />
+            <element signature="e#22030#22398#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/Appointment_dashboard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2516">
+          <caret line="45" column="108" selection-start-line="45" selection-start-column="108" selection-end-line="45" selection-end-column="108" />
+          <folding>
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -319,19 +397,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/models/Patient.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="904" max-vertical-offset="2040">
-          <caret line="35" column="46" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/models/Contact.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6684073" vertical-offset="355" max-vertical-offset="3043">
           <caret line="51" column="27" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -349,39 +418,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/contact/admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0872914" vertical-offset="102" max-vertical-offset="2550">
-          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/models/Visit.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.72400516" vertical-offset="1601" max-vertical-offset="2635">
           <caret line="61" column="7" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/create.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15275995" vertical-offset="0" max-vertical-offset="779">
-          <caret line="7" column="55" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6585366" vertical-offset="0" max-vertical-offset="2856">
-          <caret line="76" column="20" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/Appointment_dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53263706" vertical-offset="663" max-vertical-offset="2516">
-          <caret line="63" column="88" selection-start-line="63" selection-start-column="88" selection-end-line="63" selection-end-column="88" />
         </state>
       </provider>
     </entry>
@@ -389,7 +429,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.309371" vertical-offset="275" max-vertical-offset="1054">
           <caret line="2" column="44" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -397,7 +436,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.5992167" vertical-offset="1020" max-vertical-offset="1870">
           <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -405,7 +443,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1462" max-vertical-offset="2312">
           <caret line="119" column="74" selection-start-line="119" selection-start-column="74" selection-end-line="119" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -413,7 +450,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45827985" vertical-offset="0" max-vertical-offset="779">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -421,7 +457,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.154047" vertical-offset="118" max-vertical-offset="884">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="46" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -429,7 +464,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10911425" vertical-offset="0" max-vertical-offset="782">
           <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -437,7 +471,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1683">
           <caret line="27" column="49" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -453,15 +486,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28851175" vertical-offset="2142" max-vertical-offset="3876">
           <caret line="139" column="11" selection-start-line="139" selection-start-column="11" selection-end-line="139" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4801027" vertical-offset="510" max-vertical-offset="4301">
-          <caret line="52" column="59" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -469,7 +493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.2637075" vertical-offset="1988" max-vertical-offset="2754">
           <caret line="60" column="56" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -477,7 +500,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -485,7 +507,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.2618742" vertical-offset="204" max-vertical-offset="1054">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -493,18 +514,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4801027" vertical-offset="0" max-vertical-offset="1547">
           <caret line="28" column="88" selection-start-line="28" selection-start-column="88" selection-end-line="28" selection-end-column="88" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/controllers/ContactController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76893455" vertical-offset="982" max-vertical-offset="6375">
-          <caret line="93" column="109" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="109" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -512,7 +521,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3491656" vertical-offset="0" max-vertical-offset="2108">
           <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -520,15 +528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7599487" vertical-offset="1788" max-vertical-offset="2839">
           <caret line="140" column="57" selection-start-line="140" selection-start-column="57" selection-end-line="140" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/create_consult.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15275995" vertical-offset="0" max-vertical-offset="779">
-          <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -536,7 +535,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.436457" vertical-offset="0" max-vertical-offset="2210">
           <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -544,7 +542,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9165597" vertical-offset="0" max-vertical-offset="1173">
           <caret line="42" column="166" selection-start-line="42" selection-start-column="166" selection-end-line="42" selection-end-column="166" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -552,15 +549,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45827985" vertical-offset="0" max-vertical-offset="2074">
           <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/appointment/prescriptionDetail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67650837" vertical-offset="2499" max-vertical-offset="4471">
-          <caret line="178" column="95" selection-start-line="178" selection-start-column="95" selection-end-line="178" selection-end-column="95" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -568,7 +556,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6546855" vertical-offset="306" max-vertical-offset="1802">
           <caret line="48" column="18" selection-start-line="46" selection-start-column="15" selection-end-line="48" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -576,17 +563,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45827985" vertical-offset="0" max-vertical-offset="2227">
           <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/controllers/AppointmentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33289817" vertical-offset="16728" max-vertical-offset="20842">
-          <caret line="1015" column="20" selection-start-line="1015" selection-start-column="20" selection-end-line="1015" selection-end-column="20" />
-          <folding>
-            <element signature="n#actionPrescription#0;n#AppointmentController#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -594,6 +570,189 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4229765" vertical-offset="1002" max-vertical-offset="3655">
           <caret line="78" column="56" selection-start-line="78" selection-start-column="56" selection-end-line="78" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/config/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.67650837" vertical-offset="1377" max-vertical-offset="3672">
+          <caret line="112" column="55" selection-start-line="112" selection-start-column="55" selection-end-line="112" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/prescriptionDetail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35815147" vertical-offset="3427" max-vertical-offset="4981">
+          <caret line="218" column="28" selection-start-line="218" selection-start-column="28" selection-end-line="218" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_DoctorConsult.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28851175" vertical-offset="0" max-vertical-offset="2006">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bakou_pos/protected/controllers/ItemController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9321149" vertical-offset="1224" max-vertical-offset="11186">
+          <caret line="197" column="9" selection-start-line="197" selection-start-column="9" selection-end-line="197" selection-end-column="9" />
+          <folding>
+            <element signature="n#actionCreateImage#0;n#ItemController#0;n#!!top" expanded="false" />
+            <marker date="1428454501211" expanded="true" signature="-1:-1" placeholder="SELECT id,co..item..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/VSearchPatient.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6495507" vertical-offset="778" max-vertical-offset="2193">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bakou_pos/protected/views/item/_form_image.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3759791" vertical-offset="969" max-vertical-offset="3808">
+          <caret line="119" column="50" selection-start-line="119" selection-start-column="50" selection-end-line="119" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/Appointment_dashboard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.9530026" vertical-offset="255" max-vertical-offset="2516">
+          <caret line="103" column="52" selection-start-line="103" selection-start-column="52" selection-end-line="103" selection-end-column="52" />
+          <folding>
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/Appointment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3979461" vertical-offset="2036" max-vertical-offset="9996">
+          <caret line="138" column="37" selection-start-line="138" selection-start-column="21" selection-end-line="138" selection-end-column="37" />
+          <folding>
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT patie..v_search_patient..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT phone..v_search_patient..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT t1.id..rbac_user..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..app_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select app_i..v_appointment_state..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT appoi..id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT t1.id..appointment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @row_..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select count..visit..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select count..appointment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select @rown..patient_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT t3.pa..medicine_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="/*UNION ALL ..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select @rown..patient_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT t3.pa..medicine_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT id,tr..v_bill_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select @rown..app_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT app_i..v_appointment_state..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT visit..bill..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select count..medicine_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT id,tr..v_bill_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select sum(a..medicine_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT id,tr..v_bill_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select fulln..patient_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT t3.pa..medicine_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT id,tr..v_bill_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..appointment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select @rown..app_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT app_i..v_appointment_state..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..app_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select app_i..v_appointment_state..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select actua..bill_tmp..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2499">
+          <caret line="27" column="35" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/create.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="21" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="5100">
+          <caret line="41" column="27" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/ContactController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.987163" vertical-offset="1101" max-vertical-offset="6375">
+          <caret line="110" column="20" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/appointment/create_consult.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <caret line="19" column="55" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/Patient.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/AppointmentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="12.028721" vertical-offset="3366" max-vertical-offset="21097">
+          <caret line="755" column="12" selection-start-line="755" selection-start-column="12" selection-end-line="755" selection-end-column="12" />
+          <folding>
+            <element signature="e#14978#15147#0#PHP" expanded="false" />
+            <element signature="e#15730#15889#0#PHP" expanded="false" />
+            <element signature="e#19370#19591#0#PHP" expanded="false" />
+            <element signature="e#21501#21872#0#PHP" expanded="false" />
+            <element signature="e#22030#22398#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/contact/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7021823" vertical-offset="918" max-vertical-offset="2720">
+          <caret line="132" column="120" selection-start-line="132" selection-start-column="120" selection-end-line="132" selection-end-column="120" />
           <folding />
         </state>
       </provider>

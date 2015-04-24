@@ -102,7 +102,7 @@ $('.search-form form').submit(function(){
                 ),*/
 		array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
-                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{history}{update}</div>',
+                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{update}{history}{appointment}</div>',
                     'htmlOptions'=>array('class'=>'nowrap'),
                     'buttons' => array(
                             /*'view' => array(
@@ -111,23 +111,33 @@ $('.search-form form').submit(function(){
                                   'class'=>'btn btn-xs btn-success',
                                 ),   
                             ),*/
+                            'update' => array(
+                                'icon' => 'ace-icon fa fa-edit',
+                                'url'=>'Yii::app()->createUrl("contact/update/",array("id"=>$data->contact_id))',
+                                'options' => array(
+                                    'class'=>'btn btn-xs btn-info',
+                                    'title'=> 'View & Update',
+                                ),
+                                'visible'=>'Yii::app()->user->checkAccess("contact.update")'
+                            ),
                             'history' => array(
                                 'label' => Yii::t('app','History'),
                                 'url'=> 'Yii::app()->createUrl("contact/view/",array("id"=>$data->patient_id))',
                                 'options' => array(
                                   'class'=>'btn btn-xs btn-primary',
-                                ), 
+                                ),
                                 'visible'=>'Yii::app()->user->checkAccess("contact.view")'
                             ),
-                            'update' => array(
-                                'icon' => 'ace-icon fa fa-edit',
-                                'url'=>'Yii::app()->createUrl("contact/update/",array("id"=>$data->contact_id))',  
+                            'appointment' => array(
+                                'icon' => 'ace-icon fa fa-calendar',
+                                'url'=>'Yii::app()->createUrl("appointment/appointmentdash/",array("contact_id"=>$data->contact_id))',
                                 'options' => array(
-                                  'class'=>'btn btn-xs btn-info',
-                                    'title'=> 'View & Update',
+                                    'class'=>'btn btn-xs btn-success',
+                                    'title'=> 'Make Appointment',
                                 ),
                                 'visible'=>'Yii::app()->user->checkAccess("contact.update")'
                             ),
+
                             /*'delete' => array(
                                'label'=>'Delete',
                                'url'=>'Yii::app()->createUrl("contact/delete/",array("id"=>$data->contact_id))',

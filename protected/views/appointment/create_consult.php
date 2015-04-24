@@ -2,7 +2,6 @@
     'Waiting Queue' => array('appointment/WaitingQueue'),
     Yii::t('app', 'Consultation'),
 );
-//echo Yii::app()->user->getId();
 ?>
 <?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
     'title' => Yii::t('app', 'Patient') . ' : ' . $patient_name, //. ' :  ' . $patient->age . ' Year',
