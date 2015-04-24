@@ -253,7 +253,7 @@ Yii::app()->clientScript->registerScript( 'completedConsult',"
         $('.nav-list').on('click','a',function(e) {
             e.preventDefault();
             a_href = $(this).attr("href");
-            var ans = confirm("Your Data will lose if you leave this page! Are wan to leave?");
+            var ans = confirm("You have unsaved changes, are you sure that you want to leave? All of your changes will be lost.");
             if(ans===true)
             { 
                 $.ajax({ type: "POST",

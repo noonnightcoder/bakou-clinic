@@ -88,70 +88,69 @@ class AppointmentController extends Controller
      */
     public function actionCreate()
     {
-            $model=new Appointment;
-            $patient = new Patient;
-            $contact = new Contact;
-            $user = new RbacUser;
-            $app_log= new AppointmentLog;
+        $model = new Appointment;
+        $patient = new Patient;
+        $contact = new Contact;
+        $user = new RbacUser;
+        $app_log = new AppointmentLog;
 
-            // Uncomment the following line if AJAX validation is needed
-            // $this->performAjaxValidation($model);
+        if (!Yii::app()->user->checkAccess('appointment.create')) {
+            throw new CHttpException(400, 'You are not authorized to perform this action.');
+        }
 
-            if(!Yii::app()->user->checkAccess('appointment.create'))
-            {
-                throw new CHttpException(400,'You are not authorized to perform this action.');
+        if (isset($_POST['Appointment'])) {
+
+            $chk = Appointment::model()->chk_user_inqueue($_POST['Patient']['patient_id']);
+            if ($chk == 0) {
+                $transaction = $model->dbConnection->beginTransaction();
+                try {
+                    //set_error_handler(array(&$this, "exception_error_handler"));
+                    //$model->attributes=$_POST['Appointment'];
+                    $model->attributes = $_POST['Appointment'];
+                    $model->appointment_date = date('Y-m-d H:i:s');
+                    $model->end_date = date('Y-m-d');
+                    $model->start_time = $_POST['Appointment']['start_time'];
+                    $model->end_time = $_POST['Appointment']['end_time'];
+                    $model->title = $_POST['Appointment']['title'];
+                    $model->patient_id = $_POST['Patient']['patient_id'];
+                    $model->user_id = $_POST['RbacUser']['id'];
+                    $model->status = 'Waiting';
+                    $model->visit_id = 0;
+                    $model->actual_amount = 0;
+
+                    if ($model->save()) {
+                        $app_log->appointment_id = $model->id;
+                        $app_log->change_date_time = date('Y-m-d H:i:s');
+                        $app_log->start_time = $_POST['Appointment']['start_time'];
+                        $app_log->status = 'Waiting';
+                        //$app_log->user_id=Yii::app()->user->getId();
+                        $app_log->user_id = $_POST['RbacUser']['id'];
+                        $app_log->save();
+                        $transaction->commit();
+                        $this->redirect(array('appointment/appointmentdash'));
+                        //$this->redirect(Yii::app()->user->returnUrl);
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollback();
+                    echo $e->getMessage();
+                }
+            } else {
+                Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> This patient already in queue.');
             }
-            
-            if (isset($_POST['Appointment'])) {
-                
-                $chk=Appointment::model()->chk_user_inqueue($_POST['Patient']['patient_id']);
-                if($chk==0)
-                {
-                   $transaction=$model->dbConnection->beginTransaction();
-                    try{
-                        //set_error_handler(array(&$this, "exception_error_handler")); 
-                        //$model->attributes=$_POST['Appointment'];
-                        $model->attributes=$_POST['Appointment'];
-                        $model->appointment_date=date('Y-m-d H:i:s');
-                        $model->end_date=date('Y-m-d');
-                        $model->start_time=$_POST['Appointment']['start_time'];
-                        $model->end_time=$_POST['Appointment']['end_time'];
-                        $model->title=$_POST['Appointment']['title'];
-                        $model->patient_id=$_POST['Patient']['patient_id'];
-                        $model->user_id=$_POST['RbacUser']['id'];
-                        $model->status='Waiting';
-                        $model->visit_id=0;
-                        $model->actual_amount=0;
-                        
-                        if ($model->save()) {
-                                $app_log->appointment_id=$model->id;
-                                $app_log->change_date_time=date('Y-m-d H:i:s');
-                                $app_log->start_time=$_POST['Appointment']['start_time'];
-                                $app_log->status='Waiting';
-                                //$app_log->user_id=Yii::app()->user->getId();
-                                $app_log->user_id=$_POST['RbacUser']['id'];
-                                $app_log->save();
-                                $transaction->commit();
-                                $this->redirect(array('appointment/appointmentdash'));
-                                //$this->redirect(Yii::app()->user->returnUrl);
-                        }else{
-                        }                        
-                    }catch (Exception $e){
-                        $transaction->rollback();
-                        echo $e->getMessage();
-                    } 
-                }else{
-                    Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> This patient already in queue.');
-                }                
-            }                
-            if(isset($_GET['doctor_id']))
-            {
-                $user = RbacUser::model()->findByPk($_GET['doctor_id']);
-            }
-            
-            $this->render('create',array(
-                    'model'=>$model,'patient'=>$patient,'contact'=>$contact,'user'=>$user
-            ));
+        }
+
+        if (isset($_GET['doctor_id'])) {
+            $user = RbacUser::model()->findByPk($_GET['doctor_id']);
+        }
+
+        $patient->patient_id = 16;
+
+        $this->render('_form', array(
+            'model' => $model,
+            'patient' => $patient,
+            'contact' => $contact,
+            'user' => $user
+        ));
     }
 
     /**
@@ -263,7 +262,7 @@ class AppointmentController extends Controller
     {
         if (isset($_GET['term'])) {
             $term = trim($_GET['term']);
-            $ret['results'] = Appointment::model()->m_get_patient($term); //PHP Example · ivaynberg/select2  http://bit.ly/10FNaXD got stuck serveral hoursss :|
+            $ret['results'] = Appointment::model()->m_get_patient($term);
             echo CJSON::encode($ret);
             Yii::app()->end();
         }
@@ -479,7 +478,8 @@ class AppointmentController extends Controller
                             foreach ($treatment_selected as $key => $value) {                                  
                                     $treatment->saveTreatment($bill->bill_id,$value['id'],$value['price']);
                             }
-                        } 
+                        }
+
                         //-----****Loop from Medicine session****-----//
                         $chk_medicine = Prescription::model()->find(array(
                                     'condition' => 'visit_id=:visit_id',
@@ -554,7 +554,7 @@ class AppointmentController extends Controller
                 }else{
                     Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
                 }
-            }else{
+            } else {
                 
             }
 
@@ -670,13 +670,13 @@ class AppointmentController extends Controller
         }
     }*/
 
-    public function actionAppointmentDash()
+    public function actionAppointmentDash($contact_id=null)
     {
         $model = new Appointment;
         //$doctors= array('name'=>'Tep Phally');
         $doctors = $model->get_combo_doctor();
         $appointment = $model->get_appointment();
-        $this->render('Appointment_dashboard',array('doctors'=>$doctors,'appointment'=>$appointment));
+        $this->render('Appointment_dashboard',array('doctors'=>$doctors,'appointment'=>$appointment,'contact_id'=>$contact_id));
     }
 
     public function actionAddTreatment()

@@ -17,7 +17,9 @@
  */
 class Patient extends CActiveRecord
 {
-	/**
+	public $patient_id;
+
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
