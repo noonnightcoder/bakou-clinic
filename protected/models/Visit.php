@@ -34,7 +34,8 @@ class Visit extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('patient_id, userid, visit_date,sympton, observation, assessment, plan', 'required'),
+			array('patient_id, userid, visit_date', 'required'),
+                        array('sympton, observation, assessment, plan','diagnosis_validate'),
 			array('patient_id, userid', 'numerical', 'integerOnly'=>true),
 			array('type, visit_time', 'length', 'max'=>50),
 			array('visit_date', 'length', 'max'=>60),
@@ -145,5 +146,28 @@ class Visit extends CActiveRecord
                         )
                     ),
             ));
+        }
+        
+        public function diagnosis_validate($attribute,$params)
+        {
+            if($this->sympton=='')
+            {
+                $this->addError('sympton','Sympton cannot be blank');
+            }
+            
+            if($this->observation=='')
+            {
+                $this->addError('observation','Observation cannot be blank');
+            }
+            
+            if($this->assessment=='')
+            {
+                $this->addError('assessment','Past History cannot be blank');
+            }
+            
+            if($this->plan=='')
+            {
+                $this->addError('plan','Diagnosis cannot be blank');
+            }
         }
 }
