@@ -44,7 +44,7 @@ class Appointment extends CActiveRecord
 		// will receive user inputs.
 		return array(                        
 			array('appointment_date,title, user_id, status', 'required'),      
-                        array('actual_amount','amount_validate'),
+            array('actual_amount','amount_validate'),
 			array('patient_id, user_id, visit_id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>150),
 			array('status', 'length', 'max'=>255),

@@ -43,7 +43,7 @@ echo "<tbody id='appointment-dash'>";
         foreach ($doctors as $doc_id=>$doc) 
         {
             //$doc=$doctor;
-            $url=Yii::app()->createUrl('Appointment/create',array("doctor_id"=>$doc_id,'contact_id'=>$contact_id));
+            $url=Yii::app()->createUrl('Appointment/create',array("doctor_id"=>$doc_id));
 
             $count=0;
             echo "<td><table id=\"innertbl\"><tr $class>";

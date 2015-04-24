@@ -354,6 +354,10 @@ class AppointmentController extends Controller
                 $visit->userid=$doctor_id;
                 $visit->type="New Visit";
                 $visit->visit_date=date('Y-m-d');
+                $visit->sympton = 'NA';
+                $visit->observation='NA';
+                $visit->assessment='NA';
+                $visit->plan='NA';
                 if($visit->validate())
                 {
                    if($visit->save())
@@ -367,7 +371,7 @@ class AppointmentController extends Controller
                $this->redirect(array('DoctorConsult','visit_id'=>$visit->visit_id,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id));
             }  
 
-            $this->render('DocdorQueue',array(
+            $this->render('DoctorQueue',array(
                 'model'=>$model,'patient_id'=>$patient_id,'doctor_id'=>$doctor_id
             ));
         }
