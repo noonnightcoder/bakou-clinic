@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab79069d-0ba4-4d40-aea6-774a4ce5637c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/models/Appointment.php" afterPath="$PROJECT_DIR$/protected/models/Appointment.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/AppointmentController.php" afterPath="$PROJECT_DIR$/protected/controllers/AppointmentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/Appointment_dashboard.php" afterPath="$PROJECT_DIR$/protected/views/appointment/Appointment_dashboard.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/models/Patient.php" afterPath="$PROJECT_DIR$/protected/models/Patient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/models/Visit.php" afterPath="$PROJECT_DIR$/protected/models/Visit.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/_form.php" afterPath="$PROJECT_DIR$/protected/views/appointment/_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/contact/admin.php" afterPath="$PROJECT_DIR$/protected/views/contact/admin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/runtime/application.log" afterPath="$PROJECT_DIR$/protected/runtime/application.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/create.php" afterPath="$PROJECT_DIR$/protected/views/appointment/create.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/create_consult.php" afterPath="$PROJECT_DIR$/protected/views/appointment/create_consult.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/config/main.php" afterPath="$PROJECT_DIR$/protected/config/main.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/appointment/prescriptionDetail.php" afterPath="$PROJECT_DIR$/protected/views/appointment/prescriptionDetail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kh-clinic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,32 +30,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="admin.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="admin.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/protected/views/contact/admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="2720">
+            <state vertical-scroll-proportion="1.7021823" vertical-offset="918" max-vertical-offset="2720">
               <caret line="132" column="120" selection-start-line="132" selection-start-column="120" selection-end-line="132" selection-end-column="120" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppointmentController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/protected/controllers/AppointmentController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.643603" vertical-offset="9336" max-vertical-offset="18666">
-              <caret line="430" column="0" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
-              <folding>
-                <element signature="e#3831#5938#0#PHP" expanded="false" />
-                <element signature="e#14978#15147#0#PHP" expanded="false" />
-                <element signature="e#15730#15889#0#PHP" expanded="false" />
-                <element signature="e#17537#24709#0#PHP" expanded="false" />
-                <element signature="e#19370#19591#0#PHP" expanded="false" />
-                <element signature="e#21501#21872#0#PHP" expanded="false" />
-                <element signature="e#22030#22398#0#PHP" expanded="false" />
-                <element signature="e#22458#23906#0#PHP" expanded="false" />
-                <element signature="e#25019#25144#0#PHP" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -92,8 +63,8 @@
       <file leaf-file-name="_CompleteConsult.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="4896">
-              <caret line="29" column="62" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="5100">
+              <caret line="41" column="27" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -307,7 +278,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="916" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -382,15 +353,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="21301">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3831#5938#0#PHP" expanded="false" />
             <element signature="e#14978#15147#0#PHP" expanded="false" />
             <element signature="e#15730#15889#0#PHP" expanded="false" />
-            <element signature="e#17537#24709#0#PHP" expanded="false" />
             <element signature="e#19370#19591#0#PHP" expanded="false" />
             <element signature="e#21501#21872#0#PHP" expanded="false" />
             <element signature="e#22030#22398#0#PHP" expanded="false" />
-            <element signature="e#22458#23906#0#PHP" expanded="false" />
-            <element signature="e#25019#25144#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -400,11 +367,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2516">
           <caret line="45" column="108" selection-start-line="45" selection-start-column="108" selection-end-line="45" selection-end-column="108" />
           <folding>
-            <marker date="1429770226851" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429770226851" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429770226851" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429770226851" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429770226851" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -659,11 +626,11 @@
         <state vertical-scroll-proportion="1.9530026" vertical-offset="255" max-vertical-offset="2516">
           <caret line="103" column="52" selection-start-line="103" selection-start-column="52" selection-end-line="103" selection-end-column="52" />
           <folding>
-            <marker date="1429770226851" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429770226851" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429770226851" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429770226851" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429770226851" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429873308606" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -673,49 +640,49 @@
         <state vertical-scroll-proportion="0.3979461" vertical-offset="2036" max-vertical-offset="9996">
           <caret line="138" column="37" selection-start-line="138" selection-start-column="21" selection-end-line="138" selection-end-column="37" />
           <folding>
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT patie..v_search_patient..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT phone..v_search_patient..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT t1.id..rbac_user..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT @rown..app_id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="select app_i..v_appointment_state..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT appoi..id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT t1.id..appointment..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT @row_..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="select count..visit..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="select count..appointment..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="select @rown..patient_id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT t3.pa..medicine_id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="/*UNION ALL ..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="select @rown..patient_id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT t3.pa..medicine_id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT id,tr..v_bill_payment..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="select @rown..app_id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT app_i..v_appointment_state..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT visit..bill..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="select count..medicine_id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT id,tr..v_bill_payment..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="select sum(a..medicine_id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT id,tr..v_bill_payment..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="select fulln..patient_id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT t3.pa..medicine_id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT id,tr..v_bill_payment..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..appointment..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="select @rown..app_id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT app_i..v_appointment_state..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT @rown..app_id..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="select app_i..v_appointment_state..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
-            <marker date="1429862270299" expanded="true" signature="-1:-1" placeholder="select actua..bill_tmp..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT patie..v_search_patient..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT phone..v_search_patient..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT t1.id..rbac_user..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..app_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select app_i..v_appointment_state..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT appoi..id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT t1.id..appointment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @row_..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select count..visit..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select count..appointment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select @rown..patient_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT t3.pa..medicine_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="/*UNION ALL ..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select @rown..patient_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT t3.pa..medicine_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT id,tr..v_bill_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select @rown..app_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT app_i..v_appointment_state..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT visit..bill..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select count..medicine_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT id,tr..v_bill_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select sum(a..medicine_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT id,tr..v_bill_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select fulln..patient_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT t3.pa..medicine_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT medic..v_medicine_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT id,tr..v_bill_payment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..appointment..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select @rown..app_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT app_i..v_appointment_state..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..app_id..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select app_i..v_appointment_state..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="SELECT @rown..." />
+            <marker date="1429873308562" expanded="true" signature="-1:-1" placeholder="select actua..bill_tmp..." />
           </folding>
         </state>
       </provider>
@@ -738,8 +705,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/views/appointment/_CompleteConsult.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="4896">
-          <caret line="29" column="62" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="5100">
+          <caret line="41" column="27" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="62" />
           <folding />
         </state>
       </provider>
@@ -748,14 +715,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.987163" vertical-offset="1101" max-vertical-offset="6375">
           <caret line="110" column="20" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/views/contact/admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="2720">
-          <caret line="132" column="120" selection-start-line="132" selection-start-column="120" selection-end-line="132" selection-end-column="120" />
           <folding />
         </state>
       </provider>
@@ -778,19 +737,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/controllers/AppointmentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.643603" vertical-offset="9336" max-vertical-offset="18666">
-          <caret line="430" column="0" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
+        <state vertical-scroll-proportion="12.028721" vertical-offset="3366" max-vertical-offset="21097">
+          <caret line="755" column="12" selection-start-line="755" selection-start-column="12" selection-end-line="755" selection-end-column="12" />
           <folding>
-            <element signature="e#3831#5938#0#PHP" expanded="false" />
             <element signature="e#14978#15147#0#PHP" expanded="false" />
             <element signature="e#15730#15889#0#PHP" expanded="false" />
-            <element signature="e#17537#24709#0#PHP" expanded="false" />
             <element signature="e#19370#19591#0#PHP" expanded="false" />
             <element signature="e#21501#21872#0#PHP" expanded="false" />
             <element signature="e#22030#22398#0#PHP" expanded="false" />
-            <element signature="e#22458#23906#0#PHP" expanded="false" />
-            <element signature="e#25019#25144#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/contact/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7021823" vertical-offset="918" max-vertical-offset="2720">
+          <caret line="132" column="120" selection-start-line="132" selection-start-column="120" selection-end-line="132" selection-end-column="120" />
+          <folding />
         </state>
       </provider>
     </entry>

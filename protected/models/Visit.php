@@ -34,7 +34,7 @@ class Visit extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('patient_id, userid, visit_date', 'required'),
+			array('patient_id, userid, visit_date,sympton, observation, assessment, plan', 'required'),
 			array('patient_id, userid', 'numerical', 'integerOnly'=>true),
 			array('type, visit_time', 'length', 'max'=>50),
 			array('visit_date', 'length', 'max'=>60),
