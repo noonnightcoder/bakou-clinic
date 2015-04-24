@@ -520,27 +520,27 @@ class AppointmentController extends Controller
                                         'plan'=>$_POST['Visit']['plan'],
                                     )
                                 );
-                        if(!empty($_POST['Visit']['sympton']) || !empty($_POST['Visit']['observation']) || !empty($_POST['Visit']['assessment']) ||!empty($_POST['Visit']['plan']))
-                        {                            
-                            if(isset($_POST['Completed_consult']))
-                            {   
-                                if(!empty($treatment_selected) || !empty($medicine_selected))
-                                {
-                                    //if($model->validate())
-                                    //{
-                                        $actual_amount = $_POST['Appointment']['actual_amount'];
-                                        $this->actioncompletedConsult($_GET['visit_id'],$_GET['patient_id'],$actual_amount);
-                                    //}
-                                }else{
-                                    Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> Please select treatment or medicine!.');
-                                }
+                        /*if(!empty($_POST['Visit']['sympton']) || !empty($_POST['Visit']['observation']) || !empty($_POST['Visit']['assessment']) ||!empty($_POST['Visit']['plan']))
+                        {*/                            
+                        if(isset($_POST['Completed_consult']))
+                        {   
+                            if(!empty($treatment_selected) || !empty($medicine_selected))
+                            {
+                                //if($model->validate())
+                                //{
+                                    $actual_amount = $_POST['Appointment']['actual_amount'];
+                                    $this->actioncompletedConsult($_GET['visit_id'],$_GET['patient_id'],$actual_amount);
+                                //}
                             }else{
-                                Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
+                                Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> Please select treatment or medicine!.');
                             }
                         }else{
+                            Yii::app()->user->setFlash('success', '<strong>Well done!</strong> successfully saved.');
+                        }
+                        /*}else{
                             Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> Please insert the Sympton, Observation....');
                             //$transaction->rollback();
-                        }    
+                        }*/    
                         $transaction->commit();
                         Yii::app()->treatmentCart->clearAll();
                         //echo json_encode(array('redirect'=>$this->createUrl('appointment/waitingqueue')));
@@ -554,8 +554,6 @@ class AppointmentController extends Controller
                 }else{
                     Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
                 }
-            }else{
-                
             }
 
             $employee_id = RbacUser::model()->findByPk($_GET['doctor_id']);

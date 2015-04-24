@@ -280,4 +280,16 @@ Yii::app()->clientScript->registerScript( 'completedConsult',"
             }
         });
     });
+    
+    $( '#show-payment-modal' ).on( 'keypress', function( e ) {
+        if( e.keyCode === 13 ) {
+            //e.preventDefault();
+            //alert('dfdfd');
+            //jQuery('#Completed_consult').click();
+            $('button[type=submit] #Completed_consult').click();
+            return false;
+            //return false; 
+            //Auto-click button element on page load using jQuery
+        }
+    } );
 </script>  
