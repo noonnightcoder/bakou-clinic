@@ -361,10 +361,10 @@ class AppointmentController extends Controller
                 $visit->userid=$doctor_id;
                 $visit->type="New Visit";
                 $visit->visit_date=date('Y-m-d');
-                //$visit->sympton = 'NA';
-                //$visit->observation='NA';
-                //$visit->assessment='NA';
-                //$visit->plan='NA';
+                $visit->sympton = 'NA';
+                $visit->observation='NA';
+                $visit->assessment='NA';
+                $visit->plan='NA';
                 if($visit->validate())
                 {
                    if($visit->save())
