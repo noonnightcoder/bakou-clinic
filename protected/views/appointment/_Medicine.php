@@ -27,6 +27,7 @@
             ));*/
     ?>
 <i class="ace-icon fa fa fa-medkit nav-search-icon"></i>
+
 <?php 
 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
     'asDropDownList' => false,

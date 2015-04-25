@@ -108,7 +108,7 @@ class ContactController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
+	public function actionCreate($status = 'N',$doctor_id='')
 	{
 		$model=new Contact;
                 $patient = new Patient;
@@ -154,8 +154,14 @@ class ContactController extends Controller
                             if ($model->image!=null) {
                                 $model->image->saveAs($image_name);
                             }
+                            
                             $transaction->commit();
-                            $this->redirect(array('admin'));
+                            if($status=='Y')
+                            {
+                                $this->redirect(array('appointment/create','doctor_id'=>$doctor_id,'patient_id'=>$patient->patient_id));
+                            }else{
+                                $this->redirect(array('admin'));
+                            }                            
                         }
                         //}
                     }  catch (Exception $e){
@@ -163,10 +169,10 @@ class ContactController extends Controller
                         echo $e->getMessage();
                     }
 		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
+                
+                $this->render('create',array(
+                    'model'=>$model,
+                ));
 	}
 
 	/**

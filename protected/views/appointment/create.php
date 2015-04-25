@@ -9,7 +9,7 @@
                 'headerButtons' => array(
                     TbHtml::buttonGroup(
                         array(
-                            array('label' => Yii::t('app','New Patient'),'url' =>Yii::app()->createUrl('Contact/create'),'icon'=>'ace-icon fa fa-plus white'),
+                            array('label' => Yii::t('app','New Patient'),'url' =>Yii::app()->createUrl('Contact/create?status=Y&doctor_id='.$_GET['doctor_id']),'icon'=>'ace-icon fa fa-plus white'),
                         ),array('color'=>TbHtml::BUTTON_COLOR_INFO,'size'=>TbHtml::BUTTON_SIZE_SMALL)
                     ),
                 ),

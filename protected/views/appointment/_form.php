@@ -21,7 +21,7 @@
     <?php //echo $form->textFieldControlGroup($model,'appointment_date',array('span'=>5)); ?>
 
     <div class="form-group"><label class="col-sm-3 control-label" for="Patient">Patient *</label>
-
+        <?php //$patient->patient_id=12; ?>
         <div class="col-md-5">
             <?php $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
                 'asDropDownList' => false,

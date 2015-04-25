@@ -149,6 +149,13 @@ class AppointmentController extends Controller
                 $user = RbacUser::model()->findByPk($_GET['doctor_id']);
             }
             
+            /*if (isset($_GET['patient_id'])) {
+            $term = trim($_GET['patient_id']);
+            $ret['results'] = Appointment::model()->m_get_patient($term); //PHP Example · ivaynberg/select2  http://bit.ly/10FNaXD got stuck serveral hoursss :|
+                echo CJSON::encode($ret);
+                Yii::app()->end();
+            }*/
+            
             $this->render('create',array(
                     'model'=>$model,'patient'=>$patient,'contact'=>$contact,'user'=>$user
             ));
