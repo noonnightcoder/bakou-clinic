@@ -110,7 +110,7 @@ return array(
 		),
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=192.168.10.11;dbname=bakou_clinic',
+			'connectionString' => 'mysql:host=localhost;dbname=bakou_clinic',
 			'emulatePrepare' => true,
 			'username' => 'sys',
 			'password' => 'sys123',
