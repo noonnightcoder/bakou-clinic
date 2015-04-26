@@ -150,24 +150,27 @@ class Visit extends CActiveRecord
         
         public function diagnosis_validate($attribute,$params)
         {
-            if($this->sympton=='')
+            if(isset($_POST['Save_consult']) || isset($_POST['Completed_consult']))
             {
-                $this->addError('sympton','Sympton cannot be blank');
-            }
-            
-            if($this->observation=='')
-            {
-                $this->addError('observation','Observation cannot be blank');
-            }
-            
-            if($this->assessment=='')
-            {
-                $this->addError('assessment','Past History cannot be blank');
-            }
-            
-            if($this->plan=='')
-            {
-                $this->addError('plan','Diagnosis cannot be blank');
-            }
+                if($this->sympton=='')
+                {
+                    $this->addError('sympton','Sympton cannot be blank');
+                }
+
+                if($this->observation=='')
+                {
+                    $this->addError('observation','Observation cannot be blank');
+                }
+
+                if($this->assessment=='')
+                {
+                    $this->addError('assessment','Past History cannot be blank');
+                }
+
+                if($this->plan=='')
+                {
+                    $this->addError('plan','Diagnosis cannot be blank');
+                }
+            }            
         }
 }
