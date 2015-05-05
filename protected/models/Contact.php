@@ -44,7 +44,7 @@ class Contact extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('first_name, last_name', 'required'),
+			array('first_name', 'required'),
 			array('first_name, middle_name, last_name, address_line_1, address_line_2, image_name', 'length', 'max'=>300),
 			array('sex', 'length', 'max'=>20),
 			array('display_name, email, country', 'length', 'max'=>100),
@@ -76,7 +76,7 @@ class Contact extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'first_name' => 'First Name',
+			'first_name' => 'Patient Name',
 			'middle_name' => 'Middle Name',
 			'last_name' => 'Last Name',
 			'dob' => 'Dob',
@@ -108,43 +108,43 @@ class Contact extends CActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
-	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
+    public function search()
+    {
+        // @todo Please modify the following code to remove attributes that should not be searched.
 
-		$criteria=new CDbCriteria;
+        $criteria = new CDbCriteria;
 
-		//$criteria->compare('id',$this->id);
-		//$criteria->compare('first_name',$this->first_name,true);
-		//$criteria->compare('middle_name',$this->middle_name,true);
-		//$criteria->compare('last_name',$this->last_name,true);
-		//$criteria->compare('display_name',$this->display_name,true);
-		//$criteria->compare('phone_number',$this->phone_number,true);
-		//$criteria->compare('email',$this->email,true);
-		//$criteria->compare('image_path',$this->image_path,true);
-		//$criteria->compare('type',$this->type,true);
-		//$criteria->compare('address_line_1',$this->address_line_1,true);
-		//$criteria->compare('address_line_2',$this->address_line_2,true);
-		//$criteria->compare('city',$this->city,true);
-		//$criteria->compare('state',$this->state,true);
-		//$criteria->compare('postal_code',$this->postal_code,true);
-		//$criteria->compare('country',$this->country,true);
-		//$criteria->compare('image_name',$this->image_name,true);
-                
-                if ($this->search) {
-                
-                    $criteria->condition="(first_name like :search or last_name like :search or concat(first_name,last_name)=:fullname or display_name like :search)";
-                    $criteria->params = array(
-                                ':search' => '%' . $this->search . '%',
-                                ':fullname' => preg_replace('/\s+/', '',$this->search),
-                                ':display_name' => '%' . $this->search . '%',
-                    );
-                }
+        //$criteria->compare('id',$this->id);
+        //$criteria->compare('first_name',$this->first_name,true);
+        //$criteria->compare('middle_name',$this->middle_name,true);
+        //$criteria->compare('last_name',$this->last_name,true);
+        //$criteria->compare('display_name',$this->display_name,true);
+        //$criteria->compare('phone_number',$this->phone_number,true);
+        //$criteria->compare('email',$this->email,true);
+        //$criteria->compare('image_path',$this->image_path,true);
+        //$criteria->compare('type',$this->type,true);
+        //$criteria->compare('address_line_1',$this->address_line_1,true);
+        //$criteria->compare('address_line_2',$this->address_line_2,true);
+        //$criteria->compare('city',$this->city,true);
+        //$criteria->compare('state',$this->state,true);
+        //$criteria->compare('postal_code',$this->postal_code,true);
+        //$criteria->compare('country',$this->country,true);
+        //$criteria->compare('image_name',$this->image_name,true);
 
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
+        if ($this->search) {
+
+            $criteria->condition = "(first_name like :search or last_name like :search or concat(first_name,last_name)=:fullname or display_name like :search)";
+            $criteria->params = array(
+                ':search' => '%' . $this->search . '%',
+                ':fullname' => preg_replace('/\s+/', '', $this->search),
+                ':display_name' => '%' . $this->search . '%',
+            );
+        }
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -166,8 +166,8 @@ class Contact extends CActiveRecord
         
         public function deleteContact($id)
         {
-            Patient::model()->deleteAll("contact_id=:contact_id",array('contact_id'=>$id));
-            
-            Contact::model()->findByPk($id)->delete();
+            $patient = Patient::model()->find("contact_id=:contact_id",array('contact_id'=>$id));
+            $patient->status = '0';
+            $patient->save();
         }
 }

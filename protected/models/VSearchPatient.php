@@ -89,26 +89,26 @@ class VSearchPatient extends CActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
-	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
+    public function search()
+    {
+        // @todo Please modify the following code to remove attributes that should not be searched.
 
-		$criteria=new CDbCriteria;
+        $criteria = new CDbCriteria;
 
-		if ($this->search) {
-                
-                    $criteria->condition="(fullname like :search or display_id like :search or display_name like :search)";
-                    $criteria->params = array(
-                                ':search' => '%' . $this->search . '%',
-                                ':search' => '%' . $this->search . '%',
-                                ':search' => '%' . $this->search . '%',
-                    );
-                }
+        if ($this->search) {
 
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
+            $criteria->condition = "(fullname like :search or display_id like :search or display_name like :search)";
+            $criteria->params = array(
+                ':search' => '%' . $this->search . '%',
+                ':search' => '%' . $this->search . '%',
+                ':search' => '%' . $this->search . '%',
+            );
+        }
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
 
 	/**
 	 * Returns the static model of the specified AR class.

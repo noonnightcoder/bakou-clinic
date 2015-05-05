@@ -67,42 +67,41 @@ class ContactController extends Controller
                 $this->render('view', $data,false,true);
             }
 	}
-        
-        public function actionPatientHistory($id)
-        {
-            if(!Yii::app()->user->checkAccess("contact.view"))
-            {
-                throw new CHttpException(400,'You are not authorized to perform this action.');
-            }else{
-                
-                $cs = Yii::app()->clientScript;
-                $cs->scriptMap = array(
-                    'jquery.js' => false,
-                    'bootstrap.js' => false,
-                    'jquery.ba-bbq.min.js' => false,
-                    'jquery.yiigridview.js' => false,
-                    'bootstrap.min.js' => false,
-                    'jquery.min.js' => false,
-                    'bootstrap.notify.js' => false,
-                    'bootstrap.bootbox.min.js' => false,
-                );
 
-                Yii::app()->clientScript->scriptMap['*.js'] = false;
-            
-                $data['visit'] = new Visit;
-                $data['patient_id'] = $id;
-                $patient=  VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$id));
-                //$patient->unsetAttributes();
-                $data['patient'] = $patient;
-                
-                echo CJSON::encode(array(
-                    'status' => 'render',
-                    'div' => $this->renderPartial('_patient_his_popup', $data, true, true),
-                ));
-                
-                //$this->renderPartial('view', $data,false,true);
-            }
+    public function actionPatientHistory($id)
+    {
+        if (!Yii::app()->user->checkAccess("contact.view")) {
+            throw new CHttpException(400, 'You are not authorized to perform this action.');
+        } else {
+
+            $cs = Yii::app()->clientScript;
+            $cs->scriptMap = array(
+                'jquery.js' => false,
+                'bootstrap.js' => false,
+                'jquery.ba-bbq.min.js' => false,
+                'jquery.yiigridview.js' => false,
+                'bootstrap.min.js' => false,
+                'jquery.min.js' => false,
+                'bootstrap.notify.js' => false,
+                'bootstrap.bootbox.min.js' => false,
+            );
+
+            Yii::app()->clientScript->scriptMap['*.js'] = false;
+
+            $data['visit'] = new Visit;
+            $data['patient_id'] = $id;
+            $patient = VSearchPatient::model()->find("patient_id=:patient_id", array(':patient_id' => $id));
+            //$patient->unsetAttributes();
+            $data['patient'] = $patient;
+
+            echo CJSON::encode(array(
+                'status' => 'render',
+                'div' => $this->renderPartial('_patient_his_popup', $data, true, true),
+            ));
+
+            //$this->renderPartial('view', $data,false,true);
         }
+    }
 
         /**
 	 * Creates a new model.
@@ -223,7 +222,7 @@ class ContactController extends Controller
 		if (Yii::app()->request->isPostRequest) {
 			// we only allow deletion via POST request
 			//$this->loadModel($id)->delete();
-                        Contact::model()->deleteContact($id);
+            Contact::model()->deleteContact($id);
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if (!isset($_GET['ajax'])) {
@@ -252,7 +251,7 @@ class ContactController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new VSearchPatient('search');
+		$model = new VSearchPatient('search');
 		$model->unsetAttributes();  // clear any default values
 		if (isset($_GET['VSearchPatient'])) {
 			$model->attributes=$_GET['VSearchPatient'];
