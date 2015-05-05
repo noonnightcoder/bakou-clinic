@@ -497,7 +497,9 @@ class Appointment extends CActiveRecord
                 patient_name,display_id,appointment_date,title,status
                 FROM v_appointment_state
                 WHERE $cond1 $cond
-            )lv,(SELECT @rownum:=0) r";
+                and status='Complete'    
+            )lv,(SELECT @rownum:=0) r   
+            order by visit_id desc";
             
             return new CSqlDataProvider($sql,array(
                 'sort' => array(

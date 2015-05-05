@@ -51,6 +51,7 @@ $('.search-form form').submit(function(){
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
             'id'=>'contact-grid',
             'dataProvider'=>$model->search(),
+            'template' => "{items}",
             'htmlOptions'=>array('class'=>'table-responsive panel'),
             'columns'=>array(
 		//'id',
@@ -73,7 +74,7 @@ $('.search-form form').submit(function(){
                     'header'=>'Display Name', 
                 ),*/
                 array(
-                    'name'=>'dob',
+                    'name'=>'age',
                     'header'=>'Age', 
                 ),
                 array(

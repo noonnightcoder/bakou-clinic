@@ -48,6 +48,7 @@ $('.search-form form').submit(function(){
         <?php $this->widget('yiiwheels.widgets.grid.WhGridView', array(
             'id' => 'medicine-form-grid',
             'dataProvider' => $model->showConsultDrug(),
+            'template' => "{items}",
             'htmlOptions' => array('class' => 'table-responsive panel'),
             'template' => "{items}",
             'columns' => array(

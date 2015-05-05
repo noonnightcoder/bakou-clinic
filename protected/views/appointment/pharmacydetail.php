@@ -84,10 +84,10 @@ $('.search-form form').submit(function(){
                         'value'=>'round($data["quantity"])'
                 ),
                 //'status',
-                array('name'=>'unit_price',
+                /*array('name'=>'unit_price',
                         'header'=>'Total', 
                         'value'=> 'number_format($data["unit_price"],2,".",",")'
-                ),
+                ),*/
                 /*array('name'=>'info',
                        'header'=>'Information', 
                 ),*/
