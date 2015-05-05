@@ -35,7 +35,7 @@ class Visit extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('patient_id, userid, visit_date', 'required'),
-                        array('sympton, observation, assessment, plan','diagnosis_validate'),
+            array('sympton','diagnosis_validate'),
 			array('patient_id, userid', 'numerical', 'integerOnly'=>true),
 			array('type, visit_time', 'length', 'max'=>50),
 			array('visit_date', 'length', 'max'=>60),
@@ -157,7 +157,7 @@ class Visit extends CActiveRecord
                     $this->addError('sympton','Sympton cannot be blank');
                 }
 
-                if($this->observation=='')
+                /*if($this->observation=='')
                 {
                     $this->addError('observation','Observation cannot be blank');
                 }
@@ -170,7 +170,7 @@ class Visit extends CActiveRecord
                 if($this->plan=='')
                 {
                     $this->addError('plan','Diagnosis cannot be blank');
-                }
+                }*/
             }            
         }
 }

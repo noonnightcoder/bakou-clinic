@@ -25,7 +25,7 @@ $this->breadcrumbs=array(
                                     <i class="ace-icon fa fa-calendar icon-animated-vertical""></i>
                                 </div>
                                 <div class="infobox-data">
-                                    <span class="infobox-data-number"><?php echo $report->negativeStock(); ?></span>
+                                    <span class="infobox-data-number"><?php echo $report->dbQueue(); ?></span>
 
                                     <div class="infobox-content"><?php echo CHtml::link(Yii::t('app;','Appointment Queue'), Yii::app()->createUrl("report/inventory")); ?></div>
                                 </div>
@@ -140,18 +140,18 @@ $this->breadcrumbs=array(
                                 <div class="widget-header">
                                     <h5 class="widget-title bigger lighter">
                                         <i class="ace-icon fa fa-graduation-cap"></i>
-                                        <?php echo Yii::t('app', 'Top Visit Patients'); ?>
+                                        <?php echo Yii::t('app', 'Most 10 Visit Patients'); ?>
                                     </h5>
 
                                 </div>
                                 <div class="widget-body">
                                     <div class="widget-main no-padding">
-                                        <?php /*$this->widget('yiiwheels.widgets.grid.WhGridView', array(
+                                        <?php $this->widget('yiiwheels.widgets.grid.WhGridView', array(
                                             'id' => 'top-product-grid-amount',
                                             'fixedHeader' => true,
                                             'responsiveTable' => true,
                                             'type' => TbHtml::GRID_TYPE_BORDERED,
-                                            'dataProvider' => $report->dbBestCustomer(),
+                                            'dataProvider' => $report->dbTopVisitPatient(),
                                             'summaryText' => '',
                                             'columns' => array(
                                                 array(
@@ -160,18 +160,17 @@ $this->breadcrumbs=array(
                                                     'value' => '$data["rank"]',
                                                 ),
                                                 array(
-                                                    'name' => 'customer_name',
-                                                    'header' => Yii::t('app', 'Customer Name'),
-                                                    'value' => '$data["customer_name"]',
+                                                    'name' => 'patient_name',
+                                                    'header' => Yii::t('app', 'Patient Name'),
+                                                    'value' => '$data["patient_name"]',
                                                 ),
                                                 array(
-                                                    'name' => 'amount',
-                                                    'header' => Yii::t('app', 'Purchase Amount'),
-                                                    'value' => 'number_format($data["amount"],Yii::app()->shoppingCart->getDecimalPlace())',
-                                                    //'footer'=>Yii::app()->getNumberFormatter()->formatCurrency($report->paymentTotalAmount(),'USD'),
+                                                    'name' => 'nvisit',
+                                                    'header' => Yii::t('app', '# Visit'),
+                                                    'value' => '$data["nvisit"]',
                                                 ),
                                             ),
-                                        )); */?>
+                                        )); ?>
                                     </div>
                                 </div>
                             </div>
