@@ -42,6 +42,9 @@
     
     <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>/css/loading_animation.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>/css/jquery-ui-1.10.4.custom.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>/css/pace.css" />
+    <script data-pace-options='{ "ajax": true, "document": true, "eventLag": false, "elements": false }' src="<?php echo $baseUrl ?>/js/pace.js"></script>
     
     <!-- ace settings handler -->
     <?php //$cs->registerScriptFile($baseUrl.'/js/bootstrap.min.js',CClientScript::POS_END); ?> 
