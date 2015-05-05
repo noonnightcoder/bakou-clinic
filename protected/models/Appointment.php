@@ -81,7 +81,7 @@ class Appointment extends CActiveRecord
 			'end_time' => 'End Time',
 			'title' => 'Title',
 			'patient_id' => 'Patient',
-                        'patient_name' => 'Patient Name'
+            'patient_name' => 'Patient Name'
 			//'user_id' => 'User',
 			//'status' => 'Status',
 			//'visit_id' => 'Visit',

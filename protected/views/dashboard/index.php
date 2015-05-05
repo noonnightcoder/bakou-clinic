@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
     foreach($records as $record) 
     {
         $amount[] = floatval($record["nvisit"]);
-        $date[] = $record["date"];
+        $date[] = $record["appointment_date"];
     }
 ?>
     <div class="">
@@ -27,7 +27,7 @@ $this->breadcrumbs=array(
                                 <div class="infobox-data">
                                     <span class="infobox-data-number"><?php echo $report->dbQueue(); ?></span>
 
-                                    <div class="infobox-content"><?php echo CHtml::link(Yii::t('app;','Appointment Queue'), Yii::app()->createUrl("report/inventory")); ?></div>
+                                    <div class="infobox-content"><?php echo CHtml::link(Yii::t('app;','Appointment Queue'), Yii::app()->createUrl("appointment/appointmentdash")); ?></div>
                                 </div>
                             </div>
 
@@ -119,7 +119,7 @@ $this->breadcrumbs=array(
                                                         'categories' => $date
                                                     ),
                                                     'yAxis' => array(
-                                                        'title' => array('text' => 'Amount in # of')
+                                                        'title' => array('text' => 'Number of Visit')
                                                     ),
                                                     'series' => array(
                                                         array('name' => 'Date - ' . date('M Y'), 'data' => $amount),
