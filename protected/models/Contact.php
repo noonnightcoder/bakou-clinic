@@ -156,18 +156,19 @@ class Contact extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-        
-        public function create_display_patient_id($id,$last_name)
-        {
-            //$sql="CALL Create_patient_id(:myid, :my_last_name)";
-            $myid= Yii::app()->db->createCommand("SELECT Create_patient_id($id,'$last_name')");
-            return $myid->queryScalar();
-        } 
-        
-        public function deleteContact($id)
-        {
-            $patient = Patient::model()->find("contact_id=:contact_id",array('contact_id'=>$id));
-            $patient->status = '0';
-            $patient->save();
-        }
+
+    public function create_display_patient_id($id, $fist_name)
+    {
+        //$sql="CALL Create_patient_id(:myid, :my_last_name)";
+        $myid = Yii::app()->db->createCommand("SELECT Create_patient_id($id,'$fist_name')");
+
+        return $myid->queryScalar();
+    }
+
+    public function deleteContact($id)
+    {
+        $patient = Patient::model()->find("contact_id=:contact_id", array('contact_id' => $id));
+        $patient->status = '0';
+        $patient->save();
+    }
 }

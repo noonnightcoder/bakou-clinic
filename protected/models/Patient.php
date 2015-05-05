@@ -39,6 +39,8 @@ class Patient extends CActiveRecord
 			array('contact_id', 'numerical', 'integerOnly'=>true),
 			array('display_id', 'length', 'max'=>12),
 			array('reference_by', 'length', 'max'=>255),
+            array('created_at,updated_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
+            array('updated_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => false, 'on' => 'update'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('patient_id, contact_id, patient_since, display_id, followup_date, reference_by', 'safe', 'on'=>'search'),

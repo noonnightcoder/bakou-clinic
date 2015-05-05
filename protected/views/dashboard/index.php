@@ -243,7 +243,7 @@ $this->breadcrumbs=array(
 <!--http://stackoverflow.com/questions/5052543/how-to-fire-ajax-request-periodically-->
 <!--http://stackoverflow.com/questions/13668484/warn-user-when-new-data-is-inserted-on-database-->
 
-<!--<script>
+<script>
 (function worker() {
     $.ajax({
         url: 'AjaxRefresh',
@@ -256,5 +256,5 @@ $this->breadcrumbs=array(
         }
     });
 })();
-</script>-->
+</script>
 

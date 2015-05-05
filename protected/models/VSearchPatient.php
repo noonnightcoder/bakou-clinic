@@ -41,6 +41,8 @@ class VSearchPatient extends CActiveRecord
 			array('phone_number', 'length', 'max'=>30),
 			array('display_name', 'length', 'max'=>100),
 			array('address_line_1', 'length', 'max'=>300),
+            //array('created_date,modified_date', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
+            //array('modified_date', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => false, 'on' => 'update'),
 			array('dob', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -92,7 +94,6 @@ class VSearchPatient extends CActiveRecord
     public function search()
     {
         // @todo Please modify the following code to remove attributes that should not be searched.
-
         $criteria = new CDbCriteria;
 
         if ($this->search) {
