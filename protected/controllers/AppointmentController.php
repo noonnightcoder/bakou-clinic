@@ -401,7 +401,6 @@ class AppointmentController extends Controller
         $treatment = new Treatment;
         $bill = new Bill;
         $prescription = new Prescription;
-
         $medicine = new Item;
             
         if(!Yii::app()->user->checkAccess('consultation.create'))
@@ -443,7 +442,6 @@ class AppointmentController extends Controller
                     Yii::app()->treatmentCart->addItem($value['id'],$value['amount']);
                 }                
             }
-            //print_r($medicine_selected);
             //---****Loop medicine into session****---//
             if(empty($medicine_selected))
             {
@@ -579,20 +577,20 @@ class AppointmentController extends Controller
             if ($employee===null) {
                     throw new CHttpException(404,'The requested page does not exist.');
             }
-            
-            $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
+
+            $rst = VAppointmentState::model()->find("visit_id=:visit_id", array(':visit_id' => $_GET['visit_id']));
             $data['patient_name'] = $rst->patient_name;
             //$data['actual_form'] = new ActualAmountForm();
-            $data['chk_bill_saved'] = Bill::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
-            $data['model']=$model;
-            $data['visit']=$visit;
-            $data['employee']=$employee;
-            $data['treatment']=$treatment;
-            $data['patient']=$patient;
-            $data['treatment_items']=$treatment->get_all_treatment(); 
-            $data['medicine']=$medicine;
+            $data['chk_bill_saved'] = Bill::model()->find("visit_id=:visit_id", array(':visit_id' => $_GET['visit_id']));
+            $data['model'] = $model;
+            $data['visit'] = $visit;
+            $data['employee'] = $employee;
+            $data['treatment'] = $treatment;
+            $data['patient'] = $patient;
+            $data['treatment_items'] = $treatment->get_all_treatment();
+            $data['medicine'] = $medicine;
             $data['visit_id'] = $_GET['visit_id'];
-            $data['treatment_selected_items']=Yii::app()->treatmentCart->getCart(); 
+            $data['treatment_selected_items'] = Yii::app()->treatmentCart->getCart();
             $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
 
             $this->render('create_consult',$data);
@@ -946,11 +944,6 @@ class AppointmentController extends Controller
             Appointment::model()->updateCompleteAppt($visit_id,$user_id,$patient_id,$actual_amount); 
             Yii::app()->treatmentCart->clearAll();
         }
-        
-        /*echo CJSON::encode(array(
-            'status' => 'success',
-            //'div_medicine_form' => 'OK',
-        ));*/
     }
     
     public function actionCancelAppointment($appoint_id,$doctor_id='',$patient_id='')
