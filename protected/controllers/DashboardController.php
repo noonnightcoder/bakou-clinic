@@ -49,8 +49,9 @@ class DashboardController extends Controller
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView()
-	{        
-        $this->render('index');
+	{
+        $report=new Report;
+        $this->render('index',array('report'=>$report));
     }
 
 }
