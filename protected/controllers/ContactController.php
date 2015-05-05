@@ -32,7 +32,7 @@ class ContactController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','admin','Upload','Delete','PatientHistory'),
+				'actions'=>array('create','update','admin','Upload','Delete','PatientHistory','visitDetail'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -367,5 +367,19 @@ class ContactController extends Controller
         }
         // JQuery File Upload expects JSON data
         echo json_encode($data);
+    }
+    
+    public function actionvisitDetail($visit_id,$patient_id)
+    {
+        $model = new Appointment;  
+        $treatment = new Treatment;
+        $medicine = new Item;
+        $data['treatment_selected_items']=$treatment->get_tbl_treatment($visit_id);
+        $data['patient'] = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id' => $patient_id));
+        $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
+        $data['patient_name'] = $rst->patient_name;
+        $data['model'] = new Appointment('showPrescription');
+        $data['visit_id'] = $visit_id;
+        $this->render('visited_detail',$data);
     }
 }

@@ -78,7 +78,7 @@ $('.search-form form').submit(function(){
                 array(
                     'name'=>'age',
                     'header'=>'Age', 
-                    'name' => 'dob',
+                    //'name' => 'dob',
                     'header' => 'Age',
                 ),
                 array(

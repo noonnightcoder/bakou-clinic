@@ -1,8 +1,8 @@
-<?php $this->widget('EExcelView',array(
+<?php $this->widget('yiiwheels.widgets.grid.WhGridView',array(
         'id'=>'patient-his-grid',
-        'fixedHeader' => true,
+        //'fixedHeader' => true,
         //'responsiveTable' => true,
-        'type'=>'striped bordered hover',
+        //'type'=>'striped bordered hover',
         'template'=>"{summary}{items}\n{pager}",
         'dataProvider'=>$visit->showPatientHis($patient_id),
         'summaryText' =>'<p class="text-info"> Visit History </p>',
@@ -19,7 +19,7 @@
                     'htmlOptions' => array('style' => 'display:none'),
                 ),*/                
                 array('name'=>'visit_date',
-                       'header'=>'Visit Date', 
+                      'header'=>'Visit Date', 
                 ),
                /* array('name'=>'display_id',
                        'header'=>'Patient ID', 
@@ -35,6 +35,23 @@
                 ),
                 array('name'=>'plan',
                        'header'=>'Plan', 
+                ),
+                array(
+                    'class'=>'bootstrap.widgets.TbButtonColumn',
+                    //'template'=>'{view}',
+                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{detail}</div>',
+                    'buttons'=>array(
+                        'detail' => array(
+                            'label' => Yii::t('app','Detail'),                            
+                            'url'=>'Yii::app()->createUrl("contact/visitDetail", array("visit_id"=>$data["visit_id"],"patient_id"=>$data["patient_id"]))',
+                            'options' => array(
+                                'data-toggle' => 'tooltip', 
+                                'data-update-dialog-title' => 'Detail',
+                                'class'=>'btn btn-xs btn-info', 
+                                'title'=>'Detail',
+                            ),
+                        ),
+                    ),
                 ),
         ),
 )); 
