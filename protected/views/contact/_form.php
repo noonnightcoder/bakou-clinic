@@ -33,7 +33,7 @@
 
             <?php //echo $form->textFieldControlGroup($model,'middle_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'last_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            <?php //echo $form->textFieldControlGroup($model,'last_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
             <?php echo $form->textFieldControlGroup($model,'display_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
             

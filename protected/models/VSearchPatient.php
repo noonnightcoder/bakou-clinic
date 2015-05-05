@@ -41,6 +41,8 @@ class VSearchPatient extends CActiveRecord
 			array('phone_number', 'length', 'max'=>30),
 			array('display_name', 'length', 'max'=>100),
 			array('address_line_1', 'length', 'max'=>300),
+            //array('created_date,modified_date', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
+            //array('modified_date', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => false, 'on' => 'update'),
 			array('dob', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -89,26 +91,25 @@ class VSearchPatient extends CActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
-	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
+    public function search()
+    {
+        // @todo Please modify the following code to remove attributes that should not be searched.
+        $criteria = new CDbCriteria;
 
-		$criteria=new CDbCriteria;
+        if ($this->search) {
 
-		if ($this->search) {
-                
-                    $criteria->condition="(fullname like :search or display_id like :search or display_name like :search)";
-                    $criteria->params = array(
-                                ':search' => '%' . $this->search . '%',
-                                ':search' => '%' . $this->search . '%',
-                                ':search' => '%' . $this->search . '%',
-                    );
-                }
+            $criteria->condition = "(fullname like :search or display_id like :search or display_name like :search)";
+            $criteria->params = array(
+                ':search' => '%' . $this->search . '%',
+                ':search' => '%' . $this->search . '%',
+                ':search' => '%' . $this->search . '%',
+            );
+        }
 
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
 
 	/**
 	 * Returns the static model of the specified AR class.

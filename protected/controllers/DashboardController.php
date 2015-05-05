@@ -31,7 +31,7 @@ class DashboardController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','AjaxRefresh'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -49,8 +49,15 @@ class DashboardController extends Controller
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView()
-	{        
-        $this->render('index');
+	{
+        $report=new Report;
+        $this->render('index',array('report'=>$report));
+    }
+
+    public function actionAjaxRefresh()
+    {
+        $report=new Report;
+        $this->renderPartial('_ajax_index',array('report'=>$report));
     }
 
 }

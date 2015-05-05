@@ -10,7 +10,6 @@
         TbHtml::linkButton(Yii::t('app', 'Patient History'), array(
             'color' => TbHtml::BUTTON_COLOR_PRIMARY,
             'size' => TbHtml::BUTTON_SIZE_SMALL,
-            //'icon'=>'ace-icon fa fa-undo white',
             'url' => $this->createUrl('contact/PatientHistory', array("id" => $_GET['patient_id'])),
             'class' => 'update-dialog-open-link',
             'data-update-dialog-title' => Yii::t('app', 'Patient History'),
