@@ -47,32 +47,7 @@ $('.search-form form').submit(function(){
     )); ?>
 <?php if(Yii::app()->user->hasFlash('success')):?>
         <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
-<?php endif; ?> 
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
-            'id'=>'contact-grid',
-            'dataProvider'=>$model->search(),
-            'template' => "{items}",
-            'htmlOptions'=>array('class'=>'table-responsive panel'),
-            'columns'=>array(
-		//'id',
-        ?>
-        <?php echo TbHtml::linkButton(Yii::t('app', 'Search'), array(
-            'class' => 'search-button btn',
-            'size' => TbHtml::BUTTON_SIZE_SMALL,
-            'icon' => 'ace-icon fa fa-search',
-        )); ?>
-        <div class="search-form" style="display:none">
-            <?php $this->renderPartial('_search', array(
-                'model' => $model,
-            )); ?>
-        </div>
-        <!-- search-form -->
-        <?php echo TbHtml::linkButton(Yii::t('app', 'Add New'), array(
-            'color' => TbHtml::BUTTON_COLOR_PRIMARY,
-            'size' => TbHtml::BUTTON_SIZE_SMALL,
-            'icon' => 'glyphicon-plus white',
-            'url' => $this->createUrl('create'),
-        )); ?>
+<?php endif; ?>         
         <?php if (Yii::app()->user->hasFlash('success')): ?>
             <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
         <?php endif; ?>
