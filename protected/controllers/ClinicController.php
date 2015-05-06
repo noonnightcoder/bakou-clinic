@@ -218,7 +218,7 @@ class ClinicController extends Controller
                 //$this->actionUpdate($model->id);
                 $model=$this->loadModel($model->id);
 
-		$this->render('update',array(
+		$this->render('index',array(
 			'model'=>$model,
 		));
             }else{

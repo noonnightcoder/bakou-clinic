@@ -24,7 +24,7 @@
             <th>Duration</th>
             <!--<th>Frequency</th>-->
             <th>Instruction</th>
-            <!--<th>Comment</th>-->
+            <th>Comment</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Total</th>
@@ -111,17 +111,17 @@
                          CHtml::listData(Instruction::model()->findall(), 'id', 'description_khmer'),array('class' => 'input-small numeric input-grid','style'=>"width:200px;")); ?>
                 <?php $this->endWidget(); ?>  
             </td>
-            <!--<td>
-                <?php /*$form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+            <td>
+                <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
                         'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
-                    ));*/
+                    ));
                 ?>
                 <?php //$item['comment']='dfdfd'; ?>
-                <?php //echo $form->textField($medicine, "comment", array('value' => $item['comment'], 'class' => 'input-small numeric input-grid','id' => "comment_$item_id", 'placeholder' => 'comment', 'data-id' => "$item_id", 'maxlength' => 200,'style'=>"width:250px;")); ?>
-                <?php //$this->endWidget(); ?>  
-            </td>-->
+                <?php echo $form->textField($medicine, "comment", array('value' => $item['comment'], 'class' => 'input-small numeric input-grid','id' => "comment_$item_id", 'placeholder' => 'comment', 'data-id' => "$item_id", 'maxlength' => 200,'style'=>"width:100px;")); ?>
+                <?php $this->endWidget(); ?>  
+            </td>
             
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(

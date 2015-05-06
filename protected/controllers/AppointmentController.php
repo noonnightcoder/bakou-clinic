@@ -1208,7 +1208,7 @@ class AppointmentController extends Controller
         }
         $data['total']=$total - $total*$data['discount_amount']/100;
         $data['actual_amount'] = Appointment::model()->get_actual_amount($visit_id);
-        $data['total_khr_round']=($total - $total*$data['discount_amount']/100)*4000;
+        //$data['total_khr_round']=($total - $total*$data['discount_amount']/100)*4000;
         $data['amount_change']=0;
         $data['amount_change_khr_round']=0;
         
@@ -1227,7 +1227,7 @@ class AppointmentController extends Controller
         
         if(isset($_POST['Payment']))
         {       
-            print_r($_POST);
+            //print_r($_POST);
             Yii::app()->clientScript->scriptMap['jquery.js'] = false;
             echo CJSON::encode(array(
                'status'=>'success',

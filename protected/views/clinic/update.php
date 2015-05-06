@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-        'Contact'=>array('admin'),
+        'Clinic'=>array('index'),
 	'Update',
 );
 ?>
