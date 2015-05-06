@@ -52,7 +52,7 @@
                         'revisit' => array(
                             'label' => Yii::t('app','Revisit'),
                             //'icon' => 'ace-icon fa fa-hospital-o',
-                            'url'=>'Yii::app()->createUrl("contact/visitDetail", array("visit_id"=>$data["visit_id"],"patient_id"=>$data["patient_id"]))',
+                            'url'=>'Yii::app()->createUrl("contact/VisitUnderConst", array("visit_id"=>$data["visit_id"],"patient_id"=>$data["patient_id"]))',
                             'options' => array(
                                 'class'=>'btn btn-xs btn-success',
                                 'title'=>'Re-Visit',

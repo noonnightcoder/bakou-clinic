@@ -32,7 +32,7 @@ class ContactController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','admin','Upload','Delete','PatientHistory','visitDetail'),
+				'actions'=>array('create','update','admin','Upload','Delete','PatientHistory','visitDetail','VisitUnderConst'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -65,6 +65,11 @@ class ContactController extends Controller
             $data['patient'] = $patient;
             $this->render('view', $data, false, true);
         }
+    }
+
+    public function actionVisitUnderConst()
+    {
+        $this->render('under_construction');
     }
 
     public function actionPatientHistory($id)
