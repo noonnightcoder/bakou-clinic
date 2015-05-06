@@ -3,6 +3,7 @@
     Yii::t('app', 'Consultation'),
 );
 ?>
+
 <?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
     'title' => Yii::t('app', 'Patient') . ' : ' . $patient_name, //. ' :  ' . $patient->age . ' Year',
     'headerIcon' => 'ace-icon fa fa-stethoscope',
@@ -32,5 +33,7 @@
 )); ?>
 
 <?php $this->endWidget(); ?>
+
+<?php //$this->renderPartial('/contact/_visited', array('visit'=>$visit,'patient_id'=>18),false,true); ?>
 
 <div class="waiting"><!-- Place at bottom of page --></div>

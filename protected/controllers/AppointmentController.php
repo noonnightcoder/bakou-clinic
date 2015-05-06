@@ -395,19 +395,19 @@ class AppointmentController extends Controller
 
     public function actionDoctorConsult()
     {
-        $model = new Appointment; 
+        $model = new Appointment;
         $patient = new Patient;
         $visit = Visit::model()->findByPk($_GET['visit_id']);
         $treatment = new Treatment;
         $bill = new Bill;
         $prescription = new Prescription;
         $medicine = new Item;
-            
+
         if(!Yii::app()->user->checkAccess('consultation.create'))
         {
             throw new CHttpException(400,'You are not authorized to perform this action.');
         }
-        
+
         if(isset($_POST['ajax']) && $_POST['ajax']==='add_item_form')
         {
             if(isset($_POST['Completed_consult']))
@@ -418,30 +418,30 @@ class AppointmentController extends Controller
             }else{
                 echo CActiveForm::validate($visit);
                 Yii::app()->end();
-            }            
+            }
         }
-        
+
         if(isset($_GET['visit_id']) && isset($_GET['patient_id']) && isset($_GET['doctor_id']))
-        {   
+        {
             $userid = Yii::app()->user->getId();
 
             if($userid!=$_GET['doctor_id'])
             {
                 throw new CHttpException(400, 'Invalid Doctor. Please login to the right doctor.');
             }
-            
+
             $treatment_selected = Yii::app()->treatmentCart->getCart();
             $medicine_selected = Yii::app()->treatmentCart->getMedicine();
 
             //$patient = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id' => $_GET['patient_id']));
-            
+
             //---****Loop treatment into session****---//
             if(empty($treatment_selected))
             {
                 $tbl_treatment = $treatment->get_tbl_treatment($_GET['visit_id']);
                 foreach ($tbl_treatment as $value) {
                     Yii::app()->treatmentCart->addItem($value['id'],$value['amount']);
-                }                
+                }
             }
             //---****Loop medicine into session****---//
             if(empty($medicine_selected))
@@ -452,12 +452,12 @@ class AppointmentController extends Controller
                                             $value['dosage'],$value['duration_id'],$value['frequency'],
                                             $value['instruction_id'],$value['comment'],
                                             $value['consuming_time_id']);
-                }                
+                }
             }
-            
+
             if(isset($_POST['Treatment']) || isset($_POST['Visit']))
-            { 
-                $num = Appointment::model()->ValidateConsult($_GET['visit_id'],$_GET['patient_id'],$_GET['doctor_id']);            
+            {
+                $num = Appointment::model()->ValidateConsult($_GET['visit_id'],$_GET['patient_id'],$_GET['doctor_id']);
 
                 if($num>0)
                 {
@@ -478,23 +478,23 @@ class AppointmentController extends Controller
                                     array('condition'=>'bill_id=:bill_id',
                                     'params'=>array(':bill_id'=>$chk_bill->bill_id))
                                 );
-                            } 
-                            
-                            foreach ($treatment_selected as $key => $value) {                                  
+                            }
+
+                            foreach ($treatment_selected as $key => $value) {
                                 $treatment->saveTreatment($chk_bill->bill_id,$value['id'],$value['price']);
                             }
-                                                           
-                        }else{  
+
+                        }else{
                             $bill->bill_date = date('Y-m-d');
                             $bill->patient_id = $_GET['patient_id'];
                             $bill->visit_id = $_GET['visit_id'];
                             $bill->status = '0';
                             if($bill->validate()) $bill->save();
-                            
-                            foreach ($treatment_selected as $key => $value) {                                  
+
+                            foreach ($treatment_selected as $key => $value) {
                                     $treatment->saveTreatment($bill->bill_id,$value['id'],$value['price']);
                             }
-                        } 
+                        }
                         //-----****Loop from Medicine session****-----//
                         $chk_medicine = Prescription::model()->find(array(
                                     'condition' => 'visit_id=:visit_id',
@@ -511,19 +511,19 @@ class AppointmentController extends Controller
                                     'params'=>array(':prescription_id'=>$chk_medicine->id))
                                 );
                             }
-                                
-                            foreach ($medicine_selected as $key => $value) {                                  
+
+                            foreach ($medicine_selected as $key => $value) {
                                 $prescription->saveMedicine($chk_medicine->id,$value['id'],$value['quantity'],$value['price'],$value['dosage'],$value['duration'],$value['frequency'],$value['instruction_id'],$value['comment'],$value['consuming_time_id']);
-                            }                                                            
+                            }
                         }else{
                             $prescription->date_created = date('Y-m-d');
                             $prescription->visit_id = $_GET['visit_id'];
                             $prescription->last_update = date('Y-m-d');
                             $prescription->updated_by = $userid;
-                            
+
                             if($prescription->validate()) $prescription->save();
-                            
-                            foreach ($medicine_selected as $key => $value) {                                  
+
+                            foreach ($medicine_selected as $key => $value) {
                                     $prescription->saveMedicine($prescription->id,$value['id'],$value['quantity'],$value['price'],$value['dosage'],$value['duration'],$value['frequency'],$value['instruction_id'],$value['comment'],$value['consuming_time_id']);
                             }
                         }
@@ -536,9 +536,9 @@ class AppointmentController extends Controller
                                     )
                                 );
                         /*if(!empty($_POST['Visit']['sympton']) || !empty($_POST['Visit']['observation']) || !empty($_POST['Visit']['assessment']) ||!empty($_POST['Visit']['plan']))
-                        {*/                            
+                        {*/
                         if(isset($_POST['Completed_consult']))
-                        {   
+                        {
                             if(!empty($treatment_selected) || !empty($medicine_selected))
                             {
                                 //if($model->validate())
@@ -555,7 +555,7 @@ class AppointmentController extends Controller
                         /*}else{
                             Yii::app()->user->setFlash('success', '<strong>Ooop!</strong> Please insert the Sympton, Observation....');
                             //$transaction->rollback();
-                        }*/    
+                        }*/
                         $transaction->commit();
                         Yii::app()->treatmentCart->clearAll();
                         //echo json_encode(array('redirect'=>$this->createUrl('appointment/waitingqueue')));
@@ -576,7 +576,7 @@ class AppointmentController extends Controller
             $employee = Employee::model()->get_doctorName($employee_id->employee_id);
 
             if ($employee===null) {
-                    throw new CHttpException(404,'The requested page does not exist.');
+                throw new CHttpException(404,'The requested page does not exist.');
             }
 
             $rst = VAppointmentState::model()->find("visit_id=:visit_id", array(':visit_id' => $_GET['visit_id']));
@@ -597,7 +597,7 @@ class AppointmentController extends Controller
             $model->actual_amount = $model->sumBill($data['visit_id']);
 
             $this->render('create_consult',$data);
-            
+
         }else{
             throw new CHttpException(404,'The requested page does not exist.');
         }

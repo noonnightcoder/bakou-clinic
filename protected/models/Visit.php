@@ -34,7 +34,7 @@ class Visit extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('patient_id, userid, visit_date, sympton', 'required'),
+			array('patient_id, userid, visit_date', 'required'),
             array('sympton','diagnosis_validate'),
 			array('patient_id, userid', 'numerical', 'integerOnly'=>true),
 			array('type, visit_time', 'length', 'max'=>50),
@@ -123,10 +123,10 @@ class Visit extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-        
-        public function showPatientHis($patient_id)
-        {
-            $sql="select @rownum:=@rownum+1 id,patient_id,visit_id,visit_date,display_id,sympton,observation,assessment,plan
+
+    public function showPatientHis($patient_id)
+    {
+        $sql = "select @rownum:=@rownum+1 id,patient_id,visit_id,visit_date,display_id,sympton,observation,assessment,plan
             from (    
                 SELECT t1.patient_id,t1.visit_id,visit_date,t2.display_id,sympton,observation,assessment,plan 
                 FROM visit t1
@@ -135,18 +135,18 @@ class Visit extends CActiveRecord
                 WHERE t1.patient_id=$patient_id
                 ORDER BY visit_date DESC
             )mm,(SELECT @rownum:=0) r";
-            
-            $rawData = Yii::app()->db->createCommand($sql);
-            $rawData->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
-            
-            return new CSqlDataProvider($sql,array(
-                'sort' => array(
-                        'attributes' => array(
-                            'visit_date'
-                        )
-                    ),
-            ));
-        }
+
+        $rawData = Yii::app()->db->createCommand($sql);
+        $rawData->bindParam(':patient_id', $patient_id, PDO::PARAM_INT);
+
+        return new CSqlDataProvider($sql, array(
+            'sort' => array(
+                'attributes' => array(
+                    'visit_date'
+                )
+            ),
+        ));
+    }
         
         public function diagnosis_validate($attribute,$params)
         {

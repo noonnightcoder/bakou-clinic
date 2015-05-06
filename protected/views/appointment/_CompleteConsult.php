@@ -53,10 +53,11 @@
             'htmlHeaderOptions' => array('class' => 'widget-header-flat widget-header-small'),
             //'content' => $this->renderPartial('_form_treatment'),
         )); ?>
-        <div class="grid-view" id="select_treatment_form">
-            <?php $this->renderPartial('_ajax_treatment',
-                array('treatment_selected_items' => $treatment_selected_items, 'treatment' => $treatment), false) ?>
-        </div>
+
+            <div class="grid-view" id="select_treatment_form">
+                <?php $this->renderPartial('_ajax_treatment',
+                    array('treatment_selected_items' => $treatment_selected_items, 'treatment' => $treatment), false) ?>
+            </div>
         <?php $this->endWidget(); ?>
     </div>
 
@@ -87,13 +88,6 @@
                 //'size'=>TbHtml::BUTTON_SIZE_SMALL,
             )); ?>
 
-            <?php echo TbHtml::button(Yii::t('app', 'Save & Complete Consultation'), array(
-                'color' => TbHtml::BUTTON_COLOR_SUCCESS,
-                'size' => TbHtml::BUTTON_SIZE_SMALL,
-                'data-toggle' => 'modal',
-                'data-target' => '#show-payment-modal',
-            )); ?>
-
             <?php if (!empty($chk_bill_saved)) { ?>
                 <?php
                 $this->widget('bootstrap.widgets.TbModal', array(
@@ -111,6 +105,14 @@
                     )),
                 ));
                 ?>
+
+                <?php echo TbHtml::button(Yii::t('app', 'Save & Complete Consultation'), array(
+                    'color' => TbHtml::BUTTON_COLOR_SUCCESS,
+                    'size' => TbHtml::BUTTON_SIZE_SMALL,
+                    'data-toggle' => 'modal',
+                    'data-target' => '#show-payment-modal',
+                )); ?>
+
             <?php } ?>
         </div>
     </div>
@@ -119,7 +121,6 @@
     <?php $this->endWidget(); ?>
 
 </div>
-
 
 
 <?php
