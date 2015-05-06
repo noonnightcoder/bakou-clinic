@@ -2,6 +2,7 @@
 /assets/
 /protected/runtime/
 /protected/runtime/application.log
+/protected/runtime/*.log
 *.log
 /ximages
 /.idea/

@@ -86,6 +86,14 @@
                 'name' => 'Save_consult'
                 //'size'=>TbHtml::BUTTON_SIZE_SMALL,
             )); ?>
+
+            <?php echo TbHtml::button(Yii::t('app', 'Save & Complete Consultation'), array(
+                'color' => TbHtml::BUTTON_COLOR_SUCCESS,
+                'size' => TbHtml::BUTTON_SIZE_SMALL,
+                'data-toggle' => 'modal',
+                'data-target' => '#show-payment-modal',
+            )); ?>
+
             <?php if (!empty($chk_bill_saved)) { ?>
                 <?php
                 $this->widget('bootstrap.widgets.TbModal', array(
@@ -102,28 +110,6 @@
                         TbHtml::button('Close', array('data-dismiss' => 'modal')),
                     )),
                 ));
-                ?>
-                <?php echo TbHtml::button(Yii::t('app', 'Completed Consultation'), array(
-                    'color' => TbHtml::BUTTON_COLOR_SUCCESS,
-                    'size' => TbHtml::BUTTON_SIZE_SMALL,
-                    'data-toggle' => 'modal',
-                    'data-target' => '#show-payment-modal',
-                )); ?>
-                <?php
-                /*echo TbHtml::submitButton($visit->isNewRecord ? Yii::t('app','Completed Consultation') : Yii::t('app','Completed Consultation'),array(
-                   'color'=>TbHtml::BUTTON_COLOR_SUCCESS,
-                   'name'=>'Completed_consult'
-                   //'size'=>TbHtml::BUTTON_SIZE_SMALL,
-               ));*/
-
-                /*echo TbHtml::linkButton(Yii::t( 'app', 'Completed Consultation' ),array(
-                            'color'=>TbHtml::BUTTON_COLOR_SUCCESS,
-                            'size'=>TbHtml::BUTTON_SIZE_SMALL,
-                            //'icon'=>'ace-icon fa fa-undo white',
-                            'url'=>$this->createUrl('appointment/ActualAmount',array("visit_id"=>$_GET['visit_id'],"patient_id"=>$_GET['patient_id'],"doctor_id"=>$_GET['doctor_id'])),
-                            'class'=>'update-dialog-open-link',
-                            'data-update-dialog-title' => Yii::t( 'app', 'Payment Amount' ),))*/
-
                 ?>
             <?php } ?>
         </div>

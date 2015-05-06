@@ -423,7 +423,8 @@ class AppointmentController extends Controller
         
         if(isset($_GET['visit_id']) && isset($_GET['patient_id']) && isset($_GET['doctor_id']))
         {   
-            $userid = Yii::app()->user->getId();            
+            $userid = Yii::app()->user->getId();
+
             if($userid!=$_GET['doctor_id'])
             {
                 throw new CHttpException(400, 'Invalid Doctor. Please login to the right doctor.');
@@ -592,6 +593,8 @@ class AppointmentController extends Controller
             $data['visit_id'] = $_GET['visit_id'];
             $data['treatment_selected_items'] = Yii::app()->treatmentCart->getCart();
             $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
+
+            $model->actual_amount = $model->sumBill($data['visit_id']);
 
             $this->render('create_consult',$data);
             

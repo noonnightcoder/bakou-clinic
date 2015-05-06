@@ -163,8 +163,7 @@ class TreatmentCart extends CApplicationComponent
 
             if($dosage!=null){$quan_cal=$dosage*$medicines[$medicine_id]['duration']*$multiple;}
             if($duration!=null){$quan_cal=$medicines[$medicine_id]['dosage']*$duration*$multiple;}
-        
-        
+
             $medicines[$medicine_id]['quantity'] = $quantity !=null ? $quantity : $quan_cal;
             $medicines[$medicine_id]['price'] = $price !=null ? round($price, $this->getDecimalPlace()) : $medicines[$medicine_id]['price'];
             $medicines[$medicine_id]['dosage'] = $dosage !=null ? round($dosage, $this->getDecimalPlace()) : $medicines[$medicine_id]['dosage'];
@@ -174,6 +173,7 @@ class TreatmentCart extends CApplicationComponent
             $medicines[$medicine_id]['comment'] = $comment !=null ? $comment : $medicines[$medicine_id]['comment'];
             $medicines[$medicine_id]['consuming_time_id'] = $consuming_time_id !=null ? $consuming_time_id : $medicines[$medicine_id]['consuming_time_id'];
             $medicines[$medicine_id]['cons_multiple'] = $multiple;
+
             $this->setMedicine($medicines);
         }
 
@@ -261,11 +261,7 @@ class TreatmentCart extends CApplicationComponent
         $this->emptyMedicine();
         $this->emptyPayment();
     }
-    
-    protected function clearMedicine()
-    {
-        
-    }
+
 }
 
 ?>
