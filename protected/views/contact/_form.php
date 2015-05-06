@@ -35,7 +35,7 @@
 
             <?php //echo $form->textFieldControlGroup($model,'last_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'display_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            <?php //echo $form->textFieldControlGroup($model,'display_name',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
             
             <div class="form-group"><label class="col-sm-3 control-label" for="dob"><?php echo Yii::t('app','Date Of Birth'); ?></label>
                 <div class="col-md-9">
