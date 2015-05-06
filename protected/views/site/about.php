@@ -39,14 +39,18 @@ $this->breadcrumbs=array(
 
                                         <hr />
                                         <address>
-                                                <strong>Noonnight Coder</strong>
+                                                <strong><a href="http://www.noonightcoder.com/" target="_blank">Noonight Coder</a></strong>
                                                 <br />
+                                                <!--
                                                 #70F,St. Fortune,
                                                 <br />
-                                                Ratana Plazza, Khan Sensok, Phnom Penh.
+                                                Ratana Plazza, Khan Sensok, Phnom Penh.-->
+                                                <i class="ace-icon fa fa-map-marker"></i> noonightcoder is everywhere <a href="http://www.noonightcoder.com/" target="_blank">noonightcoder.com</a>
                                                 <br />
                                                 <abbr title="Phone">Mobile Number:</abbr>
-                                                <span class="badge badge-info"><strong> (089) 555-006 </strong></span>
+                                                <span class="badge badge-primary"><strong> (089) 555-006 </strong></span>
+                                                <br />
+
                                         </address>
 
                                         <address>

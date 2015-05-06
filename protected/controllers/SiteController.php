@@ -60,11 +60,11 @@ class SiteController extends Controller
 		//$this->render('index');
                 $this->actionLogin();
 	}
-        
-        public function actionAbout()
-	{
-            $this->render('about');
-	}
+
+    public function actionAbout()
+    {
+        $this->render('about');
+    }
 
 	/**
 	 * This is the action to handle external exceptions.
