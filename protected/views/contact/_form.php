@@ -76,7 +76,7 @@
             <?php //echo $form->dropDownListControlGroup($model,'country',array('Cambodia'=>'Cambodia','Thailland'=>'Thailland'), array('class'=>'span7')) ?> 
     </div>
     <div class="col-sm-6">
-        <h4 class="header blue bolder smaller"><i class="ace-icon fa fa-key blue"></i><?php echo Yii::t('app','Patient Image') ?></h4>
+        <h4 class="header blue bolder smaller"><i class="ace-icon fa fa-picture-o blue"></i><?php echo Yii::t('app','Patient Image') ?></h4>
         <?php echo $form->textFieldControlGroup($model,'image_path',array('disabled'=>true,'class'=>'span7','maxlength'=>200,'data-required'=>'true')); ?>
         <?php echo $form->textFieldControlGroup($model,'image_name',array('disabled'=>true,'class'=>'span7','maxlength'=>200,'data-required'=>'true')); ?>
         

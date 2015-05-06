@@ -3,6 +3,11 @@
         display: flex !important;
     }
 </style>
+<?php  $this->breadcrumbs = array(
+    Yii::t('menu', 'Patient') => array('admin')
+);
+?>
+
 <div class="row" id="contact">
     <div class="col-xs-12 widget-container-col ui-sortable">
         <?php
@@ -15,24 +20,20 @@
         ));
         ?>
         <?php
-        $this->breadcrumbs = array(
-            Yii::t('menu', 'Patient') => array('admin'),
-//            Yii::t('app','Manage'),
-        );
 
         Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#contact-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
-?>
+        $('.search-button').click(function(){
+            $('.search-form').toggle();
+            return false;
+        });
+        $('.search-form form').submit(function(){
+            $('#contact-grid').yiiGridView('update', {
+                data: $(this).serialize()
+            });
+            return false;
+        });
+        ");
+        ?>
 <?php echo TbHtml::linkButton(Yii::t('app','Search'),array('class'=>'search-button btn','size'=>TbHtml::BUTTON_SIZE_SMALL,'icon'=>'ace-icon fa fa-search',)); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(

@@ -268,17 +268,17 @@ class Report extends CFormModel
         return Yii::app()->db->createCommand($sql)->queryAll(true);
     }
 
-    public function totalSale2D()
+    public function db2DVisit()
     {
-        $sql = "SELECT IFNULL(SUM(sub_total),0) sale_amount
-                FROM sale
-                WHERE sale_time>=CURDATE()
-                AND `status`=:status";
+        $sql="SELECT COUNT(*) nvisit
+                FROM `appointment`
+                WHERE DATE(appointment_date)=DATE(NOW())
+                AND `status` in ('Complete','Consultation','Waiting')";
 
-        $result = Yii::app()->db->createCommand($sql)->queryAll(true, array(':status' => $this->item_active));
+        $result = Yii::app()->db->createCommand($sql)->queryAll(true);
 
         foreach ($result as $record) {
-            $result = $record['sale_amount'];
+            $result = $record['nvisit'];
         }
 
         return $result;

@@ -27,7 +27,7 @@ $this->breadcrumbs=array(
                                 <div class="infobox-data">
                                     <span class="infobox-data-number"><?php echo $report->dbQueue(); ?></span>
 
-                                    <div class="infobox-content"><?php echo CHtml::link(Yii::t('app;','Appointment Queue'), Yii::app()->createUrl("appointment/appointmentdash")); ?></div>
+                                    <div class="infobox-content"><?php echo CHtml::link(Yii::t('app;','Waiting Queue'), Yii::app()->createUrl("appointment/WaitingQueue")); ?></div>
                                 </div>
                             </div>
 
@@ -36,8 +36,8 @@ $this->breadcrumbs=array(
                                     <i class="ace-icon fa fa-shopping-cart"></i>
                                 </div>
                                 <div class="infobox-data">
-                                    <span class="infobox-data-number"><?php /*echo number_format($report->totalSale2Y(),Yii::app()->shoppingCart->getDecimalPlace()); */?></span>
-                                    <div class="infobox-content"><?php echo CHtml::link('Today\'s Visit', Yii::app()->createUrl("report/SaleReportTab")); ?></div>
+                                    <span class="infobox-data-number"><?php echo $report->db2DVisit(); ?></span>
+                                    <div class="infobox-content"><?php echo CHtml::link('Today\'s Visit', Yii::app()->createUrl("appointment/appointmentdash")); ?></div>
                                 </div>
                             </div>
 
