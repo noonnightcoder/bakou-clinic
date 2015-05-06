@@ -45,7 +45,7 @@
     <div class="col-sm-12">
         <?php $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
             'title' => Yii::t('app', 'Treatment'),
-            'headerIcon' => 'ace-icon fa fa-medkit',
+            'headerIcon' => 'ace-icon fa fa-h-square',
             'headerButtons' => array(
                 $this->renderpartial('_select_treatment',
                     array('treatment' => $treatment, 'treatment_items' => $treatment_items), true)

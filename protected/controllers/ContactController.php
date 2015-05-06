@@ -53,20 +53,19 @@ class ContactController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
-	{
-            if(!Yii::app()->user->checkAccess("contact.view"))
-            {
-                throw new CHttpException(400,'You are not authorized to perform this action.');
-            }else{
-                $data['visit'] = new Visit;
-                $data['patient_id'] = $id;
-                $patient = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$id));
-                //$patient->unsetAttributes();
-                $data['patient'] = $patient;
-                $this->render('view', $data,false,true);
-            }
-	}
+    public function actionView($id)
+    {
+        if (!Yii::app()->user->checkAccess("contact.view")) {
+            throw new CHttpException(400, 'You are not authorized to perform this action.');
+        } else {
+            $data['visit'] = new Visit;
+            $data['patient_id'] = $id;
+            $patient = VSearchPatient::model()->find("patient_id=:patient_id", array(':patient_id' => $id));
+            //$patient->unsetAttributes();
+            $data['patient'] = $patient;
+            $this->render('view', $data, false, true);
+        }
+    }
 
     public function actionPatientHistory($id)
     {
@@ -380,6 +379,29 @@ class ContactController extends Controller
         $data['patient_name'] = $rst->patient_name;
         $data['model'] = new Appointment('showPrescription');
         $data['visit_id'] = $visit_id;
-        $this->render('visited_detail',$data);
+
+        if (Yii::app()->request->isAjaxRequest) {
+            $cs = Yii::app()->clientScript;
+            $cs->scriptMap = array(
+                'jquery.js' => false,
+                'bootstrap.js' => false,
+                'jquery.min.js' => false,
+                'bootstrap.notify.js' => false,
+                'bootstrap.bootbox.min.js' => false,
+            );
+
+            Yii::app()->clientScript->scriptMap['*.js'] = false;
+
+            echo CJSON::encode(array(
+                'status' => 'render',
+                'div' => $this->renderPartial('_visited_detail', $data, true, false),
+            ));
+
+            Yii::app()->end();
+        } else {
+            $this->render('_visited_detail', $data);
+        }
+
+        //$this->renderPartial('visited_detail',$data);
     }
 }

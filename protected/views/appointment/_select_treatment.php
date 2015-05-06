@@ -1,4 +1,4 @@
-<i class="ace-icon fa fa fa-stethoscope nav-search-icon"></i>
+<i class="ace-icon fa fa fa-h-square "></i>
 <?php 
 $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
     'asDropDownList' => false,
@@ -53,4 +53,5 @@ $this->widget('yiiwheels.widgets.select2.WhSelect2', array(
             }',
     )));
 ?>
+
 
