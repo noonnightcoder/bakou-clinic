@@ -13,7 +13,7 @@
     <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 <?php endif; ?> 
 
-<div id="user-profile-3">
+<div id="item_cart">
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'item-form',
@@ -29,12 +29,16 @@
         <?php echo $form->textFieldControlGroup($model,'item_number',array('class'=>'span3','maxlength'=>255)); ?>
         
 	<?php echo $form->textFieldControlGroup($model,'name',array('class'=>'span3','maxlength'=>100)); ?>
+
+    <?php echo $form->textFieldControlGroup($model,'whole_cost_price',array('class'=>'span3','maxlength'=>100)); ?>
+
+    <?php echo $form->textFieldControlGroup($model,'unit_quantity',array('class'=>'span3')); ?>
         
-        <div class="unittype-wrapper" style="display:none">    
-            <?php //echo $form->textFieldControlGroup($model,'sub_quantity',array('class'=>'span2','prepend'=>'$')); ?>
-        </div>
+    <div class="unittype-wrapper" style="display:none">
+        <?php //echo $form->textFieldControlGroup($model,'sub_quantity',array('class'=>'span2','prepend'=>'$')); ?>
+    </div>
         
-        <?php echo $form->textFieldControlGroup($model,'cost_price',array('class'=>'span3')); ?>
+    <?php echo $form->textFieldControlGroup($model,'cost_price',array('class'=>'span3','readonly'=>true)); ?>
 
 	<?php echo $form->textFieldControlGroup($model,'unit_price',array('class'=>'span3')); ?>
         
@@ -55,23 +59,7 @@
         
         <?php //echo $form->textFieldControlGroup($model,'promo_end_date',array('class'=>'span3')); ?>
         
-        <!--
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="Item_item_number">Promotion Start</label>
-            <div class="col-sm-9">
-            <?php //$this->widget('yiiwheels.widgets.datepicker.WhDatePicker', array('model'=>$model,'attribute' =>'promo_start_date','pluginOptions' => array('format' => 'dd/mm/yyyy'),'htmlOptions'=>array('class'=>'span3 form-control'))); ?>
-            </div>
-        </div>
-        
-        <!--
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="Item_item_number">Promotion End</label>
-            <div class="col-sm-9">
-            <?php //$this->widget('yiiwheels.widgets.datepicker.WhDatePicker', array('model'=>$model,'attribute' =>'promo_end_date','pluginOptions' => array('format' => 'dd/mm/yyyy'),'htmlOptions'=>array('class'=>'span3 form-control'))); ?>
-            </div>
-        </div>
-        -->
-        
+
         <?php //echo $form->dropDownListControlGroup($model,'category_id', Category::model()->getCategory(),array('class'=>'span3','prompt'=>'-- Select --')); ?>
 
         <div class="form-group">
@@ -134,7 +122,7 @@
                  </div>
         </div>
         
-        <?php //echo $form->dropDownListControlGroup($model,'supplier_id', Supplier::model()->getSupplier(),array('class'=>'span3','prompt'=>'-- Select --')); ?>
+    <?php //echo $form->dropDownListControlGroup($model,'supplier_id', Supplier::model()->getSupplier(),array('class'=>'span3','prompt'=>'-- Select --')); ?>
         
 	<?php echo $form->textFieldControlGroup($model,'reorder_level',array('class'=>'span3')); ?>
 
@@ -144,16 +132,17 @@
 
 	<?php //echo $form->textFieldControlGroup($model,'is_serialized',array('class'=>'span4')); ?>
         
-        <div class="form-group">
+        <!--<div class="form-group">
             <label class="col-sm-3 control-label required" for="Item_unit_price"></label>
             <div class="col-sm-9">
                 <div id="imagePreview">
-                    <!-- <img alt="140x140" src=<?php //echo Yii::app()->baseUrl . '/images/profile-pic.jpg'; ?> width="140px" height="140px" /> -->
+                    <img alt="140x140" src=<?php /*echo Yii::app()->baseUrl . '/images/profile-pic.jpg'; */?> width="140px" height="140px" />
                 </div>
-                <?php echo $form->fileField($model, 'image'); ?>
-                <!-- <input id="Item_image" type="file" name="image" class="img" /> -->
+                <?php /*echo $form->fileField($model, 'image'); */?>
+                <input id="Item_image" type="file" name="image" class="img" />
             </div>
-        </div>
+        </div>-->
+
         <?php //echo $form->fileFieldControlGroup($model, 'image'); ?>
       
 	<?php echo $form->textAreaControlGroup($model,'description',array('rows'=>2, 'cols'=>10, 'class'=>'span3')); ?>
@@ -163,9 +152,7 @@
 
         <?php } ?>
         
-         <?php echo $form->dropDownListControlGroup($model,'count_interval', Item::itemAlias('stock_count_interval'),array('class'=>'span3','prompt'=>'-- Select --')); ?>
-        
-	<?php //echo $form->textFieldControlGroup($model,'status',array('class'=>'span4')); ?>
+         <?php //echo $form->dropDownListControlGroup($model,'count_interval', Item::itemAlias('stock_count_interval'),array('class'=>'span3','prompt'=>'-- Select --')); ?>
 
 	<div class="form-actions">
                  <?php echo TbHtml::submitButton($model->isNewRecord ? Yii::t('app','Create') : Yii::t('app','Save'),array(
@@ -192,25 +179,36 @@
       }
 });
  </script>
- 
- <script type="text/javascript">
- $(function() { 
-    $("#Item_image").on("change", function()
-    {
-        var files = !!this.files ? this.files : [];
-        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
- 
-        if (/^image/.test( files[0].type)){ // only image file
-            var reader = new FileReader(); // instance of the FileReader
-            reader.readAsDataURL(files[0]); // read the local file
- 
-            reader.onloadend = function(){ // set image data as background of div
-                $("#imagePreview").css("background-image", "url("+this.result+")");
-            }
-        }
-    });
-});
-</script>
+
+<?php
+Yii::app()->clientScript->registerScript( 'wholeBuyPrice', "
+        jQuery( function($){
+            $('div#item_cart').on('change','#Item_whole_cost_price',function(e) {
+                e.preventDefault();
+                var wholeBuyPrice=$(this).val();
+                var unitQty=$('#Item_unit_quantity').val();
+                var costPrice = (wholeBuyPrice / unitQty).toFixed(4);
+                $('#Item_cost_price').val(costPrice);
+            });
+        });
+      ");
+?>
+
+
+<?php
+Yii::app()->clientScript->registerScript( 'unitQty', "
+        jQuery( function($){
+            $('div#item_cart').on('change','#Item_unit_quantity',function(e) {
+                e.preventDefault();
+                var unitQty=$(this).val();
+                var wholeBuyPrice=$('#Item_whole_cost_price').val();
+                var costPrice = (wholeBuyPrice / unitQty).toFixed(4);
+                $('#Item_cost_price').val(costPrice);
+            });
+        });
+      ");
+?>
+
 
  
 

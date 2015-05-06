@@ -10,6 +10,8 @@
  * @property integer $unit_id
  * @property integer $category_id
  * @property integer $supplier_id
+ * @property double $whole_cost_price // Buy Price as Whole Unit (i.e one Box contains 10 tablet)
+ * @property double $unit_quantity // Total Number of Quantity Per Box / Tablet
  * @property double $cost_price
  * @property double $unit_price
  * @property double $quantity
@@ -32,26 +34,28 @@
  */
 class Item extends CActiveRecord
 {
-	public $inventory;
-        public $inv_quantity;
-        public $items_add_minus;
-        public $inv_comment;
-        public $sub_quantity;
-        public $unit_id;
-        public $image;
-        public $promo_price;
-        public $promo_start_date;
-        public $promo_end_date;
-        public $dosage;
-        public $duration;
-        public $frequency;
-        public $instruction_id;
-        public $comment;
-        public $consuming_time_id;
+    public $inventory;
+    public $inv_quantity;
+    public $items_add_minus;
+    public $inv_comment;
+    public $sub_quantity;
+    public $unit_id;
+    public $image;
+    public $promo_price;
+    public $promo_start_date;
+    public $promo_end_date;
+    public $dosage;
+    public $duration;
+    public $frequency;
+    public $instruction_id;
+    public $comment;
+    public $consuming_time_id;
 
+    //public $whole_cost_price;
+    //public $unit_quantity;
 
-        private $_active_status = '1';
-        private $_inactive_status = '0'; 
+    private $_active_status = '1';
+    private $_inactive_status = '0';
         
         /**
 	 * Returns the static model of the specified AR class.
@@ -74,33 +78,49 @@ class Item extends CActiveRecord
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('name, cost_price, unit_price', 'required'),
-                        array('item_number','unique',
-                                'message'=>'{attribute} {value} already exists ' . 
-                                '<a class="btn btn-xs btn-info" href="UpdateImage/id/{value}/item_number_flag/1"><span class="glyphicon ace-icon fa fa-edit"></span></a>' 
-                        ),
-                        array('name','unique'),
-			array('category_id, supplier_id, unit_id, allow_alt_description, is_serialized, is_expire, count_interval', 'numerical', 'integerOnly'=>true),
-			array('cost_price, unit_price, quantity, reorder_level, items_add_minus, promo_price', 'numerical'),
-			array('name', 'length', 'max'=>100),
-			array('item_number', 'length', 'max'=>255),
-			array('location', 'length', 'max'=>20),
-                        array('status', 'length', 'max'=>1),
-			array('description, inv_comment, promo_end_date, promo_start_date', 'safe'),
-                        array('image', 'file', 'types'=>'jpg, gif, png','allowEmpty'=>true,'maxSize'=>5*1024*1024),
-                        array('item_number', 'default', 'setOnEmpty' => true, 'value' => null),
-                        array('created_date,modified_date', 'default','value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
-                        array('modified_date', 'default','value'=> date('Y-m-d H:i:s'),'setOnEmpty'=>false,'on'=>'update'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name, item_number,unit_id, category_id, supplier_id, cost_price, unit_price, quantity, reorder_level, location, allow_alt_description, is_serialized, description, status, promo_price, is_expore, count_interval', 'safe', 'on'=>'search'),
-		);
-	}
+    public function rules()
+    {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+            array('name, cost_price, unit_price', 'required'),
+            array(
+                'item_number',
+                'unique',
+                'message' => '{attribute} {value} already exists ' .
+                    '<a class="btn btn-xs btn-info" href="UpdateImage/id/{value}/item_number_flag/1"><span class="glyphicon ace-icon fa fa-edit"></span></a>'
+            ),
+            array('name', 'unique'),
+            array(
+                'category_id, supplier_id, unit_id, allow_alt_description, is_serialized, is_expire, count_interval',
+                'numerical',
+                'integerOnly' => true
+            ),
+            array('cost_price, unit_price, quantity, reorder_level, items_add_minus, promo_price, unit_quantity,whole_cost_price', 'numerical'),
+            array('name', 'length', 'max' => 100),
+            array('item_number', 'length', 'max' => 255),
+            array('location', 'length', 'max' => 20),
+            array('status', 'length', 'max' => 1),
+            array('description, inv_comment, promo_end_date, promo_start_date', 'safe'),
+            array('image', 'file', 'types' => 'jpg, gif, png', 'allowEmpty' => true, 'maxSize' => 5 * 1024 * 1024),
+            array('item_number', 'default', 'setOnEmpty' => true, 'value' => null),
+            array(
+                'created_date,modified_date',
+                'default',
+                'value' => date('Y-m-d H:i:s'),
+                'setOnEmpty' => true,
+                'on' => 'insert'
+            ),
+            array('modified_date', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => false, 'on' => 'update'),
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
+            array(
+                'id, name, item_number,unit_id, category_id, supplier_id, cost_price, whole_cost_price,unit_price, quantity, unit_quantity, reorder_level, location, allow_alt_description, is_serialized, description, status, promo_price, is_expore, count_interval',
+                'safe',
+                'on' => 'search'
+            ),
+        );
+    }
         
         /**
 	 * @return array relational rules.
@@ -124,31 +144,32 @@ class Item extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => Yii::t('app','Name'),
-			'item_number' => Yii::t('app','Item Number'),
-                        'unit_id' => Yii::t('app','Unit ID'),
-			'category_id' => Yii::t('app','Category'),
-			'supplier_id' => Yii::t('app','Supplier'),
-			'cost_price' => Yii::t('app','Buy Price'),
-			'unit_price' => Yii::t('app','Sell Price'),
-			'quantity' => Yii::t('app','Quantity'),
-			'reorder_level' => Yii::t('app','Reorder Level'), 
-			'location' => Yii::t('app','Location'),  
-			'allow_alt_description' => Yii::t('app','Alt Description'),
-			'is_serialized' => Yii::t('app','Is Serialized'),
-			'description' => Yii::t('app','Description'),
-			'status' => Yii::t('app','Status'),
-                        'items_add_minus' => Yii::t('app','Item to add/substract'), 
-                        'inv_quantity' => Yii::t('app','Inv Quantity'), 
-                        'inv_comment' => Yii::t('app','Inv Comment'),
-                        'inventory' => Yii::t('app','Inventory'),
-                        'sub_quantity' => Yii::t('app','Sub Quantity'),
-                        'promo_price' => Yii::t('app','Promo Price'),
-                        'promo_start_date' => Yii::t('app','Promo Start'),
-                        'promo_end_date' => Yii::t('app','Promo End'),
-                        'is_expire' => Yii::t('app','Is Expire ?'),
-                        'count_interval' => Yii::t('app','Count Interval'),
+            'id' => 'ID',
+            'name' => Yii::t('app', 'Name'),
+            'item_number' => Yii::t('app', 'Item Number'),
+            'unit_id' => Yii::t('app', 'Unit ID'),
+            'category_id' => Yii::t('app', 'Category'),
+            'supplier_id' => Yii::t('app', 'Supplier'),
+            'cost_price' => Yii::t('app', 'Buy Price'),
+            'unit_price' => Yii::t('app', 'Sell Price'),
+            'quantity' => Yii::t('app', 'Quantity'),
+            'reorder_level' => Yii::t('app', 'Reorder Level'),
+            'location' => Yii::t('app', 'Location'),
+            'allow_alt_description' => Yii::t('app', 'Alt Description'),
+            'is_serialized' => Yii::t('app', 'Is Serialized'),
+            'description' => Yii::t('app', 'Description'),
+            'status' => Yii::t('app', 'Status'),
+            'items_add_minus' => Yii::t('app', 'Item to add/substract'),
+            'inv_quantity' => Yii::t('app', 'Inv Quantity'),
+            'inv_comment' => Yii::t('app', 'Inv Comment'),
+            'inventory' => Yii::t('app', 'Inventory'),
+            'sub_quantity' => Yii::t('app', 'Sub Quantity'),
+            'promo_price' => Yii::t('app', 'Promo Price'),
+            'promo_start_date' => Yii::t('app', 'Promo Start'),
+            'promo_end_date' => Yii::t('app', 'Promo End'),
+            'is_expire' => Yii::t('app', 'Is Expire ?'),
+            'count_interval' => Yii::t('app', 'Count Interval'),
+            'whole_cost_price' => Yii::t('app','Whole Buy Price'),
 		);
 	}
 

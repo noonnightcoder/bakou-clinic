@@ -60,12 +60,15 @@ class ItemController extends Controller
     {
         $model = new Item;
         $price_tiers = PriceTier::model()->getListPriceTier();
+        $model->unit_quantity = 1;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
         if (Yii::app()->user->checkAccess('item.create')) {
             if (isset($_POST['Item'])) {
                 $model->attributes = $_POST['Item'];
+                $qty = isset($_POST['Item']['quantity']) ? $_POST['Item']['quantity'] : 0;
+                $model->quantity=$qty;
                 
                 //$publisher_name=$_POST['Item']['publisher_id'];
                 $category_name=$_POST['Item']['category_id'];
