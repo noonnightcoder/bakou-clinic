@@ -147,11 +147,11 @@
 <script>    
     $(document).ready(function() {
         $('#show-payment-modal').on('shown.bs.modal', function() {
-            $('#Appointment_total_amount').val('<?php echo @$total_amount ?>');
+            $('#Appointment_total_amount').val('<?php echo number_format(@$total_amount,4); ?>');
         });
         
         $('#show-payment-modal').on('shown.bs.modal', function() {
-            $('#Appointment_actual_amount').val('<?php echo @$total_amount ?>');
+            $('#Appointment_actual_amount').val('<?php echo number_format(@$total_amount,4); ?>');
         });
     
         $('#show-payment-modal').on('hidden.bs.modal', function(e) {
