@@ -149,6 +149,10 @@
         $('#show-payment-modal').on('shown.bs.modal', function() {
             $('#Appointment_total_amount').val('<?php echo @$total_amount ?>');
         });
+        
+        $('#show-payment-modal').on('shown.bs.modal', function() {
+            $('#Appointment_actual_amount').val('<?php echo @$total_amount ?>');
+        });
     
         $('#show-payment-modal').on('hidden.bs.modal', function(e) {
             $('#show-payment-modal').val('');
