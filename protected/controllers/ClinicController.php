@@ -200,6 +200,7 @@ class ClinicController extends Controller
         public function actionClinicInfo()
         {
             $model = new Clinic;
+            $setting = new Settings;
             //$id=2;
             $model = Clinic::model()->find();
 
@@ -212,17 +213,27 @@ class ClinicController extends Controller
 			$model->attributes=$_POST['Clinic'];
 			if ($model->save()) {
 				//$this->redirect(array('view','id'=>$model->id));
+                            Yii::app()->user->setFlash('success', '<strong>Consultation!</strong> successfully saved.');    
 			}
 		}
+                
+                if (isset($_POST['Settings'])) {
+                    $setting->attributes=$_POST['Settings'];
+                    $xchange_rate = $_POST['Settings']['value'] !=null ? $_POST['Settings']['value'] : 4000;
+                    Settings::model()->updateByPk(1,array('value'=>$xchange_rate));
+                    Yii::app()->session['exchange_rate']=$xchange_rate;
+                    Yii::app()->user->setFlash('success', '<strong>Consultation!</strong> successfully saved.');
+                }
                 
                 //$this->actionUpdate($model->id);
                 $model=$this->loadModel($model->id);
 
 		$this->render('index',array(
-			'model'=>$model,
+			'model'=>$model,'setting'=>$setting
 		));
             }else{
                 $this->actionCreate();
+                Yii::app()->user->setFlash('success', '<strong>Consultation!</strong> successfully saved.');
                 /*$model = new Clinic;
                 $this->render('admin',array(
 			'model'=>$model,

@@ -47,13 +47,24 @@ class UserIdentity extends CUserIdentity
             $this->_id = $user->id;
             $this->username = $user->user_name; // title column as username
             $this->errorCode = self::ERROR_NONE;
-
+            $xchange_rate = Settings::model()->findByPk(1);
             $employeeId = $user->employee_id;
 
             // Store employee ID in a session:
             //$this->setState('employeeid',$employeeId);
             Yii::app()->session['employeeid'] = $employeeId;
             Yii::app()->session['userid'] = $user->id;
+            if(!empty($xchange_rate))
+            {
+                if($xchange_rate->value!=null)
+                {
+                    Yii::app()->session['exchange_rate'] = $xchange_rate->value;
+                }else{
+                    Yii::app()->session['exchange_rate'] = 4000;
+                }                
+            }else{
+                Yii::app()->session['exchange_rate'] = 4000;
+            }
 
             $employee = Employee::model()->findByPk($employeeId);
             Yii::app()->session['emp_fullname'] = $employee->first_name . ' ' . $employee->last_name;

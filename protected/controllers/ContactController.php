@@ -158,7 +158,7 @@ class ContactController extends Controller
                             }
                             
                             $transaction->commit();
-                            if($status=='Y')
+                            if($status==='Y')
                             {
                                 $this->redirect(array('appointment/create','doctor_id'=>$doctor_id,'patient_id'=>$patient->patient_id));
                             }else{
