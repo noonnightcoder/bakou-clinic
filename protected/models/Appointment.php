@@ -218,7 +218,7 @@ class Appointment extends CActiveRecord
         
         public function appointment_consult($app_id)
         {
-            Appointment::model()->updateByPk($app_id,array('status'=>'Consultation'));            
+            Appointment::model()->updateByPk($app_id,array('status'=>'Consultation'));
             //AppointmentLog::model()->updateByPk($app_id,array('status'=>'Consultation'));
         }
         

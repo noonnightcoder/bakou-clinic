@@ -3,14 +3,14 @@
     $total_amount = 0;
     foreach ($treatment_amount as $val)
     {
-        $total_amount +=$val['price'];
+        $total_amount +=$val['price']*Yii::app()->session['exchange_rate'];
     }
     
     $medicine_amount = Yii::app()->treatmentCart->getMedicine();
     
     foreach ($medicine_amount as $val)
     {
-        $total_amount +=$val['price']*$val['quantity'];
+        $total_amount +=$val['price']*$val['quantity']*Yii::app()->session['exchange_rate'];
     }    
 ?>
 <?php //print_r($medicine_selected_items); die(); ?>
@@ -130,7 +130,7 @@
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
-                <?php echo $form->textField($medicine, "unit_price", array('value' => $item['price'], 'class' => 'input-small numeric input-grid', 'id' => "price_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50, )); ?>
+                <?php echo $form->textField($medicine, "unit_price", array('value' => $item['price']*Yii::app()->session['exchange_rate'], 'class' => 'input-small numeric input-grid', 'id' => "price_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50, )); ?>
                 <?php $this->endWidget(); ?>  
             </td> 
             <td>
@@ -144,7 +144,7 @@
                 <?php $this->endWidget(); ?>
             </td>
             <td> 
-                <?php echo $item['price']*$item['quantity']; ?><br/>                        
+                <?php echo $item['price']*$item['quantity']*Yii::app()->session['exchange_rate']; ?><br/>                        
             </td>
             <td><?php
                         echo TbHtml::linkButton('', array(
