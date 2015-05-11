@@ -1,3 +1,8 @@
+<!--<style>
+    .modal-dialog {
+        width: 900px;
+    }
+</style>-->
 <?php $this->widget('ext.modaldlg.EModalDlg'); ?>
 <div class="register_container">
     <?php $this->widget('bootstrap.widgets.TbAlert', array(
@@ -93,6 +98,9 @@
                 $this->widget('bootstrap.widgets.TbModal', array(
                     'id' => 'show-payment-modal',
                     'header' => 'Payment Amount',
+                    /*'htmlOptions' =>array(
+                        'style' => 'width: 1500px;'
+                    ),*/
                     'content' => $this->renderpartial("_add_payment", array('form' => $form, 'model' => $model), true, false),
                     'footer' => implode(' ', array(
                         TbHtml::submitButton(Yii::t('app', 'Pay'), array(

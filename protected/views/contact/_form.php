@@ -61,7 +61,7 @@
 
             <?php //echo $form->dropDownListControlGroup($model,'type',array('Home'=>'Home','Office'=>'Office'), array('class'=>'span7')) ?>     
                 
-            <?php echo $form->textFieldControlGroup($model,'address_line_1',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
+            <?php echo $form->textFieldControlGroup($model,'address_line_1',array('class'=>'span7','maxlength'=>300,'data-required'=>'true')); ?>
 
             <?php //echo $form->textFieldControlGroup($model,'address_line_2',array('class'=>'span7','maxlength'=>40,'data-required'=>'true')); ?>
 

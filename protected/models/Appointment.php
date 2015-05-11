@@ -293,7 +293,11 @@ class Appointment extends CActiveRecord
         {
             $sql="select @rownum:=@rownum+1 id,patient_id,visit_id,fullname,
                 visit_date,item,dosage,consuming_time,duration,instruction,quantity,quantity*unit_price unit_price,flag info
-                from(SELECT t3.patient_id,t2.visit_id,CONCAT(last_name,' ',first_name) fullname,t2.visit_date,t1.item,
+                from(SELECT t3.patient_id,t2.visit_id,
+                case
+                        when last_name is not null then CONCAT(last_name,' ',first_name) 
+                        else first_name
+                end fullname,t2.visit_date,t1.item,
                 dosage,consuming_time,duration,instruction,t1.quantity,t1.unit_price,t1.flag
                 FROM (
                         SELECT medicine_id id,medicine_name item,
@@ -325,7 +329,11 @@ class Appointment extends CActiveRecord
         {
             $sql="select @rownum:=@rownum+1 id,patient_id,visit_id,fullname,
                 visit_date,item,dosage,consuming_time,duration,instruction,quantity,quantity*unit_price unit_price,flag info
-                from(SELECT t3.patient_id,t2.visit_id,CONCAT(last_name,' ',first_name) fullname,t2.visit_date,t1.item,
+                from(SELECT t3.patient_id,t2.visit_id,
+                case
+                        when last_name is not null then CONCAT(last_name,' ',first_name) 
+                        else first_name
+                end fullname,t2.visit_date,t1.item,
                 dosage,consuming_time,duration,instruction,t1.quantity,t1.unit_price,t1.flag
                 FROM (
                         SELECT medicine_id id,medicine_name item,
@@ -436,7 +444,11 @@ class Appointment extends CActiveRecord
         public function generateInvoice($visit_id)
         {
             $sql="select fullname,visit_date,item name,quantity,unit_price price,0 discount,dosage,duration,consuming_time,instruction,remarks comment
-                from(SELECT t3.patient_id,t2.visit_id,CONCAT(last_name,' ',first_name) fullname,t2.visit_date,t1.item,t1.quantity,t1.unit_price,
+                from(SELECT t3.patient_id,t2.visit_id,
+                case
+                        when last_name is not null then CONCAT(last_name,' ',first_name) 
+                        else first_name
+                end fullname,t2.visit_date,t1.item,t1.quantity,t1.unit_price,
                 t1.dosage,t1.duration,t1.consuming_time,t1.instruction,t1.remarks,t1.flag
                 FROM (
                         SELECT medicine_id id,medicine_name item,visit_id,quantity,unit_price,
@@ -567,7 +579,7 @@ class Appointment extends CActiveRecord
                 {
                     $this->addError('actual_amount','Actual Amount cannot be blank');
                     //Yii::app()->end();
-                }elseif (!is_numeric($this->actual_amount)) 
+                }elseif (!is_numeric((double)$this->actual_amount)) 
                 {
                     $this->addError('actual_amount','Actual Amount Only Numeric');
                 }elseif($this->actual_amount > $_POST['Appointment']['total_amount'])
