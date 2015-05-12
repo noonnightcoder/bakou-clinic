@@ -444,16 +444,16 @@ class AppointmentController extends Controller
                 }
             }
             //---****Loop medicine into session****---//
-            if(empty($medicine_selected))
-            {
-                $tbl_medicine = $medicine->get_tbl_medicine($_GET['visit_id']);
-                foreach ($tbl_medicine as $value) {
-                    Yii::app()->treatmentCart->addMedicine($value['id'],$value['unit_price'],$value['quantity'],
-                                            $value['dosage'],$value['duration_id'],$value['frequency'],
-                                            $value['instruction_id'],$value['comment'],
-                                            $value['consuming_time_id']);
-                }
+            /*if(empty($medicine_selected))
+            {*/
+            $tbl_medicine = $medicine->get_tbl_medicine($_GET['visit_id']);
+            foreach ($tbl_medicine as $value) {
+                Yii::app()->treatmentCart->addMedicine($value['id'],$value['unit_price'],$value['quantity'],
+                                        $value['dosage'],$value['duration_id'],$value['frequency'],
+                                        $value['instruction_id'],$value['comment'],
+                                        $value['consuming_time_id']);
             }
+            //}
 
             if(isset($_POST['Treatment']) || isset($_POST['Visit']))
             {
@@ -504,13 +504,13 @@ class AppointmentController extends Controller
                         if(!empty($chk_medicine))
                         {
                             //---***Delete if Prescription already exists***---// 
-                            if(!empty($medicine_selected))
-                            {
-                                PrescriptionDetail::model()->deleteAll(
-                                    array('condition'=>'prescription_id=:prescription_id',
-                                    'params'=>array(':prescription_id'=>$chk_medicine->id))
-                                );
-                            }
+                            /*if(!empty($medicine_selected))
+                            {*/
+                            PrescriptionDetail::model()->deleteAll(
+                                array('condition'=>'prescription_id=:prescription_id',
+                                'params'=>array(':prescription_id'=>$chk_medicine->id))
+                            );
+                            //}
 
                             foreach ($medicine_selected as $key => $value) {
                                 $prescription->saveMedicine($chk_medicine->id,$value['id'],$value['quantity'],$value['price'],$value['dosage'],$value['duration'],$value['frequency'],$value['instruction_id'],$value['comment'],$value['consuming_time_id']);
@@ -544,6 +544,7 @@ class AppointmentController extends Controller
                                 //if($model->validate())
                                 //{
                                     $actual_amount = $_POST['Appointment']['actual_amount'];
+                                    //echo $actual_amount; die();
                                     $this->actioncompletedConsult($_GET['visit_id'],$_GET['patient_id'],$actual_amount);
                                 //}
                             }else{

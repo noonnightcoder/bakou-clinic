@@ -130,7 +130,7 @@
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
-                <?php echo $form->textField($medicine, "unit_price", array('value' => $item['price']*Yii::app()->session['exchange_rate'], 'class' => 'input-small numeric input-grid', 'id' => "price_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50, )); ?>
+                <?php echo $form->textField($medicine, "unit_price", array('value' => $item['price'], 'class' => 'input-small numeric input-grid', 'id' => "price_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50, )); ?>
                 <?php $this->endWidget(); ?>  
             </td> 
             <td>
@@ -144,7 +144,7 @@
                 <?php $this->endWidget(); ?>
             </td>
             <td> 
-                <?php echo $item['price']*$item['quantity']*Yii::app()->session['exchange_rate']; ?><br/>                        
+                <?php echo $item['price']*$item['quantity']; ?><br/>                        
             </td>
             <td><?php
                         echo TbHtml::linkButton('', array(
@@ -213,11 +213,11 @@
 <script>    
     $(document).ready(function() {
         $('#show-payment-modal').on('shown.bs.modal', function() {
-            $('#Appointment_total_amount').val('<?php echo number_format(@$total_amount,4); ?>');
+            $('#Appointment_total_amount').val('<?php echo number_format((float)@$total_amount, 4, '.', ''); ?>');
         });
         
         $('#show-payment-modal').on('shown.bs.modal', function() {
-            $('#Appointment_actual_amount').val('<?php echo number_format(@$total_amount,4); ?>');
+            $('#Appointment_actual_amount').val('<?php echo number_format((float)@$total_amount, 4, '.', ''); ?>');
         });
     
         $('#show-payment-modal').on('hidden.bs.modal', function(e) {

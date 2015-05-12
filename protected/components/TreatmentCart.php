@@ -154,14 +154,14 @@ class TreatmentCart extends CApplicationComponent
             {
                 $consuming = ConsumingTime::model()->findByPk($consuming_time_id);
                 $multiple = $consuming->multiple;
-                $quan_cal=$medicines[$medicine_id]['dosage']*$medicines[$medicine_id]['duration']*$multiple;
+                $quan_cal=($medicines[$medicine_id]['dosage']) * ($medicines[$medicine_id]['duration']) * $multiple;
             }else
             {
                 $multiple=$medicines[$medicine_id]['cons_multiple'];
-                $quan_cal=$multiple*$medicines[$medicine_id]['dosage']*$medicines[$medicine_id]['duration'];
+                $quan_cal=$multiple * ($medicines[$medicine_id]['dosage']) * ($medicines[$medicine_id]['duration']);
             }
 
-            if($dosage!=null){$quan_cal=$dosage*$medicines[$medicine_id]['duration']*$multiple;}
+            if($dosage!=null){$quan_cal=$dosage*($medicines[$medicine_id]['duration']) * $multiple;}
             if($duration!=null){$quan_cal=$medicines[$medicine_id]['dosage']*$duration*$multiple;}
 
             $medicines[$medicine_id]['quantity'] = $quantity !=null ? $quantity : $quan_cal;

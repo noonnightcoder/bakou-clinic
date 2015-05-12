@@ -50,7 +50,7 @@
                         'htmlOptions'=>array('class'=>'line_treatment_form'),
                     ));
                 ?>
-                <?php echo $form->textField($treatment, "price", array('value' => $item['price']*Yii::app()->session['exchange_rate'], 'class' => 'input-small numeric input-grid', 'id' => "price_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50,)); ?>
+                <?php echo $form->textField($treatment, "price", array('value' => $item['price'], 'class' => 'input-small numeric input-grid', 'id' => "price_$item_id", 'placeholder' => 'Price', 'data-id' => "$item_id", 'maxlength' => 50,)); ?>
                 <?php $this->endWidget(); ?>
             </td>
             <td>

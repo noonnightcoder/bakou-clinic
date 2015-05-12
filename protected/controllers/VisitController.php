@@ -178,8 +178,37 @@ class VisitController extends Controller
 		}
 	}
         
-        public function actionRevisit($visit_id,$patient_id)
-        {
+        public function actionRevisit($visit_id,$patient_id,$doctor_id)
+        {   
+            if($visit_id!=null && $patient_id!=null && $doctor_id!=null)
+            {
+                $model = new Visit;
+                $userid = Yii::app()->user->getId();
+
+                if($userid!=$_GET['doctor_id'])
+                {
+                    throw new CHttpException(400, 'Invalid Doctor. Please login to the right doctor.');
+                }
             
+                $app_status = Appointment::model()->find('visit_id=:visit_id and status="Consultation"', array(':visit_id'=>$visit_id));
+                if(!empty($app_status))
+                {
+                    //echo "In consultant mode";
+                    $transaction=$model->dbConnection->beginTransaction();
+                    try{
+                        Visit::model()->save_revisit($visit_id,$patient_id,$doctor_id);
+                        $transaction->commit();
+                        Yii::app()->user->setFlash('success', '<strong>Successful Saved! </strong>');
+                    }catch (Exception $e){
+                        $transaction->rollback();
+                        Yii::app()->user->setFlash('success', '<strong>Process was rollback! </strong>Please contact administrator.');
+                        //echo $e->getMessage();
+                    }                   
+                }else{
+                    Yii::app()->user->setFlash('success', '<strong>Oop!</strong> You are not in the consultation mode.');
+                }
+            }else{
+                Yii::app()->user->setFlash('success', '<strong>Oop!</strong> Wrong link!.');
+            }            
         }
 }

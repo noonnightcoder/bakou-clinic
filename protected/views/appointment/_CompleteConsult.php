@@ -1,8 +1,8 @@
-<!--<style>
+<style>
     .modal-dialog {
-        width: 900px;
+        width: 850px;
     }
-</style>-->
+</style>
 <?php $this->widget('ext.modaldlg.EModalDlg'); ?>
 <div class="register_container">
     <?php $this->widget('bootstrap.widgets.TbAlert', array(
@@ -259,6 +259,8 @@ Yii::app()->clientScript->registerScript('completedConsult', "
                 $.ajax({
                     type: "POST",
                     url: "Emptytreatment",
+                    beforeSend: function() { $('.waiting').show(); },
+                    complete: function() { $('.waiting').hide(); },
                     success: function () {
                         window.location.href = a_href;
                     }
@@ -274,12 +276,34 @@ Yii::app()->clientScript->registerScript('completedConsult', "
                 $.ajax({
                     type: "POST",
                     url: "Emptytreatment",
+                    beforeSend: function() { $('.waiting').show(); },
+                    complete: function() { $('.waiting').hide(); },
                     success: function () {
                         window.location.href = a_href;
                     }
                 });
             }
         });
+        
+        $('.re-visit').on('click', function (e) {
+            e.preventDefault();
+            a_href = $(this).attr("href");
+            //alert(a_href);
+            var ans = confirm("Are you sure you want to submit?");
+            if (ans === true) {
+                $.ajax({
+                    type: "POST",
+                    url: a_href,
+                    beforeSend: function() { $('.waiting').show(); },
+                    complete: function() { $('.waiting').hide(); },
+                    success: function () {
+                        //window.location.href = a_href;
+                        location.reload(); 
+                    }
+                });
+            }
+        });
+        
     });
 
     $('#show-payment-modal').on('keypress', function (e) {
@@ -293,4 +317,5 @@ Yii::app()->clientScript->registerScript('completedConsult', "
             //Auto-click button element on page load using jQuery
         }
     });
+    
 </script>  

@@ -35,7 +35,7 @@
                 array(
                     'class'=>'bootstrap.widgets.TbButtonColumn',
                     //'template'=>'{view}',
-                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{detail}{revisit}</div>',
+                    'template'=>'<div class="hidden-sm hidden-xs btn-group">{detail}</div>',
                     'buttons'=>array(
                         'detail' => array(
                             'label' => Yii::t('app','Detail'),
@@ -49,7 +49,7 @@
                                 'title'=>'Visit Detail',
                             ),
                         ),
-                        'revisit' => array(
+                        /*'revisit' => array(
                             'label' => Yii::t('app','Revisit'),
                             //'icon' => 'ace-icon fa fa-hospital-o',
                             'url'=>'Yii::app()->createUrl("contact/VisitUnderConst", array("visit_id"=>$data["visit_id"],"patient_id"=>$data["patient_id"]))',
@@ -57,7 +57,7 @@
                                 'class'=>'btn btn-xs btn-success',
                                 'title'=>'Re-Visit',
                             ),
-                        ),
+                        ),*/
                     ),
                 ),
         ),

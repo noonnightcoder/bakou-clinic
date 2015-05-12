@@ -280,11 +280,13 @@ class Appointment extends CActiveRecord
         
         public function updateCompleteAppt($visit_id,$user_id,$patient_id = 0,$actual_amount = 0)
         {
-            $cmd = Yii::app()->db->createCommand("CALL pro_completed_consult(:visit_id, :user_id,:patient_id,:actual_amount)");
+            $xchange_rate = Yii::app()->session['exchange_rate'];
+            $cmd = Yii::app()->db->createCommand("CALL pro_completed_consult(:visit_id, :user_id,:patient_id,:actual_amount,:exchange_rate)");
             $cmd->bindParam(":visit_id", $visit_id);
             $cmd->bindParam(":user_id", $user_id);
             $cmd->bindParam(":patient_id", $patient_id);
             $cmd->bindParam(":actual_amount", $actual_amount);
+            $cmd->bindParam(":exchange_rate", $xchange_rate);
             $cmd->execute();
             return true;
         }
@@ -427,7 +429,8 @@ class Appointment extends CActiveRecord
         
         public function sumBill($visit_id)
         {
-            $sql="select sum(amount)
+            $xchange_rate = Yii::app()->session['exchange_rate'];
+            $sql="select sum(amount)*$xchange_rate
                 from (
                     SELECT medicine_id id,medicine_name item,visit_id,quantity,quantity*unit_price amount,'medicine' flag 
                     FROM v_medicine_payment where visit_id= $visit_id
@@ -579,7 +582,7 @@ class Appointment extends CActiveRecord
                 {
                     $this->addError('actual_amount','Actual Amount cannot be blank');
                     //Yii::app()->end();
-                }elseif (!is_numeric((double)$this->actual_amount)) 
+                }elseif (!is_numeric((float)$this->actual_amount)) 
                 {
                     $this->addError('actual_amount','Actual Amount Only Numeric');
                 }elseif($this->actual_amount > $_POST['Appointment']['total_amount'])

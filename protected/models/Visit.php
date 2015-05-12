@@ -173,4 +173,14 @@ class Visit extends CActiveRecord
                 }*/
             }            
         }
+        
+        public function save_revisit($visit_id,$patient_id,$doctor_id)
+        {
+            $cmd = Yii::app()->db->createCommand("CALL pro_save_revisit(:visit_id,:patient_id,:doctor_id)");
+            $cmd->bindParam(":visit_id", $visit_id);
+            $cmd->bindParam(":patient_id", $patient_id);
+            $cmd->bindParam(":doctor_id", $doctor_id);
+            $cmd->execute();
+            return true;
+        }
 }
