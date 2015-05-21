@@ -597,7 +597,7 @@ class AppointmentController extends Controller
 
             $model->actual_amount = $model->sumBill($data['visit_id']);
 
-            $this->render('create_consult',$data);
+            $this->render('consultation_form',$data);
 
         }else{
             throw new CHttpException(404,'The requested page does not exist.');
