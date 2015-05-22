@@ -3,7 +3,7 @@
                 'id'=>'bloodtest-form',
                 'enableAjaxValidation'=>false,
                 'layout'=>TbHtml::FORM_LAYOUT_HORIZONTAL,                
-                'htmlOptions'=> array('enctype'=>'multipart/form-data',)
+                //'htmlOptions'=> array('enctype'=>'multipart/form-data',)
         )); ?>
     <?php    
         //$chk_group = TreatmentGroup::model()->findbypk($i);
@@ -81,3 +81,23 @@
     </div>       
     <?php $this->endWidget(); ?>
 </div>
+
+<?php
+$url = Yii::app()->createUrl('TreatmentItemDetail/LabAnalyzed/visit_id/'.$_GET['visit_id']);
+Yii::app()->clientScript->registerScript('lab_detail', "
+    $('#save-bloodtest-form').on('click',function(e) {
+        e.preventDefault();
+        data = $('form').serialize();
+        $.ajax({
+            type: 'POST',
+            url:'$url',
+            data:data,
+            beforeSend: function() { $('.waiting').show(); },
+            complete: function() { $('.waiting').hide(); },
+            success : function(data) {
+                
+            }
+        });
+    });
+");
+?>

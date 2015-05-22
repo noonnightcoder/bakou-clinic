@@ -1167,14 +1167,13 @@ class AppointmentController extends Controller
     {
         
         $this->layout = '//layouts/column_receipt';
-        //$sale_id=10;
         
         $sale_id = Payment::model()->CompleteSale($visit_id);
-        //echo $sale_id; die();
+
         $clinic_info = Clinic::model()->find();
         $employee_id = RbacUser::model()->findByPk(Yii::app()->user->getId());
         $employee = Employee::model()->get_doctorName($employee_id->employee_id);
-        //$cust_info = array();
+
         $cust_info=Appointment::model()->generateInvoice($visit_id); 
         $patient_id = Appointment::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
         $rs = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$patient_id->patient_id));
