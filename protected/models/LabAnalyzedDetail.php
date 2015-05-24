@@ -102,4 +102,18 @@ class LabAnalyzedDetail extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function get_lab_analized($visit_id)
+        {
+            $sql="SELECT t3.id blood_id,t2.id lab_analyzed_id,t3.treatment_item,t3.caption
+                FROM lab_analyzed_detail t1
+                INNER JOIN lab_analized t2 ON t1.lab_analized_id=t2.id
+                INNER JOIN treatment_item_detail t3 ON t1.itemtest_id=t3.id
+                where t2.visit_id=:visit_id";
+            
+            $cmd=Yii::app()->db->createCommand($sql);
+            $cmd->bindParam(':visit_id', $visit_id, PDO::PARAM_INT);
+            
+            return $cmd->queryall();
+        }
 }

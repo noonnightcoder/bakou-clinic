@@ -30,3 +30,5 @@
         ),
         //'events'=>array('shown'=>'js:loadContent')
     )); ?> 
+
+<div class="waiting"><!-- Place at bottom of page --></div>

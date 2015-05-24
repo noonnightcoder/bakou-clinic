@@ -66,4 +66,3 @@
 
 <?php //$this->renderPartial('/contact/_visited', array('visit'=>$visit,'patient_id'=>18),false,true); ?>
 
-<div class="waiting"><!-- Place at bottom of page --></div>

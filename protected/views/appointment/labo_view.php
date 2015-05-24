@@ -74,8 +74,84 @@
         </div>
     </div>
 </div><!-- /.col -->
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+        //'id'=>'doctor_consult',
+        //'action'=>Yii::app()->createUrl('appointment/DoctorConsult'),
+        'enableAjaxValidation' => true,
+        'enableClientValidation' => true,
+        'clientOptions' => array(
+            'validateOnSubmit' => true,
+        ),
+        'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
+        'id' => 'add_client_result',
+    )); ?>
+<div class="col-sm-12">    
+    <table class="table table-hover table-condensed">
+    <thead>
+        <tr>
+            <th style="display:none">ID</th>
+            <th>Lab Item</th>
+            <th>Value</th>
+            <th>Caption</th>
+        </tr>
+    </thead>
+    <tbody id='treatment_contents'>
+    <?php 
+        foreach ($lab_selected as $val)
+        {
+            //print_r($val);
+            $lab_items=$val['treatment_item'];
+            echo "<tr>";
+                echo "<td>"; 
+                    echo $val['treatment_item']."<br/>";
+                echo "</td>";                
+                echo "<td>"; 
+                    if($val['blood_id']==4)
+                    {
+                        echo "<input type='text' name='lab_items[]' style='width:100px;' placeholder='Blood Group'>";
+                        echo " ";
+                        echo "<input type='text' name='lab_items[]' style='width:100px;' placeholder='Rh'>";  
+                    }elseif($val['blood_id']==16 || $val['blood_id']==17){
+                        echo "<input type='text' name='lab_items_f' style='width:100px;' placeholder='mm'>";
+                        echo " ";
+                        echo "<input type='text' name='lab_items_s' style='width:100px;' placeholder='sec'>";
+                    }elseif($val['blood_id']==19){
+                        echo "<input type='text' name='lab_items_f' style='width:100px;' placeholder='IgG'>";
+                        echo " ";
+                        echo "<input type='text' name='lab_items_s' style='width:100px;' placeholder='IgM'>";
+                    }elseif($val['blood_id']==29){
+                        echo "<input type='text' name='lab_items_f' style='width:100px;' placeholder='To'>";
+                        echo " ";
+                        echo "<input type='text' name='lab_items_s' style='width:100px;' placeholder='TH'>";
+                    }elseif($val['blood_id']==44){
+                        echo "<input type='text' name='lab_items_f' style='width:100px;' placeholder='SGOT(ASAT)'>";
+                        echo " ";
+                        echo "<input type='text' name='lab_items_s' style='width:100px;' placeholder='SGPT(ALAT)'>";
+                    }else{
+                        echo "<input type='text' name='lab_items_f' style='width:200px;' placeholder='$lab_items'>";
+                    }
+                echo "</td>";;
+                echo "<td>"; 
+                    echo $val['caption']."<br/>";
+                echo "</td>";
+            echo "</tr>";    
+        }       
+    ?>
+    </tbod>
+    </table>    
 </div>
-
+<div class="col-sm-12">
+            <div class="form-actions" id="form-actions">
+                <?php echo TbHtml::submitButton(Yii::t('app', 'Save'), array(
+                    'color' => TbHtml::BUTTON_COLOR_PRIMARY,
+                    'size' => TbHtml::BUTTON_SIZE_SMALL,
+                    'id' => 'save-bloodtest-form',
+                    'name' => 'Save_bloodtest'
+                    //'size'=>TbHtml::BUTTON_SIZE_SMALL,
+                )); ?>
+            </div>
+</div> 
+<?php $this->endWidget(); ?>
 <?php /*$box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
     'title' => Yii::t('app', 'Laboratory') . ' : ' . ucwords($patient_name),
     'headerIcon' => 'ace-icon fa fa-user',
@@ -91,7 +167,11 @@
         'medicine_selected_items' => $medicine_selected_items,
         'visit_id' => $visit_id
     ), true),
-)); */?><!--
+)); */
+
+?>
+
+<!--
 
 --><?php /*$this->endWidget(); */?>
 

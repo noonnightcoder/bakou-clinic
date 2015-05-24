@@ -2,7 +2,8 @@
 $chk_lab = TransactionLog::model()->find('visit_id=:visit_id and transaction_name="Lab"',array('visit_id'=>$_GET['visit_id']));
 if(!empty($chk_lab))
 {
-    $disabled = "disabled";
+    //$disabled = "disabled";
+    $disabled = "";
 }else{
     $disabled = "";
 }

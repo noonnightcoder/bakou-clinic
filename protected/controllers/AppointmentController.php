@@ -691,6 +691,7 @@ class AppointmentController extends Controller
             $data['medicine']=$medicine;
             $data['visit_id'] = $_GET['visit_id'];
             $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
+            $data['lab_selected'] = LabAnalyzedDetail::model()->get_lab_analized($_GET['visit_id']);
             $data['patient_name'] = $rst->patient_name;
             
             $this->render('labo_view',$data);
