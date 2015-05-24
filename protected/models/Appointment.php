@@ -537,7 +537,8 @@ class Appointment extends CActiveRecord
                 $search = $_GET['Appointment']['patient_name'];
                 $cond=" and (lower(patient_name) like '%".  $search ."%' or lower(display_id) like  '%".  $search ."%')";
             }else{
-                $cond="";
+                $cond=" and visit_id not in (select visit_id from transaction_log)";
+                //$cond="";
                 
             }
             

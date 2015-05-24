@@ -666,6 +666,7 @@ class AppointmentController extends Controller
         $model = new Appointment;  
         $treatment = new Treatment;
         $medicine = new Item;
+        $tran_log = new TransactionLog;
         //$patient = new Patient;
 
         if(!Yii::app()->user->checkAccess('consultation.view'))
@@ -694,12 +695,39 @@ class AppointmentController extends Controller
             $data['lab_selected'] = LabAnalyzedDetail::model()->get_lab_analized($_GET['visit_id']);
             $data['patient_name'] = $rst->patient_name;
             
-            //print_r($_POST);
+            //print_r($data['lab_selected']);
+            $my_value="";
             $lab_items_s=array();
             if(isset($_POST['lab_items_f']) || isset($_POST['lab_items_s']))
             {
                 $lab_items_s = $_POST['lab_items_s'];
-                print_r($lab_items_s);
+                $lab_items_name = $_POST['lab_items_name'];
+                $blood_item_id = $_POST['blood_item_id'];
+                foreach ($_POST['lab_items_f'] as $key =>$val)
+                {                    
+                    if($key==4)
+                    {
+                        $my_value =  '"'.$lab_items_name[$key].'": '.$val.' "Rh": '.$lab_items_s[$key];
+                    }elseif($key==16 || $key==17){
+                        $my_value =  '"'.$lab_items_name[$key].' mm": '.$val.' "sec": '.$lab_items_s[$key];
+                    }elseif($key==19){
+                        $my_value =  '"'.$lab_items_name[$key].' IgG": '.$val.' "IgM": '.$lab_items_s[$key];
+                    }elseif($key==29){
+                        $my_value =  '"'.$lab_items_name[$key].' To": '.$val.' "TH": '.$lab_items_s[$key];
+                    }elseif($key==44){
+                        $my_value =  '"'.$lab_items_name[$key].' SGOT(ASAT)": '.$val.' "SGPT(ALAT)": '.$lab_items_s[$key];
+                    }else{
+                        $my_value='"'.$lab_items_name[$key].'": '.$val;
+                    }                    
+                    LabAnalyzedDetail::model()->updateByPk($blood_item_id[$key],array('val'=>$my_value));
+                }
+                //echo $my_value;
+                //print_r($lab_items_s);
+                $tran_log->visit_id = $_GET['visit_id'];
+                $tran_log->created_date = date('Y-m-d h:i:s');
+                $tran_log->transaction_name = 'Lab';
+                if($tran_log->validate()) $tran_log->save ();
+                $this->redirect(array('appointment/labocheck'));
             }
             
             $this->render('labo_view',$data);

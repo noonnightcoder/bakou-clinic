@@ -100,8 +100,23 @@
         foreach ($lab_selected as $val)
         {
             //print_r($val);
-            $lab_items=$val['treatment_item'];
+            $lab_items_name=$val['treatment_item'];
             $blood_id = $val['blood_id'];
+            $blood_item_id = $val['id'];
+            $val_col1= $val['val_result_col1'];
+            $val_col2= $val['val_result_col2'];
+            echo "<tr>";
+                echo "<td style='display:none'>";
+                    echo "<input type='text' name='blood_item_id[$blood_id]' style='width:50px;' value='$blood_item_id'>";
+                echo "</td>";
+            echo "</tr>";
+            
+            echo "<tr>";
+                echo "<td style='display:none'>";
+                    echo "<input type='text' name='lab_items_name[$blood_id]' style='width:50px;' value='$lab_items_name'>";
+                echo "</td>";
+            echo "</tr>";
+            
             echo "<tr>";
                 echo "<td>"; 
                     echo $val['treatment_item']."<br/>";
@@ -109,27 +124,27 @@
                 echo "<td>"; 
                     if($val['blood_id']==4)
                     {
-                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' style='width:100px;' placeholder='Blood Group'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' value='$val_col1' style='width:100px;' placeholder='Blood Group'>";
                         echo " ";
-                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' style='width:100px;' placeholder='Rh'>";  
+                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' value='$val_col2' style='width:100px;' placeholder='Rh'>";  
                     }elseif($val['blood_id']==16 || $val['blood_id']==17){
-                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' style='width:100px;' placeholder='mm'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' value='$val_col1' style='width:100px;' placeholder='mm'>";
                         echo " ";
-                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' style='width:100px;' placeholder='sec'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' value='$val_col2' style='width:100px;' placeholder='sec'>";
                     }elseif($val['blood_id']==19){
-                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' style='width:100px;' placeholder='IgG'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' value='$val_col1' style='width:100px;' placeholder='IgG'>";
                         echo " ";
-                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' style='width:100px;' placeholder='IgM'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' value='$val_col2' style='width:100px;' placeholder='IgM'>";
                     }elseif($val['blood_id']==29){
-                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' style='width:100px;' placeholder='To'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' value='$val_col1' style='width:100px;' placeholder='To'>";
                         echo " ";
-                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' style='width:100px;' placeholder='TH'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' value='$val_col2' style='width:100px;' placeholder='TH'>";
                     }elseif($val['blood_id']==44){
-                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' style='width:100px;' placeholder='SGOT(ASAT)'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' value='$val_col1' style='width:100px;' placeholder='SGOT(ASAT)'>";
                         echo " ";
-                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' style='width:100px;' placeholder='SGPT(ALAT)'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' value='$val_col2' style='width:100px;' placeholder='SGPT(ALAT)'>";
                     }else{
-                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' style='width:200px;' placeholder='$lab_items'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' value='$val_col1' style='width:200px;' placeholder='$lab_items_name'>";
                     }
                 echo "</td>";;
                 echo "<td>"; 
@@ -141,6 +156,8 @@
     </tbod>
     </table>    
 </div>
+<?php $chk_lab = TransactionLog::model()->find("visit_id=:visit_id",array('visit_id'=>$_GET['visit_id'])); ?>
+<?php if(empty($chk_lab)){?>
 <div class="col-sm-12">
             <div class="form-actions" id="form-actions">
                 <?php echo TbHtml::submitButton(Yii::t('app', 'Save'), array(
@@ -152,6 +169,7 @@
                 )); ?>
             </div>
 </div> 
+<?php } ?>
 <?php $this->endWidget(); ?>
 <?php /*$box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
     'title' => Yii::t('app', 'Laboratory') . ' : ' . ucwords($patient_name),
@@ -199,7 +217,7 @@
                 }
         }); 
         
-        $(".blood-result-input").keydown(function (e) {
+        /*$(".blood-result-input").keydown(function (e) {
             // Allow: backspace, delete, tab, escape, enter and .
             if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
                      // Allow: Ctrl+A, Command+A
@@ -213,7 +231,7 @@
             if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
                     e.preventDefault();
             }
-        });
+        });*/
     });
 </script>    
 

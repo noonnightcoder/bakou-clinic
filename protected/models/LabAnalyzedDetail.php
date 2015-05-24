@@ -30,7 +30,7 @@ class LabAnalyzedDetail extends CActiveRecord
 		return array(
 			array('lab_analized_id, itemtest_id', 'required'),
 			array('lab_analized_id, itemtest_id', 'numerical', 'integerOnly'=>true),
-			array('val', 'numerical'),
+			//array('val', 'numerical'),
 			array('unit_price', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -105,11 +105,20 @@ class LabAnalyzedDetail extends CActiveRecord
         
         public function get_lab_analized($visit_id)
         {
-            $sql="SELECT t3.id blood_id,t2.id lab_analyzed_id,t3.treatment_item,t3.caption
+            $sql="
+                select id,blood_id,lab_analyzed_id,treatment_item,caption,
+                CASE
+                        WHEN ROUND((LENGTH(val_result)-LENGTH(REPLACE(val_result, ':', '')))/LENGTH(':'))=0 THEN val_result
+                        ELSE SUBSTR(val_result,1,LOCATE('\"',val_result,1)-2)
+                END val_result_col1, SUBSTR(val_result,LOCATE(':',val_result,1)+2) val_result_col2
+                from (
+                SELECT t1.id,t3.id blood_id,t2.id lab_analyzed_id,t3.treatment_item,t3.caption,
+                SUBSTR(val,LOCATE(':',val,1)+2) val_result
                 FROM lab_analyzed_detail t1
                 INNER JOIN lab_analized t2 ON t1.lab_analized_id=t2.id
                 INNER JOIN treatment_item_detail t3 ON t1.itemtest_id=t3.id
-                where t2.visit_id=:visit_id";
+                where t2.visit_id=:visit_id
+                )mm";
             
             $cmd=Yii::app()->db->createCommand($sql);
             $cmd->bindParam(':visit_id', $visit_id, PDO::PARAM_INT);
