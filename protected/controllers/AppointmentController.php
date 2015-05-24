@@ -694,6 +694,14 @@ class AppointmentController extends Controller
             $data['lab_selected'] = LabAnalyzedDetail::model()->get_lab_analized($_GET['visit_id']);
             $data['patient_name'] = $rst->patient_name;
             
+            //print_r($_POST);
+            $lab_items_s=array();
+            if(isset($_POST['lab_items_f']) || isset($_POST['lab_items_s']))
+            {
+                $lab_items_s = $_POST['lab_items_s'];
+                print_r($lab_items_s);
+            }
+            
             $this->render('labo_view',$data);
         }else{
             throw new CHttpException(404,'The requested page does not exist.');

@@ -101,6 +101,7 @@
         {
             //print_r($val);
             $lab_items=$val['treatment_item'];
+            $blood_id = $val['blood_id'];
             echo "<tr>";
                 echo "<td>"; 
                     echo $val['treatment_item']."<br/>";
@@ -108,27 +109,27 @@
                 echo "<td>"; 
                     if($val['blood_id']==4)
                     {
-                        echo "<input type='text' name='lab_items[]' style='width:100px;' placeholder='Blood Group'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' style='width:100px;' placeholder='Blood Group'>";
                         echo " ";
-                        echo "<input type='text' name='lab_items[]' style='width:100px;' placeholder='Rh'>";  
+                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' style='width:100px;' placeholder='Rh'>";  
                     }elseif($val['blood_id']==16 || $val['blood_id']==17){
-                        echo "<input type='text' name='lab_items_f' style='width:100px;' placeholder='mm'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' style='width:100px;' placeholder='mm'>";
                         echo " ";
-                        echo "<input type='text' name='lab_items_s' style='width:100px;' placeholder='sec'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' style='width:100px;' placeholder='sec'>";
                     }elseif($val['blood_id']==19){
-                        echo "<input type='text' name='lab_items_f' style='width:100px;' placeholder='IgG'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' style='width:100px;' placeholder='IgG'>";
                         echo " ";
-                        echo "<input type='text' name='lab_items_s' style='width:100px;' placeholder='IgM'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' style='width:100px;' placeholder='IgM'>";
                     }elseif($val['blood_id']==29){
-                        echo "<input type='text' name='lab_items_f' style='width:100px;' placeholder='To'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' style='width:100px;' placeholder='To'>";
                         echo " ";
-                        echo "<input type='text' name='lab_items_s' style='width:100px;' placeholder='TH'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' style='width:100px;' placeholder='TH'>";
                     }elseif($val['blood_id']==44){
-                        echo "<input type='text' name='lab_items_f' style='width:100px;' placeholder='SGOT(ASAT)'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' style='width:100px;' placeholder='SGOT(ASAT)'>";
                         echo " ";
-                        echo "<input type='text' name='lab_items_s' style='width:100px;' placeholder='SGPT(ALAT)'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_s[$blood_id]' style='width:100px;' placeholder='SGPT(ALAT)'>";
                     }else{
-                        echo "<input type='text' name='lab_items_f' style='width:200px;' placeholder='$lab_items'>";
+                        echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' style='width:200px;' placeholder='$lab_items'>";
                     }
                 echo "</td>";;
                 echo "<td>"; 
@@ -145,8 +146,8 @@
                 <?php echo TbHtml::submitButton(Yii::t('app', 'Save'), array(
                     'color' => TbHtml::BUTTON_COLOR_PRIMARY,
                     'size' => TbHtml::BUTTON_SIZE_SMALL,
-                    'id' => 'save-bloodtest-form',
-                    'name' => 'Save_bloodtest'
+                    'id' => 'save-labo-form',
+                    'name' => 'Save_labo'
                     //'size'=>TbHtml::BUTTON_SIZE_SMALL,
                 )); ?>
             </div>
@@ -170,6 +171,51 @@
 )); */
 
 ?>
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function() {
+	$('#save-labo-form').on('click',function(e) {
+            var isValid = true;
+		$('input[type="text"]').each(function() {
+			if ($.trim($(this).val()) == '') {
+				isValid = false;
+				$(this).css({
+					"border": "1px solid red",
+					"background": "#FFCECE"
+				});
+                                
+                                //Validate input field
+                                //http://bit.ly/1FIzQaX
+			}
+			else {
+				$(this).css({
+					"border": "",
+					"background": ""
+				});
+			}
+		});
+		if (isValid == false)
+                {    
+			e.preventDefault();
+                }
+        }); 
+        
+        $(".blood-result-input").keydown(function (e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                     // Allow: Ctrl+A, Command+A
+                    (e.keyCode == 65 && ( e.ctrlKey === true || e.metaKey === true ) ) || 
+                     // Allow: home, end, left, right, down, up
+                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                             // let it happen, don't do anything
+                             return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+            }
+        });
+    });
+</script>    
 
 <!--
 
