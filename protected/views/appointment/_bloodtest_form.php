@@ -1,3 +1,12 @@
+<?php
+$chk_lab = TransactionLog::model()->find('visit_id=:visit_id and transaction_name="Lab"',array('visit_id'=>$_GET['visit_id']));
+if(!empty($chk_lab))
+{
+    $disabled = "disabled";
+}else{
+    $disabled = "";
+}
+?>
 <div class="form"> 
    <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                 'id'=>'bloodtest-form',
@@ -14,57 +23,57 @@
             <label class="control-label" for="hematology"><strong><u>Hematology</u></strong></label>
             <p>
             <div>
-                <?php echo CHtml::activeCheckboxList($model, 'hematology',  TreatmentItemDetail::model()->getTestlist(1)); ?>
+                <?php echo CHtml::activeCheckboxList($lab_items, 'hematology',  TreatmentItemDetail::model()->getTestlist(1),array('disabled'=>$disabled)); ?>
             </div>    
             <label class="control-label" for="immuno_hematology"><strong><u>Immuno Hematology</u></strong></label>
             <p>
             <div>
-                <?php echo CHtml::activeCheckboxList($model, 'immuno_hematology',  TreatmentItemDetail::model()->getTestlist(2)); ?>
+                <?php echo CHtml::activeCheckboxList($lab_items, 'immuno_hematology',  TreatmentItemDetail::model()->getTestlist(2),array('disabled'=>$disabled)); ?>
             </div>
             <label class="control-label" for="immunology"><strong><u>Immuno</u></strong></label>
             <p>
             <div>
-                <?php echo CHtml::activeCheckboxList($model, 'immunology',  TreatmentItemDetail::model()->getTestlist(3)); ?>
+                <?php echo CHtml::activeCheckboxList($lab_items, 'immunology',  TreatmentItemDetail::model()->getTestlist(3),array('disabled'=>$disabled)); ?>
             </div>
             <label class="control-label" for="hormones"><strong><u>Hormones</u></strong></label>
             <p>
             <div>
-                <?php echo CHtml::activeCheckboxList($model, 'hormones',  TreatmentItemDetail::model()->getTestlist(4)); ?>
+                <?php echo CHtml::activeCheckboxList($lab_items, 'hormones',  TreatmentItemDetail::model()->getTestlist(4),array('disabled'=>$disabled)); ?>
             </div>
 
             <label class="control-label" for="coagulation"><strong><u>Coagulation</u></strong></label>
             <p>
             <div>
-                <?php echo CHtml::activeCheckboxList($model, 'coagulation',  TreatmentItemDetail::model()->getTestlist(5)); ?>
+                <?php echo CHtml::activeCheckboxList($lab_items, 'coagulation',  TreatmentItemDetail::model()->getTestlist(5),array('disabled'=>$disabled)); ?>
             </div>
         </div>
         <div class="col-sm-4">
             <label class="control-label" for="serology"><strong><u>Serology</u></strong></label>
             <p>
             <div>
-                <?php echo CHtml::activeCheckboxList($model, 'serology',  TreatmentItemDetail::model()->getTestlist(6)); ?>
+                <?php echo CHtml::activeCheckboxList($lab_items, 'serology',  TreatmentItemDetail::model()->getTestlist(6),array('disabled'=>$disabled)); ?>
             </div> 
             <label class="control-label" for="micro_biology"><strong><u>Micro Biology</u></strong></label>
             <p>
             <div>
-                <?php echo CHtml::activeCheckboxList($model, 'micro_biology',  TreatmentItemDetail::model()->getTestlist(7)); ?>
+                <?php echo CHtml::activeCheckboxList($lab_items, 'micro_biology',  TreatmentItemDetail::model()->getTestlist(7),array('disabled'=>$disabled)); ?>
             </div>
         </div>
         <div class="col-sm-4">
             <label class="control-label" for="blood_biochemistry"><strong><u>Blood Biochemistry</u></strong></label>
             <p>
             <div>
-                <?php echo CHtml::activeCheckboxList($model, 'blood_biochemistry',  TreatmentItemDetail::model()->getTestlist(8)); ?>
+                <?php echo CHtml::activeCheckboxList($lab_items, 'blood_biochemistry',  TreatmentItemDetail::model()->getTestlist(8),array('disabled'=>$disabled)); ?>
             </div>
             <label class="control-label" for="urology"><strong><u>Urology</u></strong></label>
             <p>
             <div>
-                <?php echo CHtml::activeCheckboxList($model, 'urology',  TreatmentItemDetail::model()->getTestlist(9)); ?>
+                <?php echo CHtml::activeCheckboxList($lab_items, 'urology',  TreatmentItemDetail::model()->getTestlist(9),array('disabled'=>$disabled)); ?>
             </div>
             <label class="control-label" for="bacteriology"><strong><u>Bacteriology</u></strong></label>
             <p>
             <div>
-                <?php echo CHtml::activeCheckboxList($model, 'bacteriology',  TreatmentItemDetail::model()->getTestlist(10)); ?>
+                <?php echo CHtml::activeCheckboxList($lab_items, 'bacteriology',  TreatmentItemDetail::model()->getTestlist(10),array('disabled'=>$disabled)); ?>
             </div>
         </div>
         <div class="col-sm-12">
@@ -95,7 +104,7 @@ Yii::app()->clientScript->registerScript('lab_detail', "
             beforeSend: function() { $('.waiting').show(); },
             complete: function() { $('.waiting').hide(); },
             success : function(data) {
-                
+                location.reload(); 
             }
         });
     });

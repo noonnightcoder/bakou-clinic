@@ -1,6 +1,3 @@
-<?php
-$model = new TreatmentItemDetail;
-?>
 <?php $this->breadcrumbs = array(
     'Waiting Queue' => array('appointment/WaitingQueue'),
     Yii::t('app', 'Consultation'),
@@ -29,7 +26,7 @@ $model = new TreatmentItemDetail;
                             ),
                             'active'=>true
                 ),
-            array('label'=>Yii::t('app','Blood Test'),'id'=>'tab_2', 'content'=>$this->renderPartial('_bloodtest_form',array('model'=>$model),true)),
+            array('label'=>Yii::t('app','Blood Test'),'id'=>'tab_2', 'content'=>$this->renderPartial('_bloodtest_form',array('lab_items'=>$lab_items),true)),
         ),
         //'events'=>array('shown'=>'js:loadContent')
     )); ?> 

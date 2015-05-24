@@ -221,7 +221,7 @@ class TreatmentItemDetailController extends Controller
                         if (!empty($_POST['TreatmentItemDetail'][$lab_item])) {
                             foreach ($_POST['TreatmentItemDetail'][$lab_item] as $itemId) { 
                                 $lab_selected = new LabAnalyzedDetail;
-                                //$check_price = TreatmentItemDetail::model()->findByPk($itemId);
+                                $check_price = TreatmentItemDetail::model()->findByPk($itemId);
                                 $lab_selected->lab_analized_id = $lab_id;
                                 $lab_selected->itemtest_id = $itemId;
                                 $lab_selected->unit_price = $check_price->unit_price;
@@ -240,7 +240,7 @@ class TreatmentItemDetailController extends Controller
                 }  catch (Exception $e){
                     $transaction->rollback();
                     print_r($lab_selected->errors);
-                }                
             }
+                }                
         }
 }

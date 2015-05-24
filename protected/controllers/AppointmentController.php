@@ -402,6 +402,7 @@ class AppointmentController extends Controller
         $bill = new Bill;
         $prescription = new Prescription;
         $medicine = new Item;
+        $lab_items = new TreatmentItemDetail;
 
         if(!Yii::app()->user->checkAccess('consultation.create'))
         {
@@ -594,9 +595,38 @@ class AppointmentController extends Controller
             $data['visit_id'] = $_GET['visit_id'];
             $data['treatment_selected_items'] = Yii::app()->treatmentCart->getCart();
             $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
+            
 
             $model->actual_amount = $model->sumBill($data['visit_id']);
+            
+            $chk_lab_detail = LabAnalized::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
+            if(!empty($chk_lab_detail))
+            {
+                //echo $chk_lab_detail->id; die();
+                //print_r($chk_lab_detail); die();
+                $criteria = new CDbCriteria;
+                $criteria->condition = 'lab_analized_id=:myid';
+                $criteria->select = 'itemtest_id';
+                $criteria->params = array(':myid' => $chk_lab_detail->id);
+                $lab_selected = LabAnalyzedDetail::model()->findall($criteria);
+                //print_r($lab_selected); die();
+                $lab_item_detail = array();
+                foreach ($lab_selected as $lab_item) {
+                    $lab_item_detail[] = $lab_item->itemtest_id;
+                }
 
+                $lab_items->hematology = $lab_item_detail;
+                $lab_items->immuno_hematology = $lab_item_detail;
+                $lab_items->immunology = $lab_item_detail;
+                $lab_items->hormones = $lab_item_detail;
+                $lab_items->coagulation = $lab_item_detail;
+                $lab_items->serology = $lab_item_detail;
+                $lab_items->micro_biology = $lab_item_detail;
+                $lab_items->blood_biochemistry = $lab_item_detail;
+                $lab_items->urology = $lab_item_detail;
+                $lab_items->bacteriology = $lab_item_detail;
+            }
+            $data['lab_items']=$lab_items;
             $this->render('consultation_form',$data);
 
         }else{
