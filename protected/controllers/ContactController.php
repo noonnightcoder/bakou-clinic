@@ -111,109 +111,125 @@ class ContactController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($status = 'N',$doctor_id='')
-	{
-		$model=new Contact;
+    public function actionCreate($status = 'N', $doctor_id = '')
+    {
+        $model = new Contact;
         $patient = new Patient;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
-		if (isset($_POST['Contact'])) {
-                    $model->attributes=$_POST['Contact']; 
-                    //$patient->attributes=$_POST['Patient'];
-                    $transaction=$model->dbConnection->beginTransaction();
-                    try{
-                        set_error_handler(array(&$this, "exception_error_handler")); 
+        if (isset($_POST['Contact'])) {
+            $model->attributes = $_POST['Contact'];
+            //$patient->attributes=$_POST['Patient'];
 
-                        $model->image=CUploadedFile::getInstance($model,'image');
+            if ($_POST['Contact']['year'] !== "" || $_POST['Contact']['month'] !== "" || $_POST['Contact']['day'] !== "") {
+                $dob = $_POST['Contact']['year'] . '-' . $_POST['Contact']['month'] . '-' . $_POST['Contact']['day'];
+                $model->dob = $dob;
+            }
 
-                        $rnd = rand(0,9999);                             
+            $transaction = $model->dbConnection->beginTransaction();
+            try {
+                set_error_handler(array(&$this, "exception_error_handler"));
 
-                        $path=Yii::app()->basePath.'/ximages/'.$model->first_name.'_'.$rnd;
+                $model->image = CUploadedFile::getInstance($model, 'image');
 
-                        //$image_name=$path.'/'.$model->image;
+                $rnd = rand(0, 9999);
 
-                        $model->image_path = $path;
-                        $model->image_name = $model->image;                        
-                        $image_name=$path.'/'.$model->image;
+                $path = Yii::app()->basePath . '/ximages/' . $model->first_name . '_' . $rnd;
 
-                        if( !is_dir( $path ) ) 
-                        {
-                             mkdir( $path , 0777, true);
-                        }
+                //$image_name=$path.'/'.$model->image;
 
-                        //if ($model->image!=null) {
-                        if ($model->save())
-                        {
-                            $display_id=$model->create_display_patient_id($model->id, $model->first_name);
-                            $patient->display_id=$display_id;
-                            $patient->contact_id=$model->id;
-                            $patient->patient_since=date("Y-m-d");
-                            $patient->followup_date=date("Y-m-d");
-                            $patient->reference_by='Lux'; //will add this field on interface
-                            $patient->save();
-                            if ($model->image!=null) {
-                                $model->image->saveAs($image_name);
-                            }
-                            
-                            $transaction->commit();
-                            if($status==='Y')
-                            {
-                                $this->redirect(array('appointment/create','doctor_id'=>$doctor_id,'patient_id'=>$patient->patient_id));
-                            }else{
-                                $this->redirect(array('admin'));
-                            }                            
-                        }
-                        //}
-                    }  catch (Exception $e){
-                        $transaction->rollback();
-                        echo $e->getMessage();
+                $model->image_path = $path;
+                $model->image_name = $model->image;
+                $image_name = $path . '/' . $model->image;
+
+                if (!is_dir($path)) {
+                    mkdir($path, 0777, true);
+                }
+
+                //if ($model->image!=null) {
+                if ($model->save()) {
+                    $display_id = $model->create_display_patient_id($model->id, $model->first_name);
+                    $patient->display_id = $display_id;
+                    $patient->contact_id = $model->id;
+                    $patient->patient_since = date("Y-m-d");
+                    $patient->followup_date = date("Y-m-d");
+                    $patient->reference_by = 'Lux'; //will add this field on interface
+                    $patient->save();
+
+                    if ($model->image != null) {
+                        $model->image->saveAs($image_name);
                     }
-		}
-                
-                $this->render('create',array(
-                    'model'=>$model,
-                ));
-	}
+
+                    $transaction->commit();
+                    if ($status === 'Y') {
+                        $this->redirect(array(
+                            'appointment/create',
+                            'doctor_id' => $doctor_id,
+                            'patient_id' => $patient->patient_id
+                        ));
+                    } else {
+                        $this->redirect(array('admin'));
+                    }
+                }
+                //}
+            } catch (Exception $e) {
+                $transaction->rollback();
+                echo $e->getMessage();
+            }
+        }
+
+        $this->render('create', array(
+            'model' => $model,
+        ));
+    }
 
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
-	{
-		$model=$this->loadModel($id);
-            
-                //$model = new VSearchPatient;
-                
-                //$model = contact::model()->findbyPk($id);
+    public function actionUpdate($id)
+    {
+        $model = $this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+        //$model = new VSearchPatient;
 
-		if (isset($_POST['Contact'])) {
-			$model->attributes=$_POST['Contact'];
-                        $model->image=CUploadedFile::getInstance($model,'image');
-                        
-                        if($model->image!=null){
-                            $model->image_name = $model->image;
-                            $image_name= $model->image_path.'/'.$model->image;
-                        }
-                        
-			if ($model->save()) {
-                                if($model->image!=null){
-                                    $model->image->saveAs($image_name);
-                                }
-				$this->redirect(array('update','id'=>$model->id));
-			}
-		}
-                //die();
-		$this->render('update',array(
-			'model'=>$model,
-		));
-	}
+        //$model = contact::model()->findbyPk($id);
+
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
+
+        if (isset($_POST['Contact'])) {
+            $model->attributes = $_POST['Contact'];
+
+            if ($_POST['Contact']['year'] !== "" || $_POST['Contact']['month'] !== "" || $_POST['Contact']['day'] !== "") {
+                $dob = $_POST['Contact']['year'] . '-' . $_POST['Contact']['month'] . '-' . $_POST['Contact']['day'];
+                $model->dob = $dob;
+            }
+
+            $model->image = CUploadedFile::getInstance($model, 'image');
+
+            if ($model->image != null) {
+                $model->image_name = $model->image;
+                $image_name = $model->image_path . '/' . $model->image;
+            }
+
+            if ($model->save()) {
+                if ($model->image != null) {
+                    $model->image->saveAs($image_name);
+                }
+                Yii::app()->user->setFlash('success', '<strong>' . ucwords($model->first_name) . '</strong> successfully saved.');
+                //$this->redirect(array('update', 'id' => $model->id));
+                $this->redirect(array('admin'));
+            }
+        }
+        //die();
+        $this->render('update', array(
+            'model' => $model,
+        ));
+    }
 
 	/**
 	 * Deletes a particular model.

@@ -5,7 +5,7 @@
 ?>
 <?php $this->breadcrumbs=array(
         'Patient'=>array('admin'),
-	'Create',
+	    'Create',
 );
 ?>
 <?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(

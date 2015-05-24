@@ -46,12 +46,11 @@
             'icon'=>'glyphicon-plus white',
             'url'=>$this->createUrl('create'),
     )); ?>
-<?php if(Yii::app()->user->hasFlash('success')):?>
-        <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
-<?php endif; ?>         
-        <?php if (Yii::app()->user->hasFlash('success')): ?>
-            <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
+
+        <?php if(Yii::app()->user->hasFlash('success')):?>
+                <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
         <?php endif; ?>
+
         <?php $this->widget('bootstrap.widgets.TbGridView', array(
             'id' => 'contact-grid',
             'dataProvider' => $model->search(),
@@ -167,3 +166,13 @@
         <?php $this->endWidget(); ?>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        window.setTimeout(function() {
+            $(".alert").fadeTo(2000, 0).slideUp(2000, function(){
+                $(this).remove();
+            });
+        }, 2000);
+    });
+</script>
