@@ -1,7 +1,7 @@
 /nbproject/
 /assets/
-/protected/runtime/
 /protected/runtime/application.log
+/protected/runtime/
 /protected/runtime/*.log
 *.log
 /ximages
