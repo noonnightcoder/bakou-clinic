@@ -46,7 +46,7 @@
             array('rows' => 1, 'cols' => 10, 'class' => 'span2')); ?>
         <?php echo $form->textAreaControlGroup($visit, 'plan', array('rows' => 1, 'cols' => 10, 'class' => 'span2')); ?>
     </div>
-
+    
     <div class="col-sm-12">
         <?php $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
             'title' => Yii::t('app', 'Treatment'),
@@ -61,11 +61,11 @@
 
             <div class="grid-view" id="select_treatment_form">
                 <?php $this->renderPartial('_ajax_treatment',
-                    array('treatment_selected_items' => $treatment_selected_items, 'treatment' => $treatment), false) ?>
+                    array('treatment_selected_items' => $treatment_selected_items, 'treatment' => $treatment,), false) ?>
             </div>
         <?php $this->endWidget(); ?>
     </div>
-
+    
     <div class="col-sm-12" id="medicine_form">
         <?php $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
             'title' => 'Medicine',

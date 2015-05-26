@@ -490,6 +490,7 @@ class AppointmentController extends Controller
                             $bill->patient_id = $_GET['patient_id'];
                             $bill->visit_id = $_GET['visit_id'];
                             $bill->status = '0';
+                            $bill->exchange_rate = Yii::app()->session['exchange_rate'];
                             if($bill->validate()) $bill->save();
 
                             foreach ($treatment_selected as $key => $value) {
@@ -521,6 +522,7 @@ class AppointmentController extends Controller
                             $prescription->visit_id = $_GET['visit_id'];
                             $prescription->last_update = date('Y-m-d');
                             $prescription->updated_by = $userid;
+                            $prescription->exchange_rate = Yii::app()->session['exchange_rate'];
 
                             if($prescription->validate()) $prescription->save();
 

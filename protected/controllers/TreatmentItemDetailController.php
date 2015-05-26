@@ -208,6 +208,7 @@ class TreatmentItemDetailController extends Controller
                         $lab_test->last_update = date('Y-m-d');
                         $lab_test->updated_by = $userid;
                         $lab_test->status=0;
+                        $lab_test->exchange_rate = Yii::app()->session['exchange_rate'];
                         $lab_test->save();
                         $lab_id = $lab_test->id;
                     }   

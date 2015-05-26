@@ -345,6 +345,10 @@ class Appointment extends CActiveRecord
                         SELECT id,treatment,null dosage,null consuming_time,null duration,
                         null instruction,visit_id,1 quantity,amount,'treatment' flag
                         FROM v_bill_payment where visit_id=$visit_id
+                        UNION ALL
+                        SELECT id,lab_item_name,null dosage,null consuming_time,null duration,
+                        null instruction,visit_id,1 quantity,unit_price,'bloodtest' flag
+                        FROM v_bloodtest_payment where visit_id=$visit_id
                 )t1 INNER JOIN visit t2
                 ON t1.visit_id=t2.visit_id
                 INNER JOIN patient t3 ON t2.patient_id=t3.patient_id
@@ -429,14 +433,17 @@ class Appointment extends CActiveRecord
         
         public function sumBill($visit_id)
         {
-            $xchange_rate = Yii::app()->session['exchange_rate'];
-            $sql="select sum(amount)*$xchange_rate
+            //$xchange_rate = Yii::app()->session['exchange_rate'];
+            $sql="select sum(amount)
                 from (
                     SELECT medicine_id id,medicine_name item,visit_id,quantity,quantity*unit_price amount,'medicine' flag 
                     FROM v_medicine_payment where visit_id= $visit_id
                     UNION ALL
                     SELECT id,treatment,visit_id,1 quantity,amount,'treatment' flag
                     FROM v_bill_payment where visit_id=$visit_id
+                    UNION ALL
+                    SELECT id,lab_item_name,visit_id,1 quantity,IFNULL(unit_price,0) unit_price,'bloodtest' flag
+                    FROM v_bloodtest_payment where visit_id=$visit_id
                 )bl";
             
             $cmd=Yii::app()->db->createCommand($sql);
@@ -461,11 +468,14 @@ class Appointment extends CActiveRecord
                         SELECT id,treatment,visit_id,1 quantity,amount,
                         null dosage,null duration,null frequency,null instruction,null remarks,'treatment' flag
                         FROM v_bill_payment where visit_id=$visit_id
+                        UNION ALL
+                        SELECT id,lab_item_name,visit_id,1 quantity,unit_price,
+                        null dosage,null doration,null frequency,null instruction,null remarks,'bloodtest' flag
+                        from v_bloodtest_payment where visit_id=$visit_id
                 )t1 INNER JOIN visit t2
                 ON t1.visit_id=t2.visit_id
                 INNER JOIN patient t3 ON t2.patient_id=t3.patient_id
                 INNER JOIN contact t4 ON t3.contact_id=t4.id
-                ORDER BY visit_id,flag
                 )dl";
             
             $command=Yii::app()->db->createCommand($sql);

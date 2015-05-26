@@ -11,7 +11,14 @@
     foreach ($medicine_amount as $val)
     {
         $total_amount +=$val['price']*$val['quantity']*Yii::app()->session['exchange_rate'];
-    }    
+    }   
+
+    /*$bloodtest_fee = VBloodtestPayment::model()->findall("visit_id=:visit_id",array(':visit_id'=>$visit_id));
+    
+    foreach ($bloodtest_fee as $val)
+    {
+        $total_amount +=$val['unit_price']*$val['exchange_rate'];
+    } */
 ?>
 <?php //print_r($medicine_selected_items); die(); ?>
 <table class="table table-hover table-condensed">
