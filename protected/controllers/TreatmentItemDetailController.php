@@ -179,8 +179,7 @@ class TreatmentItemDetailController extends Controller
 	}
         
         public function actionLabAnalyzed($visit_id)
-        {
-            
+        {            
             $lab_test = new LabAnalized;
             $lab_selected = new LabAnalyzedDetail;
             $userid = Yii::app()->user->getId();
@@ -241,7 +240,7 @@ class TreatmentItemDetailController extends Controller
                 }  catch (Exception $e){
                     $transaction->rollback();
                     print_r($lab_selected->errors);
-            }
-                }                
+                }
+            }                
         }
 }

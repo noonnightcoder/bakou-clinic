@@ -61,7 +61,7 @@
 
             <div class="grid-view" id="select_treatment_form">
                 <?php $this->renderPartial('_ajax_treatment',
-                    array('treatment_selected_items' => $treatment_selected_items, 'treatment' => $treatment,), false) ?>
+                    array('treatment_selected_items' => $treatment_selected_items, 'treatment' => $treatment,'visit_id'=>$visit_id), false) ?>
             </div>
         <?php $this->endWidget(); ?>
     </div>
@@ -78,7 +78,7 @@
         )); ?>
         <div id="select_medicine_form">
             <?php $this->renderPartial('_select_medicine',
-                array('medicine_selected_items' => $medicine_selected_items, 'medicine' => $medicine,), false); ?>
+                array('medicine_selected_items' => $medicine_selected_items, 'medicine' => $medicine,'visit_id'=>$visit_id), false); ?>
         </div>
         <?php $this->endWidget(); ?>
     </div>
@@ -132,7 +132,7 @@
 
 
 <?php
-$url = Yii::app()->createUrl('Appointment/Addmedicine/');
+$url = Yii::app()->createUrl('Appointment/Addmedicine/visit_id/'.$visit_id);
 Yii::app()->clientScript->registerScript('update_medicine', "
     $('#Item_id').on('change',function(e) {
         medicine_id=$('#Item_id').val();
@@ -201,7 +201,7 @@ Yii::app()->clientScript->registerScript('deleteTreatment', "
 ?>
 
 <?php
-$url = Yii::app()->createUrl('Appointment/Addtreatment/');
+$url = Yii::app()->createUrl('Appointment/Addtreatment/visit_id/'.$visit_id);
 Yii::app()->clientScript->registerScript('update_treament', "
     $('#Treatment_id').on('change',function(e) {
         treatment_id=$('#Treatment_id').val();

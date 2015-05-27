@@ -773,7 +773,7 @@ class AppointmentController extends Controller
         $this->renderPartial('_ajax_Appointment_dashboard',array('doctors'=>$doctors,'appointment'=>$appointment));
     }
 
-    public function actionAddTreatment()
+    public function actionAddTreatment($visit_id)
     {
         $treatment = new Treatment;
         //$treatment_selected_items = array();
@@ -797,7 +797,7 @@ class AppointmentController extends Controller
             Yii::app()->clientScript->scriptMap['box.css'] = false;
             echo CJSON::encode(array(
                 'status' => 'success',
-                'div_treatment_form' => $this->renderPartial('_ajax_treatment', array('treatment_selected_items' => $treatment_selected_items,'treatment'=>$treatment), true, true),
+                'div_treatment_form' => $this->renderPartial('_ajax_treatment', array('treatment_selected_items' => $treatment_selected_items,'treatment'=>$treatment,'visit_id'=>$visit_id), true, true),
             ));
 
             Yii::app()->end();
@@ -838,13 +838,14 @@ class AppointmentController extends Controller
         }
     }
 
-    public function actionAddmedicine()
+    public function actionAddmedicine($visit_id)
     {
         $medicine = new Item;
 
         if ( Yii::app()->request->isPostRequest && Yii::app()->request->isAjaxRequest ) {  
             Yii::app()->treatmentCart->addMedicine($_POST['medicine_id']);                
             $data['medicine']=$medicine;
+            $data['visit_id']=$visit_id;
             $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
             //print_r($data['medicine_selected_items']); die();
             Yii::app()->clientScript->scriptMap['jquery-ui.css'] = false; 
@@ -931,7 +932,7 @@ class AppointmentController extends Controller
         echo CJSON::encode(array('id'=>'','text'=>''));
     }
 
-    public function actionEditMedicine($medicine_id)
+    public function actionEditMedicine($medicine_id,$visit_id)
     {            
         $medicine = new Item;
 
@@ -949,6 +950,7 @@ class AppointmentController extends Controller
             Yii::app()->treatmentCart->editMedicine($medicine_id, $quantity, $price,$dosage,$duration,$frequency,$instruction_id,$comment,$consuming_time_id);
 
             $data['medicine']=$medicine;
+            $data['visit_id']=$visit_id;
             $data['medicine_selected_items'] = Yii::app()->treatmentCart->getMedicine();
             $cs = Yii::app()->clientScript;
             $cs->scriptMap = array(
@@ -969,7 +971,7 @@ class AppointmentController extends Controller
         }
     }
 
-    public function actionEditTreatment($treatment_id)
+    public function actionEditTreatment($treatment_id,$visit_id)
     {
         $treatment = new Treatment;
 
@@ -980,6 +982,7 @@ class AppointmentController extends Controller
             Yii::app()->treatmentCart->editTreatment($treatment_id, $price);
 
             $data['treatment']=$treatment;
+            $data['visit_id']=$visit_id;
             $data['treatment_selected_items'] = Yii::app()->treatmentCart->getCart();
 
             $cs = Yii::app()->clientScript;

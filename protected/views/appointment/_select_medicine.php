@@ -13,12 +13,12 @@
         $total_amount +=$val['price']*$val['quantity']*Yii::app()->session['exchange_rate'];
     }   
 
-    /*$bloodtest_fee = VBloodtestPayment::model()->findall("visit_id=:visit_id",array(':visit_id'=>$visit_id));
+    $bloodtest_fee = VBloodtestPayment::model()->findall("visit_id=:visit_id",array(':visit_id'=>$visit_id));
     
     foreach ($bloodtest_fee as $val)
     {
         $total_amount +=$val['unit_price']*$val['exchange_rate'];
-    } */
+    } 
 ?>
 <?php //print_r($medicine_selected_items); die(); ?>
 <table class="table table-hover table-condensed">
@@ -49,7 +49,7 @@
             <td style="display:none">
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
+                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id.'&visit_id='.$visit_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
@@ -62,7 +62,7 @@
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
+                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id.'&visit_id='.$visit_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
@@ -73,7 +73,7 @@
             <td>                
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
+                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id.'&visit_id='.$visit_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>                  
@@ -86,7 +86,7 @@
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
+                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id.'&visit_id='.$visit_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>                
@@ -109,7 +109,7 @@
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
+                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id.'&visit_id='.$visit_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
@@ -121,7 +121,7 @@
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
+                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id.'&visit_id='.$visit_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
@@ -133,7 +133,7 @@
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
+                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id.'&visit_id='.$visit_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
@@ -143,7 +143,7 @@
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id),
+                        'action' => Yii::app()->createUrl('appointment/EditMedicine?medicine_id='.$item_id.'&visit_id='.$visit_id),
                         'htmlOptions'=>array('class'=>'line_item_form'),
                     ));
                 ?>
@@ -158,7 +158,7 @@
                             'color'=>TbHtml::BUTTON_COLOR_WARNING,
                             'size' => TbHtml::BUTTON_SIZE_MINI,
                             'icon' => 'ace-icon fa fa-eraser',
-                            'url' => array('DeleteMedicine', 'medicine_id' => $item_id),
+                            'url' => array('DeleteMedicine', 'medicine_id' => $item_id,'visit_id'=>$visit_id),
                             //'label'=>'delete',
                             'class' => 'delete-item',
                             'title' =>  'Remove',                            

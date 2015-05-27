@@ -13,12 +13,15 @@
         $total_amount +=$val['price']*$val['quantity']*Yii::app()->session['exchange_rate'];
     }    
     //echo $visit_id;
-    /*$bloodtest_fee = VBloodtestPayment::model()->findall("visit_id=:visit_id",array(':visit_id'=>$visit_id));
-    
+    $bloodtest_fee = VBloodtestPayment::model()->findall("visit_id=:visit_id",array(':visit_id'=>$visit_id));
+    //$k=0;
     foreach ($bloodtest_fee as $val)
     {
         $total_amount +=$val['unit_price']*$val['exchange_rate'];
-    }*/
+        //echo $val['exchange_rate'];
+        //print_r($val);
+    }
+    //echo $total_amount;
 ?>
 <table class="table table-hover table-condensed">
     <thead>
@@ -53,7 +56,7 @@
             <td>
                 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                         'method'=>'post',
-                        'action' => Yii::app()->createUrl('appointment/EditTreatment?treatment_id='.$item_id),
+                        'action' => Yii::app()->createUrl('appointment/EditTreatment?treatment_id='.$item_id.'&visit_id='.$visit_id),
                         'htmlOptions'=>array('class'=>'line_treatment_form'),
                     ));
                 ?>
@@ -150,7 +153,6 @@
     });*/
     
 </script>
-
 <script>    
     $(document).ready(function() {
         $('#show-payment-modal').on('shown.bs.modal', function() {
