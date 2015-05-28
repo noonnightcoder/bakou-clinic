@@ -32,7 +32,7 @@ class VisitController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','Revisit'),
+				'actions'=>array('create','update','Revisit','PharmacyLog'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -210,5 +210,15 @@ class VisitController extends Controller
             }else{
                 Yii::app()->user->setFlash('success', '<strong>Oop!</strong> Wrong link!.');
             }            
+        }
+        
+        public function actionPharmacyLog($visit_id)
+        {
+            $tran_log = new TransactionLog;
+            $tran_log->visit_id = $_GET['visit_id'];
+            $tran_log->created_date = date('Y-m-d h:i:s');
+            $tran_log->transaction_name = 'Pharmacy';
+            if($tran_log->validate()) $tran_log->save ();
+            $this->redirect(array('appointment/pharmacy'));
         }
 }

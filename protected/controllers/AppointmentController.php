@@ -1276,7 +1276,7 @@ class AppointmentController extends Controller
         $total=0;
         foreach ($cust_info as $id => $item) 
         {
-            $total+=round($item['price'] * $item['quantity'] - $item['price'] * $item['quantity'] * $item['discount'] / 100, 2, PHP_ROUND_HALF_DOWN);
+            $total+=round($item['price'] * $item['quantity']*$item['exchange_rate'] - $item['price'] * $item['quantity'] *$item['exchange_rate']* $item['discount'] / 100, 2, PHP_ROUND_HALF_DOWN);
         }
         $data['total']=$total - $total*$data['discount_amount']/100;
         $data['actual_amount'] = Appointment::model()->get_actual_amount($visit_id);
@@ -1325,9 +1325,9 @@ class AppointmentController extends Controller
 
             Yii::app()->end();
         }
-    }
-    
-    public function actionEmptytreatment()
+    }  
+
+        public function actionEmptytreatment()
     {
         Yii::app()->treatmentCart->clearAll();
     }

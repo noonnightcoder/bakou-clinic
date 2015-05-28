@@ -19,7 +19,7 @@
     <p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
     <?php //echo $form->textFieldControlGroup($model,'appointment_date',array('span'=>5)); ?>
-
+    <?php if(isset($_GET['patient_id'])) {$patient->patient_id = $_GET['patient_id'];}?>
     <div class="form-group"><label class="col-sm-3 control-label" for="Patient">Patient *</label>
         <?php //$patient->patient_id=12; ?>
         <div class="col-md-5">
@@ -60,10 +60,16 @@
                                 };
                              }',
                     ),
-                    'initSelection' => 'js:function (element, callback) {
-                               var id=$(element).val();
-                               console.log(id);
-                        }',
+                    'initSelection'=>'js:function(element,callback) {
+                        //alert(element.val());
+                        var id=$(element).val(); // read #selector value
+                            if ( id !== "" ) {
+                             $.ajax("'.Yii::app()->createUrl('contact/SearchPatient').'", {
+                               data: { id: id },
+                               dataType: "json"
+                            }).done(function(data,textStatus, jqXHR) { callback(data[0]); });
+                        }
+                    }',
                     //'htmlOptions'=>array('id'=>'search_item_id'),
                 )
             ));

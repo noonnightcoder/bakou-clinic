@@ -143,7 +143,7 @@
                         ),
                         'appointment' => array(
                             'icon' => 'ace-icon fa fa-calendar',
-                            'url' => 'Yii::app()->createUrl("appointment/appointmentdash/",array("contact_id"=>$data->contact_id))',
+                            'url' => 'Yii::app()->createUrl("appointment/appointmentdash/",array("patient_id"=>$data->patient_id))',
                             'options' => array(
                                 'class' => 'btn btn-xs btn-success',
                                 'title' => 'Make Appointment',

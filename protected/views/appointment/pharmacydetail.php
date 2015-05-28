@@ -7,11 +7,31 @@
 <?php
 /* @var $this ContactController */
 /* @var $model Contact */
-    $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
-                  'title' => 'Patient : '.TbHtml::labelTb($patient_name, array('color' => TbHtml::LABEL_COLOR_SUCCESS)),
-                  'headerIcon' => 'ace-icon fa fa-user',
-                  'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
-    ));
+    $chk_completed = TransactionLog::model()->find("visit_id=:visit_id and transaction_name='Pharmacy'",array('visit_id'=>$visit_id));
+    if(!empty($chk_completed))
+    {
+        $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
+                      'title' => 'Patient : '.TbHtml::labelTb($patient_name, array('color' => TbHtml::LABEL_COLOR_SUCCESS)),
+                      'headerIcon' => 'ace-icon fa fa-user',                      
+                      'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
+        ));
+    }else{
+        $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
+                      'title' => 'Patient : '.TbHtml::labelTb($patient_name, array('color' => TbHtml::LABEL_COLOR_SUCCESS)),
+                      'headerIcon' => 'ace-icon fa fa-user',
+                      'headerButtons' => array(
+                          TbHtml::linkButton(Yii::t('app', 'Completed'), array(
+                            'color' => TbHtml::BUTTON_COLOR_WARNING,
+                            'size' => TbHtml::BUTTON_SIZE_SMALL,
+                            'icon' => 'glyphicon-plus white',
+                            'url' => Yii::app()->createUrl('visit/PharmacyLog/visit_id/'.$visit_id),
+                            'class' => 'pharmacy-completed',
+                            //'title' => Yii::t('app', 'Suspend Sale'),
+                        )),
+                      ),
+                      'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
+        ));
+    }
 ?>         
 <?php
 /* @var $this AppointmentController */

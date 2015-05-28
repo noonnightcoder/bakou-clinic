@@ -312,7 +312,7 @@ class Appointment extends CActiveRecord
                 )t1 INNER JOIN visit t2
                 ON t1.visit_id=t2.visit_id
                 INNER JOIN patient t3 ON t2.patient_id=t3.patient_id
-                INNER JOIN contact t4 ON t3.contact_id=t4.id
+                INNER JOIN contact t4 ON t3.contact_id=t4.id                
                 ORDER BY visit_id,flag
                 )lv,(SELECT @rownum:=0) r";
             
@@ -339,15 +339,15 @@ class Appointment extends CActiveRecord
                 dosage,consuming_time,duration,instruction,t1.quantity,t1.unit_price,t1.flag
                 FROM (
                         SELECT medicine_id id,medicine_name item,
-                        dosage,consuming_time,duration,instruction,visit_id,quantity,unit_price,'medicine' flag 
+                        dosage,consuming_time,duration,instruction,visit_id,quantity,unit_price*exchange_rate unit_price,'medicine' flag 
                         FROM v_medicine_payment where visit_id=$visit_id
                         UNION ALL
                         SELECT id,treatment,null dosage,null consuming_time,null duration,
-                        null instruction,visit_id,1 quantity,amount,'treatment' flag
+                        null instruction,visit_id,1 quantity,amount*exchange_rate amount,'treatment' flag
                         FROM v_bill_payment where visit_id=$visit_id
                         UNION ALL
                         SELECT id,lab_item_name,null dosage,null consuming_time,null duration,
-                        null instruction,visit_id,1 quantity,unit_price,'bloodtest' flag
+                        null instruction,visit_id,1 quantity,unit_price*exchange_rate unit_price,'bloodtest' flag
                         FROM v_bloodtest_payment where visit_id=$visit_id
                 )t1 INNER JOIN visit t2
                 ON t1.visit_id=t2.visit_id
@@ -390,7 +390,7 @@ class Appointment extends CActiveRecord
                 }
         
             }else{
-                $cond="";
+                $cond="";                
                 $cond1 =" and appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
                               and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)";
             }
@@ -436,13 +436,13 @@ class Appointment extends CActiveRecord
             //$xchange_rate = Yii::app()->session['exchange_rate'];
             $sql="select sum(amount)
                 from (
-                    SELECT medicine_id id,medicine_name item,visit_id,quantity,quantity*unit_price amount,'medicine' flag 
+                    SELECT medicine_id id,medicine_name item,visit_id,quantity,quantity*unit_price*exchange_rate amount,'medicine' flag 
                     FROM v_medicine_payment where visit_id= $visit_id
                     UNION ALL
-                    SELECT id,treatment,visit_id,1 quantity,amount,'treatment' flag
+                    SELECT id,treatment,visit_id,1 quantity,amount*exchange_rate,'treatment' flag
                     FROM v_bill_payment where visit_id=$visit_id
                     UNION ALL
-                    SELECT id,lab_item_name,visit_id,1 quantity,IFNULL(unit_price,0) unit_price,'bloodtest' flag
+                    SELECT id,lab_item_name,visit_id,1 quantity,IFNULL(unit_price,0)*exchange_rate unit_price,'bloodtest' flag
                     FROM v_bloodtest_payment where visit_id=$visit_id
                 )bl";
             
@@ -453,23 +453,23 @@ class Appointment extends CActiveRecord
         
         public function generateInvoice($visit_id)
         {
-            $sql="select fullname,visit_date,item name,quantity,unit_price price,0 discount,dosage,duration,consuming_time,instruction,remarks comment
+            $sql="select fullname,visit_date,item name,quantity,unit_price price,exchange_rate,0 discount,dosage,duration,consuming_time,instruction,remarks comment
                 from(SELECT t3.patient_id,t2.visit_id,
                 case
                         when last_name is not null then CONCAT(last_name,' ',first_name) 
                         else first_name
-                end fullname,t2.visit_date,t1.item,t1.quantity,t1.unit_price,
+                end fullname,t2.visit_date,t1.item,t1.quantity,t1.unit_price,t1.exchange_rate,
                 t1.dosage,t1.duration,t1.consuming_time,t1.instruction,t1.remarks,t1.flag
                 FROM (
-                        SELECT medicine_id id,medicine_name item,visit_id,quantity,unit_price,
+                        SELECT medicine_id id,medicine_name item,visit_id,quantity,unit_price,exchange_rate,
                         dosage,duration,consuming_time,instruction,remarks,'medicine' flag 
                         FROM v_medicine_payment where visit_id=$visit_id
                         UNION ALL
-                        SELECT id,treatment,visit_id,1 quantity,amount,
+                        SELECT id,treatment,visit_id,1 quantity,amount,exchange_rate,
                         null dosage,null duration,null frequency,null instruction,null remarks,'treatment' flag
                         FROM v_bill_payment where visit_id=$visit_id
                         UNION ALL
-                        SELECT id,lab_item_name,visit_id,1 quantity,unit_price,
+                        SELECT id,lab_item_name,visit_id,1 quantity,unit_price,exchange_rate,
                         null dosage,null doration,null frequency,null instruction,null remarks,'bloodtest' flag
                         from v_bloodtest_payment where visit_id=$visit_id
                 )t1 INNER JOIN visit t2
@@ -514,7 +514,8 @@ class Appointment extends CActiveRecord
                 }
         
             }else{
-                $cond="";
+                //$cond="";
+                $cond=" and visit_id not in (select visit_id from transaction_log where transaction_name='Pharmacy')";
                 $cond1 =" appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
                               and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)";
             }
@@ -525,7 +526,8 @@ class Appointment extends CActiveRecord
                 SELECT app_id appointment_id,patient_id,user_id doctor_id,visit_id,
                 patient_name,display_id,appointment_date,title,status
                 FROM v_appointment_state
-                WHERE $cond1 $cond
+                WHERE $cond1 $cond  
+                and visit_id IN (SELECT visit_id FROM bill WHERE STATUS ='2')    
                 and status='Complete'    
             )lv,(SELECT @rownum:=0) r   
             order by visit_id desc";

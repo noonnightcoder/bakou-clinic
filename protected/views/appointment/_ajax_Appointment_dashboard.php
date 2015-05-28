@@ -32,7 +32,7 @@ for ($i = 1; $i < 10; $i++) {
     echo "<tr><td class='appointment_time'>" . $i . "</td>";
     foreach ($doctors as $doc_id => $doc) {
         //$doc=$doctor;
-        $url = Yii::app()->createUrl('Appointment/create', array("doctor_id" => $doc_id));
+        $url = Yii::app()->createUrl('Appointment/create', array("doctor_id" => $doc_id,"patient_id"=>$_GET['patient_id']));
 
         $count = 0;
         echo "<td><table id=\"innertbl\"><tr $class>";

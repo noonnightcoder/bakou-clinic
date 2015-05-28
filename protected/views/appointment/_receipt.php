@@ -115,9 +115,9 @@ if (isset($error_message))
                         $discount_amt=$discount_arr[0];
                         $discount_symbol=$discount_arr[1];
                         if ($discount_symbol=='$') {
-                            $total_item=number_format($item['price']*$item['quantity']-$discount_amt,Yii::app()->shoppingCart->getDecimalPlace());
+                            $total_item=number_format($item['price']*$item['quantity']*$item['exchange_rate']-$discount_amt,Yii::app()->shoppingCart->getDecimalPlace());
                         } else {
-                            $total_item=number_format($item['price']*$item['quantity']-$item['price']*$item['quantity']*$discount_amt/100,Yii::app()->shoppingCart->getDecimalPlace());
+                            $total_item=number_format($item['price']*$item['quantity']*$item['exchange_rate']-$item['price']*$item['quantity']*$item['exchange_rate']*$discount_amt/100,Yii::app()->shoppingCart->getDecimalPlace());
                         }
                     ?>
                     <tr>                

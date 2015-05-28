@@ -151,7 +151,11 @@
                     echo $val['caption']."<br/>";
                 echo "</td>";
             echo "</tr>";    
-        }       
+        }
+        if(empty($lab_selected))
+        {
+            echo "<tr><td>No results found.</td></tr>";
+        }
     ?>
     </tbod>
     </table>    

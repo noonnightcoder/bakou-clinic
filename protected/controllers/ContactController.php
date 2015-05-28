@@ -32,7 +32,7 @@ class ContactController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','admin','Upload','Delete','PatientHistory','visitDetail','VisitUnderConst'),
+				'actions'=>array('create','update','admin','Upload','Delete','PatientHistory','visitDetail','VisitUnderConst','SearchPatient'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -424,5 +424,21 @@ class ContactController extends Controller
         }
 
         //$this->renderPartial('visited_detail',$data);
+    }
+    
+    public function actionSearchPatient()
+    {
+        $data = VSearchPatient::model()->findall("patient_id=:patient_id",array(':patient_id'=>(int) $_GET['id'] ));
+        //print_r($data);
+        $result = array();
+        foreach($data as $item):
+           $result[] = array(
+               'id'   => $item->patient_id,
+               'text' => $item->fullname.' '.$item->display_id,
+           );
+        endforeach;
+        header('Content-type: application/json');
+        echo CJSON::encode( $result );
+        Yii::app()->end(); 
     }
 }

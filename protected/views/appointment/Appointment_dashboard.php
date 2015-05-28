@@ -44,8 +44,15 @@ $this->breadcrumbs=array(
                 echo "<tr><td class='appointment_time'>" . $i . "</td>";
                 foreach ($doctors as $doc_id => $doc) {
                     //$doc=$doctor;
-                    $url = Yii::app()->createUrl('Appointment/create', array("doctor_id" => $doc_id));
-
+                    if(isset($_GET['patient_id']))
+                    {
+                        $url = Yii::app()->createUrl('Appointment/create', array("doctor_id" => $doc_id,"patient_id"=>$_GET['patient_id']));
+                    }else
+                    {
+                        $url = Yii::app()->createUrl('Appointment/create', array("doctor_id" => $doc_id));
+                    }
+                    
+                    //$url='';
                     $count = 0;
                     echo "<td><table id=\"innertbl\"><tr $class>";
 
