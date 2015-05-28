@@ -59,7 +59,8 @@
         'medicine' => $medicine,
         'medicine_selected_items' => $medicine_selected_items,
         'visit_id' => $visit_id,
-        'chk_bill_saved' => $chk_bill_saved
+        'chk_bill_saved' => $chk_bill_saved,
+        'LabResult'=>$LabResult
     ), true, false),
 )); ?>
 <?php $this->endWidget(); ?>

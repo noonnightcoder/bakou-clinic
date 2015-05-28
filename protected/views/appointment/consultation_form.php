@@ -22,6 +22,7 @@
                                     'visit_id'=>$visit_id,
                                     'treatment_selected_items'=>$treatment_selected_items,
                                     'medicine_selected_items'=>$medicine_selected_items,
+                                    'LabResult'=>$LabResult,
                                 ),true
                             ),
                             'active'=>true

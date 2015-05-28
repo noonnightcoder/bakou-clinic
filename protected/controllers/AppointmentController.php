@@ -403,6 +403,7 @@ class AppointmentController extends Controller
         $prescription = new Prescription;
         $medicine = new Item;
         $lab_items = new TreatmentItemDetail;
+        $LabResult = new LabAnalized;
 
         if(!Yii::app()->user->checkAccess('consultation.create'))
         {
@@ -628,6 +629,7 @@ class AppointmentController extends Controller
                 $lab_items->urology = $lab_item_detail;
                 $lab_items->bacteriology = $lab_item_detail;
             }
+            $data['LabResult']=$LabResult;
             $data['lab_items']=$lab_items;
             $this->render('consultation_form',$data);
 

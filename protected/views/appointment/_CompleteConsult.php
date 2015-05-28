@@ -83,6 +83,19 @@
         <?php $this->endWidget(); ?>
     </div>
 
+    <div class="col-sm-12" id="lab_form">
+        <?php $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
+            'title' => 'Lab Result',
+            'headerIcon' => 'ace-icon fa fa-medkit',
+            'htmlHeaderOptions' => array('class' => 'widget-header-flat widget-header-small'),
+            //'content' => $this->renderPartial('_form', array('model'=>$model,'model_search'=>$model_search,'leave_detail_wrapper'=>$leave_detail_wrapper,'employee_id'=>$employee_id), true),
+        )); ?>
+            <div id="lab_result_form">
+                <?php $this->renderPartial('_labo_patient_result',array('LabResult'=>$LabResult,'visit_id'=>$visit_id), false); ?>
+            </div>
+        <?php $this->endWidget(); ?>        
+    </div>
+    
     <div class="col-sm-12">
         <div class="form-actions" id="form-actions">
             <?php echo TbHtml::submitButton($visit->isNewRecord ? Yii::t('app', 'Save') : Yii::t('app', 'Save'), array(
