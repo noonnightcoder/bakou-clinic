@@ -61,7 +61,7 @@
                              }',
                     ),
                     'initSelection'=>'js:function(element,callback) {
-                        //alert(element.val());
+                        //http://bit.ly/1QcVhCm
                         var id=$(element).val(); // read #selector value
                             if ( id !== "" ) {
                              $.ajax("'.Yii::app()->createUrl('contact/SearchPatient').'", {
