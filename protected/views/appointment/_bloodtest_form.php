@@ -83,7 +83,8 @@ if(!empty($chk_lab))
                     'color' => TbHtml::BUTTON_COLOR_PRIMARY,
                     'size' => TbHtml::BUTTON_SIZE_SMALL,
                     'id' => 'save-bloodtest-form',
-                    'name' => 'Save_bloodtest'
+                    'name' => 'Save_bloodtest',
+                    'disabled'=>$disabled
                     //'size'=>TbHtml::BUTTON_SIZE_SMALL,
                 )); ?>
             </div>

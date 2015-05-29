@@ -732,6 +732,19 @@ class AppointmentController extends Controller
                 $tran_log->transaction_name = 'Lab';
                 if($tran_log->validate()) $tran_log->save ();
                 $this->redirect(array('appointment/labocheck'));
+            }else{
+                if(isset($_POST['Save_labo']))
+                {
+                   $chk_tran = TransactionLog::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
+                    if(empty($chk_tran))
+                    {
+                        $tran_log->visit_id = $_GET['visit_id'];
+                        $tran_log->created_date = date('Y-m-d h:i:s');
+                        $tran_log->transaction_name = 'Lab';
+                        if($tran_log->validate()) $tran_log->save ();
+                        $this->redirect(array('appointment/labocheck'));
+                    } 
+                }                
             }
             
             $this->render('labo_view',$data);
