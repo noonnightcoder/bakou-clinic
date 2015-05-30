@@ -704,7 +704,7 @@ class AppointmentController extends Controller
             $lab_items_s=array();
             if(isset($_POST['lab_items_f']) || isset($_POST['lab_items_s']))
             {
-                $lab_items_s = $_POST['lab_items_s'];
+                if(isset($_POST['lab_items_s'])){$lab_items_s = $_POST['lab_items_s'];}
                 $lab_items_name = $_POST['lab_items_name'];
                 $blood_item_id = $_POST['blood_item_id'];
                 foreach ($_POST['lab_items_f'] as $key =>$val)
@@ -732,7 +732,7 @@ class AppointmentController extends Controller
                 $tran_log->transaction_name = 'Lab';
                 if($tran_log->validate()) $tran_log->save ();
                 $this->redirect(array('appointment/labocheck'));
-            }else{
+            }/*else{
                 if(isset($_POST['Save_labo']))
                 {
                    $chk_tran = TransactionLog::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
@@ -745,7 +745,7 @@ class AppointmentController extends Controller
                         $this->redirect(array('appointment/labocheck'));
                     } 
                 }                
-            }
+            }*/
             
             $this->render('labo_view',$data);
         }else{
