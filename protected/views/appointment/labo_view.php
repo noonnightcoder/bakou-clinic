@@ -76,7 +76,7 @@
 </div><!-- /.col -->
 <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         //'id'=>'doctor_consult',
-        //'action'=>Yii::app()->createUrl('appointment/DoctorConsult'),
+        'action'=>Yii::app()->createUrl('visit/CompletedLab/visit_id/'.$visit_id),
         'enableAjaxValidation' => true,
         'enableClientValidation' => true,
         'clientOptions' => array(

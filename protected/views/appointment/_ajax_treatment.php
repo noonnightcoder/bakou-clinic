@@ -69,7 +69,7 @@
                         'color'=>TbHtml::BUTTON_COLOR_WARNING,
                         'size' => TbHtml::BUTTON_SIZE_MINI,
                         'icon' => 'ace-icon fa fa-eraser',
-                        'url' => array('DeleteTreatment', 'treatment_id' => $item_id),
+                        'url' => array('DeleteTreatment', 'treatment_id' => $item_id,'visit_id'=>$visit_id),
                         //'label'=>'delete',
                         'class' => 'delete-treatment',
                         'title' =>  'Remove',                            

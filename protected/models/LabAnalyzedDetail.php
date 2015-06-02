@@ -110,7 +110,11 @@ class LabAnalyzedDetail extends CActiveRecord
                 CASE
                         WHEN ROUND((LENGTH(val_result)-LENGTH(REPLACE(val_result, ':', '')))/LENGTH(':'))=0 THEN val_result
                         ELSE SUBSTR(val_result,1,LOCATE('\"',val_result,1)-2)
-                END val_result_col1, SUBSTR(val_result,LOCATE(':',val_result,1)+2) val_result_col2
+                END val_result_col1, 
+                CASE
+                        WHEN LOCATE(':',val_result,1)=0 THEN NULL
+                        ELSE SUBSTR(val_result,LOCATE(':',val_result,1)+2)
+                END val_result_col2
                 from (
                 SELECT t1.id,t3.id blood_id,t2.id lab_analyzed_id,t3.treatment_item,t3.caption,
                 SUBSTR(val,LOCATE(':',val,1)+2) val_result

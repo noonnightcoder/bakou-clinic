@@ -562,7 +562,7 @@ class Appointment extends CActiveRecord
                         WHERE appointment_date>=DATE_SUB(CURDATE(), INTERVAL 0 DAY)
                         and appointment_date<DATE_ADD(CURDATE(), INTERVAL 1 DAY)
                         and user_id=$userid  
-                        and status in ('Waiting','Consultation')
+                        and status in ('Waiting','Consultation','Complete')
                         $cond
                         ORDER BY appointment_date
                     )cl,(SELECT @rownum:=0) r";

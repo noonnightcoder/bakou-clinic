@@ -42,7 +42,8 @@ class AppointmentController extends Controller
                                 'Prescription','prescriptionDetail','AddPayment',
                                 'CompleteSale','DeletePayment','Labocheck',
                                 'LaboPreview','LaboView','Pharmacy','PharmacyDetail',
-                                'ActualAmount','InitMedicine','Emptytreatment','Emptypayment','AjaxWaitingQueue','AjaxAppointmentDash'
+                                'ActualAmount','InitMedicine','Emptytreatment','Emptypayment',
+                                'AjaxWaitingQueue','AjaxAppointmentDash','CompletedLab'
                                 ),
                             'users'=>array('@'),
                     ),
@@ -821,7 +822,7 @@ class AppointmentController extends Controller
         }
     }
 
-    public function actionDeleteTreatment($treatment_id)
+    public function actionDeleteTreatment($treatment_id,$visit_id)
     {
         $treatment = new Treatment;
 
@@ -844,7 +845,7 @@ class AppointmentController extends Controller
             Yii::app()->clientScript->scriptMap['box.css'] = false;
             echo CJSON::encode(array(
                 'status' => 'success',
-                'div_treatment_form' => $this->renderPartial('_ajax_treatment', array('treatment_selected_items' => $treatment_selected_items,'treatment'=>$treatment), true, true),
+                'div_treatment_form' => $this->renderPartial('_ajax_treatment', array('treatment_selected_items' => $treatment_selected_items,'treatment'=>$treatment,'visit_id'=>$visit_id), true, true),
             ));
 
             Yii::app()->end();
@@ -890,7 +891,7 @@ class AppointmentController extends Controller
         }
     }
 
-    public function actionDeleteMedicine($medicine_id)
+    public function actionDeleteMedicine($medicine_id,$visit_id)
     {
         $treatment = new Treatment;
         $medicine = new Item;
@@ -899,6 +900,7 @@ class AppointmentController extends Controller
             Yii::app()->treatmentCart->deleteMedicine($medicine_id);
             $data['medicine_selected_items']=Yii::app()->treatmentCart->getMedicine();
              $data['medicine']=  $medicine; 
+             $data['visit_id']=$visit_id;
 
             if (Yii::app()->request->isAjaxRequest) {
                 $cs = Yii::app()->clientScript;
@@ -1350,5 +1352,21 @@ class AppointmentController extends Controller
     public function actionEmptypayment()
     {
         Yii::app()->treatmentCart->emptyPayment();
+    }    
+        
+    public function actionCompletedLab($visit_id)
+    {
+        $data['lab_selected'] = LabAnalyzedDetail::model()->get_lab_analized($_GET['visit_id']);
+        $clinic_info = Clinic::model()->find();
+        $data['clinic_name']=$clinic_info->clinic_name;
+        $data['clinic_address']= $clinic_info->clinic_address;
+        $data['clinic_mobile'] = $clinic_info->mobile;
+        
+        $patient_id = Appointment::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
+        $rs = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$patient_id->patient_id));
+        $data['visit_date']=$patient_id->appointment_date;
+        $data['client']=$rs;
+        
+        $this->render('_lab_print', $data);
     }
 }
