@@ -76,7 +76,7 @@
 </div><!-- /.col -->
 <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         //'id'=>'doctor_consult',
-        'action'=>Yii::app()->createUrl('visit/CompletedLab/visit_id/'.$visit_id),
+        //'action'=>Yii::app()->createUrl('visit/CompletedLab/visit_id/'.$visit_id),
         'enableAjaxValidation' => true,
         'enableClientValidation' => true,
         'clientOptions' => array(
@@ -146,7 +146,7 @@
                     }else{
                         echo "<input class='blood-result-input' type='text' name='lab_items_f[$blood_id]' value='$val_col1' style='width:200px;' placeholder='$lab_items_name'>";
                     }
-                echo "</td>";;
+                echo "</td>";
                 echo "<td>"; 
                     echo $val['caption']."<br/>";
                 echo "</td>";

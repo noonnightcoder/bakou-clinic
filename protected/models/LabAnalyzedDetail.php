@@ -114,14 +114,16 @@ class LabAnalyzedDetail extends CActiveRecord
                 CASE
                         WHEN LOCATE(':',val_result,1)=0 THEN NULL
                         ELSE SUBSTR(val_result,LOCATE(':',val_result,1)+2)
-                END val_result_col2
+                END val_result_col2,
+                (select group_name from treatment_group t4 where mm.t_group_id=t4.id) lab_type
                 from (
                 SELECT t1.id,t3.id blood_id,t2.id lab_analyzed_id,t3.treatment_item,t3.caption,
-                SUBSTR(val,LOCATE(':',val,1)+2) val_result
+                SUBSTR(val,LOCATE(':',val,1)+2) val_result,t3.t_group_id
                 FROM lab_analyzed_detail t1
                 INNER JOIN lab_analized t2 ON t1.lab_analized_id=t2.id
                 INNER JOIN treatment_item_detail t3 ON t1.itemtest_id=t3.id
                 where t2.visit_id=:visit_id
+                order by t3.t_group_id,t1.id
                 )mm";
             
             $cmd=Yii::app()->db->createCommand($sql);

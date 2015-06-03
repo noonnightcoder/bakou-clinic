@@ -294,20 +294,20 @@ class Appointment extends CActiveRecord
         public function showBillDetail($visit_id)
         {
             $sql="select @rownum:=@rownum+1 id,patient_id,visit_id,fullname,
-                visit_date,item,dosage,consuming_time,duration,instruction,quantity,quantity*unit_price unit_price,flag info
+                visit_date,item,dosage,consuming_time,duration,instruction,comment,quantity,quantity*unit_price unit_price,flag info
                 from(SELECT t3.patient_id,t2.visit_id,
                 case
                         when last_name is not null then CONCAT(last_name,' ',first_name) 
                         else first_name
                 end fullname,t2.visit_date,t1.item,
-                dosage,consuming_time,duration,instruction,t1.quantity,t1.unit_price,t1.flag
+                dosage,consuming_time,duration,instruction,t1.quantity,t1.comment,t1.unit_price,t1.flag
                 FROM (
                         SELECT medicine_id id,medicine_name item,
-                        dosage,consuming_time,duration,instruction,visit_id,quantity,unit_price,'medicine' flag 
+                        dosage,consuming_time,duration,instruction,visit_id,quantity,unit_price,remarks comment,'medicine' flag 
                         FROM v_medicine_payment where visit_id=$visit_id
                         /*UNION ALL
                         SELECT id,treatment,null dosage,null consuming_time,null duration,
-                        null instruction,visit_id,1 quantity,amount,'treatment' flag
+                        null instruction,visit_id,1 quantity,amount,null comment,'treatment' flag
                         FROM v_bill_payment where visit_id=$visit_id*/
                 )t1 INNER JOIN visit t2
                 ON t1.visit_id=t2.visit_id

@@ -1367,6 +1367,6 @@ class AppointmentController extends Controller
         $data['visit_date']=$patient_id->appointment_date;
         $data['client']=$rs;
         
-        $this->render('_lab_print', $data);
+        $this->render('_labo_print', $data);
     }
 }

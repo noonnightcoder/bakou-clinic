@@ -99,6 +99,9 @@ $('.search-form form').submit(function(){
                 array('name'=>'instruction',
                        'header'=>'Instruction', 
                 ),
+                array('name'=>'comment',
+                       'header'=>'Comment', 
+                ),
 		array('name'=>'quantity',
                         'header'=>'Quantity', 
                         'value'=>'round($data["quantity"])'
