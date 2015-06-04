@@ -152,7 +152,7 @@
                 <tr>            
                     <td style='text-align:right;border-top:1px solid #000000;'></td>                
                 </tr>
-                <tr><td>Doctor:</td></tr>
+                <tr><td>Doctor: <?php echo $doctor->doctor_name; ?></td></tr>
                 <tr><td>Date:<?php echo date('d-M-Y') ?></td></tr>
             </table>
         </div>
@@ -164,7 +164,7 @@
                 <tr>            
                     <td style='text-align:right;border-top:1px solid #000000;'></td>                
                 </tr>
-                <tr style='text-align:left'><td>Lab-Tech:</td></tr>
+                <tr style='text-align:left'><td>Lab-Tech: <?php echo $lab_tech->doctor_name; ?></td></tr>
                 <tr style='text-align:left'><td>Date:<?php echo date('d-M-Y') ?></td></tr>
             </table>
         </div>

@@ -1344,21 +1344,7 @@ class AppointmentController extends Controller
             $tran_log->transaction_name = 'Lab';
             if($tran_log->validate()) $tran_log->save ();
             //$this->redirect(array('appointment/labocheck'));
-        }/*else{
-            if(isset($_POST['Save_labo']))
-            {
-               $chk_tran = TransactionLog::model()->find("visit_id=:visit_id",array(':visit_id'=>$_GET['visit_id']));
-                if(empty($chk_tran))
-                {
-                    $tran_log->visit_id = $_GET['visit_id'];
-                    $tran_log->created_date = date('Y-m-d h:i:s');
-                    $tran_log->transaction_name = 'Lab';
-                    if($tran_log->validate()) $tran_log->save ();
-                    $this->redirect(array('appointment/labocheck'));
-                } 
-            }                
-        }*/
-            
+        }            
         
         $data['lab_selected'] = LabAnalyzedDetail::model()->get_lab_analized($_GET['visit_id']);
         $clinic_info = Clinic::model()->find();
@@ -1370,6 +1356,12 @@ class AppointmentController extends Controller
         $rs = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$patient_id->patient_id));
         $data['visit_date']=$patient_id->appointment_date;
         $data['client']=$rs;
+        
+        $employee_id = RbacUser::model()->findByPk(Yii::app()->user->getId());
+        $data['lab_tech'] = Employee::model()->get_doctorName($employee_id->employee_id);
+        
+        $doctor_id = RbacUser::model()->findByPk($patient_id->user_id);
+        $data['doctor'] = Employee::model()->get_doctorName($doctor_id->employee_id);
         
         $this->render('_labo_print', $data);
     }

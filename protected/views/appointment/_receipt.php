@@ -234,10 +234,10 @@ if (isset($error_message))
      
 </div>
 
-<!--<script>
+<script>
 $(window).bind("load", function() {
     setTimeout(window.location.href='Prescription',5000); 
     window.print();
     return true;
 });    
-</script>--->
+</script>
