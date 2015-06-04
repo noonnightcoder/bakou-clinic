@@ -1,4 +1,4 @@
-<style>
+<!--<style>
 #sale_return_policy {
     width: 80%;
     margin: 0 auto;
@@ -19,6 +19,39 @@
   //position: relative;
   padding: 3px;
 }      
+</style>-->
+<style>
+#sale_return_policy {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}   
+
+/*Receipt styles start*/
+#receipt_wrapper {
+    font-family: Arial;
+    width: 98% !important;
+    font-size: 13px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
+
+#receipt_items td {
+  //position: relative;
+  padding: 3px;
+}
+
+@media print {
+    body {
+        position: relative;
+    }
+
+    #footer {
+        position: fixed;
+        bottom: 0;
+        width:100%;
+    }
+}
 </style>
 
 <?php
@@ -90,7 +123,7 @@ if (isset($error_message))
                     </p>
             <!-- </div> -->
         </div>
-        
+        <div class="col-xs-12">
         <table class="table" id="receipt_items">
             <thead>
                 <tr>
@@ -194,7 +227,7 @@ if (isset($error_message))
                     -->
             </tbody>
         </table>
-        
+        </div>
         <div id="sale_return_policy"> <?php echo TbHtml::encode(Yii::t('app',Yii::app()->settings->get('site', 'returnPolicy'))); ?> </div>
         
     </div>

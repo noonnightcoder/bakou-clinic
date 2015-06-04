@@ -8,18 +8,30 @@
 /*Receipt styles start*/
 #receipt_wrapper {
     font-family: Arial;
-    width: 92% !important;
-    font-size: 11px !important;
+    width: 98% !important;
+    font-size: 13px !important;
     margin: 0 auto !important;
     padding: 0 !important;
 }
 
-    
 #receipt_items td {
   //position: relative;
   padding: 3px;
-}      
+}
+
+@media print {
+    body {
+        position: relative;
+    }
+
+    #footer {
+        position: fixed;
+        bottom: 0;
+        width:100%;
+    }
+}
 </style>
+
 <div class="container" id="receipt_wrapper"> 
     <div class="row">
         <div class="col-xs-5">
@@ -49,10 +61,8 @@
                 <?php echo TbHtml::encode(Yii::t('app','Visit Date') . " : "  . $visit_date); ?><br>
             </p>
         </div>
-    </div>      
-</div>
-<div class="container" id="receipt_wrapper">
-    <div class="row">
+    </div>
+    <div class="gift_receipt_element">
         <table id="receipt_items" style="width:100%">
             <tr>
                 <td align="center"><h3><strong>LABORATORY RESULT</strong></h3></td>
@@ -62,7 +72,7 @@
             </tr>
         </table>  
     </div>
-    <div class="row">
+    <div class="gift_receipt_element">
         <table class="table" id="receipt_items">
             <thead>
                 <tr>
@@ -135,23 +145,36 @@
     </div> 
 </div>
 <p><p>
-<div class="container" id="receipt_wrapper">
-    <div class="row col-sm-6">
-        <table id="receipt_items" style="width:20%">            
-            <tr>            
-                <td style='text-align:right;border-top:1px solid #000000;'></td>                
-            </tr>
-            <tr><td>Doctor:</td></tr>
-            <tr><td>Date:<?php echo date('d-M-Y') ?></td></tr>
-        </table>
-    </div>
-    <div class="row col-sm-6" style="align:right">
-        <table id="receipt_items" style="width:20%">            
-            <tr>            
-                <td style='text-align:right;border-top:1px solid #000000;'></td>                
-            </tr>
-            <tr><td>Doctor:</td></tr>
-            <tr><td>Date:<?php echo date('d-M-Y') ?></td></tr>
-        </table>
+<div id="footer">
+    <div class="row">
+        <div class="col-xs-3">
+            <table id="receipt_items" style="width:100%">            
+                <tr>            
+                    <td style='text-align:right;border-top:1px solid #000000;'></td>                
+                </tr>
+                <tr><td>Doctor:</td></tr>
+                <tr><td>Date:<?php echo date('d-M-Y') ?></td></tr>
+            </table>
+        </div>
+        <div class="col-xs-3"></div>
+        <!--<div class="col-xs-3">Account Process </div>-->
+        <div class="col-xs-3"></div>
+        <div class="col-xs-3 align-right">
+            <table id="receipt_items" style="width:100%">            
+                <tr>            
+                    <td style='text-align:right;border-top:1px solid #000000;'></td>                
+                </tr>
+                <tr style='text-align:left'><td>Lab-Tech:</td></tr>
+                <tr style='text-align:left'><td>Date:<?php echo date('d-M-Y') ?></td></tr>
+            </table>
+        </div>
     </div>
 </div>
+<?php $url = Yii::app()->createUrl('Appointment/labocheck/'); ?>
+<script>
+$(window).bind("load", function() {
+    setTimeout(window.location.href='<?php echo $url; ?>',5000);
+    window.print();
+    return true;
+});    
+</script>
