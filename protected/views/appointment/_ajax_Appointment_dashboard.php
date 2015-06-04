@@ -22,7 +22,7 @@ foreach ($doctors as $doctor) {
 }
 echo "</tr></thead>";
 echo "<tbody id='appointment-dash'>";
-for ($i = 1; $i < 10; $i++) {
+for ($i = 1; $i < 31; $i++) {
     if ($i % 2 == 0) {
         $class = "class='even'";
     } else {
@@ -33,7 +33,14 @@ for ($i = 1; $i < 10; $i++) {
     foreach ($doctors as $doc_id => $doc) {
         //$doc=$doctor;
         $url = Yii::app()->createUrl('Appointment/create', array("doctor_id" => $doc_id,"patient_id"=>$_GET['patient_id']));
-
+        
+        /*if(isset($_GET['patient_id']))
+        {
+            $url = Yii::app()->createUrl('Appointment/create', array("doctor_id" => $doc_id,"patient_id"=>$_GET['patient_id']));
+        }else
+        {
+            $url = Yii::app()->createUrl('Appointment/create', array("doctor_id" => $doc_id));
+        */
         $count = 0;
         echo "<td><table id=\"innertbl\"><tr $class>";
 

@@ -60,7 +60,7 @@
                 )
             ),
             array('label'=>'<span class="menu-text">'. strtoupper(Yii::t('menu','Setting')) . '</span>', 'icon'=>'menu-icon fa fa-cogs','url'=>Yii::app()->urlManager->createUrl('settings/index'),
-                'active'=>$this->id=='employee' || $this->id=='clinic' || $this->id=='treatment' || $this->id=='item',
+                'active'=>$this->id=='employee' || $this->id=='clinic' || $this->id=='treatment' || $this->id=='treatmentitemdetail' || $this->id=='item',
                 'visible'=>Yii::app()->user->checkAccess('maintask.setting'),
                 'items'=>array(
                     array('label'=>Yii::t('menu', 'Clinic'), 'icon'=> 'fa fa-h-square', 'url'=>Yii::app()->urlManager->createUrl('clinic/ClinicInfo'), 'active'=>$this->id .'/'. $this->action->id=='clinic/ClinicInfo',
@@ -81,6 +81,14 @@
                         || Yii::app()->user->checkAccess('treatment.update') 
                         || Yii::app()->user->checkAccess('treatment.delete')
                     ),
+                    
+                    array('label'=>Yii::t('menu', 'Lab Item'), 'icon'=> TbHtml::ICON_PLUS_SIGN, 'url'=>Yii::app()->urlManager->createUrl('treatmentitemdetail/admin'), 'active'=>$this->id .'/'. $this->action->id=='treatmentitemdetail/admin',
+                    'visible'=> Yii::app()->user->checkAccess('treatment.index') 
+                        || Yii::app()->user->checkAccess('treatment.create') 
+                        || Yii::app()->user->checkAccess('treatment.update') 
+                        || Yii::app()->user->checkAccess('treatment.delete')
+                    ),
+                    
                     array('label'=>Yii::t('menu', 'Item'), 'icon'=> TbHtml::ICON_SHOPPING_CART, 'url'=>Yii::app()->urlManager->createUrl('Item/admin'), 'active'=>$this->id .'/'. $this->action->id=='Item/admin',
                     'visible'=> Yii::app()->user->checkAccess('item.index') 
                         || Yii::app()->user->checkAccess('item.create') 

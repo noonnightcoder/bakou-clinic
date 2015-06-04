@@ -71,7 +71,7 @@ class TreatmentItemDetail extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			't_group_id' => 'T Group',
-			'treatment_item' => 'Treatment Item',
+			'treatment_item' => 'Lab Item',
 			'unit_price' => 'Unit Price',
 		);
 	}

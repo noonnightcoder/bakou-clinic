@@ -32,7 +32,7 @@ class TreatmentItemDetailController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','LabAnalyzed'),
+				'actions'=>array('create','update','LabAnalyzed','admin'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -94,7 +94,7 @@ class TreatmentItemDetailController extends Controller
 		if (isset($_POST['TreatmentItemDetail'])) {
 			$model->attributes=$_POST['TreatmentItemDetail'];
 			if ($model->save()) {
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin','id'=>$model->id));
 			}
 		}
 

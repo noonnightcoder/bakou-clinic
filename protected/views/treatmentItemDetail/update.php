@@ -1,23 +1,19 @@
 <?php
-/* @var $this TreatmentItemDetailController */
-/* @var $model TreatmentItemDetail */
+$this->breadcrumbs=array(
+        'Lab Item'=>array('admin'),
+	'Update',
+);
 ?>
 
 <?php
-$this->breadcrumbs=array(
-	'Treatment Item Details'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
-
-$this->menu=array(
-	array('label'=>'List TreatmentItemDetail', 'url'=>array('index')),
-	array('label'=>'Create TreatmentItemDetail', 'url'=>array('create')),
-	array('label'=>'View TreatmentItemDetail', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage TreatmentItemDetail', 'url'=>array('admin')),
-);
+    //$fullname = ucwords($model->first_name . ' ' . $model->last_name);
 ?>
 
-    <h1>Update TreatmentItemDetail <?php echo $model->id; ?></h1>
+<?php $box = $this->beginWidget('yiiwheels.widgets.box.WhBox', array(
+              'title' => Yii::t('app','Update Treatment'),
+              'headerIcon' => 'ace-icon fa fa-user',
+              'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
+              'content' => $this->renderPartial('_form', array('model'=>$model,), true),
+ )); ?>  
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->endWidget(); ?>

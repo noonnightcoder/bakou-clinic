@@ -598,10 +598,10 @@ class Appointment extends CActiveRecord
                 }elseif (!is_numeric((float)$this->actual_amount)) 
                 {
                     $this->addError('actual_amount','Actual Amount Only Numeric');
-                }elseif($this->actual_amount > $_POST['Appointment']['total_amount'])
+                }/*elseif($this->actual_amount > $_POST['Appointment']['total_amount'])
                 {
                     $this->addError('actual_amount','Actual Amount cannot bigger than Total amount');
-                }
+                }*/
             }
         }
         

@@ -5,21 +5,22 @@
 ?>
 
 <div class="form">
-
-    <?php $form=$this->beginWidget('\TbActiveForm', array(
-	'id'=>'treatment-item-detail-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+<?php $this->widget('bootstrap.widgets.TbAlert', array(
+        'block'=>true, // display a larger alert block?
+        'fade'=>true, // use transitions?
+        'closeText'=>'&times;', // close link text - if set to false, no close link is displayed
+        'alerts'=>array( // configurations per alert type
+            'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'), 
+            'error'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'),
+        ),
 )); ?>
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+                'id'=>'employee-form',
+                'enableAjaxValidation'=>false,
+                'layout'=>TbHtml::FORM_LAYOUT_HORIZONTAL,
+        )); ?>
 
-    <p class="help-block">Fields with <span class="required">*</span> are required.</p>
-
-    <?php echo $form->errorSummary($model); ?>
-
-            <?php echo $form->textFieldControlGroup($model,'t_group_id',array('span'=>5)); ?>
+            <?php //echo $form->textFieldControlGroup($model,'t_group_id',array('span'=>5)); ?>
 
             <?php echo $form->textFieldControlGroup($model,'treatment_item',array('span'=>5,'maxlength'=>100)); ?>
 
@@ -28,10 +29,10 @@
             <?php echo $form->textFieldControlGroup($model,'caption',array('span'=>5,'maxlength'=>30)); ?>
 
         <div class="form-actions">
-        <?php echo TbHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array(
-		    'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
-		    'size'=>TbHtml::BUTTON_SIZE_LARGE,
-		)); ?>
+        <?php echo TbHtml::submitButton($model->isNewRecord ? Yii::t('app','Create') : Yii::t('app','Save'),array(
+           'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
+           //'size'=>TbHtml::BUTTON_SIZE_SMALL,
+       )); ?>
     </div>
 
     <?php $this->endWidget(); ?>
