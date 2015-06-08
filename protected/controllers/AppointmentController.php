@@ -1050,6 +1050,7 @@ class AppointmentController extends Controller
     
     public function actionprescriptionDetail($visit_id)
     {  
+        $this->layout = '//layouts/column_sale';
         //Yii::app()->treatmentCart->emptyPayment();
         $model = new Appointment;
         $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));

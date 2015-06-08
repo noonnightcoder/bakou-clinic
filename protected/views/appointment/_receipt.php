@@ -131,8 +131,9 @@ if (isset($error_message))
                     <!--<th class="center"><?php //echo Yii::t('app','Price'); ?></th>-->
                     <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Dosage')); ?></th>
                     <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Duration')); ?></th>
-                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Consuming Time')); ?></th>
+                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Time')); ?></th>
                     <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Instruction')); ?></th>
+                    <th class="center"> <?php echo TbHtml::encode(Yii::t('app','Comment')); ?></th>
                     <th class="center" ><?php echo TbHtml::encode(Yii::t('app','Qty')); ?></th>
                     <!--<th class="center"> <?php //echo TbHtml::encode(Yii::t('app','Advisery')); ?></th>-->
                     <th class="text-right"><?php echo TbHtml::encode(Yii::t('app','Total')); ?></th>
@@ -160,6 +161,7 @@ if (isset($error_message))
                         <td class="center"><?php echo TbHtml::encode($item['duration']); ?></td>
                         <td class="center"><?php echo TbHtml::encode($item['consuming_time']); ?></td>
                         <td class="center"><?php echo TbHtml::encode($item['instruction']); ?></td>
+                        <td class="center"><?php echo TbHtml::encode($item['comment']); ?></td>
                         <td class="center"><?php echo TbHtml::encode(round($item['quantity']),2); ?></td>
                         <!--<td class="center"><?php //echo TbHtml::encode($item['comment']); ?></td>-->
                         <td class="text-right"><?php echo TbHtml::encode(@$total_item); ?>

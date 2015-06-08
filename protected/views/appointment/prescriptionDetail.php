@@ -1,10 +1,5 @@
-<style>
-.btn-group {
-  display: flex !important;
-}
-</style>
-<div class="row" id="bill-payment-form">
-<div class="col-xs-12 col-sm-8 widget-container-col">
+<div id="bill-payment-form">
+<div class="col-sm-8 widget-container-col">
 <?php
 /* @var $this ContactController */
 /* @var $model Contact */
@@ -84,7 +79,7 @@ $('.search-form form').submit(function(){
 )); ?>
 <?php $this->endWidget(); ?>
 </div>
-<div class="col-xs-12 col-sm-4 widget-container-col">
+<div class="col-sm-4 widget-container-col">
     <div class="row">
         <div class="sidebar-nav" id="payment_cart">
             <?php if ($count_item <> 0) { ?>
@@ -111,26 +106,52 @@ $('.search-form form').submit(function(){
                                     <td><?php echo Yii::t('app', 'Total'); ?> :</td>
                                     <td>
                                         <span class="badge badge-info bigger-120">
-                                            <?php echo Yii::app()->settings->get('site', 'currencySymbol').number_format(@$amount, 2, '.', ','); ?>
+                                            <?php echo '៛'.number_format(@$amount, 2, '.', ','); ?>
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><?php echo Yii::t('app', 'Amount to Pay'); ?> :</td>
+                                    <td><?php echo Yii::t('app', 'Total Pay Amount'); ?> :</td>
                                     <td>
                                         <span class="badge badge-warning bigger-120">
-                                            <?php echo Yii::app()->settings->get('site', 'currencySymbol').number_format(@$actual_amount, 2, '.', ','); ?>
+                                            <?php echo '៛'.number_format(@$actual_amount, 2, '.', ','); ?>
                                         </span>
                                     </td>
                                 </tr>
                                 <!--<tr>
-                                    <td><?php echo Yii::t('app', 'Total in KHR'); ?> :</td>
+                                    <td><?php //echo Yii::t('app', 'Total in KHR'); ?> :</td>
                                     <td>
                                         <span class="badge badge-success bigger-120">
                                             <?php //echo @$amount*4000 ?>
                                         </span>
                                     </td>
                                 </tr> --->
+                                <?php if ($count_payment == 0) { ?>
+                                <tr>
+                                    <td colspan="2" style='text-align:right'>
+                                        <?php echo $form->textFieldControlGroup($model, 'alt_payment_amount', array(
+                                                //'value' => $amount_change,
+                                                'class' => 'input-small text-right payment-amount-txt',
+                                                'id' => 'alt_payment_amount_id', 
+                                                'data-url' => Yii::app()->createUrl('appointment/AddPayment?visit_id='.$visit_id),
+                                                'placeholder'=>Yii::t('app','Payment Amount') . ' ៛',
+                                                'prepend' => '៛',
+                                                //'style'=>'width:70%'
+                                            )); 
+                                        ?>
+                                        <?php echo $form->textFieldControlGroup($model, 'payment_amount', array(
+                                                'value' => '', //$amount_change,
+                                                'class' => 'input-mini text-right payment-amount-txt',
+                                                'id' => 'payment_amount_id', 
+                                                'data-url' => Yii::app()->createUrl('SaleItem/AddPayment/'),
+                                                'placeholder'=>Yii::t('app','Payment Amount') . ' $',
+                                                'prepend' =>  '$',
+                                                //'style'=>'width:70%'
+                                            )); 
+                                        ?>
+                                    </td>
+                                </tr>    
+                                <?php } ?>
                                 <?php if ($count_payment > 0) { ?>
                                     <?php foreach ($payments as $id => $payment): ?>
                                     <tr>
