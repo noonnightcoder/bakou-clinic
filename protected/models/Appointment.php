@@ -28,8 +28,8 @@ class Appointment extends CActiveRecord
         public $date_report;
         public $total_amount;
         public $actual_amount;
-        public $alt_payment_amount;
-        public $payment_amount;
+        public $kh_payment_amount;
+        public $us_payment_amount;
 
         public function tableName()
 	{

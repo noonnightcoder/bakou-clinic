@@ -122,6 +122,10 @@ class Payment extends CActiveRecord
             return $myid->queryScalar();
         }
         
+        public function payment_amount()
+        {
+            
+        }
         /*public function DeletePayment()
         {
             

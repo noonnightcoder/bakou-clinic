@@ -208,20 +208,24 @@ class TreatmentCart extends CApplicationComponent
         $this->session['payments'] = $payments_data;
     }
     
-    public function addPayment($visit_id, $payment_amount)
+    public function addPayment($visit_id, $actual_amount=0,$kh_payment_amount=0,$us_payment_amount=0)
     {
         $this->setSession(Yii::app()->session);
         $payments = $this->getPayments();
         $payment = array($visit_id =>
             array(
                 'visit_id' => $visit_id,
-                'payment_amount' => $payment_amount
+                'actual_amount'=>$actual_amount,
+                'kh_payment_amount' => $kh_payment_amount,
+                'us_payment_amount' => $us_payment_amount,                
             )
         );
 
         //payment_method already exists, add to payment_amount
         if (isset($payments[$visit_id])) {
-            $payments[$visit_id]['payment_amount'] += $payment_amount;
+            $payments[$visit_id]['kh_payment_amount'] += $kh_payment_amount;
+            $payments[$visit_id]['us_payment_amount'] += $us_payment_amount;
+            $payments[$visit_id]['actual_amount'] += $actual_amount;
         } else {
             //add to existing array
             $payments += $payment;

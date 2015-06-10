@@ -126,24 +126,25 @@ $('.search-form form').submit(function(){
                                         </span>
                                     </td>
                                 </tr> --->
+                                <?php //echo $count_payment; ?>
                                 <?php if ($count_payment == 0) { ?>
                                 <tr>
                                     <td colspan="2" style='text-align:right'>
-                                        <?php echo $form->textFieldControlGroup($model, 'alt_payment_amount', array(
+                                        <?php echo $form->textFieldControlGroup($model, 'kh_payment_amount', array(
                                                 //'value' => $amount_change,
                                                 'class' => 'input-small text-right payment-amount-txt',
-                                                'id' => 'alt_payment_amount_id', 
+                                                'id' => 'kh_payment_amount_id', 
                                                 'data-url' => Yii::app()->createUrl('appointment/AddPayment?visit_id='.$visit_id),
                                                 'placeholder'=>Yii::t('app','Payment Amount') . ' ៛',
                                                 'prepend' => '៛',
                                                 //'style'=>'width:70%'
                                             )); 
                                         ?>
-                                        <?php echo $form->textFieldControlGroup($model, 'payment_amount', array(
+                                        <?php echo $form->textFieldControlGroup($model, 'us_payment_amount', array(
                                                 'value' => '', //$amount_change,
                                                 'class' => 'input-mini text-right payment-amount-txt',
-                                                'id' => 'payment_amount_id', 
-                                                'data-url' => Yii::app()->createUrl('SaleItem/AddPayment/'),
+                                                'id' => 'us_payment_amount_id', 
+                                                'data-url' => Yii::app()->createUrl('appointment/AddPayment?visit_id='.$visit_id),
                                                 'placeholder'=>Yii::t('app','Payment Amount') . ' $',
                                                 'prepend' =>  '$',
                                                 //'style'=>'width:70%'
@@ -168,12 +169,63 @@ $('.search-form form').submit(function(){
                                             ?>  
                                             <?php echo Yii::t('App','Paid Amount[Cash]'); ?></td>
                                         <td>
-                                            <span class="badge badge-success bigger-120">
-                                                <?php echo number_format($payment['payment_amount'], 2, '.', ','); ?><?php //echo $payment['payment_amount']*4000; ?>
+                                            <span class="badge badge-success bigger-120">                                                
+                                                <?php echo '៛'.number_format($payment['actual_amount'], 2, '.', ','); ?>
+                                                <?php //echo '៛'.number_format($payment['payment_amount'], 2, '.', ','); ?><?php //echo $payment['payment_amount']*4000; ?>
                                             </span>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
+                                    
+                                    <?php if ($amount_change<=0) { ?> 
+                                        <tr>
+                                            <td> 
+                                               <?php echo Yii::t('app', 'Change Due'); ?>:
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-info bigger-120">
+                                                    <?php echo '$'. number_format($amount_change, 2, '.', ','); ?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> 
+                                               <?php echo Yii::t('app', 'Change Due in KHR'); ?>:
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success bigger-120">
+                                                    <?php echo '៛' . number_format($amount_change_khr_round, 0, '.', ','); ?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <?php  } else { ?>
+                                        <tr>
+                                            <td> 
+                                                <span class="label label-danger">
+                                                    <?php echo TbHtml::b(Yii::t('app', 'Change Owe')); ?></td>
+                                                </span>
+                                            <td>
+                                                <span class="badge badge-important bigger-120">
+                                                    <strong>
+                                                    <?php echo '$' . number_format($amount_change, 2, '.', ','); ?>
+                                                    </strong>
+                                                </span> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> 
+                                               <span class="label label-danger">
+                                               <?php echo TbHtml::b(Yii::t('app', 'Change Owe in KHR')); ?>:
+                                               </span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-important bigger-120">
+                                                    <?php echo '៛' . number_format($amount_change_khr_round, 0, '.', ','); ?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                        
                                 <?php } ?>
                                 <?php if (@$count_payment == 0) { ?>                                     
                                     <tr>
@@ -271,10 +323,12 @@ $(document).ready(function()
         jQuery( function($){
             $('tbody#payment-form').on('click','a.add-payment',function(e) {
                 e.preventDefault();
+                data = $('form').serialize();
                 var url=$(this).attr('href');
                 $.ajax({
                     url:url,
                     type : 'post',
+                    data:data,
                     beforeSend: function() { $('.waiting').show(); },
                     complete: function() { $('.waiting').hide(); },
                     success : function(data) {
@@ -306,3 +360,51 @@ $(document).ready(function()
       ");
  ?> 
 
+
+<?php 
+    Yii::app()->clientScript->registerScript( 'kh_payment_amount', "
+        jQuery( function($){
+            $('tbody#payment-form').on('keypress','#kh_payment_amount_id',function(e) {
+                if (e.keyCode === 13 || e.which === 13)
+                {    
+                    e.preventDefault();
+                    data = $('form').serialize();
+                    var url=$(this).data('url');
+                    $.ajax({url:url,
+                        type : 'post',
+                        beforeSend: function() { $('.waiting').show(); },
+                        complete: function() { $('.waiting').hide(); },
+                        data : data,
+                        success : function(data) {
+                              $('#bill-payment-form').html(data);
+                        }
+                    });
+                }    
+            });
+        });
+    ");
+ ?> 
+
+<?php 
+    Yii::app()->clientScript->registerScript( 'us_payment_amount', "
+        jQuery( function($){
+            $('tbody#payment-form').on('keypress','#us_payment_amount_id',function(e) {
+                if (e.keyCode === 13 || e.which === 13)
+                {    
+                    e.preventDefault();
+                    data = $('form').serialize();
+                    var url=$(this).data('url');
+                    $.ajax({url:url,
+                        type : 'post',
+                        beforeSend: function() { $('.waiting').show(); },
+                        complete: function() { $('.waiting').hide(); },
+                        data : data,
+                        success : function(data) {
+                              $('#bill-payment-form').html(data);
+                        }
+                    });
+                }    
+            });
+        });
+    ");
+ ?> 

@@ -1059,13 +1059,19 @@ class AppointmentController extends Controller
         $data['count_item'] = $model->countBill($visit_id);
         $data['amount'] = $model->sumBill($visit_id);
         $data['actual_amount'] = $model->get_actual_amount($visit_id);
+        $data['amount_change']=1;
+        $data['amount_change_khr_round']=4100;
         $data['visit_id'] = $visit_id;
         //$data['patient_name'] = $data['model']->patient_name;
         $data['payments'] =Yii::app()->treatmentCart->getPayments();
-        
+        //print_r($data['payments']);
         //---***find bill was added yet***---//
         $count_payment=0;
-        if(!empty($data['payments'])){$count_payment=1;}
+        foreach($data['payments'] as $val)
+        {
+            if($val['kh_payment_amount']>=0 || $val['kh_payment_amount']>=0){$count_payment=1;}else{$count_payment=0;}
+        }
+        //if(!empty($data['payments'])){$count_payment=1;}
         if($data['count_item']>0)
         {
             $data['count_payment'] = $count_payment;
@@ -1129,14 +1135,28 @@ class AppointmentController extends Controller
             $data['count_item'] = $model->countBill($visit_id);
             $data['amount'] = $model->sumBill($visit_id);  
             $data['actual_amount'] = $model->get_actual_amount($visit_id);
+            //$data['payment_amount']=$data['actual_amount'];
+            $data['amount_change']=1;
+            $data['amount_change_khr_round']=4100;
             $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
             $data['patient_name'] = $rst->patient_name;
             $data['visit_id'] = $visit_id;
-            Yii::app()->treatmentCart->addPayment($visit_id,$data['actual_amount']);
-            $data['payments'] = Yii::app()->treatmentCart->getPayments();
-                
+            if(isset($_POST['Appointment']['kh_payment_amount'])){$kh_payment_amount=$_POST['Appointment']['kh_payment_amount'];}
+            if(isset($_POST['Appointment']['us_payment_amount'])){$us_payment_amount=$_POST['Appointment']['us_payment_amount'];}
+            
+            //Yii::app()->treatmentCart->addPayment($visit_id,$data['actual_amount']);
+             
             $count_payment=0;
-            if(!empty($data['payments'])){$count_payment=1;}
+
+            if($kh_payment_amount != '' || $us_payment_amount != '')
+            {
+                Yii::app()->treatmentCart->addPayment($visit_id,$data['actual_amount'],$kh_payment_amount,$us_payment_amount);
+                $count_payment=1;
+            }else{
+                $count_payment=0;            
+            }
+            
+            $data['payments'] = Yii::app()->treatmentCart->getPayments();
         
             if($data['count_item']>0)
             { 
@@ -1231,6 +1251,8 @@ class AppointmentController extends Controller
         $data['cust_info'] = $cust_info;
         $data['sale_id'] = $sale_id;
         $data['discount'] = 0;
+        $data['amount_change']=1;
+        $data['amount_change_khr_round']=4100;
         
         $data['clinic_name']=$clinic_info->clinic_name;
         $data['clinic_address']= $clinic_info->clinic_address;
