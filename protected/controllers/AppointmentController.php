@@ -1051,7 +1051,6 @@ class AppointmentController extends Controller
     public function actionprescriptionDetail($visit_id)
     {  
         $this->layout = '//layouts/column_sale';
-        //Yii::app()->treatmentCart->emptyPayment();
         $model = new Appointment;
         $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
         $data['patient_name'] = $rst->patient_name;
@@ -1061,7 +1060,7 @@ class AppointmentController extends Controller
         $data['actual_amount'] = $model->get_actual_amount($visit_id);
         
         $data['visit_id'] = $visit_id;
-        //$data['patient_name'] = $data['model']->patient_name;
+
         $data['payments'] =Yii::app()->treatmentCart->getPayments();
         //print_r($data['amount_change_khr_round']);
         //---***find bill was added yet***---//
@@ -1070,13 +1069,20 @@ class AppointmentController extends Controller
         {
             if($val['kh_payment_amount']>=0 || $val['kh_payment_amount']>=0){$count_payment=1;}else{$count_payment=0;}
         }
-        //if(!empty($data['payments'])){$count_payment=1;}
+
         $data['amount_change']=Yii::app()->treatmentCart->get_us_change();
         $data['amount_change_khr_round']=Yii::app()->treatmentCart->get_kh_change();
         if($data['count_item']>0)
         {
-            $data['count_payment'] = $count_payment;
-            $this->render('prescriptionDetail',$data);
+            $chk_bill = Bill::model()->find("visit_id=:visit_id",array(":visit_id"=>$visit_id));
+            if(empty($chk_bill))
+            {
+                $data['count_payment'] = $count_payment;
+                $this->render('prescriptionDetail',$data);
+            }else{
+                Yii::app()->user->setFlash('error', '<strong>This Bill! </strong> Was already Paid!');
+                $this->redirect(array('appointment/prescription'));
+            }
         }else{
             Yii::app()->user->setFlash('error', '<strong>There are no item! </strong>Please contact administrator.');
             $this->render('prescription',array(
@@ -1275,8 +1281,7 @@ class AppointmentController extends Controller
         
         if($data['amount_change']<=0)
         {
-            $this->layout = '//layouts/column_receipt';
-            
+            $this->layout = '//layouts/column_receipt';            
             $this->render('_receipt', $data);
             Yii::app()->treatmentCart->clearAll();
             
@@ -1284,8 +1289,8 @@ class AppointmentController extends Controller
             $this->layout = '//layouts/column_sale';
             
             $model = new Appointment;
-            $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
-            $data['patient_name'] = $rst->patient_name;
+            //$rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
+            $data['patient_name'] = $rs->fullname;
             
             $data['model'] = new Appointment('showBillDetail');
             $data['count_item'] = $model->countBill($visit_id);

@@ -13,7 +13,17 @@
                   'headerIcon' => 'ace-icon fa fa-medkit',
                   'htmlHeaderOptions'=>array('class'=>'widget-header-flat widget-header-small'),
     ));
-?>         
+?>
+
+<?php if(Yii::app()->user->hasFlash('error')):?>
+<?php
+    foreach(Yii::app()->user->getFlashes('error') as $key => $message) {
+        echo TbHtml::alert(TbHtml::ALERT_COLOR_WARNING, $message);
+    }
+?>
+<?php endif; ?>
+      
+
 <?php
 /* @var $this AppointmentController */
 /* @var $model Appointment */
@@ -41,9 +51,6 @@ $('.search-form form').submit(function(){
     'model'=>$model,
 )); ?>
 </div><!-- search-form -->
-<?php if(Yii::app()->user->hasFlash('success')):?>
-        <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
-<?php endif; ?>
 
 <?php $this->widget('yiiwheels.widgets.grid.WhGridView',array(
             'id'=>'medicine-form-grid',
@@ -114,3 +121,6 @@ $('.search-form form').submit(function(){
 <?php $this->endWidget(); ?>
     </div>
 </div>
+<script>
+    $(".alert" ).fadeOut(3000);
+</script>
