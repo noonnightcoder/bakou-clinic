@@ -169,9 +169,12 @@ $('.search-form form').submit(function(){
                                             ?>  
                                             <?php echo Yii::t('App','Paid Amount[Cash]'); ?></td>
                                         <td>
-                                            <span class="badge badge-success bigger-120">                                                
+                                            <span class="badge badge-success bigger-120">    
+                                                <?php if($amount_change<=0) {?>
                                                 <?php echo '៛'.number_format($payment['actual_amount'], 2, '.', ','); ?>
-                                                <?php //echo '៛'.number_format($payment['payment_amount'], 2, '.', ','); ?><?php //echo $payment['payment_amount']*4000; ?>
+                                                <?php }else{ ?>
+                                                <?php echo '៛'.number_format($amount_change_khr_round, 2, '.', ','); ?>
+                                                <?php } ?>
                                             </span>
                                         </td>
                                     </tr>

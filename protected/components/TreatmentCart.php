@@ -232,13 +232,53 @@ class TreatmentCart extends CApplicationComponent
         }
 
         $this->setPayments($payments);
+        $this->set_us_change($actual_amount,$kh_payment_amount,$us_payment_amount);
+        $this->set_kh_change($actual_amount,$kh_payment_amount,$us_payment_amount);
         return true;
+    }
+    
+    public function set_us_change($actual_amount,$kh_payment_amount=0,$us_payment_amount=0)
+    {
+        $this->setSession(Yii::app()->session);
+        $exchange_rate = Yii::app()->session['exchange_rate'];
+        $amount_change = round(($actual_amount/$exchange_rate),2)-($us_payment_amount+round(($kh_payment_amount/$exchange_rate),2));
+        
+        $this->session['amount_change'] = $amount_change;
+    }
+    
+    public function set_kh_change($actual_amount,$kh_payment_amount=0,$us_payment_amount=0)
+    {
+        $this->setSession(Yii::app()->session);
+        $exchange_rate = Yii::app()->session['exchange_rate'];
+        $amount_change_khr_round = $actual_amount-(($us_payment_amount*$exchange_rate)+$kh_payment_amount);
+        
+        $this->session['amount_change_khr_round'] = $amount_change_khr_round;
+    }
+    
+    public function get_us_change()
+    {
+        $this->setSession(Yii::app()->session);
+        if (!isset($this->session['amount_change'])) {
+            $this->setPayments(array());
+        }
+        return $this->session['amount_change'];
+    }
+    
+    public function get_kh_change()
+    {
+        $this->setSession(Yii::app()->session);
+        if (!isset($this->session['amount_change_khr_round'])) {
+            $this->setPayments(array());
+        }
+        return $this->session['amount_change_khr_round'];
     }
 
     public function deletePayment($visit_id)
     {
         $payments = $this->getPayments();
         unset($payments[$visit_id]);
+        unset($this->session['amount_change']);
+        unset($this->session['amount_change_khr_round']);
         $this->setPayments($payments);
     }
     
@@ -246,6 +286,8 @@ class TreatmentCart extends CApplicationComponent
     {
         $this->setSession(Yii::app()->session);
         unset($this->session['payments']);
+        unset($this->session['amount_change']);
+        unset($this->session['amount_change_khr_round']);
     }
     
     protected function emptyCart()

@@ -641,7 +641,7 @@ class AppointmentController extends Controller
     
     public function actionLabocheck()
     {
-        if(!Yii::app()->user->checkAccess('consultation.view'))
+        if(!Yii::app()->user->checkAccess('laboratory.view'))
         {
             throw new CHttpException(400,'You are not authorized to perform this action.');
         }else{
@@ -657,7 +657,7 @@ class AppointmentController extends Controller
         $patient_id=$_GET['patient_id'];
         $doctor_id=$_GET['doctor_id'];
         
-        if(!Yii::app()->user->checkAccess('consultation.view'))
+        if(!Yii::app()->user->checkAccess('laboratory.view'))
         {
             throw new CHttpException(400,'You are not authorized to perform this action.');
         }else{
@@ -1059,12 +1059,11 @@ class AppointmentController extends Controller
         $data['count_item'] = $model->countBill($visit_id);
         $data['amount'] = $model->sumBill($visit_id);
         $data['actual_amount'] = $model->get_actual_amount($visit_id);
-        $data['amount_change']=1;
-        $data['amount_change_khr_round']=4100;
+        
         $data['visit_id'] = $visit_id;
         //$data['patient_name'] = $data['model']->patient_name;
         $data['payments'] =Yii::app()->treatmentCart->getPayments();
-        //print_r($data['payments']);
+        //print_r($data['amount_change_khr_round']);
         //---***find bill was added yet***---//
         $count_payment=0;
         foreach($data['payments'] as $val)
@@ -1072,6 +1071,8 @@ class AppointmentController extends Controller
             if($val['kh_payment_amount']>=0 || $val['kh_payment_amount']>=0){$count_payment=1;}else{$count_payment=0;}
         }
         //if(!empty($data['payments'])){$count_payment=1;}
+        $data['amount_change']=Yii::app()->treatmentCart->get_us_change();
+        $data['amount_change_khr_round']=Yii::app()->treatmentCart->get_kh_change();
         if($data['count_item']>0)
         {
             $data['count_payment'] = $count_payment;
@@ -1136,8 +1137,7 @@ class AppointmentController extends Controller
             $data['amount'] = $model->sumBill($visit_id);  
             $data['actual_amount'] = $model->get_actual_amount($visit_id);
             //$data['payment_amount']=$data['actual_amount'];
-            $data['amount_change']=1;
-            $data['amount_change_khr_round']=4100;
+            
             $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
             $data['patient_name'] = $rst->patient_name;
             $data['visit_id'] = $visit_id;
@@ -1145,7 +1145,6 @@ class AppointmentController extends Controller
             if(isset($_POST['Appointment']['us_payment_amount'])){$us_payment_amount=$_POST['Appointment']['us_payment_amount'];}
             
             //Yii::app()->treatmentCart->addPayment($visit_id,$data['actual_amount']);
-             
             $count_payment=0;
 
             if($kh_payment_amount != '' || $us_payment_amount != '')
@@ -1157,6 +1156,8 @@ class AppointmentController extends Controller
             }
             
             $data['payments'] = Yii::app()->treatmentCart->getPayments();
+            $data['amount_change']=Yii::app()->treatmentCart->get_us_change();
+            $data['amount_change_khr_round']=Yii::app()->treatmentCart->get_kh_change();
         
             if($data['count_item']>0)
             { 
@@ -1228,10 +1229,7 @@ class AppointmentController extends Controller
     }
     
     public function actionCompleteSale($visit_id)
-    {
-        
-        $this->layout = '//layouts/column_receipt';
-        
+    {  
         $sale_id = Payment::model()->CompleteSale($visit_id);
 
         $clinic_info = Clinic::model()->find();
@@ -1241,9 +1239,6 @@ class AppointmentController extends Controller
         $cust_info=Appointment::model()->generateInvoice($visit_id); 
         $patient_id = Appointment::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
         $rs = VSearchPatient::model()->find("patient_id=:patient_id",array(':patient_id'=>$patient_id->patient_id));
-        
-        //$data['pres_detail'] = VPrescriptionDetail::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
-        //$pres_detail = PrescriptionDetail::model()->find("prescription_id=:prescription_id",array(':prescription_id'=>$prescription_id));
 
         $data['cust_fullname'] =  $rs->fullname;
         //$data['cust_fullname'] =  'Hello';
@@ -1251,8 +1246,8 @@ class AppointmentController extends Controller
         $data['cust_info'] = $cust_info;
         $data['sale_id'] = $sale_id;
         $data['discount'] = 0;
-        $data['amount_change']=1;
-        $data['amount_change_khr_round']=4100;
+        $data['amount_change']=Yii::app()->treatmentCart->get_us_change();
+        $data['amount_change_khr_round']=Yii::app()->treatmentCart->get_kh_change();
         
         $data['clinic_name']=$clinic_info->clinic_name;
         $data['clinic_address']= $clinic_info->clinic_address;
@@ -1274,12 +1269,44 @@ class AppointmentController extends Controller
         }
         $data['total']=$total - $total*$data['discount_amount']/100;
         $data['actual_amount'] = Appointment::model()->get_actual_amount($visit_id);
-        //$data['total_khr_round']=($total - $total*$data['discount_amount']/100)*4000;
-        $data['amount_change']=0;
-        $data['amount_change_khr_round']=0;
         
-        Yii::app()->treatmentCart->clearAll();
-        $this->render('_receipt', $data);
+        $data['amount_change']=Yii::app()->treatmentCart->get_us_change();
+        $data['amount_change_khr_round']=Yii::app()->treatmentCart->get_kh_change();
+        
+        if($data['amount_change']<=0)
+        {
+            $this->layout = '//layouts/column_receipt';
+            
+            $this->render('_receipt', $data);
+            Yii::app()->treatmentCart->clearAll();
+            
+        }else{
+            $this->layout = '//layouts/column_sale';
+            
+            $model = new Appointment;
+            $rst = VAppointmentState::model()->find("visit_id=:visit_id",array(':visit_id'=>$visit_id));
+            $data['patient_name'] = $rst->patient_name;
+            
+            $data['model'] = new Appointment('showBillDetail');
+            $data['count_item'] = $model->countBill($visit_id);
+            $data['amount'] = $model->sumBill($visit_id);
+            $data['actual_amount'] = $model->get_actual_amount($visit_id);
+
+            $data['visit_id'] = $visit_id;
+            
+            $data['payments'] =Yii::app()->treatmentCart->getPayments();
+            //print_r($data['amount_change_khr_round']);
+            //---***find bill was added yet***---//
+            $count_payment=0;
+            foreach($data['payments'] as $val)
+            {
+                if($val['kh_payment_amount']>=0 || $val['kh_payment_amount']>=0){$count_payment=1;}else{$count_payment=0;}
+            }
+
+            $data['count_payment']=$count_payment;
+            
+            $this->render('prescriptiondetail', $data);
+        }
     }
     
     public function actionActualAmount($visit_id,$patient_id,$doctor_id)
